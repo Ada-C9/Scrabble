@@ -24,6 +24,8 @@ module Scrabble
           total_score += 8
         when "Q", "Z"
           total_score += 10
+        else
+          total_score = nil
         end # case letter
       end # word_array.each
       return total_score
