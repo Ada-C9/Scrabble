@@ -40,23 +40,27 @@ describe 'Scoring' do
     end
   end
 
-  xdescribe 'highest_score_from' do
+  describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      #Act
+      word_collection = []
+      #Assert
+      Scrabble::Scoring.highest_score_from(word_collection).must_be_nil
     end
 
-    it 'returns the only word in a length-1 array' do
+    xit 'returns the only word in a length-1 array' do
     end
 
-    it 'returns the highest word if there are two words' do
+    xit 'returns the highest word if there are two words' do
     end
 
-    it 'if tied, prefer a word with 7 letters' do
+    xit 'if tied, prefer a word with 7 letters' do
     end
 
-    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
     end
 
-    it 'returns the first word of a tie with same letter count' do
+    xit 'returns the first word of a tie with same letter count' do
     end
   end
 end

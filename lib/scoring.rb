@@ -14,7 +14,7 @@ module Scrabble
       if @letters_array.empty?
         return nil
       end
-      
+
       # original word score
       @letters_array.each do |letter|
         if ("a".."z").cover?(letter)
@@ -48,6 +48,11 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+      @array_of_words = array_of_words
+
+      if @array_of_words.empty?
+        return nil
+      end
     end
   end
 end
