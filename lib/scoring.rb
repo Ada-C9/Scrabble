@@ -20,21 +20,36 @@ module Scrabble
         score += 8
       when 'Q', 'Z'
         score += 10
-      else
-        score = nil
+        return nil
+
+        # else
+        #   score = nil
       end
       return score
     end
 
+    # def is_a_letter?(input)
+    #   input =~ /[A-Z]/
+    # end
+
     def self.score(word)
-      score = nil
+      if word == "" || word == " "
+        return nil
+      end
+
+      score = 0
       letters_in_word = word.upcase.split(//)
+
+      score += 50 if letters_in_word.length == 7
+
+      return nil if
+      letters_in_word.length > 7
+
       letters_in_word.each do |letter|
-        score = letter_score(letter)
-        unless score == nil
-          score += 50 if letters_in_word.length == 7
-          score = nil if letters_in_word.length > 7
+        if !(letter =~ /[A-Z]/)
+          return nil
         end
+        score += letter_score(letter)
       end
       return score
     end
