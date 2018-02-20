@@ -53,7 +53,9 @@ describe 'Scoring' do
 
     end
 
-    xit 'returns the highest word if there are two words' do
+    it 'returns the highest word if there are two words' do
+      winning_words = Scrabble::Scoring.highest_score_from(["dog", "academy"])
+      winning_words.must_equal "academy"
     end
 
     xit 'if tied, prefer a word with 7 letters' do

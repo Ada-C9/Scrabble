@@ -4,6 +4,7 @@ module Scrabble
 
     def self.score(word)
 
+
       # TODO: fix it, better way to evaluate, with arrays.
 
       if word.match?(/\W/)
@@ -54,13 +55,25 @@ module Scrabble
       end
 
       winning_words = []
+      max_score = 0
+      winning_word = ""
 
       if array_of_words.length == 1
         winning_words << array_of_words
         return winning_words[0]
+      else
+        array_of_words.each do |word|
+          if  score(word) > max_score
+            max_score = score(word)
+            winning_word = word
+          end
+        end
+        return winning_word
       end
-
     end
+
+
+
   end #Scoring
 end #Scrabble
 
