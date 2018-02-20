@@ -23,12 +23,17 @@ module Scrabble
           score += 8
         when "q", "z"
           score += 10
+        else
+          return nil
         end
       end
 
       if letters_array.length == 7
         return score + 50
       elsif letters_array.length > 7
+        return nil
+      end
+      if score == 0
         return nil
       end
 
