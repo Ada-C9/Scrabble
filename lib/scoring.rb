@@ -20,8 +20,14 @@ module Scrabble
           end
         end
       end
+
+      score += 50 if word.length == 7 
       return score
     end
+
+
+
+
 
     def self.highest_score_from(array_of_words)
     end
