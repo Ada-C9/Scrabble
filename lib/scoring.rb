@@ -13,6 +13,7 @@ module Scrabble
 
       def self.score(word)
         score = 0
+        return nil if word.length > 7
         word.each_char do |c|
           return nil if !@score_chart.keys.include?(c.upcase)
           @score_chart.each do |key, value|
@@ -25,7 +26,7 @@ module Scrabble
         score += 50 if word.length == 7
         return score
       end
-      
+
       def self.highest_score_from(array_of_words)
       end
     end
