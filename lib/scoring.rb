@@ -4,7 +4,7 @@ module Scrabble
     def self.score(word)
       points = 0
 
-      if !/^[a-zA-Z]{1,7}$/.match(word) 
+      if !/^[a-zA-Z]{1,7}$/.match(word)
         return nil
       end
 
@@ -36,6 +36,13 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-    end
-  end
-end
+      hash_of_scores = {}
+      array_of_words.each do |word|
+        hash_of_scores[word] = self.score(word)
+      end
+      winner_score = hash_of_scores.values.max
+      return hash_of_scores.key(winner_score)
+    end # Method highest_score_from
+
+  end # Class Scoring
+end # Module Scrabble
