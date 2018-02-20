@@ -10,22 +10,22 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 describe 'Scoring' do
   describe 'score' do
     it 'correctly scores simple words' do
-      Scrabble::Scoring.score('DOG').must_equal 5
-      # Scrabble::Scoring.score('cat').must_equal 5
-      # Scrabble::Scoring.score('pig').must_equal 6
+      Scrabble::Scoring.score('dog').must_equal 5
+      Scrabble::Scoring.score('cat').must_equal 5
+      Scrabble::Scoring.score('pig').must_equal 6
     end
 
     xit 'adds 50 points for a 7-letter word' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 
-    xit 'handles all upper- and lower-case letters' do
+    it 'handles all upper- and lower-case letters' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('DOG').must_equal 5
       Scrabble::Scoring.score('DoG').must_equal 5
     end
 
-    xit 'returns nil for strings containing bad characters' do
+    it 'returns nil for strings containing bad characters' do
       Scrabble::Scoring.score('#$%^').must_be_nil
       Scrabble::Scoring.score('char^').must_be_nil
       Scrabble::Scoring.score(' ').must_be_nil
