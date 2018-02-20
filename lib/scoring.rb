@@ -56,20 +56,27 @@ module Scrabble
 
       winning_words = []
       max_score = 0
-      winning_word = ""
+
 
       if array_of_words.length == 1
         winning_words << array_of_words
         return winning_words[0]
       else
         array_of_words.each do |word|
-          if  score(word) > max_score
+          if  score(word) > max_score || score(word) == max_score
             max_score = score(word)
-            winning_word = word
+            winning_words << word
           end
         end
-        return winning_word
       end
+
+      if winning_words.count >= 2
+        winner = winning_words.max_by(&:length)
+        return winner
+      else
+        return winning_words[0]
+      end
+
     end
 
 

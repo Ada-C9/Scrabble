@@ -58,7 +58,10 @@ describe 'Scoring' do
       winning_words.must_equal "academy"
     end
 
-    xit 'if tied, prefer a word with 7 letters' do
+    it 'if tied, prefer a word with 7 letters' do
+      winning_words = Scrabble::Scoring.highest_score_from(["qqqqqj", "aaaaaad"])
+      winning_words.must_equal "aaaaaad"
+
     end
 
     xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
