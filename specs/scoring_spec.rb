@@ -62,9 +62,16 @@ describe 'Scoring' do
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      words = ['bbbb', 'fff']
+      Scrabble::Scoring.highest_score_from(words).must_equal 'fff'
+
     end
 
     it 'returns the first word of a tie with same letter count' do
+      words = ['aeiouae', 'ouaeiou']
+      Scrabble::Scoring.highest_score_from(words).must_equal 'aeiouae'
+      words = ['bbbb', 'cccc']
+      Scrabble::Scoring.highest_score_from(words).must_equal 'bbbb'
     end
   end
 end
