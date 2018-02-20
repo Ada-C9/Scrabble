@@ -18,7 +18,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 
-    xit 'handles all upper- and lower-case letters' do
+    it 'handles all upper- and lower-case letters' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('DOG').must_equal 5
       Scrabble::Scoring.score('DoG').must_equal 5

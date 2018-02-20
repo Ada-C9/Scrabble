@@ -6,6 +6,8 @@ module Scrabble
       word = word.upcase
       word_array = word.split('') #['d', 'o', 'g']
       total_score = 0
+      # add 50 pts if the word is 7 letters long
+      word_array.length == 7 ? total_score += 50 : total_score = 0
       word_array.each do |letter|
         case letter
         when "A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
