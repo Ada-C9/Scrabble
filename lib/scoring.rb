@@ -3,28 +3,35 @@ require 'pry'
 
 module Scrabble
   class Scoring
-    attr_reader :word, :score
+    attr_reader :word, :score, :letter
 
     @@letters_hash = { ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"] => 1, ["d", "g"] => 2, ["b", "c", "m", "p"] => 3, ["f", "h", "v", "w", "y"] => 4, ["k"] => 5, ["j", "x"] => 8, ["q", "z"] => 10 }
 
 
-
     def initialize
       @word = word
+      @letter = letter
     end
 
     def self.score(word)
 
-      score = []
-
-      dog_array = word.split(//)
-
-      dog_array.each do |i|
-        @@letters_hash.include? i
-        letter = @@letters_hash[i]
-        score << letter
+      if word =~ /\W/ || word.length > 7
+        return nil
       end
-      return score.sum
+
+      score = []
+      word_array = word.downcase.split(//)
+
+      word_array.each do |i|
+        @@letters_hash.keys.each do |keys|
+          if keys.include? i
+            @letter = @@letters_hash[keys]
+          end
+        end
+        score << @letter
+      end
+
+      return score.length == 7 ? score.sum + 50 : score.sum
     end
 
 
@@ -34,4 +41,4 @@ module Scrabble
   end
 end
 
-# ap Scrabble::Scoring.score('dog')
+ap Scrabble::Scoring.score('')
