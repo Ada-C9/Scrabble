@@ -12,6 +12,12 @@ module Scrabble
 
     def self.score(word)
       word_array = word.upcase.chars
+      if word_array.empty? || word_array.length > 7
+        return nil
+      end
+      word_array.each do |letter|
+        return nil if !(LETTER_VALUES.keys.include?(letter))
+      end
       score = 0
       word_array.each do |letter|
         score += LETTER_VALUES[letter]
