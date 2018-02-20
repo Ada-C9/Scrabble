@@ -30,18 +30,33 @@ module Scrabble
       :Q => 10,
       :Z => 10
     }
+
+    attr_accessor :word
+
+
     #     class Post
     #   STATUS = Hash.new{ |hash, key| raise( "Key #{ key } is unknown" )}.update(
     #     :draft => "draft",
     #     :awaiting_review => "awaiting review",
     #    :posted => "posted" )
     # end
+    def initialize(word)
+      @word = word
+    end
 
-    def self.score(word)
-      # take input & convert to upcase
-
-      # split input
+    def self.score(word_to_score)
+      # take argument & convert to upcase
+      @word = word_to_score.upcase!
+      letter_array = @word.split('')
+      letter_values = []
+      letter_array.each do |letter|
+        if LETTERVALUES.has_key?(letter)
+          LETTERVALUES()
+      # split argument in an array of letters
       # check each letter of input against constant Hash and return the value of that key
+      # store the returned values in an array.
+      # inject to get the sum.
+      # return the sum.
     end
 
     def self.highest_score_from(array_of_words)
