@@ -3,6 +3,7 @@ require 'pry'
 module Scrabble
   class Scoring
     def self.score(word) # 'dog'
+      word = word.upcase
       word_array = word.split('') #['d', 'o', 'g']
       total_score = 0
       word_array.each do |letter|
@@ -21,15 +22,12 @@ module Scrabble
           total_score += 8
         when "Q", "Z"
           total_score += 10
-        end
-      end
-      binding.pry
+        end # case letter
+      end # word_array.each
       return total_score
-    end
+    end # self.score method
 
     def self.highest_score_from(array_of_words)
     end
   end
 end
-
-print Scrabble::Scoring.score('dog')
