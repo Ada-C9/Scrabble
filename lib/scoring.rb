@@ -7,7 +7,7 @@ module Scrabble
       word_array = word.split('') #['d', 'o', 'g']
       total_score = 0
 
-      if word_array.length > 7
+      if word_array.length > 7 || word_array.length < 1
         return total_score = nil
       else
         # add 50 pts if the word is 7 letters long
