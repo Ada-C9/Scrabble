@@ -59,6 +59,4 @@ module Scrabble
     end
   end
 end
-
-binding.pry
 # Scoring::Scrabble.scoring('cat') #dan example
