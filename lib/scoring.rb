@@ -5,6 +5,15 @@ module Scrabble
     def self.score(word)
 
       # TODO: fix it, better way to evaluate, with arrays.
+
+      if word.match?(/\W/)
+        return nil
+      end
+
+      if word.length > 7
+        return nil
+      end
+
       letters_array = word.upcase.split("")
 
       points = 0
@@ -26,7 +35,12 @@ module Scrabble
           points += 1
         end
       end
-        return points
+
+      letters_array.length == 7 ? points += 50 : points += 0
+
+
+
+      return points
     end
 
 
