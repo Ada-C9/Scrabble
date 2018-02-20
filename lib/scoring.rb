@@ -24,6 +24,11 @@ module Scrabble
           score += 10
         end
       end
+
+      if letters_array.length >= 7
+        return score + 50
+      end
+      
       return score
     end
 
