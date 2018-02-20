@@ -1,7 +1,10 @@
+require 'pry'
+
 module Scrabble
   class Scoring
 
-    letters = {"A" => 1,
+    @letters = {
+       "A"=>1,
        "B"=>3,
        "C"=>3,
        "D"=>2,
@@ -25,12 +28,30 @@ module Scrabble
        "V"=>4,
        "W"=>4,
        "X"=>8,
-       "Y"=>4, 
-       "Z"=>10}
+       "Y"=>4,
+       "Z"=>10
+     }
+
+
     def self.score(word)
+      word_split = word.upcase.split(//)
+      word_value = 0
+      word_split.each do |one_letter|
+        if @letters.has_key?(one_letter)
+          word_value += @letters[one_letter]
+        end
+      end
+      if word_split.length >= 7
+        word_value += 50
+      end
+      return word_value
     end
 
     def self.highest_score_from(array_of_words)
     end
   end
+  # if !word.class? String || !word.match?(/^[A-z]*$/)
+  #   return nil
+  # else
+  # end
 end
