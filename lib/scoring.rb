@@ -13,6 +13,7 @@ module Scrabble
         ['j', 'x'] => 8,
         ['q', 'z'] => 10
       }
+      max_word_length = 7
 
       points_array = []
       word.chars.each do |char|
@@ -22,8 +23,15 @@ module Scrabble
           end
         end
       end
-      points_array = points_array.inject(:+)
-      return points_array
+      points = points_array.inject(:+)
+
+      if word.length > max_word_length
+        return nil
+      elsif word.length == max_word_length
+        points += 50
+      end
+
+      return points
     end # self.score
 
     def self.highest_score_from(array_of_words)
@@ -31,4 +39,5 @@ module Scrabble
   end
 end
 
-puts Scrabble::Scoring.score('dog')
+ Scrabble::Scoring.score('watermelon')
+ binding.pry
