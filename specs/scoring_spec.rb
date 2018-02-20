@@ -11,12 +11,12 @@ describe 'Scoring' do
   describe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
-      #Scrabble::Scoring.score('cat').must_equal 5
-      #Scrabble::Scoring.score('pig').must_equal 6
+      Scrabble::Scoring.score('cat').must_equal 5
+      Scrabble::Scoring.score('pig').must_equal 6
 
     end
 
-    xit 'adds 50 points for a 7-letter word' do
+    it 'adds 50 points for a 7-letter word' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 

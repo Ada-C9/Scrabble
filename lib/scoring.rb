@@ -6,7 +6,7 @@ module Scrabble
       word_score = 0
       word_array = word.split
 
-      word_array.each do |letter|
+      word.each_char do |letter|
         if 'aeioulnrst'.include? letter
           word_score += 1
         elsif 'dg'.include? letter
@@ -23,11 +23,18 @@ module Scrabble
           word_score += 10
         end
 
-        return word_score
       end
 
-      def self.highest_score_from(array_of_words)
+      if word.length == 7
+        word_score += 50
       end
+
+      return word_score
+
+
+    end
+
+    def self.highest_score_from(array_of_words)
     end
   end
 end
