@@ -1,4 +1,7 @@
+require 'pry'
+
 module Scrabble
+
   class Scoring
     def self.score(word)
       letter_values = {
@@ -11,10 +14,21 @@ module Scrabble
         ['q', 'z'] => 10
       }
 
-      
-    end
+      points_array = []
+      word.chars.each do |char|
+        letter_values.each do |letters, value|
+          if letters.include?(char)
+            points_array << value
+          end
+        end
+      end
+      points_array = points_array.inject(:+)
+      return points_array
+    end # self.score
 
     def self.highest_score_from(array_of_words)
     end
   end
 end
+
+puts Scrabble::Scoring.score('dog')
