@@ -4,9 +4,8 @@ module Scrabble
 
 
       word_score = 0
-      word_array = word.split
 
-      word.each_char do |letter|
+      word.downcase.each_char do |letter|
         if 'aeioulnrst'.include? letter
           word_score += 1
         elsif 'dg'.include? letter
@@ -21,6 +20,10 @@ module Scrabble
           word_score += 8
         elsif 'qz'.include? letter
           word_score += 10
+        else
+          puts "Sorry, not a letter."
+          return nil 
+          #word = gets.chomp
         end
 
       end
