@@ -19,17 +19,23 @@ module Scrabble
       when 'J', 'X'
         score +=	8
       when 'Q', 'Z'
-        score +=	10
+        score += 10
+      else
+        score = nil
       end
       return score
     end
 
     def self.score(word)
-      score = 0
+      score = nil
       letters_in_word = word.upcase.split(//)
-      score += 50 if letters_in_word.length >= 7
+
       letters_in_word.each do |letter|
-        score += letter_score(letter)
+        score = letter_score(letter)
+        unless score == nil
+          score += 50 if letters_in_word.length == 7
+          score = nil if letters_in_word.length > 7
+        end
       end
       return score
     end
