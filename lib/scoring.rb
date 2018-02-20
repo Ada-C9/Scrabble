@@ -46,17 +46,22 @@ module Scrabble
 
     def self.score(word_to_score)
       # take argument & convert to upcase
-      @word = word_to_score.upcase!
-      letter_array = @word.split('')
-      letter_values = []
-      letter_array.each do |letter|
-        if LETTERVALUES.has_key?(letter)
-          LETTERVALUES()
+      @word = word_to_score.upcase
       # split argument in an array of letters
+      letter_array = @word.split('')
+      values_of_letters = []
       # check each letter of input against constant Hash and return the value of that key
-      # store the returned values in an array.
-      # inject to get the sum.
-      # return the sum.
+      letter_array.each do |letter|
+        letter = letter.to_sym
+        if LETTERVALUES.has_key?(letter)
+          tile_value = LETTERVALUES[letter]
+          values_of_letters << tile_value
+        end
+        # store the returned values in an array.
+        # values_of_letters << LETTERVALUES[letter]
+      end
+      # calculate and return sum
+      sum = values_of_letters.sum
     end
 
     def self.highest_score_from(array_of_words)
@@ -65,3 +70,7 @@ module Scrabble
   end
 
 end
+
+
+
+#
