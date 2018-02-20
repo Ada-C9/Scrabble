@@ -10,15 +10,12 @@ module Scrabble
       elsif word.length > 7
         return nil
       end
-      if word == "apple"
-        puts "appppppppleeeeeee!!!!"
-      end
-
 
       # step 2: take in a string, split the word,  downcase, stored in an array called "word_array"
       word_array = []
       word_array = word.downcase.split(//)
-
+      puts word_array
+      print word_array
       # return a number based on the point chart
       # 7 letter bonus (use .length)
 
@@ -36,5 +33,5 @@ module Scrabble
   end
 end
 
-# Scrabble::Scoring.score("apple")
-Scrabble::Scoring.score("$#&")
+Scrabble::Scoring.score("apple")
+# Scrabble::Scoring.score("$#&")
