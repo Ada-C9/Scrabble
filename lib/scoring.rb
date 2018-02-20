@@ -16,6 +16,10 @@ module Scrabble
 
       letters_array = word.upcase.split("")
 
+      if letters_array.empty?
+        return nil
+      end
+
       points = 0
       letters_array.each do |letter|
 
