@@ -30,11 +30,23 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+      word_scores_hash = {}
+      array_of_words.each do |word|
+        word_scores_hash[word.upcase] = self.score(word)
+      end
+      max_score = word_scores_hash.values.max
+      words_max_score = []
+      word_scores_hash.each do |word, score|
+        if score == max_score
+          words_max_score << word
+        end
+      end
+      return words_max_score[0]
     end
   end
 end
 
-# letter_array_data = CSV.read("letter_values.csv")
+  # letter_array_data = CSV.read("letter_values.csv")
 # ap letter_array_data
 # letter_values = {}
 # count = 0
