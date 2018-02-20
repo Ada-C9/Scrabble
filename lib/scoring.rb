@@ -22,7 +22,7 @@ module Scrabble
           word_score += 10
         else
           puts "Sorry, not a letter."
-          return nil 
+          return nil
           #word = gets.chomp
         end
 
@@ -30,6 +30,12 @@ module Scrabble
 
       if word.length == 7
         word_score += 50
+      elsif word.length > 7
+        return nil
+      end
+
+      if word.to_s.empty?
+        return nil
       end
 
       return word_score
