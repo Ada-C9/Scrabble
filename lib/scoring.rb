@@ -1,7 +1,9 @@
+require 'pry'
+
 module Scrabble
   class Scoring
 
-    score_chart = {
+    SCORE_CHART = {
       "A" => 1,
       "B" => 3,
       "C" => 3,
@@ -31,10 +33,31 @@ module Scrabble
     }
 
 
-
-
-
     def self.score(word)
+
+      if (/\W/ =~ word.upcase) == nil #if letter_array contains only letters, it will return the score and continue
+
+      letter_array = word.upcase.split(//)  #this will give an array of strings
+
+        score = 0
+
+        if letter_array.count == 7
+          score += 50
+        elsif letter_array.count > 7 || letter_array.length == 0
+          return nil
+        end
+
+        letter_array.each do |letter|
+          #if the letter matches a key in the score_chart hash, return value, add that value to variable, varible will start at zero
+
+          if SCORE_CHART.has_key? (letter)
+            score += SCORE_CHART[letter]
+          end
+        end
+        return score
+      else # the letter_array contained any special character/ number and stops.
+        return nil
+      end
     end
 
     def self.highest_score_from(array_of_words)
