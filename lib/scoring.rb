@@ -35,5 +35,5 @@ module Scrabble
   end #Scoring
 end #Scrabble
 
-
-Scrabble::Scoring.score("dog")
+# Personal tests:
+# Scrabble::Scoring.score("dog")
