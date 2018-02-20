@@ -11,25 +11,22 @@ module Scrabble
       "J" => 8, "X" => 8,
       "Q" => 10, "Z" => 10}
 
-    def self.score(word)
-      score = 0
-      word.each_char do |c|
-        @score_chart.each do |key, value|
-          if c.upcase == key
-            score += value
+      def self.score(word)
+        score = 0
+        word.each_char do |c|
+          return nil if !@score_chart.keys.include?(c.upcase)
+          @score_chart.each do |key, value|
+            if c.upcase == key
+              score += value
+            end
           end
         end
+
+        score += 50 if word.length == 7
+        return score
       end
-
-      score += 50 if word.length == 7 
-      return score
-    end
-
-
-
-
-
-    def self.highest_score_from(array_of_words)
+      
+      def self.highest_score_from(array_of_words)
+      end
     end
   end
-end
