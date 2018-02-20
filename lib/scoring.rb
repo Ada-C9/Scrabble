@@ -13,7 +13,7 @@ module Scrabble
 
       def self.score(word)
         score = 0
-        return nil if word.length > 7
+        return nil if word.length > 7 || word.length == 0
         word.each_char do |c|
           return nil if !@score_chart.keys.include?(c.upcase)
           @score_chart.each do |key, value|

@@ -35,7 +35,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score('abcdefgh').must_be_nil
     end
 
-    xit 'returns nil for empty words' do
+    it 'returns nil for empty words' do
       Scrabble::Scoring.score('').must_be_nil
     end
   end
