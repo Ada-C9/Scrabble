@@ -19,9 +19,9 @@ module Scrabble
       when 'J', 'X'
         score +=	8
       when 'Q', 'Z'
-        score +=	10
-      # else
-      #   score = nil
+        score += 10
+        # else
+        #   score = nil
       end
       return score
     end
@@ -32,7 +32,7 @@ module Scrabble
 
     def self.score(word)
       score = 0
-      
+
       letters_in_word = word.upcase.split(//)
 
       score += 50 if letters_in_word.length == 7
