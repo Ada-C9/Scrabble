@@ -38,7 +38,8 @@ module Scrabble
       score += 50 if letters_in_word.length == 7
 
       return nil if
-      letters_in_word.length > 7
+      letters_in_word.length > 7 ||
+      letters_in_word.length == 0
 
       letters_in_word.each do |letter|
         if !(letter =~ /[A-Z]/)
@@ -50,7 +51,22 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+      word_score = {}
+      array_of_words.each do |word|
+        word_score[word] = score(word)
+      end
 
+      if word_score = []
+        retutn nil
+      else
+        max_score = 0
+        word_score.each do |word, score|
+          if score > max_score
+            max_score = score
+          end
+        end
+        return word_score[max_score]
+      end
     end
   end
 end
