@@ -9,6 +9,11 @@ module Scrabble
       if @letters_array.length > 7
         return nil
       end
+
+      # returns nil if word is empty
+      if @letters_array.empty?
+        return nil
+      end
       
       # original word score
       @letters_array.each do |letter|
