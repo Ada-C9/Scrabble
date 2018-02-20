@@ -3,6 +3,7 @@ require 'awesome_print'
 module Scrabble
   class Scoring
     def self.score(word)
+      word = word.downcase
       letters_array = word.split(//)
 
       score = 0
@@ -28,7 +29,7 @@ module Scrabble
       if letters_array.length >= 7
         return score + 50
       end
-      
+
       return score
     end
 
