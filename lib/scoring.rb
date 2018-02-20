@@ -11,13 +11,13 @@ module Scrabble
       when 'D', 'G'
         score += 2
       when 'B', 'C', 'M', 'P'
-        score +=	3
+        score += 3
       when 'F', 'H', 'V', 'W', 'Y'
         score += 4
       when 'K'
-        score +=	5
+        score += 5
       when 'J', 'X'
-        score +=	8
+        score += 8
       when 'Q', 'Z'
         score += 10
       else
@@ -29,7 +29,6 @@ module Scrabble
     def self.score(word)
       score = nil
       letters_in_word = word.upcase.split(//)
-
       letters_in_word.each do |letter|
         score = letter_score(letter)
         unless score == nil
@@ -46,5 +45,5 @@ module Scrabble
   end
 end
 
-# binding.pry
+binding.pry
 # Scoring::Scrabble.scoring('cat') #dan example
