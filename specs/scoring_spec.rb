@@ -40,7 +40,7 @@ describe 'Scoring' do
     end
   end
 
-  describe 'highest_score_from' do
+  xdescribe 'highest_score_from' do
     it 'returns nil if no words were passed' do
     end
 
