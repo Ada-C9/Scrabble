@@ -48,7 +48,11 @@ module Scrabble
     end
 
 
-    def self.highest_score_from(array_of_words)
+    def self.highest_score_from(array_of_words = "")
+      if array_of_words == ""
+        return nil
+      end
+
     end
   end #Scoring
 end #Scrabble
