@@ -19,28 +19,28 @@ describe 'Scoring' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 
-    it 'handles all upper- and lower-case letters' do
+    xit 'handles all upper- and lower-case letters' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('DOG').must_equal 5
       Scrabble::Scoring.score('DoG').must_equal 5
     end
 
-    it 'returns nil for strings containing bad characters' do
+    xit 'returns nil for strings containing bad characters' do
       Scrabble::Scoring.score('#$%^').must_be_nil
       Scrabble::Scoring.score('char^').must_be_nil
       Scrabble::Scoring.score(' ').must_be_nil
     end
 
-    it 'returns nil for words > 7 letters' do
+    xit 'returns nil for words > 7 letters' do
       Scrabble::Scoring.score('abcdefgh').must_be_nil
     end
 
-    it 'returns nil for empty words' do
+    xit 'returns nil for empty words' do
       Scrabble::Scoring.score('').must_be_nil
     end
   end
 
-  describe 'highest_score_from' do
+  xdescribe 'highest_score_from' do
     it 'returns nil if no words were passed' do
     end
 
