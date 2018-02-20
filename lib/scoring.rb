@@ -16,6 +16,9 @@ module Scrabble
       word_array.each do |letter|
         score += LETTER_VALUES[letter]
       end
+      if word_array.length == 7
+        score += 50
+      end
       return score
 
     end
