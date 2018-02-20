@@ -26,8 +26,10 @@ module Scrabble
         end
       end
 
-      if letters_array.length >= 7
+      if letters_array.length == 7
         return score + 50
+      elsif letters_array.length > 7
+        return nil
       end
 
       return score
