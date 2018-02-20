@@ -27,11 +27,11 @@ module Scrabble
     def self.score(word)
       score = 0
       letters_in_word = word.upcase.split(//)
-      score += 50 if letters_in_word.length <= 7
+      score += 50 if letters_in_word.length >= 7
       letters_in_word.each do |letter|
         score += letter_score(letter)
       end
-
+      return score
     end
 
     def self.highest_score_from(array_of_words)
@@ -39,5 +39,5 @@ module Scrabble
   end
 end
 
-binding.pry
+# binding.pry
 # Scoring::Scrabble.scoring('cat') #dan example
