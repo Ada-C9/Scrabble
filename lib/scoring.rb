@@ -46,16 +46,8 @@ module Scrabble
 
     end
 
-    def self.get_winner_hashes(hashes_array, winner_score)
-      # seven_letters = []
-
-      hashes_array.each do |word_hash|
-        if word_hash[:score] != winner_score
-          hashes_array.delete(word_hash)
-        end
-      end
-      return hashes_array
-
+    def self.get_winner_hashes(array, winner_score)
+      array.delete_if do |word| word[:score]!=winner_score end
     end
 
     def self.seven_letters(hashes_array)
