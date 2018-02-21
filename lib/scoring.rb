@@ -41,6 +41,9 @@ module Scrabble
           winning_words << word
         end
       end
+      if winning_words.any? { |word| word.length == 7 }
+        winning_words.select! { |word| word.length == 7}
+      end
       winner = winning_words[0]
       winning_words.each do |word|
         if word.length < winner.length
