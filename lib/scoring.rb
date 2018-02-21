@@ -1,4 +1,4 @@
-
+require "pry"
 module Scrabble
   class Scoring
 
@@ -37,6 +37,7 @@ module Scrabble
         highest_score ||= 0
         if score(word) > highest_score
           highest_score_word = word
+          # binding.pry
         end
       end
       return highest_score_word

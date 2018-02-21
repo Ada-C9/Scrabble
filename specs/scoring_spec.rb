@@ -3,6 +3,7 @@ require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
 require_relative '../lib/scoring'
+require 'pry'
 
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -53,15 +54,16 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(["Nicole", "Zheng"]).must_equal "Zheng"
     end
 
-    xit 'if tied, prefer a word with 7 letters' do
+    it 'if tied, prefer a word with 7 letters' do
+      Scrabble::Scoring.highest_score_from(["Zheng", "Znicole"]).must_equal "Znicole"
       Scrabble::Scoring.highest_score_from(["Znicole", "Zheng"]).must_equal "Znicole"
     end
 
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
       Scrabble::Scoring.highest_score_from(["Zicole", "Zheg"]).must_equal "Zheg"
     end
 
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
       Scrabble::Scoring.highest_score_from(["aeiou", "lnrst"]).must_equal "aeiou"
     end
   end
