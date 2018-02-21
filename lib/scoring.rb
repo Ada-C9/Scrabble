@@ -58,23 +58,15 @@ module Scrabble
         all_highscores.each do |word|
           if word.length == 7
             winner = word
+          else
+            if word.length < winner.length
+              winner = word
+            end
           end
         end
       end
 
       return winner
-      # word_lengths = []
-      # all_highscores.each do |word|
-      #   word_lengths << word.length
-      # end
-
-
-
-
-      # return word_hash.key(highscore)
     end
   end
 end
-
- Scrabble::Scoring.score('watermelon')
- binding.pry

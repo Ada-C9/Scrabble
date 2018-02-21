@@ -66,10 +66,15 @@ describe 'Scoring' do
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-      
+      word_array = ["aaaa", "aad"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'aad'
     end
 
     it 'returns the first word of a tie with same letter count' do
+      word_array = ['aaaa', 'iiii']
+
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'aaaa'
+
     end
   end
 end
