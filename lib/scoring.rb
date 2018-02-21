@@ -34,8 +34,8 @@ module Scrabble
 
 
     def self.score(word)
-      if word.class != String
-        return nil 
+      if word.class != String || word.length > 7 || word.length == 0
+        return nil
       else
         word_value = 0
         word_split = word.upcase.split(//)
