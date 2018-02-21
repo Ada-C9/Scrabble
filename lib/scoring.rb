@@ -15,6 +15,20 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+      return nil if array_of_words == []
+      # Gives array of scores
+      scores = array_of_words.map{|word| score(word)}
+      highest_score = scores.max
+      # Selects highest scoring words and return it into array
+      highest_scoring_words = array_of_words.select { |word| word if score(word) ==  highest_score }
+      return highest_scoring_words[0] if highest_scoring_words.length == 1
+
+      highest_scoring_words.each do |word|
+        return word if word.length == 7
+      end
+
+      return highest_scoring_words.min_by { |word| word.length }
+
     end
   end
 end

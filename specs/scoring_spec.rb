@@ -64,7 +64,7 @@ describe 'Scoring' do
 
     it 'returns the first word of a tie with same letter count' do
       Scrabble::Scoring.highest_score_from(['RAIN', 'LANE', 'STAR']).must_equal 'RAIN'
-      Scrabble::Scoring.highest_score_from(['AAAAAAA', 'BBBBBBB']).must_equal 'AAAAAAA'
+      Scrabble::Scoring.highest_score_from(['AAAAAAA', 'SSSSSSS']).must_equal 'AAAAAAA'
     end
   end
 end
