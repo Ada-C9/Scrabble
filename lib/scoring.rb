@@ -41,6 +41,22 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+      if array_of_words.length == 1
+        return array_of_words[0]
+      end
+      scores_array = []
+
+      if array_of_words.length == 2
+        array_of_words.each do |word|
+        score =  Scrabble::Scoring.score(word)
+        scores_array << score
+      end
+       return scores_array.max
+
+
+      end
+
+
     end
   end
 end
