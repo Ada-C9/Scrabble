@@ -8,6 +8,9 @@ module Scrabble
     def self.score(word)
       total_score = 0
       scrabble_word = word.split(//)
+      if scrabble_word.length > 7 || scrabble_word.length == 0
+        return nil
+      end
       scrabble_word.each do |letter|
         case letter.downcase
         when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
@@ -26,6 +29,9 @@ module Scrabble
           total_score += 10
         end
       end
+      if scrabble_word.length == 7
+        total_score += 50
+      end
       return total_score
     end
 
@@ -39,11 +45,10 @@ end # module Scrabble
 
 
 
-test_chart = Scrabble::Scoring.score('cat')
+test_chart = Scrabble::Scoring.score('dlsdfaldjdsflkj')
 ap test_chart
 
 # binding.pry
-
 
 # # array reference
 # scrabble_chart = [
