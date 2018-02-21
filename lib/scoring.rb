@@ -49,6 +49,8 @@ module Scrabble
 
     def self.highest_score_from(array_of_words)
       @array_of_words = array_of_words
+      @highest_word = ""
+      @highest_score = 0
 
       if @array_of_words.empty?
         return nil
@@ -57,6 +59,16 @@ module Scrabble
       if @array_of_words.length == 1
         return @array_of_words[0]
       end
+
+      @array_of_words.each do |word|
+        value = Scrabble::Scoring.score(word)
+        if value > @highest_score
+          @highest_score = value
+          @highest_word = word
+        end
+      end
+      return @highest_word
+
     end
   end
 end

@@ -57,9 +57,9 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(word_collection2).must_equal "mouse"
     end
 
-    xit 'returns the highest word if there are two words' do
+    it 'returns the highest word if there are two words' do
       word_collection = ["dog","quiz","cat"]
-      Scrabble::Scoring.highest_word_from(word_collection).must_equal "quiz"
+      Scrabble::Scoring.highest_score_from(word_collection).must_equal "quiz"
     end
 
     xit 'if tied, prefer a word with 7 letters' do
