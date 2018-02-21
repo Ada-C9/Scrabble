@@ -53,15 +53,23 @@ module Scrabble
       # check each letter of input against constant Hash and return the value of that key
       letter_array.each do |letter|
         letter = letter.to_sym
-        if LETTERVALUES.has_key?(letter)
-          tile_value = LETTERVALUES[letter]
-          values_of_letters << tile_value
-        end
-        # store the returned values in an array.
-        # values_of_letters << LETTERVALUES[letter]
+        tile_value = LETTERVALUES.fetch(letter, "x")
+        values_of_letters << tile_value
       end
-      # calculate and return sum
-      sum = values_of_letters.sum
+      # store the returned values in an array.
+      # values_of_letters << LETTERVALUES[letter]
+      if values_of_letters.include?("x")
+        sum = nil
+      elsif values_of_letters.length > 7 || values_of_letters.length < 1
+        sum = nil
+      else
+        # calculate and return sum
+        sum = values_of_letters.sum
+      end
+      if values_of_letters.length == 7
+        sum += 50
+      end
+      return sum
     end
 
     def self.highest_score_from(array_of_words)
