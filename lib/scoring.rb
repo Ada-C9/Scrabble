@@ -69,7 +69,10 @@ module Scrabble
         elsif (value == highest_score) && (word.length == 7)
           highest_word = word
           highest_score = value
-          
+
+        elsif (value == highest_score) && (word.length < highest_word.length)
+          highest_word = word
+          highest_score = value
         end
       end
       puts highest_word
