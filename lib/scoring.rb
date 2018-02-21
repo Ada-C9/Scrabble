@@ -43,35 +43,36 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
-      word_array = []
-
-      array_of_words.each do |scrabble_word|
-        word_hash = {}
-        word_hash[:word] = scrabble_word
-        word_hash[:length] = scrabble_word.length
-        word_hash[:score] = self.score(scrabble_word)
-        word_array << word_hash
-      end
-      # return word_array
-      max = 0
-      highest_word = ""
-      word_array.each do |scrabble_hash|
+      if new_array = array_of_words.map { |word| word.length == 7}
         # binding.pry
-        if scrabble_hash[:score] > max
-          max = scrabble_hash[:score]
-          highest_word = scrabble_hash[:word]
-        elsif scrabble_hash[:length] == 7
-          return scrabble_hash[:word]
+        word_array = []
+        new_array.each do |scrabble_word|
+          word_hash = {}
+          word_hash[:word] = scrabble_word
+          word_hash[:length] = scrabble_word.length
+          word_hash[:score] = self.score(scrabble_word)
+          word_array << word_hash
         end
-      end
-    end
+        return word_array
+        # max = 50
+        # highest_word = []
+        # word_array.each do |scrabble_hash|
+        #   if scrabble_hash[:score] > max
+        #     highest_word.push(scrabble_hash[:word], scrabble_hash[:score])
+        #     # elsif scrabble_hash[:length] == 7
+        #     #   highest_word = scrabble_hash[:word]
+        #     return highest_word
+        #   end # if statement to find the max score
+        # end # each loop to iterate through the array of words
+      end # if statement using map to find 7 letter words
+    end # def self.highest_score_from(array_of_words)
 
   end # class Scoring
 end # module Scrabble
 
 
 
-# test_chart = Scrabble::Scoring.score('charter')
+# test_chart = Scrabble::Scoring.score('')
 # ap test_chart
 
 test_chart = Scrabble::Scoring.highest_score_from(["dog", "cat", "elephan", "seventh", "rabbit"])
