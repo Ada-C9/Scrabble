@@ -19,7 +19,7 @@ describe 'Player' do
   describe 'Player#play' do
     it 'returns an Array of the words played by the player' do
       # Arrange
-      test = Player.new("Wenjie")
+      test = Scrabble::Player.new("Wenjie")
 
       # Act
       result = test.plays
