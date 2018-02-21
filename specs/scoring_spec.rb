@@ -68,7 +68,7 @@ describe 'Scoring' do
         word_collection2 = ["dogss", "treatss"]
       #Assert
       Scrabble::Scoring.highest_score_from(word_collection).must_equal "markets"
-      Scrabble::Scoring.highest_score_from(word_collection2).must_equal "treats"
+      Scrabble::Scoring.highest_score_from(word_collection2).must_equal "treatss"
 
     end
 
