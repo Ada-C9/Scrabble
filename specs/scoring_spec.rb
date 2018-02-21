@@ -74,7 +74,9 @@ describe 'Scoring' do
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
       words = ["kf","bcm", "dgmae"]
+      words2 = "kk", "q", "aeiouk"
       Scrabble::Scoring.highest_score_from(words).must_equal "kf"
+      Scrabble::Scoring.highest_score_from(words2).must_equal "q"
     end
 
     xit 'returns the first word of a tie with same letter count' do
