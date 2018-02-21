@@ -55,14 +55,20 @@ module Scrabble
       puts "This is our TOTAL word_score - including bonus points: #{word_score}"
 
       return word_score
-      # return a number based on the point chart
-      # 7 letter bonus (use .length)
-
     end
 
     def self.highest_score_from(array_of_words)
-      # use score method
-      # find the highest score
+      provided_words_values = []
+
+      array_of_words.each do |provided_word|
+        value = Scrabble::Scoring.score(provided_word)
+        provided_words_values << value
+      end
+
+      puts provided_words_values # [9, 5]
+      # we want to find idx of highest value in provided_words_values array
+      # we then want to find word in that same idx of the array_of_words
+      
       # if tie:
       # fewest tiles used unless the other word used all 7 then that wins
       # if score & length are same for both high words, the first one wins
@@ -73,10 +79,12 @@ module Scrabble
 end
 
 # Scrabble::Scoring.score("kepts")
-Scrabble::Scoring.score("stamper")
-
-Scrabble::Scoring.score("")
-
-Scrabble::Scoring.score("$#&")
-
-Scrabble::Scoring.score("lalalalalalalala")
+# Scrabble::Scoring.score("stamper")
+#
+# Scrabble::Scoring.score("")
+#
+# Scrabble::Scoring.score("$#&")
+#
+# Scrabble::Scoring.score("lalalalalalalala")
+two_word_array = ["apple", "cat"]
+Scrabble::Scoring.highest_score_from(two_word_array)
