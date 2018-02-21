@@ -62,6 +62,7 @@ describe 'Scoring' do
     end
 
     it 'returns the first word of a tie with same letter count' do
+      Scrabble::Scoring.highest_score_from(["cat", "dog"]).must_equal "cat"
     end
   end
 end
