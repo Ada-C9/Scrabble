@@ -10,4 +10,7 @@ module Scrabble
   end
 end
 
-# puts Scrabble::Player.new("jill")
+
+
+
+new_player = Scrabble::Player.new("Jill")
