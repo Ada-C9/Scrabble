@@ -15,13 +15,13 @@ module Scrabble
       letter_array = []
       letter_array = word.downcase.split(//)
       # SCORECARD
-      value_1_array = ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]
-      value_2_array = ["d", "g"]
-      value_3_array = ["b", "c", "m", "p"]
-      value_4_array = ["f", "h", "v", "w", "y"]
-      value_5_array = ["k"]
-      value_8_array = ["j", "x"]
-      value_10_array = ["q", "z"]
+      VALUE_1_ARRAY = ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]
+      VALUE_2_ARRAY = ["d", "g"]
+      VALUE_3_ARRAY = ["b", "c", "m", "p"]
+      VALUE_4_ARRAY = ["f", "h", "v", "w", "y"]
+      VALUE_5_ARRAY = ["k"]
+      VALUE_8_ARRAY = ["j", "x"]
+      VALUE_10_ARRAY = ["q", "z"]
       # END SCORECARD
 
       print letter_array
@@ -35,19 +35,19 @@ module Scrabble
       puts "If word score still lives, it'll print here only for first 50 points for a 7-letter word: #{word_score}"
 
       letter_array.each do |letter|
-        if value_1_array.include?(letter)
+        if VALUE_1_ARRAY.include?(letter)
           word_score += 1
-        elsif value_2_array.include?(letter)
+        elsif VALUE_2_ARRAY.include?(letter)
           word_score += 2
-        elsif value_3_array.include?(letter)
+        elsif VALUE_3_ARRAY.include?(letter)
           word_score += 3
-        elsif value_4_array.include?(letter)
+        elsif VALUE_4_ARRAY.include?(letter)
           word_score += 4
-        elsif value_5_array.include?(letter)
+        elsif VALUE_5_ARRAY.include?(letter)
           word_score += 5
-        elsif value_8_array.include?(letter)
+        elsif VALUE_8_ARRAY.include?(letter)
           word_score += 8
-        elsif value_10_array.include?(letter)
+        elsif VALUE_10_ARRAY.include?(letter)
           word_score += 10
         end
       end
@@ -68,23 +68,28 @@ module Scrabble
       puts provided_words_values # [9, 5]
       # we want to find idx of highest value in provided_words_values array
       # we then want to find word in that same idx of the array_of_words
-      
+
       # if tie:
       # fewest tiles used unless the other word used all 7 then that wins
       # if score & length are same for both high words, the first one wins
 
-      current_highest_word = ""
+      # current_highest_word = ""
+
+      puts provided_words_values.class # outputs "Array"
+      puts array_of_words
+    end # self.highest_score_from
+
+    def breaking_ties()
+
     end
-  end
-end
+
+  end # class Scoring
+end # module Scrabble
 
 # Scrabble::Scoring.score("kepts")
 # Scrabble::Scoring.score("stamper")
-#
 # Scrabble::Scoring.score("")
-#
 # Scrabble::Scoring.score("$#&")
-#
 # Scrabble::Scoring.score("lalalalalalalala")
 two_word_array = ["apple", "cat"]
 Scrabble::Scoring.highest_score_from(two_word_array)
