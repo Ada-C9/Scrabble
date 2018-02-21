@@ -54,6 +54,7 @@ describe 'Scoring' do
     end
 
     xit 'if tied, prefer a word with 7 letters' do
+      
     end
 
     xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
