@@ -30,7 +30,7 @@ describe 'Player' do
     end
   end
 
-  describe 'play' do
+  xdescribe 'play' do
     it "adds a word to plays method" do
       words_played = Scrabble::Player.plays
       new_word = "xx"
@@ -52,6 +52,37 @@ describe 'Player' do
     it "must return zero if the word played is a blank string" do
       word = ""
       Scrabble::Player.play(word).must_equal 0
+    end
+  end
+
+  describe "Total score"  do
+    it "return the the sum score of played words" do
+      score_1 = Scrabble::Player.play("hello")
+      score_2 = Scrabble::Player.play("hi")
+      score_3 = Scrabble::Player.play("hey")
+
+      Scrabble::Player.total_score.must_equal 22
+    end
+  end
+
+  describe "won?" do
+    it "returns true if total score is more than 100" do
+      score_1 = Scrabble::Player.play("zzzzzzz")
+
+      Scrabble::Player.won?.must_be true
+    end
+
+    it "returns false if total score is  equal than 100" do
+      score_1 = Scrabble::Player.play("zzzzffd")
+
+      Scrabble::Player.won?.must_be false
+    end
+
+    it "returns false if total score is less than 100" do
+      score_1 = Scrabble::Player.play("bob")
+
+      Scrabble::Player.won?.must_be false
+      
     end
   end
 end
