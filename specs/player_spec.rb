@@ -23,7 +23,19 @@ describe 'Player' do
 
         player_1 = Scrabble::Player.new("Patrick")
         player_1.plays.must_be_kind_of Array
+      end
+    end
 
+      describe "#play(word)" do
+        it "Adds input word to @plays array." do
+
+        player_1 = Scrabble::Player.new("Patrick")
+        player_1.play("orange")
+
+        player_1.plays.must_include "orange"
+
+
+        
       end
     end
 
