@@ -3,19 +3,14 @@ require 'awesome_print'
 module Scrabble
   class Scoring
     def self.score(word)
-
-    #if word qualifies: a-z, A-Z, 7 letters max
-    #50 bonus points for 7-letter words
-     # input =~ /^[A-Z]{7}$/i
-
-
       @word_array = word.upcase.split("")
-      @word_total_points = 0
-
-      # if @word_array
-
-      # one_points = %W(A E I O U L N R S T)
-      # two_points = %W(D G)
+      if @word_array.length < 1 || @word_array.length > 7
+        return nil
+      elsif @word_array.length == 7
+        @word_total_points = 50
+      else
+        @word_total_points = 0
+      end
 
       one_points = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
       two_points = ["D", "G"]
@@ -26,7 +21,6 @@ module Scrabble
       ten_points = ["Q", "Z"]
 
       @word_array.each do |letter|
-        ap letter
         if one_points.include?(letter)
           @word_total_points += 1
         elsif two_points.include?(letter)
@@ -52,11 +46,38 @@ module Scrabble
       return @word_total_points
     end
 
-    # def self.highest_score_from(array_of_words)
-    # end
+    def self.highest_score_from(array_of_words)
+      max_points = 0
+      max_point_word = nil
+      array_of_words.each do |word|
+        value = self.score(word)
+        if value != nil
+          if value > max_points
+            max_points = value
+            max_point_word = word
+          end
+        end
+      end
+      return max_point_word
+    end
   end
 end
 
 
+ap Scrabble::Scoring.highest_score_from(["aaaaaaaaaaaaa"])
 
-ap Scrabble::Scoring.score("cat pig")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
