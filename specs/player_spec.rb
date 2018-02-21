@@ -19,8 +19,7 @@ describe 'Player' do
   describe 'Player#play' do
     it 'returns an Array of the words played by the player' do
       # Arrange
-      test = Player.new("Wenjie")
-
+      test = Scrabble::Player.new("Wenjie")
 
       # Act
       result = test.plays
@@ -29,7 +28,7 @@ describe 'Player' do
     end
   end
 
-  xDescribe "Player#play(word)" do
+  xdescribe "Player#play(word)" do
     it "Adds the input word to the plays Array" do
       # Arrange
       words_played = ["thing", "stuff", "bug"]
