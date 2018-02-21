@@ -6,6 +6,7 @@ module Scrabble
       @words = []
     end
 
+
     def play
       start
 
