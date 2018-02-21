@@ -54,9 +54,11 @@ describe 'Player' do
       # Arrange
       new_word = "bug"
       test = Scrabble::Player.new("Wenjie")
-      test.plays = ["thing", "stuff", "bug"]
+      plays = ["flitter", "quicken", "snowed"]
 
       # Act
+
+      plays.each { |word| test.play(word)}
       result = test.play(new_word)
 
       # Assert

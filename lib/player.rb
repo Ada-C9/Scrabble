@@ -32,7 +32,15 @@ module Scrabble
     private
     def won?
       # If the player has over 100 points, returns true, otherwise returns false
-      return total_score > 100 ? true : false
+      if total_score > 100
+        return true
+      else
+        return false
+      end
+
+
+      # result = total_score > 100 ? true : false
+      # return result
     end
 
   end # Player class end
