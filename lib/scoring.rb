@@ -1,5 +1,8 @@
 module Scrabble
   class Scoring
+
+
+
     def self.score(word)
       if word =~ /[\W+]/ || word =~ /[\s+]/ || word == "" || word =~ /.{8,}$/
         return nil
@@ -62,3 +65,6 @@ module Scrabble
     end
   end
 end
+
+
+Scrabble::Scoring.score("bacon")

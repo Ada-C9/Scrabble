@@ -74,7 +74,7 @@ describe 'Scoring' do
     it 'returns the first word of a tie with same letter count' do
       array_of_words = ["yak", "key"]
       result = Scrabble::Scoring.highest_score_from(array_of_words)
-      result.must_equal "yak"
+      result.must_equal "yake"
     end
   end
 end
