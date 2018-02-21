@@ -14,8 +14,31 @@ module Scrabble
       # step 2: take in a string, split the word,  downcase, stored in an array called "word_array"
       word_array = []
       word_array = word.downcase.split(//)
-      puts word_array
+      # SCORECARD
+      value_1_array = ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]
+      value_2_array = ["d", "g"]
+      value_3_array = ["b", "c", "m", "p"]
+      value_4_array = ["f", "h", "v", "w", "y"]
+      value_5_array = ["k"]
+      value_8_array = ["j", "x"]
+      value_10_array = ["q", "z"]
+      # END SCORECARD
+
       print word_array
+
+      word_score = 0
+
+      word_array.each do |letter|
+        if value_1_array.include?(letter)
+          word_score += 1
+        end
+        if value_2_array.include?(letter)
+          word_score += 2
+        end
+      end
+      puts word_score
+      return word_score
+
       # return a number based on the point chart
       # 7 letter bonus (use .length)
 
@@ -33,5 +56,5 @@ module Scrabble
   end
 end
 
-Scrabble::Scoring.score("apple")
+Scrabble::Scoring.score("donut")
 # Scrabble::Scoring.score("$#&")
