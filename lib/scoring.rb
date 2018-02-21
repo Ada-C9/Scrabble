@@ -10,6 +10,9 @@ module Scrabble
       letters_array.each do |letter|
         case letter
         when "a" ,"e","i","o", "u", "l", "n", "r" ,"s","t"
+
+
+
           score += 1
         when "d", "g"
           score += 2
@@ -44,15 +47,20 @@ module Scrabble
       if array_of_words.length == 1
         return array_of_words[0]
       end
-
       scores_array = []
+
       if array_of_words.length == 2
         array_of_words.each do |word|
         score =  Scrabble::Scoring.score(word)
         scores_array << score
       end
-       return scores_array.max
-
+        scores_array.max
+        if scores_array[0] == scores_array[1]
+          array_of_words.each do |word|
+           return word.length == 7
+         end
+       end
+    
 
       end
 
