@@ -7,10 +7,12 @@ module Scrabble
 
     def initialize(name)
       @name = name
+      @plays = []
     end
 
+    def plays
+      return @plays
+    end
 
   end
-
-
 end
