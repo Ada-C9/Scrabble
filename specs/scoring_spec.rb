@@ -68,3 +68,5 @@ describe 'Scoring' do
     end
   end
 end
+
+# This comment is for testing merging conflicts
