@@ -57,12 +57,12 @@ describe 'Scoring' do
     end
 
     it 'if tied, prefer a word with 7 letters' do
-      array_of_words = ["AEIOULN", "BOB"]
+      array_of_words = ["BOB","AEIOULN"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "AEIOULN"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-      array_of_words = ["BOB", "BEEN"]
+      array_of_words = ["BEEG", "BOB"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "BOB"
     end
 

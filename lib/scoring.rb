@@ -41,7 +41,16 @@ module Scrabble
           words_max_score << word
         end
       end
-      return words_max_score[0]
+      if words_max_score.length > 1
+        shortest_word = words_max_score[0]
+        words_max_score.each do |word|
+          if word.length < shortest_word
+            shortest_word = word
+          end
+        end
+      else
+        return words_max_score[0]
+      end
     end
   end
 end
@@ -56,4 +65,7 @@ end
 #     count +=1
 #   end
 # end
-ap Scrabble::Scoring.score("dog")
+# ap Scrabble::Scoring.score("BOB")
+# ap Scrabble::Scoring.score("AEIOULN")
+# ap Scrabble::Scoring.score("BEEN")
+# ap Scrabble::Scoring.score("BEC")
