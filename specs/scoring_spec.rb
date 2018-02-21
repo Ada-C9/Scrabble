@@ -57,18 +57,18 @@ describe 'Scoring' do
     end
 
     it 'if tied, prefer a word with 7 letters' do
-      array_of_words = ["situate", "zzzzzz"]
-      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "situate"
+      array_of_words = ["gituate", "zzzzzj", "qqqqqj"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "gituate"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-      array_of_words = ["jazz", "fuzzy"]
+      array_of_words = ["fizzy", "jazz", "fuzzy", ]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "jazz"
     end
 
     it 'returns the first word of a tie with same letter count' do
-      array_of_words = ["quick", "quack"]
-      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "quick"
+      array_of_words = ["quack", "quick", "quuck"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "quack"
     end
   end
 end
