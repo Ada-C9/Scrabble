@@ -30,37 +30,20 @@ module Scrabble
       return points
     end
 
-    def self.get_hash(array_of_words)
-
+    def self.get_hashes(array_of_words)
       hashes_array = array_of_words.map do |word|
-        {
-          word: word,
-          length: word.length,
-          score: self.score(word)
-        }
+        {word: word, length: word.length, score: self.score(word)}
       end
-
-      # hashes_array = []
-      #
-      # array_of_words.each do |word|
-      #   new_hash = {}
-      #   new_hash[:word] = word
-      #   new_hash[:length] = word.length
-      #   new_hash[:score] = self.score(word)
-      #   hashes_array << new_hash
-      # end
-      return hashes_array
     end
 
     def self.get_winner_score(hashes_array)
-      winner_score = 0
 
-      hashes_array.each do |word_hash|
-        if word_hash[:score] > winner_score
-          winner_score = word_hash[:score]
-        end
+      winner_score = hashes_array.max_by do |word_hash|
+        word_hash[:score]
       end
-      return winner_score
+
+      return winner_score.nil? ? nil : winner_score[:score]
+
     end
 
     def self.get_winner_hashes(hashes_array, winner_score)
@@ -82,11 +65,12 @@ module Scrabble
           seven_letters << word_hash[:word]
         end
       end
+
       return seven_letters
     end
 
     def self.highest_score_from(array_of_words)
-      hashes_array = self.get_hash(array_of_words)
+      hashes_array = self.get_hashes(array_of_words)
 
       winner_score = self.get_winner_score(hashes_array)
 
@@ -115,8 +99,11 @@ module Scrabble
 
     end # Method highest_score_from
 
+    # TODO: private :get_hashes
+
+
   end # Class Scoring
 end # Module Scrabble
 
 
-# Scrabble::Scoring.score("academy")
+Scrabble::Scoring.highest_score_from(["academy"])
