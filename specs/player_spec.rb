@@ -39,9 +39,18 @@ describe "Scrabble Player" do
     it 'Otherwise returns the score of the word' do
       player.play(aaaaaaa).must_equal 57
       player.play('pig').must_equal 6
-    end 
-
+    end
   end
+
+  describe "#total_score: Returns the sum of scores of played words" do
+    it "Returns the sum of scores of played words" do
+      2.times do
+        player.play('cat')
+      end
+      player.total_score.must_equal 10
+    end
+  end
+
 
 end
 end
