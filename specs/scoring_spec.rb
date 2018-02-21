@@ -63,6 +63,13 @@ describe 'Scoring' do
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      #Act
+        word_collection = ['kkb','markets','qm']
+        word_collection2 = ["dogss", "treatss"]
+      #Assert
+      Scrabble::Scoring.highest_score_from(word_collection).must_equal "markets"
+      Scrabble::Scoring.highest_score_from(word_collection2).must_equal "treats"
+
     end
 
     xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
