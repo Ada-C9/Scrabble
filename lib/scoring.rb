@@ -1,6 +1,6 @@
 module Scrabble
   class Scoring
-    @@letter_values =
+    LETTER_VALUES =
     {
       :A => 1,
       :E => 1,
@@ -41,15 +41,15 @@ module Scrabble
         if user_word.length == 7
           word_total += 50
         elsif
-        # checks if word length is greater then 7, and returns nil
+          # checks if word length is greater then 7, and returns nil
           user_word.length > 7 || user_word.length == 0
           return nil
         end
         # iterate over each letter
         user_word.each do |letter|
           letter = letter.to_sym
-          if @@letter_values.has_key?(letter)
-            word_total += @@letter_values[letter]
+          if LETTER_VALUES.has_key?(letter)
+            word_total += LETTER_VALUES[letter]
           end
         end
         return word_total
@@ -60,7 +60,12 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
-      
+      if array_of_words.length == 0
+        return nil
+      else
+        return array_of_words[0]
+      end
+
     end
   end
 end
