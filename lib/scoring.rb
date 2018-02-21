@@ -51,24 +51,46 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+
+      if array_of_words.length <= 0
+        return nil
+      elsif array_of_words.length == 1
+        return array_of_words[0]
+      end
+
       word_score = {}
       array_of_words.each do |word|
         word_score[word] = score(word)
       end
 
-      if word_score = []
-        retutn nil
-      else
-        max_score = 0
-        word_score.each do |word, score|
-          if score > max_score
-            max_score = score
-          end
+      max_keys = []
+      word_score.each do |key, value|
+        if value == word_score.values.max
+          max_keys << key
         end
-        return word_score[max_score]
       end
-    end
-  end
-end
 
-# Scoring::Scrabble.scoring('cat') #dan example
+      if max_keys.length == 1
+        return word_score.key(word_score.values.max)
+      else
+        tie_winner(max_keys)
+      end
+
+    end # method self.highest_score_from ends
+
+    def self.tie_winner(words)
+      word_length = {}
+      words.each do |word|
+        word_length[word] = word.length
+      end
+
+      return word_length.key(word_length.values.min)
+    end
+
+  end # class Scoring ends
+
+end # module Scrabble ends
+
+
+# Scrabble::Scoring.score('cat') #dan example
+# binding.pry
