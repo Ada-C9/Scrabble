@@ -69,7 +69,11 @@ describe 'Scoring' do
       winning_words.must_equal "qq"
     end
 
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
+      winning_words = Scrabble::Scoring.highest_score_from(["dd", "ba"])
+      winning_words.must_equal "dd"
+
+
     end
   end
 end
