@@ -1,6 +1,7 @@
+# require 'pry'
 module Scrabble
   class Scoring
-    letter_values =
+    @letter_values =
     {
       :A => 1,
       :E => 1,
@@ -32,16 +33,20 @@ module Scrabble
 
     def self.score(word)
       # Split the word into its indvidual letters and store in array
-      user_word = word.split(//)
+      user_word = word.upcase.split(//)
       # iterate over each letter
+      word_total = 0
+      values = []
       user_word.each do |letter|
-        letter.to_sym
-        if letter_values.include_key?(letter)
-          word_total += letter_values[:letter]
+        letter = letter.to_sym
+        if @letter_values.has_key?(letter)
+          values << @letter_values[letter]
         end
-        return word_total 
+          # binding.pry
+        return values.sum
       end
     end
+
 
     def self.highest_score_from(array_of_words)
     end
