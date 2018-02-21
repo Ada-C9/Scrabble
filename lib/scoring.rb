@@ -43,8 +43,6 @@ module Scrabble
 
       letters_array.length == 7 ? points += 50 : points += 0
 
-
-
       return points
     end
 
@@ -72,8 +70,8 @@ module Scrabble
 end #Scrabble
 
 # Personal tests:
-# puts Scrabble::Scoring.score("qq")
-# puts Scrabble::Scoring.score("kkkk")
-# puts Scrabble::Scoring.score("aaaaaad")
-
-# puts Scrabble::Scoring.highest_score_from(["qq", "kkkk"])
+# puts Scrabble::Scoring.score("dd")
+# puts Scrabble::Scoring.score("ba")
+# # puts Scrabble::Scoring.score("aaaaaad")
+#
+# puts Scrabble::Scoring.highest_score_from(["dd", "ba"])
