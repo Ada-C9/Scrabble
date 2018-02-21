@@ -25,6 +25,11 @@ describe 'Scoring' do
       Scrabble::Scoring.score('DoG').must_equal 5
     end
 
+    it 'returns nil for non-string inputs' do
+      Scrabble::Scoring.score([]).must_be_nil
+      Scrabble::Scoring.score(nil).must_be_nil
+    end
+
     it 'returns nil for strings containing bad characters' do
       Scrabble::Scoring.score('#$%^').must_be_nil
       Scrabble::Scoring.score('char^').must_be_nil
@@ -44,6 +49,14 @@ describe 'Scoring' do
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
       Scrabble::Scoring.highest_score_from([]).must_be_nil
+    end
+
+    it 'returns nil if provided non-array input' do
+      Scrabble::Scoring.highest_score_from(nil).must_be_nil
+    end
+
+    it 'returns nil if element in provided array is not a String' do
+      Scrabble::Scoring.highest_score_from(["foo", 4, "bar"]).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do

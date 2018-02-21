@@ -1,8 +1,8 @@
 module Scrabble
   class Scoring
     def self.score(word)
+      return if !has_valid_initial_word?(word)
       score = 0
-      return nil if word.size > 7 || word.size == 0
       letters = word.split("")
       letters.each do |letter|
         letter_score = score_value(letter.upcase)
@@ -11,6 +11,10 @@ module Scrabble
       end
       score += 50 if letters.size == 7
       return score
+    end
+
+    def self.has_valid_initial_word?(word)
+      return word.class == String && word.size.between?(1, 7)
     end
 
     def self.score_value(letter)
@@ -35,11 +39,13 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-      return if array_of_words.length == 0
+      return if !has_valid_initial_array?(array_of_words)
       highest_score = 0
       winning_words = []
       array_of_words.each do |word|
         score = score(word)
+        return if score.nil?
+        # score(word) ? score = score(word) : (return nil)
         next if score < highest_score
         if score > highest_score
           winning_words = []
@@ -47,7 +53,12 @@ module Scrabble
         end
         winning_words << word
       end
-      return winning_words.size == 1 ?  winning_words.pop : break_tie(winning_words)
+      break_tie(winning_words)
+    end
+
+    def self.has_valid_initial_array?(array)
+      return array.class == Array && array.length > 0
+
     end
 
     def self.break_tie(winning_words)
