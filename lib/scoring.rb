@@ -1,7 +1,6 @@
 module Scrabble
   class Scoring
     def self.score(word)
-      def self.score(word)
       total_score = 0
       scrabble_word = word.split(//)
       scrabble_word.each do |letter|
@@ -25,9 +24,8 @@ module Scrabble
       return total_score
     end
 
-    end
+  end
 
-    def self.highest_score_from(array_of_words)
-    end
+  def self.highest_score_from(array_of_words)
   end
 end
