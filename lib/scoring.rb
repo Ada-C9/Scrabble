@@ -2,7 +2,20 @@ module Scrabble
   class Scoring
     def self.score(word)
       total_score = 0
+
+      # if statement to check if the word has bad characters and space
+      if /[[\W][\s]+?]/.match(word)
+        return nil
+      end
+
+      # if word only has good character then the below will execute
       scrabble_word = word.split(//)
+      if scrabble_word.length > 7 || scrabble_word.length == 0
+        return nil
+      elsif scrabble_word.length == 7
+        total_score += 50
+      end
+
       scrabble_word.each do |letter|
         case letter.downcase
         when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
@@ -24,8 +37,7 @@ module Scrabble
       return total_score
     end
 
-  end
-
   def self.highest_score_from(array_of_words)
   end
+end
 end
