@@ -58,33 +58,20 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-      provided_words_values = []
+      # provided_words_values = []
+      #
+      # array_of_words.each do |provided_word|
+      #   value = Scrabble::Scoring.score(provided_word)
+      #   provided_words_values << value
+      # end
+
+      scored_words_hash = {}
 
       array_of_words.each do |provided_word|
-        value = Scrabble::Scoring.score(provided_word)
-        provided_words_values << value
+        score = Scrabble::Scoring.score(provided_word)
+        scored_words_hash[provided_word] = score
+        puts scored_words_hash
       end
-
-      # print provided_words_values # [9, 5]
-
-      # we want to find idx of highest value in provided_words_values array
-      #https://stackoverflow.com/questions/2149802/in-ruby-what-is-the-cleanest-way-of-obtaining-the-index-of-the-largest-value-in
-      # print provided_words_values.each_with_index.max[1]
-      # a.each_with_index.max[1] returns index of the last maximum value found in an array
-
-      highest_value_index  = provided_words_values.index(provided_words_values.max)
-
-      # we then want to find word in that same idx of the array_of_words
-      highest_value_word = array_of_words[highest_value_index]
-      # a.index(a.max) returns index of first max value
-      puts "Our highest scoring word is: #{highest_value_word}"
-      # not sure if this is the right solution because we need to handle ties 
-
-
-      # if tie:
-      # fewest letters used unless the other word used all 7 letters then that wins
-      # if score & length are same for both high words, the first one wins
-
     end
   end
 end
