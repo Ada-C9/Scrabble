@@ -1,6 +1,12 @@
+require "pry"
+
 module Scrabble
   class Scoring
 
+    LETTER_SCORES = { "a" => 1,"b" => 3,"c" => 3,"d" => 2,"e" => 1,"f" => 4,"g" => 2,"h" => 4,
+      "i" => 1,"j" => 8,"k" => 5, "l" => 1,"m" => 3,"n" => 1,"o" => 1,"p" => 3,
+      "q" => 10, "r" => 1, "s" => 1, "t" => 1, "u" => 1, "v" => 4, "w" => 4,
+      "x" => 8, "y" => 4, "z" => 10 }
     def self.score(word)
       points = 0
 
@@ -13,25 +19,36 @@ module Scrabble
         points += 50
       end
 
+
       word.downcase!
-      word.split("").each do |letter|
-        case letter
-        when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
-          points += 1
-        when "d", "g"
-          points += 2
-        when "b", "c", "m", "p"
-          points += 3
-        when "f", "h", "v", "w", "y"
-          points += 4
-        when "k"
-          points += 5
-        when "j", "x"
-          points += 8
-        when "q", "z"
-          points += 10
-        end
+      score_array = word.split("").map do |letter|
+        LETTER_SCORES[letter]
       end
+
+      points = score_array.inject(points,:+)
+
+
+      # word.split("").each do |letter|
+      #   case letter
+      #   when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
+      #     points += 1
+      #   when "d", "g"
+      #     points += 2
+      #   when "b", "c", "m", "p"
+      #     points += 3
+      #   when "f", "h", "v", "w", "y"
+      #     points += 4
+      #   when "k"
+      #     points += 5
+      #   when "j", "x"
+      #     points += 8
+      #   when "q", "z"
+      #     points += 10
+      #   end
+      # end
+
+
+
       return points
     end
 
@@ -113,3 +130,6 @@ module Scrabble
 
   end # Class Scoring
 end # Module Scrabble
+
+
+# Scrabble::Scoring.score("academy")
