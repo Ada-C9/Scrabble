@@ -15,7 +15,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score('pig').must_equal 6
     end
 
-    xit 'adds 50 points for a 7-letter word' do
+    it 'adds 50 points for a 7-letter word' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 

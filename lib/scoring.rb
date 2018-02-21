@@ -22,8 +22,16 @@ module Scrabble
          values_of_letters << @all_letters.fetch(letter)
        end
 
-       sum = values_of_letters.sum
-       return sum
+       # p letters.length
+
+       if letters.length < 7
+         sum = values_of_letters.sum
+         return sum
+      else
+        sum = values_of_letters.sum
+         sum = sum + 50
+         return sum
+       end
 
     end
   end
