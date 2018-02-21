@@ -1,22 +1,22 @@
 module Scrabble
   class Scoring
     def self.score(word)
-      @word = word.downcase
-      @letters_array = @word.split(//)
+      word = word.downcase
+      letters_array = word.split(//)
       total = 0
 
       # returns nil if word > 7 letters
-      if @letters_array.length > 7
+      if letters_array.length > 7
         return nil
       end
 
       # returns nil if word is empty
-      if @letters_array.empty?
+      if letters_array.empty?
         return nil
       end
 
       # original word score
-      @letters_array.each do |letter|
+      letters_array.each do |letter|
         if ("a".."z").cover?(letter)
           case
           when letter == "d" || letter == "g"
@@ -40,7 +40,7 @@ module Scrabble
       end
 
       # word-length scoring bonus
-      if @letters_array.length == 7
+      if letters_array.length == 7
         total += 50
       end
 
@@ -65,14 +65,23 @@ module Scrabble
         if value > highest_score
           highest_score = value
           highest_word = word
-        elsif (value == highest_score) && (word.length < highest_word.length)
+
+        elsif (value == highest_score) && (word.length == 7)
           highest_word = word
+          highest_score = value
+          
         end
       end
+      puts highest_word
       return highest_word
+
 
     end
   end
 end
 
-Scrabble::Scoring.score("dog")
+puts Scrabble::Scoring.score("kk")
+puts Scrabble::Scoring.score("aeirfd")
+puts Scrabble::Scoring.score("aaaaak")
+puts Scrabble::Scoring.score("dog")
+Scrabble::Scoring.highest_score_from(["aaaaak","kk", "aaaaek", "aeirfd"])
