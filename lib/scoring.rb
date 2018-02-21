@@ -15,16 +15,16 @@ module Scrabble
       letter_array = []
       letter_array = word.downcase.split(//)
       # SCORECARD
-      VALUE_1_ARRAY = ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]
-      VALUE_2_ARRAY = ["d", "g"]
-      VALUE_3_ARRAY = ["b", "c", "m", "p"]
-      VALUE_4_ARRAY = ["f", "h", "v", "w", "y"]
-      VALUE_5_ARRAY = ["k"]
-      VALUE_8_ARRAY = ["j", "x"]
-      VALUE_10_ARRAY = ["q", "z"]
+      value_1_array = ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]
+      value_2_array = ["d", "g"]
+      value_3_array = ["b", "c", "m", "p"]
+      value_4_array = ["f", "h", "v", "w", "y"]
+      value_5_array = ["k"]
+      value_8_array = ["j", "x"]
+      value_10_array = ["q", "z"]
       # END SCORECARD
 
-      print letter_array
+      # print letter_array
       # "word_score" holds score for each "letter_array"
       # word_score = 0
       if letter_array.length == 7
@@ -32,27 +32,27 @@ module Scrabble
       else
         word_score = 0
       end
-      puts "If word score still lives, it'll print here only for first 50 points for a 7-letter word: #{word_score}"
+      # puts "If word score still lives, it'll print here only for first 50 points for a 7-letter word: #{word_score}"
 
       letter_array.each do |letter|
-        if VALUE_1_ARRAY.include?(letter)
+        if value_1_array.include?(letter)
           word_score += 1
-        elsif VALUE_2_ARRAY.include?(letter)
+        elsif value_2_array.include?(letter)
           word_score += 2
-        elsif VALUE_3_ARRAY.include?(letter)
+        elsif value_3_array.include?(letter)
           word_score += 3
-        elsif VALUE_4_ARRAY.include?(letter)
+        elsif value_4_array.include?(letter)
           word_score += 4
-        elsif VALUE_5_ARRAY.include?(letter)
+        elsif value_5_array.include?(letter)
           word_score += 5
-        elsif VALUE_8_ARRAY.include?(letter)
+        elsif value_8_array.include?(letter)
           word_score += 8
-        elsif VALUE_10_ARRAY.include?(letter)
+        elsif value_10_array.include?(letter)
           word_score += 10
         end
       end
       # "word_score" holds total score for all letters in "letter_array"
-      puts "This is our TOTAL word_score - including bonus points: #{word_score}"
+      # puts "This is our TOTAL word_score - including bonus points: #{word_score}"
 
       return word_score
     end
@@ -64,16 +64,34 @@ module Scrabble
       #   value = Scrabble::Scoring.score(provided_word)
       #   provided_words_values << value
       # end
-
+      words_score_array = []
       scored_words_hash = {}
 
       array_of_words.each do |provided_word|
         score = Scrabble::Scoring.score(provided_word)
         scored_words_hash[provided_word] = score
-        puts scored_words_hash
+        words_score_array << score
       end
+      print "This is the words_score_array: #{words_score_array}"
 
-      puts provided_words_values # [9, 5]
+      # highest score values
+      highest_score = scored_words_hash.max_by{|provided_word,score| score}
+      puts "This is the highest score value: #{highest_score}"
+      highest_score_value = highest_score[1]
+
+      # this prints the provided_word AKA "apple"
+      puts scored_words_hash.key(scored_words_hash.values.max)
+
+      # this one doesn't work
+      # puts scored_words_hash.value.max(scored_words_hash.key)
+
+
+      # highest scoring words - gives us {"apple"=>9}
+      highest_scoring_words = scored_words_hash.select{|word,score| score == highest_score_value}
+      puts "This is the highest scoring word: #{highest_scoring_words}"
+
+
+      # puts provided_words_values # [9, 5]
       # we want to find idx of highest value in provided_words_values array
       # we then want to find word in that same idx of the array_of_words
 
@@ -83,15 +101,14 @@ module Scrabble
 
       # current_highest_word = ""
 
-      puts provided_words_values.class # outputs "Array"
-      puts array_of_words
+      # puts provided_words_values.class # outputs "array"
+      # puts array_of_words
     end # self.highest_score_from
 
-    def breaking_ties()
-
-=======
->>>>>>> aed0b5e8e6f8988a60476948250a483afda0347d
-    end
+    # def breaking_ties()
+    #
+    #
+    # end
 
   end # class Scoring
 end # module Scrabble
@@ -101,5 +118,5 @@ end # module Scrabble
 # Scrabble::Scoring.score("")
 # Scrabble::Scoring.score("$#&")
 # Scrabble::Scoring.score("lalalalalalalala")
-two_word_array = ["apple", "cat"]
-Scrabble::Scoring.highest_score_from(two_word_array)
+three_word_array = ["apple", "cat", "aaaaaaa", "eeeeeee"]
+Scrabble::Scoring.highest_score_from(three_word_array)
