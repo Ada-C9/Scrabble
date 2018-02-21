@@ -42,7 +42,7 @@ module Scrabble
           word_total += 50
         elsif
         # checks if word length is greater then 7, and returns nil
-          user_word.length > 7
+          user_word.length > 7 || user_word.length == 0
           return nil
         end
         # iterate over each letter
@@ -60,6 +60,7 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
+      
     end
   end
 end
