@@ -42,6 +42,7 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+
     end
 
     it 'returns the only word in a length-1 array' do
@@ -60,3 +61,5 @@ describe 'Scoring' do
     end
   end
 end
+
+# This comment is for testing merging conflicts 
