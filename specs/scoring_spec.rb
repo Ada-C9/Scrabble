@@ -41,25 +41,27 @@ describe 'Scoring' do
   end
 
   describe 'highest_score_from' do
-    it 'returns nil if no words were passed' do
-      Scrabble::Scoring.highest_score_from([]).must_be_nil
+   it 'returns nil if no words were passed' do
+     Scrabble::Scoring.highest_score_from([]).must_be_nil
+   end
+
+   it 'returns the only word in a length-1 array' do
+     Scrabble::Scoring.highest_score_from(["snail"]).must_equal "snail"
+   end
+
+   it 'returns the highest word if there are two words' do
+     Scrabble::Scoring.highest_score_from(["dog", "quail"]).must_equal "quail"
+   end
+
+    it 'if tied, prefer a word with 7 letters' do
+      Scrabble::Scoring.highest_score_from(["aaaaaaa", "ggge"]).must_equal "aaaaaaa"
     end
 
-    it 'returns the only word in a length-1 array' do
-      Scrabble::Scoring.highest_score_from(["snail"]).must_equal "snail"
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      Scrabble::Scoring.highest_score_from(["aaaaaa", "ggg"]).must_equal "aaaaaa"
     end
 
-    it 'returns the highest word if there are two words' do
-      Scrabble::Scoring.highest_score_from(["dog", "quail"]).must_equal "quail"
-    end
-
-    xit 'if tied, prefer a word with 7 letters' do
-    end
-
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-    end
-
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
     end
   end
 end

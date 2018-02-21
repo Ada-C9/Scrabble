@@ -41,16 +41,57 @@ module Scrabble
         return nil
       end
 
-      array_of_scores = []
+      hash = {}
 
       array_of_words.each do |i|
-        current_score = self.score(i)
-        array_of_scores << current_score
+        hash[i] = self.score(i)
       end
 
-      index_of_max = array_of_scores.rindex(array_of_scores.max)
-      return array_of_words[index_of_max]
+      high_score = 0
+      array_of_words = []
+
+      hash.each do |k, v|
+        if v >= high_score
+          high_score = v
+        end
+      end
+
+      max_scores = hash.delete_if { |key, value| value!= hash.values.max }.keys
+
+      if max_scores.length == 1
+        return max_scores[0]
+      else
+        max_scores.sort_by do |i|
+          if i.length == 7
+            return i
+          end
+        end
+      end
+      # array_of_scores = []
+      # high_score = 0
+      # high_score_array = []
+      #
+      # array_of_words.each do |i|
+      #   current_score = self.score(i)
+      #   if current_score >= high_score
+      #     high_score = current_score
+      #   end
+      #
+      # array_of_words.each do |i|
+      #   array_of_scores << self.score(i)
+      # end
+      #
+      # array_of_scores.each do |i|
+      #   if i == high_score
+      #     high_score_array << i
+      #   end
+      # end
+      #
+      # if high_score_array.length > 1
+      #
 
     end
   end
 end
+
+Scrabble::Scoring.highest_score_from(["aaa", "nnn", "g"])
