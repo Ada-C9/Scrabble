@@ -11,33 +11,41 @@ module Scrabble
         "U"=>1, "V"=>4, "W"=>4, "X"=>8,
         "Y"=>4, "Z"=>10
       }
-      # total_points = 0
       word = word.upcase
       letters = word.split("")
 
       values_of_letters = []
 
-      letters.each do |letter|
-        #.fetch - could help bad characters
-         values_of_letters << @all_letters.fetch(letter)
-       end
+      letters.each do |character|
+        # Checking if character input is a valid letter or not
+        # First part is splitting the hash into an array of the
+        # key values 'A-Z' and then we are checking if any characters
+        # are outside that range. If so, automatically return nil
+        # Else, if all the characters are valid letters, take the value
+        # associated with the key and put that in an array of integers
+        
+        if !@all_letters.keys.include?(character)
+          return nil
+        else
+        values_of_letters << @all_letters.fetch(character)
+        end
+      end
 
-       # p letters.length
 
-       if letters.length < 7
-         sum = values_of_letters.sum
-         return sum
+      if letters.length < 7
+        sum = values_of_letters.sum
+        return sum
+
       else
         sum = values_of_letters.sum
-         sum = sum + 50
-         return sum
-       end
-
+        sum = sum + 50
+        return sum
+      end
     end
   end
 end
 
-#     def self.highest_score_from(array_of_words)
-#     end
-#   end
-# end
+  #     def self.highest_score_from(array_of_words)
+  #     end
+  #   end
+  # end
