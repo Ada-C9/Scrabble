@@ -46,11 +46,13 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
 
-    it 'returns the only word in a length-1 array' do
+    it 'returns the only word in a length 1 array' do
+      words = ["cookie"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "cookie"
     end
 
     it 'returns the highest word if there are two words' do
-      words = ["cookie", "cake"]
+      words = ["cookie", "cake", "canoli"]
       Scrabble::Scoring.highest_score_from(words).must_equal "cookie"
     end
 
