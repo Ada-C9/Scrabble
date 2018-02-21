@@ -23,7 +23,7 @@ module Scrabble
         # are outside that range. If so, automatically return nil
         # Else, if all the characters are valid letters, take the value
         # associated with the key and put that in an array of integers
-        
+
         if !@all_letters.keys.include?(character)
           return nil
         else
@@ -32,14 +32,18 @@ module Scrabble
       end
 
 
-      if letters.length < 7
+      if letters.length > 0 && letters.length < 7
         sum = values_of_letters.sum
         return sum
 
-      else
+      elsif letters.length == 7
         sum = values_of_letters.sum
         sum = sum + 50
         return sum
+
+      else
+        return nil
+
       end
     end
   end
