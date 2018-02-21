@@ -53,6 +53,10 @@ module Scrabble
       if @array_of_words.empty?
         return nil
       end
+
+      if @array_of_words.length == 1
+        return @array_of_words[0]
+      end
     end
   end
 end

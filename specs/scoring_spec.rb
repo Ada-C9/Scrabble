@@ -42,13 +42,19 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
-      #Act
+      # Act
       word_collection = []
-      #Assert
+      # Assert
       Scrabble::Scoring.highest_score_from(word_collection).must_be_nil
     end
 
-    xit 'returns the only word in a length-1 array' do
+    it 'returns the only word in a length-1 array' do
+      # Act
+      word_collection = ["dog"]
+      word_collection2 = ["mouse"]
+      # Assert
+      Scrabble::Scoring.highest_score_from(word_collection).must_equal "dog"
+      Scrabble::Scoring.highest_score_from(word_collection2).must_equal "mouse"
     end
 
     xit 'returns the highest word if there are two words' do
