@@ -61,9 +61,9 @@ describe 'Scoring' do
     end
 
     it 'if tied, prefer a word with 7 letters' do
-      tie_seven = %W[binding qi coco]
+      tie_seven = %W[zzzzzz flitter coco]
       result = Scrabble::Scoring.highest_score_from(tie_seven)
-      result.must_equal tie_seven[0]
+      result.must_equal tie_seven[1]
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
