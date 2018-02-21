@@ -52,7 +52,18 @@ module Scrabble
         word_hash[:score] = self.score(scrabble_word)
         word_array << word_hash
       end
-      return word_array
+      # return word_array
+      max = 0
+      highest_word = ""
+      word_array.each do |scrabble_hash|
+        # binding.pry
+        if scrabble_hash[:score] > max
+          max = scrabble_hash[:score]
+          highest_word = scrabble_hash[:word]
+        elsif scrabble_hash[:length] == 7
+          return scrabble_hash[:word]
+        end
+      end
     end
 
   end # class Scoring
@@ -63,10 +74,9 @@ end # module Scrabble
 # test_chart = Scrabble::Scoring.score('charter')
 # ap test_chart
 
-test_chart = Scrabble::Scoring.highest_score_from(["dog", "cat", "elephan", "rabbit"])
+test_chart = Scrabble::Scoring.highest_score_from(["dog", "cat", "elephan", "seventh", "rabbit"])
 ap test_chart
 
-# binding.pry
 
 # # array reference
 # scrabble_chart = [
