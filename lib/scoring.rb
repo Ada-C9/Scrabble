@@ -20,38 +20,29 @@ module Scrabble
         score +=	8
       when 'Q', 'Z'
         score += 10
-        # else
-        #   score = nil
       end
       return score
     end
 
-    # def is_a_letter?(input)
-    #   input =~ /[A-Z]/
-    # end
-
     def self.score(word)
       score = 0
+      letters = word.upcase.split(//)
 
-      letters_in_word = word.upcase.split(//)
+      return nil if letters.length > 7 || letters.length == 0
 
-      score += 50 if letters_in_word.length == 7
+      score += 50 if letters.length == 7
 
-      return nil if
-      letters_in_word.length > 7 ||
-      letters_in_word.length == 0
-
-      letters_in_word.each do |letter|
+      letters.each do |letter|
         if !(letter =~ /[A-Z]/)
           return nil
         end
         score += letter_score(letter)
       end
       return score
-    end
+
+    end # self.score method ends
 
     def self.highest_score_from(array_of_words)
-
       if array_of_words.length <= 0
         return nil
       elsif array_of_words.length == 1
@@ -90,7 +81,3 @@ module Scrabble
   end # class Scoring ends
 
 end # module Scrabble ends
-
-
-# Scrabble::Scoring.score('cat') #dan example
-# binding.pry
