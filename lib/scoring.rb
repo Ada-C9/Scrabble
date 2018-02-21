@@ -51,3 +51,15 @@ module Scrabble
     end
   end
 end
+
+data = CSV.read("letter_values.csv")
+letter_values = {}
+data.each do |line|
+  num_of_letters = line.length - 1
+  i = 0
+  num_of_letters.times do
+    letter_values[line[i]] = line.last
+    i += 1
+  end
+  return letter_values
+end
