@@ -2,15 +2,15 @@ require 'pry'
 
 module Scrabble
   class Scoring
-    LETTERS = {
-      1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-      2 => ["D", "G"],
-      3 => ["B", "C", "M", "P"],
-      4 => ["F", "H", "V", "W", "Y"],
-      5 => ["K"],
-      8 => ["J", "X"],
-      10 => ["Q", "Z"]
-    }
+    # LETTERS = {
+    #   1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+    #   2 => ["D", "G"],
+    #   3 => ["B", "C", "M", "P"],
+    #   4 => ["F", "H", "V", "W", "Y"],
+    #   5 => ["K"],
+    #   8 => ["J", "X"],
+    #   10 => ["Q", "Z"]
+    # }
     def self.score(word) # 'dog'
       word = word.upcase
       word_array = word.split('') #['D', 'O', 'G']
@@ -22,28 +22,29 @@ module Scrabble
         # add 50 pts if the word is 7 letters long
         total_score += 50 if word_array.length == 7
         word_array.each do |letter|
-          score = LETTERS.find { |key, values|
-            values.include?(letter)
-          }.first
-          total_score += score
-          # case letter
-          # when "A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
-          #   total_score += 1
-          # when "D", "G"
-          #   total_score += 2
-          # when "B", "C", "M", "P"
-          #   total_score += 3
-          # when "F", "H", "V", "W", "Y"
-          #   total_score += 4
-          # when "K"
-          #   total_score += 5
-          # when "J", "X"
-          #   total_score += 8
-          # when "Q", "Z"
-          #   total_score += 10
-          # else
-          #   total_score = nil
-          # end # case letter
+          # letter_points = LETTERS.find { |key, values|
+          #   values.include?(letter)
+          # }.first
+          # total_score += letter_points
+
+          case letter
+          when "A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
+            total_score += 1
+          when "D", "G"
+            total_score += 2
+          when "B", "C", "M", "P"
+            total_score += 3
+          when "F", "H", "V", "W", "Y"
+            total_score += 4
+          when "K"
+            total_score += 5
+          when "J", "X"
+            total_score += 8
+          when "Q", "Z"
+            total_score += 10
+          else
+            total_score = nil
+          end # case letter
         end # word_array.each
         return total_score
       end # if > 7 statement
