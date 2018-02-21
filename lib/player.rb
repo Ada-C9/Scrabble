@@ -1,9 +1,12 @@
+require 'pry'
+require_relative 'scoring'
 module Scrabble
   class Player
-    attr_accessor :name, :plays
+    attr_accessor :name, :plays, :total_score
     def initialize(name)
       @name = name
       @plays = []
+      @total_score = 0
     end
 
     def play(word)
@@ -11,12 +14,11 @@ module Scrabble
       if won?
         return false
       else
-        return Scrabble::Scoring.score(word)
+        score = Scrabble::Scoring.score(word)
+        @total_score += score
+        return score
+        return
       end
-    end
-
-    def total_score
-      #  Returns the sum of scores of played words
     end
 
     def highest_scoring_word
@@ -30,7 +32,9 @@ module Scrabble
     private
     def won?
       # If the player has over 100 points, returns true, otherwise returns false
+      return total_score > 100 ? true : false
     end
 
   end # Player class end
 end # Scrabble end
+binding.pry
