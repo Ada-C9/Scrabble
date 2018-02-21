@@ -22,6 +22,7 @@ describe 'Player' do
       it "Returns an array of words played:" do
 
         player_1 = Scrabble::Player.new("Patrick")
+
         player_1.plays.must_be_kind_of Array
       end
     end
@@ -34,13 +35,19 @@ describe 'Player' do
 
         player_1.plays.must_include "orange"
 
-
-        
       end
     end
 
+    describe '#total_score' do
+      it " Returns the sum of scores of played words" do
 
+        player_1 = Scrabble::Player.new("Patrick")
+        player_1.play("apples")
+        player_1.play("fuzzy")
 
+        player_1.total_score.must_equal 39
+      end
+    end
 
   end
 
