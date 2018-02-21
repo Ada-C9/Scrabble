@@ -58,11 +58,19 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-      provided_words_values = []
+      # provided_words_values = []
+      #
+      # array_of_words.each do |provided_word|
+      #   value = Scrabble::Scoring.score(provided_word)
+      #   provided_words_values << value
+      # end
+
+      scored_words_hash = {}
 
       array_of_words.each do |provided_word|
-        value = Scrabble::Scoring.score(provided_word)
-        provided_words_values << value
+        score = Scrabble::Scoring.score(provided_word)
+        scored_words_hash[provided_word] = score
+        puts scored_words_hash
       end
 
       puts provided_words_values # [9, 5]
@@ -81,6 +89,8 @@ module Scrabble
 
     def breaking_ties()
 
+=======
+>>>>>>> aed0b5e8e6f8988a60476948250a483afda0347d
     end
 
   end # class Scoring
