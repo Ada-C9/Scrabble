@@ -38,8 +38,26 @@ module Scrabble
       if array_of_words.size == 0
         highest_score = nil
       elsif array_of_words.size == 1
-        highest_score == array_of_words[0]
+        highest_score = array_of_words[0]
       end
+      max = 0
+      winner = nil
+      short = 0
+      array_of_words.each do |word|
+        if Scrabble::Scoring.score(word) > max
+          max = Scrabble::Scoring.score(word)
+          highest_score = word
+        elsif Scrabble::Scoring.score(word) == max && word.length == 7
+          max = Scrabble::Scoring.score(word)
+          highest_score = word
+          ## for cases of equivalent values less than 7
+        elsif Scrabble::Scoring.score(word) == max && highest_score.length !=7
+          if highest_score.length > word.length
+            highest_score = word
+          end
+        end
+      end
+
       return highest_score
     end
   end
