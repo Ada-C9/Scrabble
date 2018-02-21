@@ -5,8 +5,8 @@ module Scrabble
     attr_reader :name
 
 
-    def initialize()
-
+    def initialize(name)
+      @name = name
     end
 
     # returns an Array of the words played by the player
