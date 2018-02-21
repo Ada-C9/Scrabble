@@ -54,7 +54,9 @@ module Scrabble
       end
 
       winner = all_highscores[0]
-      if all_highscores.length > 1
+      if all_highscores.all? { |word| word.length == 7 }
+        winner = all_highscores[0]
+      else
         all_highscores.each do |word|
           if word.length == 7
             winner = word

@@ -71,9 +71,9 @@ describe 'Scoring' do
     end
 
     it 'returns the first word of a tie with same letter count' do
-      word_array = ['aaaa', 'iiii']
+      word_array = ['jacuzzi', 'jazzmen']
 
-      Scrabble::Scoring.highest_score_from(word_array).must_equal 'aaaa'
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'jacuzzi'
 
     end
   end
