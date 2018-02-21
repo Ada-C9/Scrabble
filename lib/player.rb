@@ -1,5 +1,3 @@
-require_relative "scoring"
-
 module Scrabble
   class Player
     attr_accessor :name, :plays
@@ -13,14 +11,9 @@ module Scrabble
       if won?
         return false
       else
-        Scrabble::Scoring.score(word)
       end
 
     end
-
-    
-
-
 
 
   end

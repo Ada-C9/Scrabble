@@ -23,6 +23,7 @@ describe 'Player' do
 
       # Act
       result = test.plays
+
       # Assert
       result.must_be_kind_of Array
     end
@@ -34,7 +35,6 @@ describe 'Player' do
       words_played = ["thing", "stuff", "bug"]
       test = Player.new("Wenjie")
 
-
       # Act
       result = words_played.each do |word|
         test.play(word)
@@ -44,17 +44,44 @@ describe 'Player' do
       result.must_equal words_played
 
     end
-    it "Returns false if player has already won" do
+    xit "Returns false if player has already won" do
+      # Arrange
+      words_played = ["thing", "stuff", "bug"]
+      test = Player.new("Wenjie")
 
+
+      # Act
+      result = words_played.each do |word|
+        test.play(word)
+      end
+
+      # Assert
+      result.must_equal false
     end
+
     it "Returns the score of the word" do
 
     end
   end
-# #total_score: Returns the sum of scores of played words
-# #won?: If the player has over 100 points, returns true, otherwise returns false
-# This should be a private method
-# #highest_scoring_word: Returns the highest scoring played word
-# #highest_word_score: Returns the highest_scoring_word score
+  describe "#total_score" do
+    it "Returns the sum of scores of played words" do
 
+    end
+  end
+  describe "#won?" do
+
+    it "If the player has over 100 points, returns true, otherwise returns false" do
+      #This should be a private method
+    end
+  end
+  describe "#highest_scoring_word" do
+    it "Returns the highest scoring played word" do
+
+    end
+  end
+  describe "#highest_word_score" do
+    it "Returns the highest_scoring_word score" do
+
+    end
+  end
 end
