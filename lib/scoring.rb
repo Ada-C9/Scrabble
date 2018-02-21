@@ -11,8 +11,23 @@ module Scrabble
         "U"=>1, "V"=>4, "W"=>4, "X"=>8,
         "Y"=>4, "Z"=>10
       }
+      # total_points = 0
+      word = 'DOG'
+      p word
+      word_array = word.split("")
+      p word_array
+      p word_array[0]
 
-      @all_letters.each {|letter, points_per_letter| print letter, " ", points_per_letter, "\n"}
+
+      if @all_letters.has_key?(word_array[0])
+        puts "TRUE #{word
+        [0]}"
+      end
+
+
+
+
+      # @all_letters.each {|letter, points_per_letter| print letter, " ", points_per_letter, "\n"}
 
       # split word >> goes into array
       # check if
