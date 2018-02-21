@@ -54,10 +54,14 @@ describe 'Scoring' do
 
     end
 
-    xit 'if tied, prefer a word with 7 letters' do
-    end
+    # it 'if tied, prefer a word with 7 letters' do
+    #   array_of_words = ["aieouln", "dgda"]
+    #   Scrabble::Scoring.highest_score_from(array_of_words).must_equal "aieouln"
+    # end
 
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      array_of_words = ["dog", "if"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "if"
     end
 
     xit 'returns the first word of a tie with same letter count' do

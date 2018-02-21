@@ -43,9 +43,14 @@ module Scrabble
       array_of_words.each do |word|
         word_score = self.score(word)
         score_tracker[word] = word_score
-        # Actual: {"dog"=>5, "fish"=>10}
       end # array_of_words.each
-     score_tracker.each {|k,v|return k if v == score_tracker.values.max}
+      max = Hash[score_tracker.select { |k, v| v == score_tracker.values.max}]
+        max.each do |k,v|
+          unless k.length == 7
+          return k.length.min
+        end # max.each
+      end # score_tracker
+     # score_tracker.each {|k,v|return k if v == score_tracker.values.max}
     end # self.highest_score_from
   end # Scoring class
 end # Scrabble module
