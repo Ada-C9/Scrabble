@@ -74,8 +74,11 @@ module Scrabble
       words.each do |word|
         word_length[word] = word.length
       end
-
-      return word_length.key(word_length.values.min)
+      if word_length.has_value? 7
+        return word_length.key(7)
+      else
+        return word_length.key(word_length.values.min)
+      end
     end
 
   end # class Scoring ends
