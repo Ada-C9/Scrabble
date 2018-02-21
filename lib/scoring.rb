@@ -76,7 +76,7 @@ module Scrabble
         tie_winner(max_keys)
       end
 
-    end # method self.highest_score_from ends
+    end # method self.highest_score_from
 
     def self.tie_winner(words)
       word_length = {}
