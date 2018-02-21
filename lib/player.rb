@@ -1,4 +1,5 @@
-require ""
+require_relative "scoring"
+
 module Scrabble
   class Player
     attr_accessor :name, :plays
@@ -16,6 +17,11 @@ module Scrabble
       end
 
     end
+
+    
+
+
+
 
   end
 
