@@ -1,5 +1,8 @@
+
+
 module Scrabble
   class Player
+      attr_reader :name
 
     def initialize(name)
       @name = name
@@ -7,4 +10,4 @@ module Scrabble
   end
 end
 
-puts Scrabble::Player.new("jill")
+# puts Scrabble::Player.new("jill")

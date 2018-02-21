@@ -80,7 +80,7 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(words).must_equal "dig"
     end
 
-    it 'returns the first word of a tie with same letter (count)' do
+    xit 'returns the first word of a tie with same letter (count)' do
     end
   end
 end
