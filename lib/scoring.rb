@@ -30,6 +30,12 @@ module Scrabble
 
       if word.length == 7
         word_score += 50
+      elsif word.length > 7
+        return nil
+      end
+
+      if word.to_s.empty?
+        return nil
       end
 
       return word_score
