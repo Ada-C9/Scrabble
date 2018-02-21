@@ -4,16 +4,16 @@ module Scrabble
 
       # split word received, split word, pass it through...
 
-      # step 1: handling terminal if's that return nil 
+      # step 1: handling terminal if's that return nil
       if word == nil || word == ""  || word =~ /[^a-zA-Z]/
         return nil
       elsif word.length > 7
         return nil
       end
 
-      # step 2: take in a string, split the word,downcase, stored in an array called "word_array"
-      word_array = []
-      word_array = word.downcase.split(//)
+      # step 2: take in a string, split the word,downcase, stored in an array called "letter_array"
+      letter_array = []
+      letter_array = word.downcase.split(//)
       # SCORECARD
       value_1_array = ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"]
       value_2_array = ["d", "g"]
@@ -24,11 +24,17 @@ module Scrabble
       value_10_array = ["q", "z"]
       # END SCORECARD
 
-      print word_array
-      # "word_score" holds score for each "word_array"
-      word_score = 0
+      print letter_array
+      # "word_score" holds score for each "letter_array"
+      # word_score = 0
+      if letter_array.length == 7
+        word_score = 50
+      else
+        word_score = 0
+      end
+      puts "If word score still lives, it'll print here only for first 50 points for a 7-letter word: #{word_score}"
 
-      word_array.each do |letter|
+      letter_array.each do |letter|
         if value_1_array.include?(letter)
           word_score += 1
         elsif value_2_array.include?(letter)
@@ -45,10 +51,10 @@ module Scrabble
           word_score += 10
         end
       end
-      # "word_score" holds total score for all letters in "word_array"
-      puts "This is our word_score: #{word_score}"
-      return word_score
+      # "word_score" holds total score for all letters in "letter_array"
+      puts "This is our TOTAL word_score - including bonus points: #{word_score}"
 
+      return word_score
       # return a number based on the point chart
       # 7 letter bonus (use .length)
 
@@ -66,7 +72,11 @@ module Scrabble
   end
 end
 
-Scrabble::Scoring.score("kepts")
-Scrabble::Scoring.score("stampy")
+# Scrabble::Scoring.score("kepts")
+Scrabble::Scoring.score("stamper")
 
-# Scrabble::Scoring.score("$#&")
+Scrabble::Scoring.score("")
+
+Scrabble::Scoring.score("$#&")
+
+Scrabble::Scoring.score("lalalalalalalala")
