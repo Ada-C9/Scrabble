@@ -38,5 +38,17 @@ describe 'Player' do
     end
   end
 
-  
+# player_words = ["minimal", "BamBam", "Ada", "Loves", "Lace", "Snowone"]
+  describe 'plays' do
+    it 'return an attribute of a list of player words' do
+      name = 'BamBam'
+      player = Scrabble::Player.new(name)
+
+      all_plays = player.plays
+
+      all_plays.must_be_kind_of Array
+      player.must_respond_to :plays
+    end
+  end
+
 end
