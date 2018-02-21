@@ -44,7 +44,34 @@ module Scrabble
         word_hash[word] = score(word)
       end
       highscore = word_hash.values.max
-      return word_hash.key(highscore)
+
+      all_highscores = []
+
+      word_hash.each do |word, score|
+        if score == highscore
+          all_highscores << word
+        end
+      end
+
+      winner = all_highscores[0]
+      if all_highscores.length > 1
+        all_highscores.each do |word|
+          if word.length == 7
+            winner = word
+          end
+        end
+      end
+
+      return winner
+      # word_lengths = []
+      # all_highscores.each do |word|
+      #   word_lengths << word.length
+      # end
+
+
+
+
+      # return word_hash.key(highscore)
     end
   end
 end

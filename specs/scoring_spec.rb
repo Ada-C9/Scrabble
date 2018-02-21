@@ -54,12 +54,19 @@ describe 'Scoring' do
     end
 
     it 'returns the highest word if there are two words' do
+      word_array = ['giraffe', 'hamster']
+
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'giraffe'
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      word_array = ['qqzzqq', 'aaaaadb']
+
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'aaaaadb'
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      
     end
 
     it 'returns the first word of a tie with same letter count' do
