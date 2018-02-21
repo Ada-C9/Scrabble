@@ -64,7 +64,9 @@ describe 'Scoring' do
 
     end
 
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      winning_words = Scrabble::Scoring.highest_score_from(["qq", "kkkk"])
+      winning_words.must_equal "qq"
     end
 
     xit 'returns the first word of a tie with same letter count' do

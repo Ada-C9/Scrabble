@@ -50,39 +50,30 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words = [])
+
+      # Create & Populate array of words:
+      winning_words = []
       if array_of_words == []
         return nil
-      end
-
-      winning_words = []
-      max_score = 0
-
-
-      if array_of_words.length == 1
+      elsif array_of_words.length == 1
         winning_words << array_of_words
         return winning_words[0]
+      elsif  array_of_words.max_by(&:length).length == 7
+          winner = array_of_words.max_by(&:length)
+          return winner
       else
-        array_of_words.each do |word|
-          if  score(word) > max_score || score(word) == max_score
-            max_score = score(word)
-            winning_words << word
-          end
-        end
-      end
-
-      if winning_words.count >= 2
-        winner = winning_words.max_by(&:length)
+        winner = array_of_words.min_by  {|word| word.length}
         return winner
-      else
-        return winning_words[0]
       end
-
     end
-
 
 
   end #Scoring
 end #Scrabble
 
 # Personal tests:
-# Scrabble::Scoring.score("dog")
+# puts Scrabble::Scoring.score("qq")
+# puts Scrabble::Scoring.score("kkkk")
+# puts Scrabble::Scoring.score("aaaaaad")
+
+# puts Scrabble::Scoring.highest_score_from(["qq", "kkkk"])
