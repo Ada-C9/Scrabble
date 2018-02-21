@@ -51,13 +51,3 @@ module Scrabble
     end
   end
 end
-
-  letter_array_data = CSV.read("letter_values.csv")
-ap letter_array_data
-letter_values = {}
-count = 0
-
-letter_array_data.length.times do |letter|
-    letter_values[letter[count]] = letter.last
-  end
-  ap letter_values
