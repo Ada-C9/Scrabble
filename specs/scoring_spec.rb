@@ -44,7 +44,8 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
 
-    xit 'returns the only word in a length-1 array' do
+    it 'returns the only word in a length-1 array' do
+      Scrabble::Scoring.highest_score_from(['dog']).must_equal "dog"
     end
 
     xit 'returns the highest word if there are two words' do
