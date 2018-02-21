@@ -64,6 +64,10 @@ module Scrabble
       #   value = Scrabble::Scoring.score(provided_word)
       #   provided_words_values << value
       # end
+      if array_of_words.length == 0
+        return nil
+      end
+
       words_score_array = []
       scored_words_hash = {}
 
@@ -72,6 +76,7 @@ module Scrabble
         scored_words_hash[provided_word] = score
         words_score_array << score
       end
+      # words_score_array holds scores of provided_word
       print "This is the words_score_array: #{words_score_array}"
 
       # highest score values
@@ -90,7 +95,7 @@ module Scrabble
       highest_scoring_words = scored_words_hash.select{|word,score| score == highest_score_value}
       puts "This is the highest scoring word: #{highest_scoring_words}"
 
-
+      return highest_score[0]
       # puts provided_words_values # [9, 5]
       # we want to find idx of highest value in provided_words_values array
       # we then want to find word in that same idx of the array_of_words
@@ -118,5 +123,5 @@ end # module Scrabble
 # Scrabble::Scoring.score("")
 # Scrabble::Scoring.score("$#&")
 # Scrabble::Scoring.score("lalalalalalalala")
-three_word_array = ["apple", "cat", "aaaaaaa", "eeeeeee"]
-Scrabble::Scoring.highest_score_from(three_word_array)
+three_word_array = ["apple"]
+puts Scrabble::Scoring.highest_score_from(three_word_array)
