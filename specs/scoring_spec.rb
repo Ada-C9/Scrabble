@@ -69,10 +69,13 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(word_collection).must_equal "markets"
     end
 
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      words = ["kf","bcm", "dgmae"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "kf"
     end
 
     xit 'returns the first word of a tie with same letter count' do
+
     end
   end
 end
