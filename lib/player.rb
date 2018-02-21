@@ -28,5 +28,20 @@ module Scrabble
       return sum_of_scores
     end
 
+    def won?
+      if total_score > 100
+        return true
+      else
+        return false
+      end
+
+    end
+
   end
 end
+
+# player_1 = Scrabble::Player.new("Patrick")
+# player_1.play("xxxxxxx")
+# # # player_1.won?.must_equal true
+# # puts player_1.total_score
+# puts player_1.won?
