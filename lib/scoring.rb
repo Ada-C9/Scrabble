@@ -44,6 +44,22 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-    end
-  end
+      highest_word = array_of_words.first
+
+      array_of_words.each do |word|
+        print word
+        # if Scrabble::Scoring.score(word) > Scrabble::Scoring.score(highest_word)
+        if self.score(word) > self.score(highest_word)
+          highest_word = word
+        elsif self.score(word) == self.score(highest_word)
+            if word.length < highest_word.length
+              highest_word = word
+            end # inside conditional
+        end # outer conditional
+      end # each loop
+
+      return highest_word
+
+    end # highest_score_from
+  end # class
 end
