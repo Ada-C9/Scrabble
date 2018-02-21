@@ -1,7 +1,6 @@
-# require 'pry'
 module Scrabble
   class Scoring
-    @letter_values =
+    @@letter_values =
     {
       :A => 1,
       :E => 1,
@@ -32,18 +31,30 @@ module Scrabble
     }
 
     def self.score(word)
-      # Split the word into its indvidual letters and store in array
-      user_word = word.upcase.split(//)
-      # iterate over each letter
-      word_total = 0
-      values = []
-      user_word.each do |letter|
-        letter = letter.to_sym
-        if @letter_values.has_key?(letter)
-          values << @letter_values[letter]
+      # Check word for invalid characters
+      if !/[^a-zA-Z]+/.match(word)
+        # Split the word into its indvidual letters and store in array
+        user_word = word.upcase.split(//)
+        # Adds 50 points for 7 letter words
+        word_total = 0
+        # checks if word length is equal to seven and adds 50 pts
+        if user_word.length == 7
+          word_total += 50
+        elsif
+        # checks if word length is greater then 7, and returns nil
+          user_word.length > 7
+          return nil
         end
-          # binding.pry
-        return values.sum
+        # iterate over each letter
+        user_word.each do |letter|
+          letter = letter.to_sym
+          if @@letter_values.has_key?(letter)
+            word_total += @@letter_values[letter]
+          end
+        end
+        return word_total
+      else
+        return nil
       end
     end
 
