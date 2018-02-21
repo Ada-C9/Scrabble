@@ -43,6 +43,16 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
+      word_array = []
+
+      array_of_words.each do |scrabble_word|
+        word_hash = {}
+        word_hash[:word] = scrabble_word
+        word_hash[:length] = scrabble_word.length
+        word_hash[:score] = self.score(scrabble_word)
+        word_array << word_hash
+      end
+      return word_array
     end
 
   end # class Scoring
@@ -50,7 +60,10 @@ end # module Scrabble
 
 
 
-test_chart = Scrabble::Scoring.score('charter')
+# test_chart = Scrabble::Scoring.score('charter')
+# ap test_chart
+
+test_chart = Scrabble::Scoring.highest_score_from(["dog", "cat", "elephan", "rabbit"])
 ap test_chart
 
 # binding.pry
