@@ -62,6 +62,7 @@ describe 'Scoring' do
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+
     end
 
     it 'returns the first word of a tie with same letter count' do
