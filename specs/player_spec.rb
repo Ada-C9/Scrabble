@@ -57,7 +57,7 @@ describe 'Player' do
       test.plays = ["thing", "stuff", "bug"]
 
       # Act
-      result = test.play(word)
+      result = test.play(new_word)
 
       # Assert
       result.must_equal false
