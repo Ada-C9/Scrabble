@@ -12,29 +12,19 @@ module Scrabble
         "Y"=>4, "Z"=>10
       }
       # total_points = 0
-      word = 'DOG'
-      p word
-      word_array = word.split("")
-      p word_array
-      p word_array[0]
+      word = word.upcase
+      letters = word.split("")
 
+      values_of_letters = []
 
-      if @all_letters.has_key?(word_array[0])
-        puts "TRUE #{word
-        [0]}"
-      end
+      letters.each do |letter|
+        #.fetch - could help bad characters
+         values_of_letters << @all_letters.fetch(letter)
+       end
 
+       sum = values_of_letters.sum
+       return sum
 
-
-
-      # @all_letters.each {|letter, points_per_letter| print letter, " ", points_per_letter, "\n"}
-
-      # split word >> goes into array
-      # check if
-      # if letter array is a key, return the value of that
-      # add the values
-
-      return 5
     end
   end
 end
