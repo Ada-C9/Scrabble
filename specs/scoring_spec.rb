@@ -48,10 +48,12 @@ describe 'Scoring' do
 
     it 'returns the only word in a length-1 array' do
       array_of_words = ["phone"]
-      Scrabble::Scoring.highest_score_from(array_of_words).must_be_same_as(array_of_words)
+      Scrabble::Scoring.highest_score_from(array_of_words).must_be_same_as(array_of_words[0])
     end
 
-    xit 'returns the highest word if there are two words' do
+    it 'returns the highest word if there are two words' do
+      array_of_words["dog", "frog"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal('frog')
     end
 
     xit 'if tied, prefer a word with 7 letters' do

@@ -45,6 +45,8 @@ module Scrabble
     def self.highest_score_from(array_of_words)
       if array_of_words.length == 0
         return nil
+      elsif array_of_words.length == 1
+        return array_of_words[0]
       # if new_array = array_of_words.map { |word| word.length == 7}
       #   # binding.pry
       #   word_array = []
