@@ -37,39 +37,53 @@ module Scrabble
 
     def self.highest_score_from(array_of_words)
 
-      hash_of_scores = {}
+      hashes_array = []
 
       array_of_words.each do |word|
-        hash_of_scores[word] = self.score(word)
+        new_hash = {}
+        new_hash[:word] = word
+        new_hash[:length] = word.length
+        new_hash[:score] = self.score(word)
+        hashes_array << new_hash
       end
 
-      winner_score = hash_of_scores.values.max
+      winner_score = 0
 
-      array_winners = []
-      hash_of_scores.each do |word, score|
-        if score == winner_score
-          array_winners << word
+      hashes_array.each do |word_hash|
+        if word_hash[:score] > winner_score
+          winner_score = word_hash[:score]
+        end
+      end
+
+      seven_letters = []
+
+      hashes_array.each do |word_hash|
+        if word_hash[:score] != winner_score
+          hashes_array.delete(word_hash)
+        elsif word_hash[:length] == 7
+          seven_letters << word_hash[:word]
         end
       end
 
       winner = nil
-
       max_length = 7
 
-      if array_winners.length == 1
-        winner = array_winners[0]
+      if seven_letters.length > 0
+        winner = seven_letters[0]
+
+        # if there are no 'winner possibilities' with length = 7
       else
-        array_winners.each do |word|
-          if word.length == 7 # && winner == nil
-            winner = word
-          elsif word.length < max_length
-            winner = word
-            max_length = word.length
+        hashes_array.each do |word_hash|
+          if word_hash[:length] < max_length
+            winner = word_hash[:word]
+            max_length = word_hash[:length]
           end
-        end
-      end
+        end # iterating through hashes_array
+
+      end # if 7 length words else "blah"
 
       return winner
+
     end # Method highest_score_from
 
   end # Class Scoring
