@@ -60,7 +60,9 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(["dog", "rooster"]).must_equal 57
     end
 
-    xit 'if tied, prefer a word with 7 letters' do
+    it 'if tied, prefer a word with 7 letters' do
+
+      Scrabble::Scoring.highest_score_from(["tablets", "qqqqkkxs"]).must_equal "tablets"
     end
 
     xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do

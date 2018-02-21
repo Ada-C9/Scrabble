@@ -44,8 +44,8 @@ module Scrabble
       if array_of_words.length == 1
         return array_of_words[0]
       end
-      scores_array = []
 
+      scores_array = []
       if array_of_words.length == 2
         array_of_words.each do |word|
         score =  Scrabble::Scoring.score(word)
