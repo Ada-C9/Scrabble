@@ -75,4 +75,4 @@ module Scrabble
   end
 end
 
-Scrabble::Scoring.score("dog")
+Scrabble::Scoring.highest_score_from("dog")

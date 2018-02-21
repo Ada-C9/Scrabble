@@ -77,8 +77,12 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(words).must_equal "kf"
     end
 
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
+      words = ["kf","bcm", "kh", "dgmae","kw"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "kf"
 
+      words = ["bcm", "kh", "dgmae","kf"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "kh"
     end
   end
 end
