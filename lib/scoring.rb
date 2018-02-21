@@ -43,17 +43,19 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
-      if new_array = array_of_words.map { |word| word.length == 7}
-        # binding.pry
-        word_array = []
-        new_array.each do |scrabble_word|
-          word_hash = {}
-          word_hash[:word] = scrabble_word
-          word_hash[:length] = scrabble_word.length
-          word_hash[:score] = self.score(scrabble_word)
-          word_array << word_hash
-        end
-        return word_array
+      if array_of_words.length == 0
+        return nil
+      # if new_array = array_of_words.map { |word| word.length == 7}
+      #   # binding.pry
+      #   word_array = []
+      #   new_array.each do |scrabble_word|
+      #     word_hash = {}
+      #     word_hash[:word] = scrabble_word
+      #     word_hash[:length] = scrabble_word.length
+      #     word_hash[:score] = self.score(scrabble_word)
+      #     word_array << word_hash
+      #   end
+      #   return word_array
         # max = 50
         # highest_word = []
         # word_array.each do |scrabble_hash|
