@@ -71,16 +71,16 @@ module Scrabble
         score >= max_score ? tie << word : nil
       end
       tie_winner(tie) if tie.length >= 1
-      #return tie[0]
+      return tie[0]
     end
 
     def self.tie_winner(tie)
       tie_winner = ""
-      most_letters = tie[0].length
+      fewest = tie[0].length
       tie.each do |word|
         if word.length > most_letters
           most_letters = word.length
-          tie_winner += word
+          tie_winner = word
         end
       end
       return tie_winner

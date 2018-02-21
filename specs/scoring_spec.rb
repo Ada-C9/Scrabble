@@ -42,6 +42,11 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      empty_array = []
+
+      result = Scrabble::Scoring.highest_score_from(empty_array)
+
+      result.must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
