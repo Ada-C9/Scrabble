@@ -23,14 +23,30 @@ describe 'Player' do
 
   end
 
-  # describe 'play' do
-  #   it 'Returns false if player has already won' do
-  #   end
-  #
-  #   it 'Otherwise returns the score of the word' do
-  #
-  #   end
-  # end
+  describe 'play' do
+    it 'adds the word into the array of words' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("pop")
+
+      player_name.plays.must_include "pop"
+    end
+
+    # it 'Returns false if player has already won' do
+    #   player_name = Scrabble::Player.new ("Ada")
+    #   @array_of_words = ["zzzzzzz"]
+    #   player_name.play("pop")
+    #   #score = player_name.plays
+    #   #player_name.play.must_equal false
+    #   play.must_return false
+    #
+    #    if
+    # end
+
+    # it 'Otherwise returns the score of the word' do
+    #
+    #end
+
+  end
   #
   # describe 'total_score' do
   # end

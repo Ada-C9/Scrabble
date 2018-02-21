@@ -19,6 +19,7 @@ module Scrabble
 
     def play(word)
       #Adds the input word to the plays Array
+      @array_of_words << word
     end
 
     def total_score
