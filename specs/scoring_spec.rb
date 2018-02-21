@@ -16,7 +16,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score('pig').must_equal 6
     end
 
-    xit 'adds 50 points for a 7-letter word' do
+    it 'adds 50 points for a 7-letter word' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 
@@ -26,17 +26,17 @@ describe 'Scoring' do
       Scrabble::Scoring.score('DoG').must_equal 5
     end
 
-    xit 'returns nil for strings containing bad characters' do
+    it 'returns nil for strings containing bad characters' do
       Scrabble::Scoring.score('#$%^').must_be_nil
       Scrabble::Scoring.score('char^').must_be_nil
       Scrabble::Scoring.score(' ').must_be_nil
     end
 
-    xit 'returns nil for words > 7 letters' do
+    it 'returns nil for words > 7 letters' do
       Scrabble::Scoring.score('abcdefgh').must_be_nil
     end
 
-    xit 'returns nil for empty words' do
+    it 'returns nil for empty words' do
       Scrabble::Scoring.score('').must_be_nil
     end
   end
