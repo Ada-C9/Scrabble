@@ -40,23 +40,31 @@ describe 'Scoring' do
     end
   end
 
-  xdescribe 'highest_score_from' do
+  describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      Scrabble::Scoring.highest_score_from(['BANJO']).must_equal 'BANJO'
     end
 
     it 'returns the highest word if there are two words' do
+      Scrabble::Scoring.highest_score_from(['RAT', 'CAT']).must_equal 'CAT'
+      Scrabble::Scoring.highest_score_from(['CAT', 'FRIEND']).must_equal 'FRIEND'
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      Scrabble::Scoring.highest_score_from(['HATS', 'AAAAAAA']).must_equal 'AAAAAAA'
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      Scrabble::Scoring.highest_score_from(['ZOO', 'JOUST']).must_equal 'ZOO'
     end
 
     it 'returns the first word of a tie with same letter count' do
+      Scrabble::Scoring.highest_score_from(['RAIN', 'LANE', 'STAR']).must_equal 'RAIN'
+      Scrabble::Scoring.highest_score_from(['AAAAAAA', 'BBBBBBB']).must_equal 'AAAAAAA'
     end
   end
 end
