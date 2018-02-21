@@ -27,41 +27,28 @@ module Scrabble
 
       points = score_array.inject(points,:+)
 
-
-      # word.split("").each do |letter|
-      #   case letter
-      #   when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
-      #     points += 1
-      #   when "d", "g"
-      #     points += 2
-      #   when "b", "c", "m", "p"
-      #     points += 3
-      #   when "f", "h", "v", "w", "y"
-      #     points += 4
-      #   when "k"
-      #     points += 5
-      #   when "j", "x"
-      #     points += 8
-      #   when "q", "z"
-      #     points += 10
-      #   end
-      # end
-
-
-
       return points
     end
 
     def self.get_hash(array_of_words)
-      hashes_array = []
 
-      array_of_words.each do |word|
-        new_hash = {}
-        new_hash[:word] = word
-        new_hash[:length] = word.length
-        new_hash[:score] = self.score(word)
-        hashes_array << new_hash
+      hashes_array = array_of_words.map do |word|
+        {
+          word: word,
+          length: word.length,
+          score: self.score(word)
+        }
       end
+
+      # hashes_array = []
+      #
+      # array_of_words.each do |word|
+      #   new_hash = {}
+      #   new_hash[:word] = word
+      #   new_hash[:length] = word.length
+      #   new_hash[:score] = self.score(word)
+      #   hashes_array << new_hash
+      # end
       return hashes_array
     end
 
