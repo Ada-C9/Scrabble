@@ -12,8 +12,9 @@ module Scrabble
       "Q" => 10, "Z" => 10}
 
     def self.score(word)
-      score = 0
       return nil if word.length > 7 || word.length == 0
+
+      score = 0
       word.each_char do |c|
         return nil if !@score_chart.keys.include?(c.upcase)
         @score_chart.each do |key, value|
@@ -22,26 +23,26 @@ module Scrabble
           end
         end
       end
-
       score += 50 if word.length == 7
       return score
     end
 
     def self.highest_score_from(array_of_words)
       return nil if array_of_words.length == 0
-      return array_of_words[0] if array_of_words.length == 1
 
       highest_score_word = ""
       array_of_words.each do |word|
         highest_score = score(highest_score_word)
         highest_score ||= 0
-        if score(word) > highest_score
+        if score(word) == highest_score
+          if word.length < highest_score_word.length && highest_score_word.length != 7
+            highest_score_word = word
+          end
+        elsif score(word) > highest_score
           highest_score_word = word
-          # binding.pry
         end
       end
       return highest_score_word
-
     end
 
   end

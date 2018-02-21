@@ -9,7 +9,7 @@ require 'pry'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
-  xdescribe 'score' do
+  describe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('cat').must_equal 5
@@ -57,14 +57,20 @@ describe 'Scoring' do
     it 'if tied, prefer a word with 7 letters' do
       Scrabble::Scoring.highest_score_from(["Zheng", "Znicole"]).must_equal "Znicole"
       Scrabble::Scoring.highest_score_from(["Znicole", "Zheng"]).must_equal "Znicole"
+
+      # TODO: check definition of tie
+      Scrabble::Scoring.highest_score_from(["ZZZZZZ", "AAAAADB"]).must_equal "AAAAADB"
+      Scrabble::Scoring.highest_score_from(["AAAAADB", "ZZZZZZ"]).must_equal "AAAAADB"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      Scrabble::Scoring.highest_score_from(["Zheg", "Zicole"]).must_equal "Zheg"
       Scrabble::Scoring.highest_score_from(["Zicole", "Zheg"]).must_equal "Zheg"
     end
 
     it 'returns the first word of a tie with same letter count' do
       Scrabble::Scoring.highest_score_from(["aeiou", "lnrst"]).must_equal "aeiou"
+      Scrabble::Scoring.highest_score_from(["lnrst", "aeiou"]).must_equal "lnrst"
     end
   end
 end
