@@ -35,19 +35,19 @@ module Scrabble
         word_scores_hash[word.upcase] = self.score(word)
       end
       max_score = word_scores_hash.values.max
-      words_max_score = []
+      winning_words = []
       word_scores_hash.each do |word, score|
         if score == max_score
-          words_max_score << word
+          winning_words << word
         end
       end
-      shortest_word = words_max_score[0]
-      words_max_score.each do |word|
-        if word.length < shortest_word.length
-          shortest_word = word
+      winner = winning_words[0]
+      winning_words.each do |word|
+        if word.length < winner.length
+          winner = word
         end
       end
-      return shortest_word
+      return winner
     end
   end
 end
