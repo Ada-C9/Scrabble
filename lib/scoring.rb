@@ -72,6 +72,6 @@ end #Scrabble
 # Personal tests:
 # puts Scrabble::Scoring.score("dd")
 # puts Scrabble::Scoring.score("ba")
-# puts Scrabble::Scoring.score("apples")
+# puts Scrabble::Scoring.score("xxxxxxx")
 #
 # puts Scrabble::Scoring.highest_score_from(["dd", "ba"])
