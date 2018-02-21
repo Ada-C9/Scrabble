@@ -15,7 +15,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score('pig').must_equal 6
     end
 
-    xit 'adds 50 points for a 7-letter word' do
+    it 'adds 50 points for a 7-letter word' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 
@@ -31,32 +31,43 @@ describe 'Scoring' do
       Scrabble::Scoring.score(' ').must_be_nil
     end
 
-    xit 'returns nil for words > 7 letters' do
+    it 'returns nil for words > 7 letters' do
       Scrabble::Scoring.score('abcdefgh').must_be_nil
     end
 
-    xit 'returns nil for empty words' do
+    it 'returns nil for empty words' do
       Scrabble::Scoring.score('').must_be_nil
     end
   end
 
-  xdescribe 'highest_score_from' do
+  describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      Scrabble::Scoring.highest_score_from([]).must_be_nil
+    end
+
+    it 'returns nil if array contains invalid words' do
+      Scrabble::Scoring.highest_score_from(["aaaaaaaaaaaaa"]).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      Scrabble::Scoring.highest_score_from(["word"]).must_equal "word"
     end
 
     it 'returns the highest word if there are two words' do
+      Scrabble::Scoring.highest_score_from(["pig", "cat"]).must_equal "pig"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      Scrabble::Scoring.highest_score_from(["aaaaaad", "qqqqqj"]).must_equal "aaaaaad"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      Scrabble::Scoring.highest_score_from(["qqqqqq", "zxd"]).must_equal "qqqqqq"
+
     end
 
     it 'returns the first word of a tie with same letter count' do
+      Scrabble::Scoring.highest_score_from(["adbf", "egch"]).must_equal "adbf"
     end
   end
 end
