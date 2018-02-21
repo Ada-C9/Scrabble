@@ -55,10 +55,6 @@ describe 'Scoring' do
     end
 
     it 'if tied, prefer a word with 7 letters' do
-      Scrabble::Scoring.highest_score_from(["Zheng", "Znicole"]).must_equal "Znicole"
-      Scrabble::Scoring.highest_score_from(["Znicole", "Zheng"]).must_equal "Znicole"
-
-      # TODO: check definition of tie
       Scrabble::Scoring.highest_score_from(["ZZZZZZ", "AAAAADB"]).must_equal "AAAAADB"
       Scrabble::Scoring.highest_score_from(["AAAAADB", "ZZZZZZ"]).must_equal "AAAAADB"
     end
@@ -71,6 +67,12 @@ describe 'Scoring' do
     it 'returns the first word of a tie with same letter count' do
       Scrabble::Scoring.highest_score_from(["aeiou", "lnrst"]).must_equal "aeiou"
       Scrabble::Scoring.highest_score_from(["lnrst", "aeiou"]).must_equal "lnrst"
+    end
+
+    # A new test for edge case
+    it 'returns the first word of a tie with 7 letter count' do
+      Scrabble::Scoring.highest_score_from(["ZZZZZZZ", "QQQQQQQ"]).must_equal "ZZZZZZZ"
+      Scrabble::Scoring.highest_score_from(["QQQQQQQ", "ZZZZZZZ"]).must_equal "QQQQQQQ"
     end
   end
 end

@@ -24,6 +24,7 @@ module Scrabble
         end
       end
       score += 50 if word.length == 7
+      
       return score
     end
 
@@ -34,14 +35,15 @@ module Scrabble
       array_of_words.each do |word|
         highest_score = score(highest_score_word)
         highest_score ||= 0
-        if score(word) == highest_score
-          if word.length < highest_score_word.length && highest_score_word.length != 7
+        if score(word) == highest_score && highest_score_word.length != 7
+          if word.length == 7 || word.length < highest_score_word.length
             highest_score_word = word
           end
         elsif score(word) > highest_score
           highest_score_word = word
         end
       end
+
       return highest_score_word
     end
 
