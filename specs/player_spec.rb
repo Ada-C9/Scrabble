@@ -34,7 +34,13 @@ describe 'Player' do
       # Arrange
       new_word = "coco"
       test = Scrabble::Player.new("Wenjie")
-      @plays = ["thing", "stuff", "bug"]
+      plays = ["thing", "stuff", "bug"]
+
+      words_played = plays.each do |word|
+        test.play(word)
+      end
+
+      test.play(new_word)
 
       # Act
       result = test.plays.include?(new_word)
@@ -48,7 +54,7 @@ describe 'Player' do
       # Arrange
       new_word = "bug"
       test = Scrabble::Player.new("Wenjie")
-      @plays = ["thing", "stuff", "bug"]
+      test.plays = ["thing", "stuff", "bug"]
 
       # Act
       result = test.play(word)
@@ -61,10 +67,10 @@ describe 'Player' do
       # Arrange
       new_word = "coco"
       test = Scrabble::Player.new("Wenjie")
-      @plays = ["thing", "stuff", "bug"]
+      test.plays = ["thing", "stuff", "bug"]
 
       # Act
-      result = test.play(word)
+      result = test.play(new_word)
 
       # Assert
       result.must_equal 8
