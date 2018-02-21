@@ -65,10 +65,14 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(["tablets", "qqqqkkxs"]).must_equal "tablets"
     end
 
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+
+      Scrabble::Scoring.highest_score_from(["dog", "aeiou"]).must_equal "dog"
     end
 
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
+
+      Scrabble::Scoring.highest_score_from(["dog", "cat"]).must_equal "dog"
     end
   end
 end
