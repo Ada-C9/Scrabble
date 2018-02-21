@@ -55,6 +55,15 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
+      high_score = 0
+      highest_scoring_word = ""
+      array_of_words.each do |word, score|
+        if score > highest_scoring_word
+          high_score = score
+          highest_scoring_word = word
+        end
+      end
+      return highest_scoring_word
     end
   end
   # end
