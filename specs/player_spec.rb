@@ -29,45 +29,65 @@ describe 'Player' do
     end
   end
 
-  xdescribe "Player#play(word)" do
+  describe "Player#play(word)" do
     it "Adds the input word to the plays Array" do
       # Arrange
-      words_played = ["thing", "stuff", "bug"]
-      test = Player.new("Wenjie")
+      new_word = "coco"
+      test = Scrabble::Player.new("Wenjie")
+      @plays = ["thing", "stuff", "bug"]
 
       # Act
-      result = words_played.each do |word|
-        test.play(word)
-      end
+      result = test.plays.include?(new_word)
 
       # Assert
-      result.must_equal words_played
+      result.must_equal true
 
     end
-    xit "Returns false if player has already won" do
-      # Arrange
-      words_played = ["thing", "stuff", "bug"]
-      test = Player.new("Wenjie")
 
+    it "Returns false if player has already won" do
+      # Arrange
+      new_word = "bug"
+      test = Scrabble::Player.new("Wenjie")
+      @plays = ["thing", "stuff", "bug"]
 
       # Act
-      result = words_played.each do |word|
-        test.play(word)
-      end
+      result = test.play(word)
 
       # Assert
       result.must_equal false
     end
 
     it "Returns the score of the word" do
+      # Arrange
+      new_word = "coco"
+      test = Scrabble::Player.new("Wenjie")
+      @plays = ["thing", "stuff", "bug"]
 
+      # Act
+      result = test.play(word)
+
+      # Assert
+      result.must_equal 8
     end
   end
+
+
   describe "#total_score" do
     it "Returns the sum of scores of played words" do
+      #Arrange
+      word_1 = "snow"
+      word_2 = "litter"
+      test = Scrabble::Player.new("Wenjie")
 
+      # Act
+      test.play(word_1)
+      test.play(word_2)
+
+      # Assertion
+      test.total_score.must_equal 13
     end
   end
+
   describe "#won?" do
 
     it "If the player has over 100 points, returns true, otherwise returns false" do
