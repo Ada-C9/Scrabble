@@ -60,8 +60,6 @@ describe 'Player' do
     end
   end
 
-  # end
-
   describe 'won?' do
     it 'Returns true if player has won' do
       player_name = Scrabble::Player.new ("Ada")
@@ -78,8 +76,18 @@ describe 'Player' do
 
   end
   #
-  # describe 'highest_scoring_word' do
-  # end
+  describe 'highest_scoring_word' do
+    it 'Returns highest scoring word in an array of words for a single player' do
+      player_name = Scrabble::Player.new("Ada")
+      array_of_words_to_test = ['hi', 'bye', 'cry','why']
+      player_name.play('hi')
+      player_name.play('bye')
+      player_name.play('cry')
+      player_name.play('why')
+
+      player_name.highest_scoring_word.must_equal 'why'
+    end
+  end
   #
   # describe 'highest_word_score' do
   # end
