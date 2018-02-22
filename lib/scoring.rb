@@ -1,5 +1,8 @@
+require 'awesome_print'
 module Scrabble
+
   MAX_LETTERS = 7
+
   class Scoring
 
     POINT_VALUES = {
@@ -13,56 +16,49 @@ module Scrabble
       return if !has_valid_initial_word?(word)
       score = 0
       letters = word.split("")
+      # score = letters.inject { |sum, letter| sum + POINT_VALUES[letter] }
       letters.each do |letter|
         letter_score = POINT_VALUES[letter.upcase]
-        return if letter_score.nil?
+        return if letter_score.nil? # regex?
         score += letter_score
       end
-      score += 50 if letters.size == MAX_LETTERS
+      # scores.compact.reduce(0, :+) # and replace letter with score?
+      score += 50 if letters.size == MAX_LETTERS # what if size is partly because invalid chars?
       return score
     end
 
+    # what about array when the ONLY word is over max letter?
     def self.has_valid_initial_word?(word)
       return word.class == String && word.size.between?(1, MAX_LETTERS)
     end
 
     def self.highest_score_from(array_of_words)
       return if !has_valid_initial_array?(array_of_words)
-      highest_score = 0
-      winning_words = []
-      array_of_words.each do |word|
-        score = score(word)
-        return if score.nil?
-        # score(word) ? score = score(word) : (return nil)
-        next if score < highest_score
-        if score > highest_score
-          winning_words = []
-          highest_score = score
-        end
-        winning_words << word
-      end
+      scored_words = array_of_words.group_by{ |word| score(word) }
+      # ap scored_words
+      highest_score = scored_words.keys.max
+      winning_words = scored_words[highest_score]
       break_tie(winning_words)
     end
 
     def self.has_valid_initial_array?(array)
       return array.class == Array && array.length > 0
-
     end
 
     def self.break_tie(winning_words)
-      word_size = MAX_LETTERS
-      winning_word = ""
-      winning_words.each do |word|
-        return word if word.size == MAX_LETTERS
-        next if word.length > word_size
-        if word.length < word_size
-          word_size = word.length
-          winning_word = word
-        end
+      winning_word = winning_words.find { |word| word.size == 7}
+      if winning_word.nil?
+        winning_word = winning_word.min_by { |word| word.size }
       end
-      winning_word
+      return winning_word
     end
 
 
   end
 end
+
+
+
+
+Scrabble::Scoring.highest_score_from(["ghost", "boo", "pumpkin","sweet", "potato", "dk"])
+#
