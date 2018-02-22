@@ -36,7 +36,15 @@ module Scrabble
     end
 
     def draw_tiles(num)
+
       tiles_picked = []
+
+      # If the remaining tiles are less than the num
+      # player pick all tiles left in the bag
+      if @tiles_remaining.size < num
+        num = @tiles_remaining.size
+      end
+
       num.times do
         some_tile = @tiles_remaining.sample
         tiles_picked << some_tile.letter
