@@ -34,19 +34,19 @@ describe 'Player' do
       player.play(' ').must_be_nil
     end
 
-    it 'returns false if the player has 100 points' do
+    it 'continues to play if the player has 100 points' do
       player = Scrabble::Player.new("Ari")
       # pass words to .play to reach @total_score = 100
       player.play('squeeze')
-      player.play('quezals')
-      player.play('squiffy')
-      player.play('quickly')
-      player.play('dog').must_equal false
+      player.play('happy')
+      player.play('purple')
+      player.player_score.must_equal 100
+      player.play('dog').must_equal 5
     end
 
     it 'returns false if the player has < 100 points' do
       player = Scrabble::Player.new("Ari")
-      # pass word to .play to reach @total_score < 100
+      # pass word to .play to reach @total_score < 10
       player.play('cat')
       player.play('dog').must_equal 5
     end
@@ -83,7 +83,7 @@ describe 'Player' do
       player.plays.must_equal ['oxyphenbutazone']
     end
   end
-
+# testing the players score
   describe 'running score as player_score' do
     it 'calculates score with one play' do
       player = Scrabble::Player.new("Ari")
@@ -113,4 +113,53 @@ describe 'Player' do
     end
   end
 
+  describe 'winning' do
+    it 'returns true if the player has > 100 points' do
+      player = Scrabble::Player.new("Ari")
+
+      player.play('squeeze')
+      player.play('quezals')
+      player.play('squiffy')
+      player.play('zombify')
+      player.won?.must_equal true
+    end
+
+    it 'returns false if the player has < 100 points' do
+      player = Scrabble::Player.new("Ari")
+
+      player.play('cat')
+      player.play('dog')
+      player.won?.must_equal false
+    end
+
+    it 'returns false if the player has 100 points' do
+      player = Scrabble::Player.new("Ari")
+
+      player.play('squeeze')
+      player.play('happy')
+      player.play('purple')
+      player.won?.must_equal false
+    end
+
+    it 'returns false if the player has very few points' do
+      player = Scrabble::Player.new("Ari")
+
+      player.play('an')
+      player.won?.must_equal false
+    end
+
+    describe 'highest scoring word' do
+      it 'returns the highest scoring word with one word' do
+        player = Scrabble::Player.new("Ari")
+        player
+      end
+      it 'returns the highest scoring word with multiple words' do
+
+      end
+      it 'returns the highest scoring word with no valid words' do
+
+      end
+    end
+
+  end
 end
