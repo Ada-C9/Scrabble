@@ -10,7 +10,7 @@ module Scrabble
       #returns the value of the @name instance variable
       @name = name
       @array_of_words = []
-      @total_score = 0
+    ##  @total_score = 0
     end
 
     def plays
@@ -21,30 +21,37 @@ module Scrabble
     def play(word)
       #Adds the input word to the plays Array
       player_status = false
-      word_score = Scrabble::Scoring.score(word)
-      if @total_score < 100
+      total_score = 0
+      @array_of_words.each do |word_in_arr|
+        total_score += Scrabble::Scoring.score(word_in_arr)
+      end
+
+      if total_score <  100
+        word_score = Scrabble::Scoring.score(word)
         player_status = word_score
         @array_of_words << word
-        @total_score+=word_score
       end
-    return player_status
 
-    end
-
-    def total_score
-      #Returns the sum of scores of played words
-      returns @total_score
+      return player_status
     end
 
 
-    def won?
-       #If the player has over 100 points, returns true, otherwise returns false
-       player_case = false
-       if total_score => 100
-         player_case = true
-       end
-       return player_case
-    end
+
+    #
+    # def total_score
+    #   #Returns the sum of scores of played words
+    #   returns @total_score
+    # end
+
+
+    # def won?
+    #    #If the player has over 100 points, returns true, otherwise returns false
+    #    player_case = false
+    #    if total_score => 100
+    #      player_case = true
+    #    end
+    #    return player_case
+    # end
 
     def highest_scoring_word
       #Returns the highest scoring played word
