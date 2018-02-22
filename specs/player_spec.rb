@@ -55,10 +55,25 @@ describe 'Player' do
 
   describe 'won?' do
 
-    it "Returns true if the player has over 100 points" do
+    before do
+      @player_2 = Scrabble::Player.new("Bertram")
     end
 
-    it "Returns false if player has less than 100 points" do
+    it "Returns true if the player has over 100 points" do
+
+      @player_2.plays = ["pizzazz", "bezique"]
+      @player_2.won?.must_equal true
+    end
+
+    it "Returns false if player has 100 points or less" do
+
+      @player_2.plays = ["were", "wolf", "bar", "mitzva"]
+      @player_2.won?.must_equal false
+
+
+    end
+
+    it "Returns false if the player has not played any words." do
 
     end
 
