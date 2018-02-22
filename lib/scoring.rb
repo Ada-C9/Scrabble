@@ -1,3 +1,4 @@
+require 'pry'
 module Scrabble
   class Scoring
     LETTER_VALUES =
@@ -60,12 +61,29 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
+      # RETURNS NIL FOR EMPTY ARRAY
       if array_of_words.length == 0
         return nil
-      else
+        # RETURNS WORD FROM ARRAY LENGTH 1
+      elsif array_of_words.length == 1
         return array_of_words[0]
+      else
+        scores = []
+        array_of_words.each do |word|
+          scores << Scrabble::Scoring.score(word)
+        end
+        highest_score = scores.max
+        highest_words = []
+        array_of_words.each do |word|
+          if Scrabble::Scoring.score(word) == highest_score
+            highest_words << word
+          end
+          highest_words.sort_by { |word| word.length }
+        end
+        # binding.pry
+        # array_of_words[0] < array_of_words[1]
+        # return array_of_words[1]
       end
-
     end
   end
 end
