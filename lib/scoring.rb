@@ -74,14 +74,16 @@ module Scrabble
         end
         highest_score = scores.max
         highest_words = []
+        longest_word = nil
         array_of_words.each do |word|
           if Scrabble::Scoring.score(word) == highest_score
             highest_words << word
           end
-          highest_words.sort_by { |word| word.length }
+          # binding.pry
+          longest_word = highest_words.sort_by { |word| word.length }
         end
-
-         # array_of_words[0] < array_of_words[1]
+        return longest_word[0]
+        # array_of_words[0] < array_of_words[1]
         # return array_of_words[1]
       end
     end
