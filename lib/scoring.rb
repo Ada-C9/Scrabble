@@ -33,14 +33,11 @@ module Scrabble
 
     attr_accessor :word
 
-
-    #     class Post
-    #   STATUS = Hash.new{ |hash, key| raise( "Key #{ key } is unknown" )}.update(
-    #     :draft => "draft",
-    #     :awaiting_review => "awaiting review",
-    #    :posted => "posted" )
+    # def initialize(word)
+    #   @word = word
     # end
-    def initialize(word)
+
+    def initialize
       @word = word
     end
 
@@ -78,6 +75,7 @@ module Scrabble
       else
         scores_array = array_of_words.map { |word| score(word) }
         high_score = scores_array.max
+        # EXPLAIN WHAT THIS DOES
         winning_indices = scores_array.each_with_index.select { |score, index| score == high_score }.map { |array| array[1]}
         winning_words = []
         winning_indices.each do |index|
