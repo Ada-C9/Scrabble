@@ -11,9 +11,12 @@ module Scrabble
     end
 
     def play(word)
+      @plays << word
     end
 
     def total_score
+      scores_array = @plays.map { |word| Scrabble::Scoring.score(word) }
+      return scores_array.sum
     end
 
     def won?

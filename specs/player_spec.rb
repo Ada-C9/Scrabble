@@ -10,12 +10,15 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
 
+  before do
+    @player_1 = Scrabble::Player.new("Nora")
+  end
+
   describe 'initialize' do
 
     it "Takes a player name" do
-    end
-
-    it "Can return player name" do
+      # player_1 = Scrabble::Player.new("Nora")
+      @player_1.name.must_equal "Nora"
     end
 
   end
@@ -23,6 +26,10 @@ describe 'Player' do
   describe 'play(word)' do
 
     it "Adds the input word to the plays array" do
+
+      @player_1.play("walri")
+      @player_1.plays.must_include "walri"
+      @player_1.plays.must_be_kind_of Array
 
     end
 
@@ -39,7 +46,9 @@ describe 'Player' do
   describe 'total_score' do
 
     it "Returns the sum of scores of played words" do
+      @player_1.plays = ["grawlix", "butter", "bacon"]
 
+      @player_1.total_score.must_equal 85
     end
 
   end
