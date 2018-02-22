@@ -13,7 +13,6 @@ module Scrabble
 
     def play(word)
       if @player_score >= 100
-        #binding.pry
         return false
       end
 
