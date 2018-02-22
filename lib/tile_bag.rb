@@ -63,11 +63,3 @@ module Scrabble
     end
   end
 end
-
-test_1 = Scrabble::TileBag.new
-ap test_1.all_tiles.size # 98
-ap test_1.tiles_remaining.size # 98
-ap test_1.draw_tiles(7)
-ap test_1.draw_tiles(5)
-ap test_1.draw_tiles(3)
-ap test_1.tiles_remaining.size # 83
