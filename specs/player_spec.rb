@@ -45,9 +45,14 @@ describe 'Player' do
     #end
 
   end
-  #
-  # describe 'total_score' do
-  # end
+
+  describe 'total_score' do
+    player_name = Scrabble::Player.new ("Ada")
+    player_name.play("pop")
+    player_name.play("lawl")
+    total_score.must_be "14"
+
+  end
   #
   # describe 'won?' do
   # end
