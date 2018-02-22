@@ -53,11 +53,23 @@ module Scrabble
 
     def self.highest_score_from(array_of_words)
       new_word = []
+      scores = []
+
       if array_of_words.length == 0
         return nil
       elsif array_of_words.length == 1
         new_word << array_of_words
+        return new_word
+      elsif array_of_words.length > 1
+        array_of_words.each do |word|
+          scores << self.score(word)
+        end
       end
+        highest_score = scores.max
+        # array_of_words["Needs to be the max value printed with respect to the index"]
+      winning_word = array_of_words[scores.index(highest_score)]
+      # p winning_word
+      return winning_word
     end
   end
 end
