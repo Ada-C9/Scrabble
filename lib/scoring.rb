@@ -77,15 +77,15 @@ module Scrabble
         words_score_array << score
       end
       # words_score_array holds scores of provided_word
-      print "This is the words_score_array: #{words_score_array}"
+      puts "This is the words_score_array: #{words_score_array}"
 
       # highest score values
-      highest_score = scored_words_hash.max_by{|provided_word,score| score}
-      puts "This is the highest score value: #{highest_score}"
-      highest_score_value = highest_score[1]
+      highest_score_array = scored_words_hash.max_by{|provided_word,score| score}
+      puts "This is the highest score value: #{highest_score_array[1]}"
+      highest_score_value = highest_score_array[1]
 
       # this prints the provided_word AKA "apple"
-      puts scored_words_hash.key(scored_words_hash.values.max)
+      # puts scored_words_hash.key(scored_words_hash.values.max)
 
       # this one doesn't work
       # puts scored_words_hash.value.max(scored_words_hash.key)
@@ -95,7 +95,18 @@ module Scrabble
       highest_scoring_words = scored_words_hash.select{|word,score| score == highest_score_value}
       puts "This is the highest scoring word: #{highest_scoring_words}"
 
-      return highest_score[0]
+
+      # trying to get key that has lowest number of letters
+      puts "#{highest_scoring_words.min_by(&:first)}"
+      # puts "This is the word that has lowest number of letters but same score as the other: #{}"
+      return highest_score_array[0]
+
+
+      # def largest_hash_key(hash)
+      #   hash.max_by{|k,v| v}
+      # end
+
+
       # puts provided_words_values # [9, 5]
       # we want to find idx of highest value in provided_words_values array
       # we then want to find word in that same idx of the array_of_words
@@ -123,5 +134,5 @@ end # module Scrabble
 # Scrabble::Scoring.score("")
 # Scrabble::Scoring.score("$#&")
 # Scrabble::Scoring.score("lalalalalalalala")
-three_word_array = ["apple"]
-puts Scrabble::Scoring.highest_score_from(three_word_array)
+two_word_array = ["eeeeee", "daaaa"]
+puts Scrabble::Scoring.highest_score_from(two_word_array)
