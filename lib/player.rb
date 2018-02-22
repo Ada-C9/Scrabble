@@ -44,11 +44,12 @@ module Scrabble
     end
 
     def highest_scoring_word
-      
+      @winner_word = Scrabble::Scoring.highest_score_from(@plays)
+      return @winner_word
     end
 
     def highest_word_score
-
+      return Scrabble::Scoring.score(@winner_word)
     end
 
 
