@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
+require 'pry'
 
 require_relative '../lib/scoring'
 
@@ -57,8 +58,9 @@ describe 'Scoring' do
     end
 
     it 'if tied, prefer a word with 7 letters' do
-      array_of_words = ["gituate", "zzzzzj", "qqqqqj"]
+      array_of_words = ["zzzzzj", "gituate", "qqqqqj"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "gituate"
+
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do

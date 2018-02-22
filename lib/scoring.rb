@@ -73,14 +73,28 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
-      scores_array = []
-      array_of_words.each do |word|
-        scores_array << score(word)
+      if array_of_words.length == 0
+        return nil
+      else
+        scores_array = array_of_words.map { |word| score(word) }
+        high_score = scores_array.max
+        winning_indices = scores_array.each_with_index.select { |score, index| score == high_score }.map { |array| array[1]}
+        winning_words = []
+        winning_indices.each do |index|
+          winning_words << array_of_words.values_at(index)
+        end
+        # .flatten! takes our array of arrays and condenses it into one array
+        winning_words.flatten!
+        # if there's only one word in the array, return that word
+        if winning_words.length == 1
+          return winning_words[0]
+        # if there are multiple words in the array, return the word with 7 letters
+        elsif winning_words.any? { |word| word.length == 7 }
+          return winning_words.find { |word| word.length == 7 }
+        else
+          return winning_words.min_by(&:length)
+        end
       end
-      high_score = scores_array.max
-      winning_index = scores_array.find_index(high_score)
-      winning_word = array_of_words[winning_index]
-      return winning_word
     end
 
   end
