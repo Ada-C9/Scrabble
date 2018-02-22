@@ -11,8 +11,8 @@ module Scrabble
         "U"=>1, "V"=>4, "W"=>4, "X"=>8,
         "Y"=>4, "Z"=>10
       }
-      word = word.upcase
-      letters = word.split("")
+      @word = word.upcase
+      letters = @word.split("")
       character_check = @all_letters.keys
       values_of_letters = []
 
@@ -49,27 +49,30 @@ module Scrabble
       end
     end
 
-
-
     def self.highest_score_from(array_of_words)
-      new_word = []
-      scores = []
+
+      all_scores = {}
 
       if array_of_words.length == 0
         return nil
+
       elsif array_of_words.length == 1
-        new_word << array_of_words
-        return new_word
+        return array_of_words
+
       elsif array_of_words.length > 1
         array_of_words.each do |word|
-          scores << self.score(word)
+          all_scores[word] = score(word)
+          # scores << score(word)
         end
+
+        p all_scores
       end
-        highest_score = scores.max
-        # array_of_words["Needs to be the max value printed with respect to the index"]
-      winning_word = array_of_words[scores.index(highest_score)]
-      # p winning_word
-      return winning_word
+
+      max_score_words = all_scores.delete_if { |word, score| score != all_scores.values.max }.keys
+
+      # p max_score_words
+      return max_score_words
+
     end
   end
 end
