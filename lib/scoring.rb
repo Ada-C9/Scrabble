@@ -58,24 +58,38 @@ module Scrabble
           word_hash[:score] = self.score(scrabble_word)
           word_array << word_hash
         end
-        hash_word_max = word_array.max_by do |scrabble_hash|
-          scrabble_hash[:length]
+
+        hash_word_score = word_array.max_by do |scrabble_hash|
+          scrabble_hash[:score]
         end
-        return hash_word_max[:word]
+        return hash_word_score[:word]
 
-        # array_of_words.each do |word|
-        #   word_scores << self.score(word)
-        #   max_value = word_scores.max
-        #   word_index = word_scores.map do |index|
-        #       word_scores[index] == max_value
-        #   end
+        word_array.each do |scrabble_hash|
+          hash_word_full_7_letters = ''
+          if scrabble_hash[:length] == 7
+            hash_word_full_7_letters = scrabble_hash[:word]
+          end
+        end
+        return hash_word_full_7_letters
+        #
+        # hash_word_min = word_array.min_by do |scrabble_hash|
+        #   scrabble_hash[:length]
         # end
-        # binding.pry
-        # return word_index
-        # # return array_of_words[word_scores.index(word_scores.max)]
+        # return hash_word_min[:word]
+
+        array_of_words.each do |word|
+          word_scores << self.score(word)
+          max_value = word_scores.max
+          word_index = word_scores.map do |index|
+              word_scores[index] == max_value
+          end
+        end
+        binding.pry
+        return word_index
+        return array_of_words[word_scores.index(word_scores.max)]
 
 
-      end # if statement using map to find 7 letter words
+      end # if statement
     end # def self.highest_score_from(array_of_words)
 
   end # class Scoring
@@ -88,6 +102,7 @@ end # module Scrabble
 
 test_chart = Scrabble::Scoring.highest_score_from(["zzzzzx", "aaaaaag"])
 ap test_chart
+# binding.pry
 
 
 # # array reference
