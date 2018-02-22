@@ -28,10 +28,12 @@ module Scrabble
 
     # Returns the sum of scores of played words
     def total_score
+      return @plays.reduce(0) { |memo, word| memo + Scrabble::Scoring.score(word) }
     end
 
     # If the player has over 100 points, returns `true`, otherwise returns `false`
     def won?
+      return total_score > 100 ? true : false
     end
 
     # Returns the highest scoring played word

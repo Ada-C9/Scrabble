@@ -18,7 +18,7 @@ describe 'Player' do
     end
   end
 
-  describe 'plays' do
+  xdescribe 'plays' do
     it "Returns an array of the words played by the player" do
       player = Scrabble::Player.new("Paul")
 
@@ -35,7 +35,7 @@ describe 'Player' do
     end
   end
 
-  describe 'play' do
+  xdescribe 'play' do
     it "Adds the input word to the `plays` array" do
       player = Scrabble::Player.new("Paul")
 
@@ -69,12 +69,36 @@ describe 'Player' do
 
   end
 
-  xdescribe 'total_score' do
+  describe 'total_score' do
+    it "Returns the sum of the scores" do
+      player = Scrabble::Player.new("Paul")
+      player.play("banana")
+      player.play("orange")
 
+      player.total_score.must_equal 15
+    end
+
+    it "Returns zero if no word was entered" do
+      player = Scrabble::Player.new("Paul")
+
+      player.total_score.must_equal 0
+    end
   end
 
-  xdescribe 'won?' do
+  describe 'won?' do
+    it "Return true if score is over 100 points" do
+      player = Scrabble::Player.new("Paul")
+      player.play("zzzzzzz")
 
+      player.won?.must_equal true
+    end
+
+    it "Return false if score is under 100 points" do
+      player = Scrabble::Player.new("Paul")
+      player.play("aaaaaaa")
+
+      player.won?.must_equal false
+    end
   end
 
   xdescribe 'highest_scoring_word' do
