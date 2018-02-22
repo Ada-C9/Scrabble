@@ -45,7 +45,7 @@ describe 'TileBag#draw_tiles(num)' do
   result = test_1.tiles_remaining.size
 
   # Assert
-  result.must_equal (86..93)
+  result.must_equal 93
 
   end
 
