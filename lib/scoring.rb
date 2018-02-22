@@ -70,6 +70,7 @@ module Scrabble
 
       words_score_array = []
       scored_words_hash = {}
+      winner_hash = {}
 
       array_of_words.each do |provided_word|
         score = Scrabble::Scoring.score(provided_word)
@@ -87,38 +88,26 @@ module Scrabble
       # this prints the provided_word AKA "apple"
       # puts scored_words_hash.key(scored_words_hash.values.max)
 
-      # this one doesn't work
-      # puts scored_words_hash.value.max(scored_words_hash.key)
-
-
       # highest scoring words - gives us {"apple"=>9}
       highest_scoring_words = scored_words_hash.select{|word,score| score == highest_score_value}
       puts "This is the highest scoring word: #{highest_scoring_words}"
 
+      if highest_scoring_words.length > 1
+        winner_hash = highest_scoring_words.select{|word| word.length == 7}
+        if winner_hash.empty?
+          puts "I'm empty"
+          shortest_winner_hash =  Hash[highest_scoring_words.sort_by {|word, score| word.length}]
+          return shortest_winner_hash.keys[0]
+        end
+      else
+        return highest_score[0]
+      end
 
-      # trying to get key that has lowest number of letters
-      puts "#{highest_scoring_words.min_by(&:first)}"
-      # puts "This is the word that has lowest number of letters but same score as the other: #{}"
-      return highest_score_array[0]
 
 
-      # def largest_hash_key(hash)
-      #   hash.max_by{|k,v| v}
-      # end
+      # return highest_score[0]
 
 
-      # puts provided_words_values # [9, 5]
-      # we want to find idx of highest value in provided_words_values array
-      # we then want to find word in that same idx of the array_of_words
-
-      # if tie:
-      # fewest tiles used unless the other word used all 7 then that wins
-      # if score & length are same for both high words, the first one wins
-
-      # current_highest_word = ""
-
-      # puts provided_words_values.class # outputs "array"
-      # puts array_of_words
     end # self.highest_score_from
 
     # def breaking_ties()
