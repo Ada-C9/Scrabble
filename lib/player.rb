@@ -4,19 +4,26 @@ module Scrabble
     # returns the value of the `@name` instance variable
     attr_reader :name
 
-
     def initialize(name)
       @name = name
+      @plays = []
     end
 
     # returns an Array of the words played by the player
     def plays
+      return @plays
     end
 
     # Adds the input word to the `plays` Array
-      # - Returns `false` if player has already won
-      # - Otherwise returns the score of the `word`
+    # - Returns `false` if player has already won
+    # - Otherwise returns the score of the `word`
     def play(word)
+      if @plays.include?(word)
+        raise ArgumentError.new("This word has already been used!")
+      else
+        @plays << word
+      end
+      return Scrabble::Scoring.score(word)
     end
 
     # Returns the sum of scores of played words
