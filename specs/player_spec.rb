@@ -2,20 +2,20 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
-require_relative '../lib/'
+require_relative '../lib/player'
 
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
-  describe 'Player' do
-  describe 'play' do
+  describe 'new' do
     it 'returns the value of the @name instance variable' do
-
-       Scrabble::player(quiz).must_return "quiz"
-
+      Scrabble::Player.new(name)
+      @name = name
+      @name.class.must_equal Scrabble::Player
     end
-
+  end
+end
     it returns an Array of the words played by the player do
       words_played = ["cat", "man","trees"]
       Scrabble::player ('academy').must_return ["cat","man","trees"]
