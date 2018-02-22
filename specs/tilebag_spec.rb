@@ -35,9 +35,22 @@ describe "TileBag" do
       new_game = Scrabble::TileBag.new
       new_game.tiles.select{|tile| tile == "Q"}.length.must_equal 1
     end
+  end
+  describe "draw_tiles" do
+    it "Should return an array " do
+      game_tiles= Scrabble::TileBag.new
+      game_tiles.draw_tiles(7).must_be_kind_of Array
+    end
 
-
-
-
+    it "Tile bag should have less tiles after draw_tiles" do
+      game_tiles= Scrabble::TileBag.new
+      number_of_tiles_before = game_tiles.length
+      tiles_given = game_tiles.draw_tiles(3).length
+      (number_of_tiles_before - tiles_given).must_equal 95
+    end
+    it "The return array length must be the same of number of draw_tiles" do
+      game_tiles= Scrabble::TileBag.new
+      tiles_given = game_tiles.draw_tiles(3).length.must_equal 3
+    end
   end
 end

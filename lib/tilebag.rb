@@ -2,7 +2,7 @@ require_relative "player.rb"
 
 module Scrabble
   class TileBag
-    
+
     def initialize
     end
 
