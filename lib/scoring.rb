@@ -3,12 +3,12 @@ module Scrabble
 
     def self.score(word)
       total = 0
-      array_of_characters = word.upcase.split('')
+      array_of_characters = word.split('')
       if word.match(/^[a-zA-Z]{1,7}$/) == nil
         total = nil
       else
         array_of_characters.each do |letter|
-          scrabble_value = letter
+          scrabble_value = letter.upcase
           case scrabble_value
             when "A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
               scrabble_value = 1
@@ -35,14 +35,14 @@ module Scrabble
     end
 
     def self.highest_score_from(array_of_words)
+      max = 0
+      winner = nil
+      short = 0
       if array_of_words.size == 0
         highest_score = nil
       elsif array_of_words.size == 1
         highest_score = array_of_words[0]
       end
-      max = 0
-      winner = nil
-      short = 0
       array_of_words.each do |word|
         if Scrabble::Scoring.score(word) > max
           max = Scrabble::Scoring.score(word)
@@ -50,7 +50,6 @@ module Scrabble
         elsif Scrabble::Scoring.score(word) == max && word.length == 7
           max = Scrabble::Scoring.score(word)
           highest_score = word
-          ## for cases of equivalent values less than 7
         elsif Scrabble::Scoring.score(word) == max && highest_score.length !=7
           if highest_score.length > word.length
             highest_score = word
