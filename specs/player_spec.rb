@@ -36,7 +36,7 @@ describe 'Player' do
       test = Scrabble::Player.new("Wenjie")
       plays = ["thing", "stuff", "bug"]
 
-      words_played = plays.each do |word|
+      plays.each do |word|
         test.play(word)
       end
 
@@ -69,7 +69,10 @@ describe 'Player' do
       # Arrange
       new_word = "coco"
       test = Scrabble::Player.new("Wenjie")
-      test.plays = ["thing", "stuff", "bug"]
+      plays = ["thing", "stuff", "bug"]
+      plays.each do |word|
+        test.play(word)
+      end
 
       # Act
       result = test.play(new_word)
@@ -105,7 +108,7 @@ describe 'Player' do
       test.play("flitter")
 
       # Act
-      result = test.play("quicken")
+      test.play("quicken")
 
       # Assert
       test.won?.must_equal true
