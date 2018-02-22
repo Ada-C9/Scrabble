@@ -39,7 +39,7 @@ module Scrabble
       tiles_picked = []
       num.times do
         some_tile = @tiles_remaining.sample
-        tiles_picked << some_tile
+        tiles_picked << some_tile.letter
         @tiles_remaining.delete(some_tile)
       end
 
