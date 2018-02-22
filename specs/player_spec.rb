@@ -27,8 +27,8 @@ describe 'Player' do
       end
     end
 
-      describe "#play(word)" do
-        it "Adds input word to @plays array." do
+    describe "#play(word)" do
+      it "Adds input word to @plays array." do
 
         player_1 = Scrabble::Player.new("Patrick")
         player_1.play("orange")
@@ -65,17 +65,17 @@ describe 'Player' do
 
       end
 
-describe '#highest_scoring_word' do
-  it 'Returns the highest scoring played word' do
-    player_1 = Scrabble::Player.new("Patrick")
-    player_1.play("cat")
-    player_1.play("pig")
+      describe '#highest_scoring_word' do
+        it 'Returns the highest scoring played word' do
+          player_1 = Scrabble::Player.new("Patrick")
+          player_1.play("cat")
+          player_1.play("pig")
 
-    player_1.highest_scoring_word.must_equal "pig"
-    player_1.highest_scoring_word.must_be_kind_of String
-    
-  end
-end
+          player_1.highest_scoring_word.must_equal "pig"
+          player_1.highest_scoring_word.must_be_kind_of String
+
+        end
+      end
 
 
     end
