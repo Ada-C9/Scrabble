@@ -63,21 +63,16 @@ module Scrabble
         array_of_words.length.times do
           @words_scores = {}
           array_of_words.each do |word|
-            score = score(word)
-            @words_scores[word] = score
+            total = score(word)
+            @words_scores[word] = total
           end
-          @words_scores.values.max
-          return word if score == @words_scores.values.max 
-        end
-        high_score = 0
-        highest_scoring_word = ""
-        @words_scores.each do |word, score|
-          if score > high_score
-            high_score = score
-            highest_scoring_word = word
+          binding.pry
+          @words_scores.find_all do |words|
+            return @words_scores.values == @words_scores.values.max
+            # @words_scores.key(@words_scores.values.max)
           end
+
         end
-        return highest_scoring_word
       end
     end
     # end

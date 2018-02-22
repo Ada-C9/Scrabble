@@ -47,22 +47,30 @@ describe 'Scoring' do
     end
 
     it 'returns the only word in a length 1 array' do
-      words = ["cookie"]
-      Scrabble::Scoring.highest_score_from(words).must_equal "cookie"
+      words1 = ["cookie"]
+      Scrabble::Scoring.highest_score_from(words1).must_equal "cookie"
     end
 
-    it 'returns the highest word if there are two words' do
-      words = ["cookie", "cake", "canoli"]
-      Scrabble::Scoring.highest_score_from(words).must_equal "cookie"
+    it 'returns the highest value word if there are two words' do
+      words2 = ["cookie", "cake"]
+      Scrabble::Scoring.highest_score_from(words2).must_equal "cookie"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+
+      words3 = ["alcohol", "fish", "canoli", "knife"]
+
+      Scrabble::Scoring.highest_score_from(words3).must_equal "alcohol"
     end
 
-    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      words4 = ["cookie", "pink", "canoli", "knife"]
+      Scrabble::Scoring.highest_score_from(words4).must_equal "knife"
     end
 
-    it 'returns the first word of a tie with same letter count' do
+    xit 'returns the first word of a tie with same letter count' do
+      words = ["yellow", "bomb", "canoli", "cookie"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "yellow"
     end
   end
 end
