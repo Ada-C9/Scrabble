@@ -6,7 +6,7 @@ module Scrabble
     def initialize(name)
       @name = name.to_s
       @words_played = []
-      @scores = []
+      @score = 0
     end
 
     def plays
@@ -14,22 +14,22 @@ module Scrabble
     end
 
     def play(word)
-      if Player.won?
+      @words_played << word
+      word_score = Scoring.score(word)
+      @score += word_score
+      if won? == true
         return false
       else
-        @words_played << word
-        word_score = Scoring.score(word)
-        @scores << word_score
         return word_score
       end
     end
 
       def total_score
-        return @scores.sum
+        return @score
       end
 
       def won?
-        if Player.total_score > 100
+        if total_score > 100
           return true
         else
           return false
@@ -37,10 +37,19 @@ module Scrabble
       end
 
       def highest_scoring_word
+        return Scoring.highest_score_from(@words_played)
       end
 
       def highest_word_score
+        return Scoring.score(highest_scoring_word)
       end
 
     end
   end
+
+  # player_1 = Scrabble::Player.new("Dan")
+  # puts "#{player_1.play("zzzzffd")}"
+  # puts "#{player_1.scores.sum}"
+  # word = "xx"
+  # player_1.play(word)
+  # puts "#{player_1.scores.sum}"

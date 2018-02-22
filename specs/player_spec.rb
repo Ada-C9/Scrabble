@@ -43,7 +43,7 @@ describe 'Player' do
 
     it "must return the score of the word if the game is not won" do
       player_1 = Scrabble::Player.new("Dan")
-      player_1.play("xx").must_equal 20
+      player_1.play("xx").must_equal 16
     end
 
     it 'must return false if the game is won' do
@@ -51,12 +51,6 @@ describe 'Player' do
       player_1.play("zzzzffd")
       word = "xx"
       player_1.play(word).must_equal false
-    end
-
-    it "must return zero if the word played is a blank string" do
-      player_1 = Scrabble::Player.new("Dan")
-      word = ""
-      player_1.play(word).must_equal 0
     end
   end
 
@@ -76,21 +70,21 @@ describe 'Player' do
       player_1 = Scrabble::Player.new("Dan")
       player_1.play("zzzzzzz")
 
-      player_1.won?.must_be true
+      player_1.won?.must_equal true
     end
 
     it "returns false if total score is equal to 100" do
       player_1 = Scrabble::Player.new("Dan")
       player_1.play("zzzzffd")
 
-      player_1.won?.must_be false
+      player_1.won?.must_equal false
     end
 
     it "returns false if total score is less than 100" do
       player_1 = Scrabble::Player.new("Dan")
       player_1.play("bob")
 
-      player_1.won?.must_be false
+      player_1.won?.must_equal false
     end
   end
 
@@ -108,7 +102,7 @@ describe 'Player' do
       player_1.play("hi")
       player_1.play("hey")
 
-      player_1.highest_scoring_word.must equal "hey"
+      player_1.highest_scoring_word.must_equal "HEY"
     end
   end
 
