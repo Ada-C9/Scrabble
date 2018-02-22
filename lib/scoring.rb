@@ -1,7 +1,8 @@
 module Scrabble
   class Scoring
-    def self.score(word)
 
+
+    def self.score(word)
 
       word_score = 0
 
