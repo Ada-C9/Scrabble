@@ -22,14 +22,20 @@ module Scrabble
     end
 
     def highest_scoring_word
-      # Returns the highest scoring played word
+      
+      # highest_score_word = @plays.max_by do |word|
+      #   Scrabble::Scoring.score(word)
+      # end
+
+      highest_score_word = Scrabble::Scoring.highest_score_from(@plays)
+      return highest_score_word
     end
 
     def highest_word_score
       # Returns the highest_scoring_word score
+      Scrabble::scoring.score(highest_scoring_word)
     end
 
-    private
     def won?
       # If the player has over 100 points, returns true, otherwise returns false
       if total_score > 100
@@ -38,9 +44,6 @@ module Scrabble
         return false
       end
 
-
-      # result = total_score > 100 ? true : false
-      # return result
     end
 
   end # Player class end
