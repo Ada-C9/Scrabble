@@ -8,7 +8,7 @@ require 'pry'
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-xdescribe 'Scoring' do
+describe 'Scoring' do
   describe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5

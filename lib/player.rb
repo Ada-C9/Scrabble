@@ -1,4 +1,5 @@
 require "scoring.rb"
+require 'tile_bag.rb'
 require "pry"
 
 module Scrabble
@@ -9,6 +10,7 @@ module Scrabble
     def initialize(name)
       @name = name
       @plays = []
+      @tiles = []
     end
 
     # returns an Array of the words played by the player
@@ -51,6 +53,17 @@ module Scrabble
       return Scrabble::Scoring.score(highest_scoring_word)
     end
 
+    # a collection of letters that the player can play (max 7)
+    def tiles
+      return @tiles
+    end
+
+    # fills tiles array until it has 7 letters from the given tile bag
+    # - It is not in the primary requirements to modify the existing `#play(word)` to use `#tiles` or check against the player's tiles
+    def draw_tiles(tile_bag)
+      tile_bag = Scrabble::TileBag.new
+      @tiles = tile_bag.draw_tiles(7)
+    end
 
   end
 end

@@ -4,11 +4,13 @@ require 'minitest/skip_dsl'
 
 require_relative '../lib/player'
 require_relative '../lib/scoring'
+require_relative '../lib/tile_bag'
 require 'pry'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-xdescribe 'Player' do
+describe 'Player' do
+
   describe 'initialize' do
     it "Takes a name" do
       player = Scrabble::Player.new("Paul")
@@ -119,6 +121,26 @@ xdescribe 'Player' do
       player.play("orange")
 
       player.highest_word_score.must_equal 8
+    end
+  end
+
+  describe 'tiles' do
+    it "Returns a collection of letters that the player can play" do
+      player = Scrabble::Player.new("Paul")
+
+      player.tiles.must_be_instance_of Array
+      player.tiles.length.must_be :<, 8
+    end
+  end
+
+  describe 'draw_tiles' do
+    it "Fills tiles array until it has 7 letters from the given tile bag" do
+      player = Scrabble::Player.new("Paul")
+      tile_bag = Scrabble::TileBag.new
+
+      player.draw_tiles(tile_bag).must_be_instance_of Array
+      player.draw_tiles(tile_bag).length.must_equal 7
+      # TODO: check elements in tiles, make sure it's sub-array of tile_bag
     end
   end
 

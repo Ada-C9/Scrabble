@@ -9,7 +9,7 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'TileBag' do
 
-  xdescribe 'initialize' do
+  describe 'initialize' do
     it "Set-up the instance with a collection of all default tiles" do
       tile_bag = Scrabble::TileBag.new
 
@@ -18,7 +18,7 @@ describe 'TileBag' do
     end
   end
 
-  xdescribe 'draw_tiles' do
+  describe 'draw_tiles' do
     it "Returns a collection of random tiles" do
       tile_bag = Scrabble::TileBag.new
 
