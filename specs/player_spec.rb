@@ -62,10 +62,10 @@ describe "Scrabble Player" do
       end
       player.won?.must_equal true
 
-        2.times do
-          player.play('aaaaaaa')
-        end
-        player.won?.must_equal true
+      2.times do
+        player.play('aaaaaaa')
+      end
+      player.won?.must_equal true
     end
 
     it 'returns false if the player has less 100pts' do
@@ -88,15 +88,38 @@ describe "Scrabble Player" do
       player.highest_scoring_word.must_equal 'friend'
     end
 
+    it 'if tied returns the highest scoring word of 7 letters' do
+      player.play("hat")
+      player.play("AAAAAAA")
+
+      player.highest_scoring_word.must_equal 'AAAAAAA'
+    end
+
+    it "if tied and no word has 7 letters" do
+      player.play("zoo")
+      player.play("joust")
+
+      player.highest_scoring_word.must_equal 'zoo'
+    end
+
+    it 'returns the first word of a tie with same letter count' do
+      player.play("rain")
+      player.play("lane")
+      player.play("star")
+      player.highest_scoring_word.must_equal 'rain'
+    end
+
+
+
   end
   describe '#highest_word_score:' do
     it 'Returns the highest_scoring_word score'do
-      player.play("cat")
-      player.play("bat")
-      player.play('friend')
+    player.play("cat")
+    player.play("bat")
+    player.play('friend')
 
-      player.highest_word_score.must_equal 10
-    end
+    player.highest_word_score.must_equal 10
   end
 
+end
 end
