@@ -3,7 +3,7 @@ require 'pry'
 module Scrabble
   class TileBag
 
-    attr_reader :tiles
+    attr_reader :tiles, :number_of_tiles
 
     LETTER_QUANTITIES = {
       "A" => 9, "B" => 2, "C" => 2, "D" => 4, "E" => 12, "F" => 2, "G" => 3,
@@ -13,13 +13,16 @@ module Scrabble
 
     def initialize
       @tiles = ["Z", "Z", "Z"]
+      @number_of_tiles = LETTER_QUANTITIES.reduce(0) { |sum, letter| sum + letter[1] }
     end
 
     def draw_tiles(num)
+      @number_of_tiles -= num
       return @tiles = LETTER_QUANTITIES.keys.sample(num)
     end
 
     def tiles_remaining
+      return @number_of_tiles
     end
 
   end

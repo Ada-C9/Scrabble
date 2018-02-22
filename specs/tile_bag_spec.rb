@@ -18,7 +18,7 @@ describe 'TileBag' do
     end
   end
 
-  describe 'draw_tiles' do
+  xdescribe 'draw_tiles' do
     it "Returns a collection of random tiles" do
       tile_bag = Scrabble::TileBag.new
 
@@ -36,8 +36,13 @@ describe 'TileBag' do
     end
   end
 
-  xdescribe 'tiles_remaining' do
+  describe 'tiles_remaining' do
+    it "Returns the number of tiles remaining in the bag" do
+      tile_bag = Scrabble::TileBag.new
+      tile_bag.draw_tiles(7)
 
+      tile_bag.number_of_tiles.must_equal 91
+    end
   end
 
 end
