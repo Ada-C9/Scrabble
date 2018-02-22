@@ -8,7 +8,7 @@ require_relative '../lib/player.rb'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'player tests' do
-  it 'it takes a players name' do
+  xit 'it takes a players name' do
     # assemble
     new_player = Scrabble::Player.new("Jill")
     # act/assert
@@ -17,11 +17,13 @@ describe 'player tests' do
   end
 
   #this will only pass if there is nothing in the player_words variable to begin with
-  it 'returns words played' do
+  xit 'returns words played' do
     #act
     new_word = 'bird'
     #assert
-      a = Scrabble::Player.plays(new_word).must_equal ['bird']
+      player_d = Scrabble::Player.new('player_d')
+
+      player_d.plays(new_word).must_equal ['bird']
   end
 
   xit "returns false if has won == true" do
@@ -32,6 +34,10 @@ describe 'player tests' do
   it "returns score of a play/word " do
     word = 'pie'
     #act
-    Scrabble::Player.play(word).must_equal 5
+    player_d = Scrabble::Player.new('player_d')
+
+    player_d.play(word).must_equal 5
+
+    # puts player_d.play(word)
   end
 end
