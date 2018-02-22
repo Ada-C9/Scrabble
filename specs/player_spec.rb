@@ -12,6 +12,7 @@ describe 'Player' do
 
   before do
     @player_1 = Scrabble::Player.new("Nora")
+    @player_2 = Scrabble::Player.new("Bertram")
   end
 
   describe 'initialize' do
@@ -34,11 +35,17 @@ describe 'Player' do
     end
 
     it "Returns false if player has already won" do
+      @player_2.plays = ["pizzazz", "bezique"]
+      # binding.pry
+      @player_2.won?
 
+      @player_2.play("snart").must_equal false
     end
 
     it "Returns score of word if player has not already won" do
+      @player_2.plays = ["were", "wolf", "bar", "mitzva"]
 
+      @player_2.play("snart").must_equal true
     end
 
   end
@@ -55,27 +62,31 @@ describe 'Player' do
 
   describe 'won?' do
 
-    before do
-      @player_2 = Scrabble::Player.new("Bertram")
-    end
-
     it "Returns true if the player has over 100 points" do
-
       @player_2.plays = ["pizzazz", "bezique"]
+
       @player_2.won?.must_equal true
     end
 
-    it "Returns false if player has 100 points or less" do
-
+    it "Returns false if player has less than 100 points" do
       @player_2.plays = ["were", "wolf", "bar", "mitzva"]
+
       @player_2.won?.must_equal false
 
+    end
+
+    it "Returns false if player has exactly 100 points" do
+      @player_2.plays = ["jalopy", "banjax", "pyjama", "enzyme", "quiche"]
+
+      @player_2.won?.must_equal false
 
     end
 
-    it "Returns false if the player has not played any words." do
-
-    end
+    # it "Returns false if the player has not played any words." do
+    #   @player_2.plays = []
+    #
+    #   @player_2.won?.must_equal false
+    # end
 
   end
 
