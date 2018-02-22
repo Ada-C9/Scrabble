@@ -26,13 +26,13 @@ describe 'Scoring' do
     end
 
     it 'returns nil for strings containing bad characters' do
-       Scrabble::Scoring.score('#$%^').must_be_nil #0
-       Scrabble::Scoring.score('char^').must_be_nil #9
+       Scrabble::Scoring.score('#$%^').must_be_nil
+       Scrabble::Scoring.score('char^').must_be_nil
        Scrabble::Scoring.score(' ').must_be_nil
     end
 
     it 'returns nil for words > 7 letters' do
-      Scrabble::Scoring.score('abcdefgh').must_be_nil
+      Scrabble::Scoring.score('oxyphenbutazone').must_be_nil
     end
 
     it 'returns nil for empty words' do
@@ -74,7 +74,7 @@ describe 'Scoring' do
     it 'returns the first word of a tie with same letter count' do
       array_of_words = ["yak", "key"]
       result = Scrabble::Scoring.highest_score_from(array_of_words)
-      result.must_equal "yake"
+      result.must_equal "yak"
     end
   end
 end
