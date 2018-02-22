@@ -22,7 +22,7 @@ module Scrabble
     end
 
     def highest_scoring_word
-      
+
       # highest_score_word = @plays.max_by do |word|
       #   Scrabble::Scoring.score(word)
       # end
@@ -33,7 +33,7 @@ module Scrabble
 
     def highest_word_score
       # Returns the highest_scoring_word score
-      Scrabble::scoring.score(highest_scoring_word)
+      Scrabble::Scoring.score(highest_scoring_word)
     end
 
     def won?
