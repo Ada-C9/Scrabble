@@ -136,7 +136,7 @@ describe 'Player' do
 
       # Act
       play.each { |word| test.play(word) }
-      result = test.highest_scoring_word
+      result = test.highest_word_score
 
       # Assert
       result.must_equal 60

@@ -48,4 +48,3 @@ module Scrabble
 
   end # Player class end
 end # Scrabble end
-binding.pry
