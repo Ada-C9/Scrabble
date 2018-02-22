@@ -82,7 +82,7 @@ Complete the `Scrabble::Scoring` class with __full unit testing/specs__. All pro
     - If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
     - Tests for this logic are _stubbed_, meaning the test has a name but no code written. You will have to implement them as you work on this method.
 
-<!-- ## Wave 2
+## Wave 2
 ### Primary Requirements
 For waves 2 and 3, you are given no starter code. You and your pair will have to create all files and classes and write all the tests yourselves.
 
