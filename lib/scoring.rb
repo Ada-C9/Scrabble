@@ -1,3 +1,4 @@
+
 module Scrabble
   class Scoring
     def self.score(word)
@@ -36,8 +37,39 @@ module Scrabble
       end
       return total_score
     end
+# look at ruby functions for pulling max
 
-  def self.highest_score_from(array_of_words)
+    def self.highest_score_from(array_of_words)
+
+      array_of_words = ["apple", "cat", "answers", "right"]
+
+      # array_of_words.map do | word |
+      #
+      #   word_hash[:word] = word
+      #   word_hash[:length] = word.length
+      #   word_hash[:score] = self.score(word)
+      #   word_array << word_hash
+      # end
+      # # return word_array
+      # array_of_words.max_by | word_hash|
+
+      # scores = array_of_words.group_by { |word| score(word)}
+      # highest_scoring_words = scores[scores.keys.max]
+      # lengths = highest_scoring_words.group_by { |word| word.length}
+      # return lengths[lengths.keys.min][0].upcase
+
+
+
+      # max = 0
+      # highest_word = “”
+      # word_array.each do |scrabble_hash|
+      #   # binding.pry
+      #   if scrabble_hash[:score] > max
+      #     max = scrabble_hash[:score]
+      #     highest_word = scrabble_hash[:word]
+      #   elsif scrabble_hash[:length] == 7
+      #     return scrabble_hash[:word]
+      #   end
+      end
+    end
   end
-end
-end
