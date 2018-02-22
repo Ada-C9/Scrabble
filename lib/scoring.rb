@@ -7,6 +7,9 @@ module Scrabble
       "i" => 1,"j" => 8,"k" => 5, "l" => 1,"m" => 3,"n" => 1,"o" => 1,"p" => 3,
       "q" => 10, "r" => 1, "s" => 1, "t" => 1, "u" => 1, "v" => 4, "w" => 4,
       "x" => 8, "y" => 4, "z" => 10 }
+
+    MAX_WORD_LENGTH = 7
+
     def self.score(word)
       points = 0
 
@@ -15,7 +18,7 @@ module Scrabble
       end
 
 
-      if word.length == 7
+      if word.length == MAX_WORD_LENGTH
         points += 50
       end
 
@@ -51,14 +54,12 @@ module Scrabble
     end
 
     def self.seven_letters(hashes_array)
-      seven_letters = []
-      hashes_array.each do |word_hash|
-        if word_hash[:length] == 7
-          seven_letters << word_hash[:word]
-        end
+      seven_letters = hashes_array.select do |word_hash|
+        word_hash[:length] == MAX_WORD_LENGTH
       end
-
-      return seven_letters
+      seven_letters = seven_letters.map do |hash|
+        hash[:word]
+      end
     end
 
     def self.highest_score_from(array_of_words)
@@ -71,7 +72,7 @@ module Scrabble
       seven_letters = self.seven_letters(hashes_array)
 
       winner = nil
-      max_length = 7
+      winner_length = MAX_WORD_LENGTH
 
       if seven_letters.length > 0
         winner = seven_letters[0]
@@ -79,9 +80,9 @@ module Scrabble
         # if there are no 'winner possibilities' with length = 7
       else
         hashes_array.each do |word_hash|
-          if word_hash[:length] < max_length
+          if word_hash[:length] < winner_length
             winner = word_hash[:word]
-            max_length = word_hash[:length]
+            winner_length = word_hash[:length]
           end
         end # iterating through hashes_array
 
