@@ -4,7 +4,6 @@ module Scrabble
 
   class Scoring
     def self.score(word)
-      word = word.downcase
       letter_values = {
         ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'] => 1,
         ['d', 'g'] => 2,
@@ -15,9 +14,10 @@ module Scrabble
         ['q', 'z'] => 10
       }
       max_word_length = 7
-      if !word.match(/^[a-z]+$/)
+      if word == nil || !word.match(/^[a-zA-Z]+$/)
         return nil
       else
+        word = word.downcase
         points_array = []
         word.chars.each do |char|
           letter_values.each do |letters, value|

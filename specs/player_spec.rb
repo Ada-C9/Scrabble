@@ -21,6 +21,13 @@ describe 'class player' do
       new_player = Scrabble::Player.new("Angela")
       new_player.plays.must_be_kind_of Array
     end
+
+    it 'must return accurate words' do
+      new_player = Scrabble::Player.new("Tor")
+      new_player.play('qqqqq')
+      new_player.play('giraffe')
+      new_player.plays.must_equal ['qqqqq','giraffe']
+    end
   end
 
   describe 'Scrabble::Player.play' do
@@ -69,6 +76,16 @@ describe 'class player' do
     end
   end
 
+  #nominal
+    describe 'Scrabble::Player.won?' do
+      it 'returns false until player has over 100 points' do
+        new_player = Scrabble::Player.new("Angela")
+        new_player.play('qqqqq')
+        new_player.play('zzzzz')
+        new_player.won?.must_equal false
+      end
+    end
+
   describe 'Scrabble::Player.highest_scoring_word' do
     it 'returns the highest scoring played word' do
       new_player = Scrabble::Player.new("Tor")
@@ -88,6 +105,11 @@ describe 'class player' do
       new_player.play("cat")
 
       new_player.highest_word_score.must_equal 64
+    end
+
+    it 'returns nil if no word has been played' do
+      new_player = Scrabble::Player.new("Angela")
+      new_player.highest_word_score.must_be_nil
     end
   end
 
