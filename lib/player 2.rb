@@ -1,4 +1,0 @@
-module Scrabble
-  class Player
-
-    
