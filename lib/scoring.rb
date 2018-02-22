@@ -58,36 +58,52 @@ module Scrabble
           word_hash[:score] = self.score(scrabble_word)
           word_array << word_hash
         end
-
+        # return word_array
+        # word_array.each do |scrabble_hash|
+        #   scrabble_hash.value.group_by do |:score|
+        #     if :score =
+        #   end
+        # end
+        #
+        # new_hash_word = word_array.group_by do |scrabble_hash|
+        #   scrabble_hash[:score].max
+        # end
+        # return new_hash_word
+        #
         hash_word_score = word_array.max_by do |scrabble_hash|
           scrabble_hash[:score]
         end
         return hash_word_score[:word]
-
-        word_array.each do |scrabble_hash|
-          hash_word_full_7_letters = ''
-          if scrabble_hash[:length] == 7
-            hash_word_full_7_letters = scrabble_hash[:word]
-          end
-        end
-        return hash_word_full_7_letters
+        #
+        # word_array.each do |scrabble_hash|
+        #   hash_word_full_7_letters = ''
+        #   if scrabble_hash[:length] == 7
+        #     hash_word_full_7_letters = scrabble_hash[:word]
+        #   end
+        # end
+        # return hash_word_full_7_letters
         #
         # hash_word_min = word_array.min_by do |scrabble_hash|
         #   scrabble_hash[:length]
         # end
         # return hash_word_min[:word]
 
-        array_of_words.each do |word|
-          word_scores << self.score(word)
-          max_value = word_scores.max
-          word_index = word_scores.map do |index|
-              word_scores[index] == max_value
-          end
-        end
-        binding.pry
-        return word_index
-        return array_of_words[word_scores.index(word_scores.max)]
+        # array_of_words.each do |word|
+        #   word_scores << self.score(word)
+        #   max_value = word_scores.max
+        #   word_index = word_scores.map do |index|
+        #       word_scores[index] == max_value
+        #   end
+        # end
+        # binding.pry
+        # return word_index
+        # return array_of_words[word_scores.index(word_scores.max)]
 
+        # def group_by_hash hash, value
+        #   hash.group_by do |k,v|
+        #     v > value ? "Big" : "Small"
+        #   end
+        # end
 
       end # if statement
     end # def self.highest_score_from(array_of_words)
@@ -97,10 +113,14 @@ end # module Scrabble
 
 
 
+
+
+
+
 # test_chart = Scrabble::Scoring.score('')
 # ap test_chart
 
-test_chart = Scrabble::Scoring.highest_score_from(["zzzzzx", "aaaaaag"])
+test_chart = Scrabble::Scoring.highest_score_from(["cat", "dog"])
 ap test_chart
 # binding.pry
 
