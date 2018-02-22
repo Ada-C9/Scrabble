@@ -123,4 +123,18 @@ describe 'Player' do
       player_1.highest_word_score.must_equal 9
     end
   end
+
+  describe "tiles" do
+    it "returns an array" do
+      player_1 = Scrabble::Player.new("Dan")
+      player_1.tiles.must_be_kind_of Array
+    end
+
+    it "cannot have more than 7 elements" do
+      player_1 = Scrabble::Player.new("Dan")
+      player_1.tiles.length.must_be :<=, 7
+    end
+
+
+  end
 end
