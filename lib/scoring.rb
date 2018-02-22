@@ -80,8 +80,8 @@ module Scrabble
           end
           highest_words.sort_by { |word| word.length }
         end
-        # binding.pry
-        # array_of_words[0] < array_of_words[1]
+
+         # array_of_words[0] < array_of_words[1]
         # return array_of_words[1]
       end
     end

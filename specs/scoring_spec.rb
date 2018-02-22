@@ -50,10 +50,14 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal 'far'
     end
 
-    xit 'returns the highest word if there are two words' do
+    it 'returns the highest word if there are two words' do
+      array_of_words = ['cat', 'zoo']
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal 'zoo'
     end
 
-    xit 'if tied, prefer a word with 7 letters' do
+    it 'if tied, prefer a word with 7 letters' do
+      array_of_words = ['dog', 'course', 'lungers']
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal 'lungers'
     end
 
     xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
