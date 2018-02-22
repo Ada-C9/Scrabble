@@ -130,7 +130,16 @@ describe 'Player' do
   end
   describe "#highest_word_score" do
     it "Returns the highest_scoring_word score" do
+      # Arrange
+      test = Scrabble::Player.new("Wenjie")
+      play = ["dog", "camel", "flitter"]
 
+      # Act
+      play.each { |word| test.play(word) }
+      result = test.highest_scoring_word
+
+      # Assert
+      result.must_equal 60
     end
   end
 end
