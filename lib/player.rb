@@ -1,4 +1,4 @@
-#require_relative '/scoring.rb'
+#require_relative 'lib/scoring.rb'
 require 'awesome_print'
 
 module Scrabble
@@ -36,12 +36,15 @@ module Scrabble
     end
 
 
-
-    #
-    # def total_score
-    #   #Returns the sum of scores of played words
-    #   returns @total_score
-    # end
+    def total_score
+      #Returns the sum of scores of played words
+      #Look for an enum update below
+      sum = 0
+      @array_of_words.each do |a_word|
+        sum+= Scrabble::Scoring.score(a_word)
+      end
+      return sum
+    end
 
 
     # def won?
