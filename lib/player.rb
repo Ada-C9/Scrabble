@@ -7,6 +7,7 @@ module Scrabble
       @name = name
       @plays = []
       @total_score = 0
+      @tiles = Scrabble::TileBag.draw_tiles(7)
     end
 
     def play(word)
@@ -21,18 +22,20 @@ module Scrabble
       end
     end
 
-    def highest_scoring_word
+    def draw_tiles(tile_bag)
+       tiles_need = 7 - @tiles.size
+       # tile_bag
 
-      # highest_score_word = @plays.max_by do |word|
-      #   Scrabble::Scoring.score(word)
-      # end
+    end
+
+    def highest_scoring_word
 
       highest_score_word = Scrabble::Scoring.highest_score_from(@plays)
       return highest_score_word
     end
 
     def highest_word_score
-      # Returns the highest_scoring_word score
+
       Scrabble::Scoring.score(highest_scoring_word)
     end
 
