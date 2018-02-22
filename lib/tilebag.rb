@@ -1,3 +1,5 @@
+require 'pry'
+
 module Scrabble
 POSSIBLE_LETTERS = {
   A: 9,
@@ -29,5 +31,23 @@ POSSIBLE_LETTERS = {
 }
   class TileBag
 
+    attr_reader :all_tiles
+
+    def initialize()
+      @all_tiles = POSSIBLE_LETTERS.map { |letter, amount|
+        (letter.to_s * amount).chars}.flatten
+    end
+
+    def draw_tiles(num)
+      drawn_tiles = []
+      num.times do
+        drawn_tiles << @all_tiles.sample
+      end
+      return drawn_tiles
+    end
+
+
   end
 end
+
+binding.pry
