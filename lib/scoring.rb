@@ -55,16 +55,26 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
-      high_score = 0
-      highest_scoring_word = ""
-      array_of_words.each do |word, score|
-        if score > highest_scoring_word
-          high_score = score
-          highest_scoring_word = word
+      if array_of_words == []
+        return nil
+      elsif array_of_words.length == 1
+        return array_of_words[0]
+      else
+        array_of_words.length.times do
+          @words_scores = {}
+          array_of_words.each do |word|
+            total = score(word)
+            @words_scores[word] = total
+          end
+          binding.pry
+          @words_scores.find_all do |words|
+            return @words_scores.values == @words_scores.values.max
+            # @words_scores.key(@words_scores.values.max)
+          end
+
         end
       end
-      return highest_scoring_word
     end
+    # end
   end
-  # end
 end
