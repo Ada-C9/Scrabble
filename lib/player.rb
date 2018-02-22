@@ -32,3 +32,7 @@ module Scrabble
 
   end
 end
+
+# won?: If the player has over 100 points, returns true, otherwise returns false
+# highest_scoring_word: Returns the highest scoring played word
+# highest_word_score: Returns the highest_scoring_word score
