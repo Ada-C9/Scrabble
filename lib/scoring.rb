@@ -1,4 +1,5 @@
 require 'pry'
+require_relative '../lib/player'
 
 module Scrabble
   class Scoring
@@ -60,6 +61,8 @@ module Scrabble
       end
     end #end of scoring method
 
+
+    # HIGHEST SCORING WORD
     def self.highest_score_from(array_of_words)
       score_array =[] #this array stores the score integers
       # binding.pry
