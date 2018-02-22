@@ -100,6 +100,15 @@ describe 'Player' do
 
     it "If the player has over 100 points, returns true, otherwise returns false" do
       #This should be a private method
+      # Arrange
+      test = Scrabble::Player.new("Wenjie")
+      test.play("flitter")
+
+      # Act
+      result = test.play("quicken")
+
+      # Assert
+      test.won?.must_equal true
     end
   end
   describe "#highest_scoring_word" do
