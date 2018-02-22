@@ -53,10 +53,32 @@ module Scrabble
     def self.highest_score_from(array_of_words)
       return nil if array_of_words == []
       return array_of_words[0] if array_of_words.length == 1
-      # score_tracker = {}
+
+      max_score = 0
+      winning_word = []
+      length_to_beat = 7
+
       array_of_words.each do |word|
         word_score = self.score(word)
-        score_tracker[word] = word_score
+        if word_score = max_score
+          winning_word << word
+        elsif word_score > max_score
+            word_score = max_score
+            winning_word.replace(word)
+
+        end # if else
+        if winning_word.length > 1
+          winning_word.each do |word|
+            if word.length == length_to_beat
+              return winning_word
+            elsif word.length < length_to_beat
+              length_to_beat = word.length
+            else
+              winning_word.remove(word)
+              return winning_word
+            end #wrd_lngt == length_to_beat
+          end # winning_word.each
+        end # winning_word.length > 1
       end # array_of_words.each
 
       # max = Hash[score_tracker.select { |k, v| v == score_tracker.values.max}]
@@ -74,4 +96,4 @@ module Scrabble
 end # Scrabble module
 
 array_of_words = ["dog", "if"]
-Scrabble::Scoring.highest_score_from(array_of_words)
+print Scrabble::Scoring.highest_score_from(array_of_words)
