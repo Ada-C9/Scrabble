@@ -44,7 +44,7 @@ describe 'Player' do
     end
 
     it 'must return false if the game is won' do
-      Scrabble::Player.total_score = 101
+      Scrabble::Player.play("zzzzffd")
       word = "xx"
       Scrabble::Player.play(word).must_equal false
     end
@@ -72,7 +72,7 @@ describe 'Player' do
       Scrabble::Player.won?.must_be true
     end
 
-    it "returns false if total score is  equal than 100" do
+    it "returns false if total score is equal to 100" do
       score_1 = Scrabble::Player.play("zzzzffd")
 
       Scrabble::Player.won?.must_be false
@@ -82,7 +82,39 @@ describe 'Player' do
       score_1 = Scrabble::Player.play("bob")
 
       Scrabble::Player.won?.must_be false
-      
     end
   end
+
+  describe "highest_scoring_word" do
+    it "must return a string" do
+      score_1 = Scrabble::Player.play("hello")
+
+      Scrabble::Player.highest_scoring_word.must_be_kind_of String
+    end
+
+    it "returns the highest score" do
+      score_1 = Scrabble::Player.play("hello")
+      score_2 = Scrabble::Player.play("hi")
+      score_3 = Scrabble::Player.play("hey")
+
+      Scrabble::Player.highest_scoring_word.must equal "hey"
+    end
+  end
+
+  describe "highest_word_score" do
+    it "must return an integer" do
+      score_1 = Scrabble::Player.play("hello")
+
+      Scrabble::Player.highest_word_score.must_be_kind_of Integer
+    end
+
+    it "returns the score of the highest scoring word" do
+      score_1 = Scrabble::Player.play("hello")
+      score_2 = Scrabble::Player.play("hi")
+      score_3 = Scrabble::Player.play("hey")
+
+      Scrabble::Player.highest_word_score.must_equal 9
+    end
+  end
+
 end
