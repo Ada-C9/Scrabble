@@ -12,20 +12,21 @@ describe 'TileBag' do
 
   describe '#initialize' do
     it 'Should set up the instance with a collection of all default tiles' do
-      tilebag.must_be_instance_of Array
-      tilebag.length.must_equal 98
+      tilebag.tiles.must_be_instance_of Array
+      tilebag.tiles.length.must_equal 98
     end
 
     it 'confirms correct number of tiles in tilebag' do
-      tilebag.tiles.select {|tile| tile == 'A'}.must_equal 9
-      tilebag.tiles.select {|tile| tile == 'B'}.must_equal 2
+
+      tilebag.tiles.select { |tile| tile == 'A' }.length.must_equal 9
+      tilebag.tiles.select { |tile| tile == 'B' }.length.must_equal 2
     end
 
   end
 
   describe '#draw_tiles(num)' do
     it 'returns a collection of random tiles, removes the tiles from the default set' do
-      
+
     end
   end
 
