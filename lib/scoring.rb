@@ -62,3 +62,6 @@ module Scrabble
     end
   end
 end
+
+
+Scrabble::Scoring.score("bacon")
