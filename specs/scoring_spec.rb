@@ -62,10 +62,13 @@ describe 'Scoring' do
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-
+      same_value_diff_letters = ["eeeeee", "daaaa"]
+      Scrabble::Scoring.highest_score_from(same_value_diff_letters).must_equal("daaaa")
     end
 
     it 'returns the first word of a tie with same letter count' do
+      same_value_same_letters = ["iii", "ooo"]
+      Scrabble::Scoring.highest_score_from(same_value_same_letters).must_equal("iii")
     end
   end
 end
