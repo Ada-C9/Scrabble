@@ -25,13 +25,13 @@ describe 'TileBag' do
 
   describe '#draw_tiles(num)' do
     it 'returns a collection of random tiles, removes the tiles from the default set' do
-
+      
     end
   end
 
   describe '#tiles_remaining' do
     it "returns the number of tiles remaining in the bag" do
-      
+
     end
   end
 
