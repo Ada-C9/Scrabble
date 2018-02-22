@@ -88,6 +88,7 @@ module Scrabble
               # if length is not 7 returns the shortest word
             elsif word.length < 7
               longest_word = word
+              binding.pry
               return longest_word
             end
           end

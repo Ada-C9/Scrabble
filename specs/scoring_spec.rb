@@ -62,13 +62,15 @@ describe 'Scoring' do
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
       # arrange
-       array_of_words = ["jot","ploys","cat"]
+       array_of_words = ['jot','ploys','cat']
       # act/assert
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal 'jot'
 
     end
 
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
+      array_of_words = ['jot','jet','ploy']
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal 'jot'
     end
   end
 end
