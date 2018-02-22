@@ -35,7 +35,19 @@ module Scrabble
       end
     end
 
+    def highest_scoring_word
+      @plays.max_by do |word|
+        Scrabble::Scoring.score(word)
+      end
 
-  end
+    end
 
-end
+    def highest_word_score
+      word = self.highest_scoring_word
+      score = Scrabble::Scoring.score(word)
+      return score
+    end
+
+  end # Player Class
+
+end # Scrabble Module
