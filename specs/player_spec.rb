@@ -36,9 +36,7 @@ describe 'class player' do
     it 'returns false if player has already won' do
       new_player = Scrabble::Player.new("Tor")
       new_player.play('qqqqq')
-      puts new_player.points
       new_player.play('giraffe')
-        puts new_player.points
       new_player.play('asd').must_equal false
     end
 
@@ -50,6 +48,47 @@ describe 'class player' do
       new_player.play(word).must_equal score
     end
 
+  end
+
+  describe 'Scrabble::Player.total_score' do
+    it 'returns the sum of scores of played words' do
+      new_player = Scrabble::Player.new("Angela")
+      new_player.play('qqqqq')
+      new_player.play('giraffe')
+      new_player.total_score.must_equal 114
+    end
+  end
+
+  describe 'Scrabble::Player.won?' do
+    it 'returns false until player has over 100 points' do
+      new_player = Scrabble::Player.new("Angela")
+      new_player.play('qqqqq')
+      new_player.won?.must_equal false
+      new_player.play('giraffe')
+      new_player.won?.must_equal true
+    end
+  end
+
+  describe 'Scrabble::Player.highest_scoring_word' do
+    it 'returns the highest scoring played word' do
+      new_player = Scrabble::Player.new("Tor")
+      new_player.play("baboon")
+      new_player.play("giraffe")
+      new_player.play("cat")
+
+      new_player.highest_scoring_word.must_equal "giraffe"
+    end
+  end
+
+  describe 'Scrabble::Player.highest_word_score' do
+    it 'returns the highest scoring word score' do
+      new_player = Scrabble::Player.new("Angela")
+      new_player.play("baboon")
+      new_player.play("giraffe")
+      new_player.play("cat")
+
+      new_player.highest_word_score.must_equal 64
+    end
   end
 
 end
