@@ -8,15 +8,18 @@ require_relative '../lib/player'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
+  before do
+    @player = Scrabble::Player.new("maja")
+  end
+
   describe 'initialize' do
     it 'takes player name' do
-      player = Scrabble::Player.new("maja")
 
-      player.must_respond_to :name
-      player.name.must_be_kind_of String
+      @player.must_respond_to :name
+      @player.name.must_be_kind_of String
 
-      player.must_respond_to :won
-      player.won.must_equal false
+      @player.must_respond_to :won
+      @player.winner.must_equal false
     end
     it 'plays returns an array of words' do
       player = Scrabble::Player.new("maja")
@@ -26,27 +29,36 @@ describe 'Player' do
     end
   end
 
-  xdescribe 'play method' do
-    it 'returns nil if no words were passed' do
+  describe 'play method' do
+    it 'takes a word and add it to an array' do
+      word = "cookie"
+      @player.play(word)
+      @player.plays.include? word
+    end
+    it 'returns the score of a player' do
 
-
+      @player.play('cookie').must_equal 12
     end
   end
+
   xdescribe 'total_score method' do
     it '' do
 
     end
   end
+
   xdescribe 'highest_scoring word' do
     it '' do
 
     end
   end
+
   xdescribe 'highest_word_score' do
     it '' do
 
     end
   end
+
   xdescribe 'won method' do
     it '' do
 
