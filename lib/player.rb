@@ -10,6 +10,8 @@ module Scrabble
       @name = name
       @plays = []
       @score = 0
+      @won = false
+      @hsw = "ERROR"
     end
 
     def play(word)
@@ -17,32 +19,37 @@ module Scrabble
         return false
       end
 
-      @plays.push(word.upcase)
+      error_message = "Invalid Word"
+
       word_score = Scrabble::Scoring.score(word)
-      @score += word_score
-      return word_score
+      if word_score != nil
+        @score += word_score
+        @plays.push(word.upcase)
+        return word_score
+      else
+        return error_message
+      end
     end
 
     def total_score
       return @score
     end
 
-    # def won
-    #   if @score >= 100
-    #     @won = true
-    #   end
-    # end
+    def won?
+      if @score >= 100
+        @won = true
+      end
+      return @won
+    end
 
-    # def highest_scoring_word
-    # end
-    #
-    # def highest_word_score
-    # end
+    def highest_scoring_word
+      @hsw = Scrabble::Scoring.highest_score_from(@plays)
+      return @hsw
+    end
 
+    def highest_word_score
+      score = Scrabble::Scoring.score(@hsw)
+      return score
+    end
   end
-
-  # player_1 = Scrabble::Player.new("lily")
-  # # player_1.score = 100
-  # player_1.play("zzzzqqz")
-
 end
