@@ -47,9 +47,11 @@ describe 'Player' do
     end
 
   end
-  #
-  # describe 'total_score' do
-  # end
+
+  describe 'total_score' do
+    it
+
+  end
   #
   # describe 'won?' do
   # end
