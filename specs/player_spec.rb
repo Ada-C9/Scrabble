@@ -39,16 +39,16 @@ describe 'Player' do
       must_be_false.must_equal false
 
     end
-
-    it 'Otherwise returns the score of the word' do
-      player_name = Scrabble::Player.new ("Ada")
-      must_return_word = player_name.play("lawl")
-      must_return_word.must_equal 7
-    end
+    #
+    # it 'Otherwise returns the score of the word' do
+    #   player_name = Scrabble::Player.new ("Ada")
+    #   must_return_word = player_name.play("lawl")
+    #   must_return_word.must_equal 7
+    # end
 
   end
 
-  describe 'total_score' do
+  xdescribe 'total_score' do
     it
 
   end
