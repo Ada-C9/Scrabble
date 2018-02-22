@@ -73,7 +73,7 @@ describe "Scrabble Player" do
     end
   end
 
-  xdescribe '#highest_scoring_word:' do
+  describe '#highest_scoring_word:' do
     it 'Returns the highest scoring played word' do
       player.play("cat")
       player.play("bat")
