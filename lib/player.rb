@@ -13,10 +13,6 @@ module Scrabble
       @scoring_table = {}
     end
 
-    def plays
-      return @plays
-    end
-
     def play(word)
       @plays << word
     end
@@ -25,7 +21,6 @@ module Scrabble
       sum_of_scores = 0
       @plays.each do |word|
         score = Scrabble::Scoring.score(word)
-        puts "score #{word}: #{score}"
 
         sum_of_scores += score
       end
