@@ -1,5 +1,6 @@
 require 'awesome_print'
 require 'pry'
+require_relative 'player'
 
 module Scrabble
   class Scoring
@@ -19,7 +20,7 @@ module Scrabble
 
       score = []
       word_array = word.downcase.split(//)
-      
+
       word_array.each do |i|
         @@letters_hash.keys.each do |keys|
           if keys.include? i

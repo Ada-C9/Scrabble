@@ -3,18 +3,24 @@ require 'pry'
 require_relative 'scoring'
 
 module Scrabble
-  class Player
+  class Player < Scoring
+
     attr_reader :name, :plays
 
     def initialize(name)
       @name = name
-      @plays = []
+      @played_words = []
     end
 
     def play(word)
-      @plays << word
-      word =
+      @played_words << word
+      return Scrabble::Scoring.score(word)
     end
+
+    def total_score
+      
+    end
+
 
   end
 

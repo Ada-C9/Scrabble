@@ -11,6 +11,7 @@ describe 'Player' do
 
   before do
     @john = Scrabble::Player.new("John")
+    @sally = Scrabble::Player.new("Sally")
   end
 
   describe 'initialize' do
@@ -41,8 +42,17 @@ describe 'Player' do
     end
 
     it 'returns score of word' do
-      @john.play("snail").must_equal 4
+      @john.play("snail").must_equal 5
       @john.play("snail").must_be_kind_of Integer
     end
   end
+
+  describe 'total_score' do
+    it 'returns sum of played words'
+    @john.play("board")
+    @john.play("cup")
+
+    @john.total_score.must_equal 15
+  end
+
 end
