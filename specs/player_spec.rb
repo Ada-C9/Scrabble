@@ -31,7 +31,7 @@ describe 'player tests' do
     Scrabble::Player.play('pie').must_equal false
   end
 
-  it "returns score of a play/word " do
+  xit "returns score of a play/word " do
     word = 'pie'
     #act
     player_d = Scrabble::Player.new('player_d')
@@ -39,5 +39,15 @@ describe 'player tests' do
     player_d.play(word).must_equal 5
 
     # puts player_d.play(word)
+  end
+
+  it "sums the scores for player" do
+    player_d = Scrabble::Player.new('player_d')
+
+    player_d.plays('dino')
+    player_d.plays('pie')
+    player_d.plays('sock')
+
+    player_d.sum.must_equal 20
   end
 end

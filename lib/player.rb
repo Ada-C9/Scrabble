@@ -39,7 +39,7 @@ module Scrabble
         sum += word_score
         # binding.pry
       end
-    end # method 
+    end # method
   end # class
 end # module
 
