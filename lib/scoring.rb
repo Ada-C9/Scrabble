@@ -73,10 +73,13 @@ module Scrabble
       if array_of_words.length == 0
         return nil
       else
+        # .map iterates through array)of_words and runs the self.score method on each word, retuning each score in the scores_array
         scores_array = array_of_words.map { |word| score(word) }
+        # .max finds the highest number in scores_array
         high_score = scores_array.max
-        # EXPLAIN WHAT THIS DOES
+        # .each_with_index.select is iterating through the scores_array and returning an array of arrays, each one holding the score number that is equal to high_score, and it's index. Then the .map iterates through the array of arrays and stores JUST the index (at position[1] in each array) inside the winning_indices array.
         winning_indices = scores_array.each_with_index.select { |score, index| score == high_score }.map { |array| array[1]}
+        binding.pry
         winning_words = []
         winning_indices.each do |index|
           winning_words << array_of_words.values_at(index)
