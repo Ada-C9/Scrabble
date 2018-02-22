@@ -8,7 +8,7 @@ require 'pry'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-describe 'Player' do
+xdescribe 'Player' do
   describe 'initialize' do
     it "Takes a name" do
       player = Scrabble::Player.new("Paul")
