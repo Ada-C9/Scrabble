@@ -88,6 +88,7 @@ describe 'Player' do
   end
 
   describe 'highest_word_score' do
+    it "Returns the score of the highest scoring word" do
     player_name = Scrabble::Player.new("Ada")
     player_name.play('hi')
     player_name.play('bye')
@@ -96,4 +97,5 @@ describe 'Player' do
 
     player_name.highest_word_score.must_equal 120
   end
+ end
 end
