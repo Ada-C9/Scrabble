@@ -13,9 +13,10 @@ describe "Scrabble Player" do
       player.name.must_equal "Anonymous"
     end
     it "#plays returns an Array of the words played by the player" do
-    player.plays.must_respond_to :plays
-    player.plays.must_be_instance_of Array
-    player.plays.must_equal []
+      player.plays.must_respond_to :plays
+      player.plays.must_be_instance_of Array
+      player.plays.must_equal []
+    end
   end
 
   describe '#play(word)' do
@@ -27,8 +28,8 @@ describe "Scrabble Player" do
       player.play('bat')
       player.plays.length.must_equal 2
       player.plays.must_include 'bat'
-
     end
+
     it 'Returns false if player has already won' do
       2.times do
         player.play('AAAAAAA')
@@ -51,6 +52,31 @@ describe "Scrabble Player" do
     end
   end
 
+  describe "#won?" do
+    it 'returns true if player has more than 100pts' do 
+      player.total_score = 101
+      player.won?.must_equal true
 
-end
+      2.times do
+        player.play('aaaaaaa')
+      end
+      player.won?.must_equal true
+
+        2.times do
+          player.play('aaaaaaa')
+        end
+        player.won?.must_equal true
+    end
+
+    it 'returns false if the player has less 100pts' do
+      player.total_score = 100
+      player.won?.must_equal false
+
+      2.times do
+        player.play('cat')
+      end
+      player.won?.must_equal false
+    end
+  end
+
 end
