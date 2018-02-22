@@ -151,14 +151,23 @@ describe 'Player' do
     describe 'highest scoring word' do
       it 'returns the highest scoring word with one word' do
         player = Scrabble::Player.new("Ari")
-        player
+        player.play('cat')
+        player.won?.must_equal 5
       end
       it 'returns the highest scoring word with multiple words' do
+        player = Scrabble::Player.new("Ari")
+        player.play('cat')
+        player.play('mouse')
+        player.play('dog')
+        player.won?.must_equal 17
 
       end
       it 'returns the highest scoring word with no valid words' do
-
+        player = Scrabble::Player.new("Ari")
+        player.play('oxyphenbutazone')
+        player.won?.must_equal 0
       end
+
     end
 
   end
