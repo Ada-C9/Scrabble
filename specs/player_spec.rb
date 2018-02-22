@@ -61,9 +61,22 @@ describe 'Player' do
   end
 
   # end
-  #
-  # describe 'won?' do
-  # end
+
+  describe 'won?' do
+    it 'Returns true if player has won' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("ZZZZZZZ")
+      player_name.won?.must_equal true
+    end
+
+    it 'Returns false if player has not won' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("pop")
+      player_name.play("lawl")
+      player_name.won?.must_equal false
+    end
+
+  end
   #
   # describe 'highest_scoring_word' do
   # end
