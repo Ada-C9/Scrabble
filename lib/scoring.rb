@@ -43,39 +43,38 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
-      word_scores = []
+      # word_scores = []
+      # word_index = []
       if array_of_words.length == 0
         return nil
       elsif array_of_words.length == 1
         return array_of_words[0]
       elsif array_of_words.length > 1
-        array_of_words.each do |word|
-          word_scores << self.score(word)
+        word_array = []
+        array_of_words.map do |scrabble_word|
+          word_hash = {}
+          word_hash[:word] = scrabble_word
+          word_hash[:length] = scrabble_word.length
+          word_hash[:score] = self.score(scrabble_word)
+          word_array << word_hash
         end
-        return array_of_words[word_scores.index(word_scores.max)]
+        hash_word_max = word_array.max_by do |scrabble_hash|
+          scrabble_hash[:length]
+        end
+        return hash_word_max[:word]
+
+        # array_of_words.each do |word|
+        #   word_scores << self.score(word)
+        #   max_value = word_scores.max
+        #   word_index = word_scores.map do |index|
+        #       word_scores[index] == max_value
+        #   end
+        # end
+        # binding.pry
+        # return word_index
+        # # return array_of_words[word_scores.index(word_scores.max)]
 
 
-      # if new_array = array_of_words.map { |word| word.length == 7}
-      #   # binding.pry
-      #   word_array = []
-      #   new_array.each do |scrabble_word|
-      #     word_hash = {}
-      #     word_hash[:word] = scrabble_word
-      #     word_hash[:length] = scrabble_word.length
-      #     word_hash[:score] = self.score(scrabble_word)
-      #     word_array << word_hash
-      #   end
-      #   return word_array
-        # max = 50
-        # highest_word = []
-        # word_array.each do |scrabble_hash|
-        #   if scrabble_hash[:score] > max
-        #     highest_word.push(scrabble_hash[:word], scrabble_hash[:score])
-        #     # elsif scrabble_hash[:length] == 7
-        #     #   highest_word = scrabble_hash[:word]
-        #     return highest_word
-        #   end # if statement to find the max score
-        # end # each loop to iterate through the array of words
       end # if statement using map to find 7 letter words
     end # def self.highest_score_from(array_of_words)
 
@@ -87,7 +86,7 @@ end # module Scrabble
 # test_chart = Scrabble::Scoring.score('')
 # ap test_chart
 
-test_chart = Scrabble::Scoring.highest_score_from(["dog", "cat", "elephan", "seventh", "rabbit"])
+test_chart = Scrabble::Scoring.highest_score_from(["zzzzzx", "aaaaaag"])
 ap test_chart
 
 
