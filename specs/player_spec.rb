@@ -47,16 +47,39 @@ describe 'Player' do
   end
 
   describe 'total_score' do
-    player_name = Scrabble::Player.new ("Ada")
-    player_name.play("pop")
-    player_name.play("lawl")
-    total_score.must_be "14"
+    it 'Returns the sum of scores of played words' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("pop")
+      player_name.play("lawl")
+      total_score.must_be "14"
+    end
+
+    it 'Returns the sum of scores of played words' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("pop")
+      player_name.play("ZZZZZZZ")
+      player_name.play("lawl")
+      total_score.must_be "127"
+    end
 
   end
-  #
-  # describe 'won?' do
-  # end
-  #
+
+  describe 'won?' do
+    it 'Returns true if player has won' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("ZZZZZZZ")
+      player_name.won?.must_equal true
+    end
+
+    it 'Returns false if player has not won' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("pop")
+      player_name.play("lawl")
+      player_name.won?.must_equal true
+    end
+
+  end
+
   # describe 'highest_scoring_word' do
   # end
   #
