@@ -10,6 +10,7 @@ module Scrabble
     def initialize(name)
       @name = name
       @plays = []
+      @scoring_table = {}
     end
 
     def plays
@@ -41,15 +42,17 @@ module Scrabble
 
 
     def highest_scoring_word
-      hash = {}
       @plays.each do |word|
         score = Scrabble::Scoring.score(word)
-        hash["#{word}"] = score
+        @scoring_table["#{word}"] = score
       end
-      winning_word_player = hash.key(hash.values.max)
-      puts hash
+      winning_word_player = @scoring_table.key(@scoring_table.values.max)
       return winning_word_player
     end
 
+    def highest_word_score
+      highest_scoring_word
+      return @scoring_table.values.max
+    end
   end
 end

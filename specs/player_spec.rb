@@ -75,7 +75,28 @@ describe 'Player' do
           player_1.highest_scoring_word.must_be_kind_of String
 
         end
+
+
+        it 'Returns the highest scoring played word within tie' do
+          player_1 = Scrabble::Player.new("Patrick")
+          player_1.play("ba")
+          player_1.play("dd")
+
+          player_1.highest_scoring_word.must_equal "ba"
+        end
+
       end
+
+    describe '#highest_word_score' do
+      it 'Returns the score of the highest scoring word' do
+        player_1 = Scrabble::Player.new("Patrick")
+        player_1.play("cat")
+        player_1.play("pig")
+
+        player_1.highest_word_score.must_equal 6
+
+      end
+    end
 
 
     end
