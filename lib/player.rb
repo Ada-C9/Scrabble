@@ -59,12 +59,14 @@ module Scrabble
     def highest_scoring_word
       #Returns the highest scoring played word
       highest_scoring_word = Scrabble::Scoring.highest_score_from(@array_of_words)
-      
+
       return highest_scoring_word
     end
 
     def highest_word_score
       #Returns the highest_scoring_word score
+      return highest_scoring_value = Scrabble::Scoring.score(highest_scoring_word)
+
     end
 
   end
