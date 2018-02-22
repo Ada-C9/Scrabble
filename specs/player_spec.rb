@@ -60,7 +60,9 @@ describe 'Player' do
       player.play('zombify')
       player.play('dog').must_equal false
     end
+  end
 
+  describe 'words in plays array' do
     it 'adds the word to plays array' do
       player = Scrabble::Player.new("Ari")
       player.play('dog')
@@ -73,6 +75,41 @@ describe 'Player' do
       player.play('mouse')
       player.play('dog')
       player.plays.must_equal ["cat", "mouse", "dog"]
+    end
+
+    it 'returns plays even when word is invalid' do
+      player = Scrabble::Player.new("Ari")
+      player.play('oxyphenbutazone')
+      player.plays.must_equal ['oxyphenbutazone']
+    end
+  end
+
+  describe 'running score as player_score' do
+    it 'calculates score with one play' do
+      player = Scrabble::Player.new("Ari")
+      player.play('cat')
+      player.player_score.must_equal 5
+    end
+
+    it 'calculates score with multiple plays' do
+      player = Scrabble::Player.new("Ari")
+      player.play('cat')
+      player.play('mouse')
+      player.play('dog')
+      player.player_score.must_equal 17
+    end
+
+    it 'provides score even when word is invalid' do
+      player = Scrabble::Player.new("Ari")
+      player.play('mouse')
+      player.play('oxyphenbutazone')
+      player.player_score.must_equal 7
+    end
+
+    it 'provides 0 even when word is invalid' do
+      player = Scrabble::Player.new("Ari")
+      player.play('oxyphenbutazone')
+      player.player_score.must_equal 0
     end
   end
 
