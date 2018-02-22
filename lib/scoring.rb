@@ -80,11 +80,18 @@ module Scrabble
             highest_words << word
           end
           # binding.pry
-          longest_word = highest_words.sort_by { |word| word.length }
+          # sorts through words depending on length
+          longest_word = highest_words.sort_by do |word| word.length
+            if word.length == 7
+              longest_word = word
+              return longest_word
+              # if length is not 7 returns the shortest word
+            elsif word.length < 7
+              longest_word = word
+              return longest_word
+            end
+          end
         end
-        return longest_word[0]
-        # array_of_words[0] < array_of_words[1]
-        # return array_of_words[1]
       end
     end
   end

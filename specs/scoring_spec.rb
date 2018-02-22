@@ -60,7 +60,12 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal 'lungers'
     end
 
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      # arrange
+       array_of_words = ["jot","ploys","cat"]
+      # act/assert
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal 'jot'
+
     end
 
     xit 'returns the first word of a tie with same letter count' do
