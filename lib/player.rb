@@ -1,5 +1,6 @@
 require 'pry'
 require_relative 'scoring.rb'
+require_relative 'tile_bag.rb'
 require 'awesome_print'
 
 module Scrabble
