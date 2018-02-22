@@ -1,26 +1,27 @@
 require 'pry'
 
 module Scrabble
+  MAX_WORD_LENGTH = 7
+
+  LETTER_VALUES = {
+    ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'] => 1,
+    ['d', 'g'] => 2,
+    ['b', 'c', 'm', 'p'] => 3,
+    ['f', 'h', 'v', 'w', 'y'] => 4,
+    ['k'] => 5,
+    ['j', 'x'] => 8,
+    ['q', 'z'] => 10
+  }
 
   class Scoring
     def self.score(word)
-      letter_values = {
-        ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'] => 1,
-        ['d', 'g'] => 2,
-        ['b', 'c', 'm', 'p'] => 3,
-        ['f', 'h', 'v', 'w', 'y'] => 4,
-        ['k'] => 5,
-        ['j', 'x'] => 8,
-        ['q', 'z'] => 10
-      }
-      max_word_length = 7
       if word == nil || !word.match(/^[a-zA-Z]+$/)
         return nil
       else
         word = word.downcase
         points_array = []
         word.chars.each do |char|
-          letter_values.each do |letters, value|
+          LETTER_VALUES.each do |letters, value|
             if letters.include?(char)
               points_array << value
             end
@@ -28,9 +29,9 @@ module Scrabble
         end
         points = points_array.inject(:+)
 
-        if word.length > max_word_length
+        if word.length > MAX_WORD_LENGTH
           return nil
-        elsif word.length == max_word_length
+        elsif word.length == MAX_WORD_LENGTH
           points += 50
         end
 
@@ -45,29 +46,20 @@ module Scrabble
       end
       highscore = word_hash.values.max
 
-      all_highscores = []
-
-      word_hash.each do |word, score|
-        if score == highscore
-          all_highscores << word
-        end
-      end
+      all_highscores = word_hash.select { |word, score| score == highscore }.keys
 
       winner = all_highscores[0]
-      if all_highscores.all? { |word| word.length == 7 }
-        winner = all_highscores[0]
+      if all_highscores.any? { |word| word.length == 7 }
+        seven_letter_score = all_highscores.select { |word|
+          word.length == 7 }
+        winner = seven_letter_score[0]
       else
         all_highscores.each do |word|
-          if word.length == 7
+          if word.length < winner.length
             winner = word
-          else
-            if word.length < winner.length
-              winner = word
-            end
           end
         end
       end
-
       return winner
     end
   end
