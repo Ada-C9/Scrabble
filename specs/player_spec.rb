@@ -35,7 +35,7 @@ describe 'Player' do
     end
   end
 
-  xdescribe 'play' do
+  describe 'play' do
     it "Adds the input word to the `plays` array" do
       player = Scrabble::Player.new("Paul")
 
@@ -48,9 +48,10 @@ describe 'Player' do
     end
 
     it "Returns `false` if player has already won" do
-      #TODO; need to finish this test after implement won?
+      player = Scrabble::Player.new("Paul")
+      player.play("zzzzzzz")
 
-
+      player.play("banana").must_equal false
     end
 
     it "Returns the score of the `word`" do
@@ -69,7 +70,7 @@ describe 'Player' do
 
   end
 
-  describe 'total_score' do
+  xdescribe 'total_score' do
     it "Returns the sum of the scores" do
       player = Scrabble::Player.new("Paul")
       player.play("banana")
@@ -85,7 +86,7 @@ describe 'Player' do
     end
   end
 
-  describe 'won?' do
+  xdescribe 'won?' do
     it "Return true if score is over 100 points" do
       player = Scrabble::Player.new("Paul")
       player.play("zzzzzzz")

@@ -18,7 +18,10 @@ module Scrabble
     # - Returns `false` if player has already won
     # - Otherwise returns the score of the `word`
     def play(word)
-      if @plays.include?(word)
+
+      if won?
+        return false
+      elsif @plays.include?(word)
         raise ArgumentError.new("This word has already been used!")
       else
         @plays << word
