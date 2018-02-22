@@ -57,17 +57,18 @@ describe 'Scoring' do
 
     it 'if tied, prefer a word with 7 letters' do
 
-      words3 = ["alcohol", "fish", "canoli", "knife"]
+      # words3 = ["alcohol", "fish", "canoli", "knife"]
+      words3 = ["qqqqqx", "aeiould"]
 
-      Scrabble::Scoring.highest_score_from(words3).must_equal "alcohol"
+      Scrabble::Scoring.highest_score_from(words3).must_equal "aeiould"
     end
 
-    xit 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
       words4 = ["cookie", "pink", "canoli", "knife"]
       Scrabble::Scoring.highest_score_from(words4).must_equal "knife"
     end
 
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
       words = ["yellow", "bomb", "canoli", "cookie"]
       Scrabble::Scoring.highest_score_from(words).must_equal "yellow"
     end

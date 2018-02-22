@@ -66,13 +66,28 @@ module Scrabble
             total = score(word)
             @words_scores[word] = total
           end
-          # binding.pry
-          tied words = @words_scores.find_all do |words|
-          @words_scores.values == @words_scores.values.max
+
+          tied_words = []
+
+          @words_scores.each do |word, value|
+            if value == @words_scores.values.max
+              tied_words << word
+            end
           end
+
+          winner = ""
+          tied_words.each do |word|
+            if word.length == 7
+              winner = word
+            else
+              winner = tied_words.min{|word1,word2| word1.length <=> word2.length}
+            end
+          end
+          return winner
         end
+
       end
     end
-    # end
   end
+  # end
 end
