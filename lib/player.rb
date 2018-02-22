@@ -1,4 +1,6 @@
+require "scoring.rb"
 require "pry"
+
 module Scrabble
   class Player
     # returns the value of the `@name` instance variable
@@ -41,10 +43,12 @@ module Scrabble
 
     # Returns the highest scoring played word
     def highest_scoring_word
+      return Scrabble::Scoring.highest_score_from(@plays)
     end
 
     # Returns the `highest_scoring_word` score
     def highest_word_score
+      return Scrabble::Scoring.score(highest_scoring_word)
     end
 
 

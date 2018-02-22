@@ -9,7 +9,7 @@ require 'pry'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
-  xdescribe 'initialize' do
+  describe 'initialize' do
     it "Takes a name" do
       player = Scrabble::Player.new("Paul")
 
@@ -18,7 +18,7 @@ describe 'Player' do
     end
   end
 
-  xdescribe 'plays' do
+  describe 'plays' do
     it "Returns an array of the words played by the player" do
       player = Scrabble::Player.new("Paul")
 
@@ -70,7 +70,7 @@ describe 'Player' do
 
   end
 
-  xdescribe 'total_score' do
+  describe 'total_score' do
     it "Returns the sum of the scores" do
       player = Scrabble::Player.new("Paul")
       player.play("banana")
@@ -86,7 +86,7 @@ describe 'Player' do
     end
   end
 
-  xdescribe 'won?' do
+  describe 'won?' do
     it "Return true if score is over 100 points" do
       player = Scrabble::Player.new("Paul")
       player.play("zzzzzzz")
@@ -102,11 +102,24 @@ describe 'Player' do
     end
   end
 
-  xdescribe 'highest_scoring_word' do
+  describe 'highest_scoring_word' do
+    it "Returns the highest scoring played word" do
+      player = Scrabble::Player.new("Paul")
+      player.play("banana")
+      player.play("orange")
 
+      player.highest_scoring_word.must_equal "banana"
+    end
   end
 
-  xdescribe 'highest_word_score' do
+  describe 'highest_word_score' do
+    it "Returns the highest scoring played word" do
+      player = Scrabble::Player.new("Paul")
+      player.play("banana")
+      player.play("orange")
+
+      player.highest_word_score.must_equal 8
+    end
   end
 
 end
