@@ -7,15 +7,17 @@ require_relative '../lib/tile_bag'
 
 
 describe 'TileBag' do
-  before do
-    test = Scrabble::TileBag.new
-  end
+  # before do
+  #   test = Scrabble::TileBag.new
+  # end
 
   describe 'TileBag#initialize' do
     it 'sets up an instance with a collection of all default tiles'do
+    # Arrange
+    test_1 = Scrabble::TileBag.new
     # Act
-    result = test.all_tiles.size
-    result1 = test.all_tiles
+    result = test_1.all_tiles.size
+    result1 = test_1.all_tiles
     # Assert
     result.must_equal 98
     result1.must_be_kind_of Array
@@ -24,8 +26,10 @@ end
 
 describe 'TileBag#draw_tiles(num)' do
   it 'returns a collection of random tiles' do
+    # Arrange
+    test_1 = Scrabble::TileBag.new
     # Act
-    result = test.draw_tiles(7)
+    result = test_1.draw_tiles(7)
 
     # Assert
     result.length.must_equal 7
@@ -34,10 +38,11 @@ describe 'TileBag#draw_tiles(num)' do
 
   it 'removes tiles from the default set'do
   # Arrange
-  test.draw_tiles(5)
+  test_1 = Scrabble::TileBag.new
+  test_1.draw_tiles(5)
 
   # Act
-  result = test.tiles_remaining.size
+  result = test_1.tiles_remaining.size
 
   # Assert
   result.must_equal (86..93)
@@ -45,8 +50,10 @@ describe 'TileBag#draw_tiles(num)' do
   end
 
   it 'returns tiles remaining if less than number of tiles requested' do
+    # Arrange
+    test_1 = Scrabble::TileBag.new
     # Act
-    result = test.draw_tiles(100)
+    result = test_1.draw_tiles(100)
     # Assert
     result.length.wont_equal 100
   end
