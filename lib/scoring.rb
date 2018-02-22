@@ -66,12 +66,10 @@ module Scrabble
             total = score(word)
             @words_scores[word] = total
           end
-          binding.pry
-          @words_scores.find_all do |words|
-            return @words_scores.values == @words_scores.values.max
-            # @words_scores.key(@words_scores.values.max)
+          # binding.pry
+          tied words = @words_scores.find_all do |words|
+          @words_scores.values == @words_scores.values.max
           end
-
         end
       end
     end
