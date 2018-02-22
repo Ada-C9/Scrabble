@@ -9,7 +9,7 @@ module Scrabble
       @plays = []
       @total_score = 0
     end
-
-
+    def play
+    end
   end
 end
