@@ -72,24 +72,27 @@ module Scrabble
       seven_letters = self.seven_letters(hashes_array)
 
       winner = nil
-      winner_length = MAX_WORD_LENGTH
+
 
       if seven_letters.length > 0
         winner = seven_letters[0]
-
         # if there are no 'winner possibilities' with length = 7
       else
-        hashes_array.each do |word_hash|
-          if word_hash[:length] < winner_length
-            winner = word_hash[:word]
-            winner_length = word_hash[:length]
-          end
-        end # iterating through hashes_array
-
+        words_array = hashes_array.map do |word_hash|
+          word_hash[:word]
+        end
+        winner = words_array.min_by do |word|
+          word.length
+        end
+        #
+        # winner = hashes_array.min_by do |word_hash|
+        #   word_hash[:length]
+        # end
+        # # winner = one_hash[:word]
       end # if 7 length words else "blah"
-
+      # binding.pry
+      # winner[:word]
       return winner
-
     end # Method highest_score_from
 
     # TODO: private :get_hashes
@@ -99,4 +102,4 @@ module Scrabble
 end # Module Scrabble
 
 
-Scrabble::Scoring.highest_score_from(["academy"])
+Scrabble::Scoring.highest_score_from(["bbbb", "cccc" ])
