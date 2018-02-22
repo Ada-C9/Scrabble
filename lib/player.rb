@@ -35,6 +35,7 @@ module Scrabble
       return player_status
     end
 
+
     def total_score
       #Returns the sum of scores of played words
       #Look for an enum update below
@@ -45,18 +46,21 @@ module Scrabble
       return sum
     end
 
+
     def won?
-    #    #If the player has over 100 points, returns true, otherwise returns false
+       #If the player has over 100 points, returns true, otherwise returns false
        player_case = false
        if total_score >= 100
          player_case = true
        end
-         return player_case
+       return player_case
     end
 
     def highest_scoring_word
       #Returns the highest scoring played word
-
+      highest_scoring_word = Scrabble::Scoring.highest_score_from(@array_of_words)
+      
+      return highest_scoring_word
     end
 
     def highest_word_score
