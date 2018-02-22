@@ -43,10 +43,18 @@ module Scrabble
 
 
     def self.highest_score_from(array_of_words)
+      word_scores = []
       if array_of_words.length == 0
         return nil
       elsif array_of_words.length == 1
         return array_of_words[0]
+      elsif array_of_words.length > 1
+        array_of_words.each do |word|
+          word_scores << self.score(word)
+        end
+        return array_of_words[word_scores.index(word_scores.max)]
+
+
       # if new_array = array_of_words.map { |word| word.length == 7}
       #   # binding.pry
       #   word_array = []
