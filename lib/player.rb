@@ -35,9 +35,11 @@ module Scrabble
     end
 
     def highest_scoring_word
+      @top_word = Scrabble::Scoring.highest_score_from(@plays)
     end
 
     def highest_word_score
+      Scrabble::Scoring.score(@top_word)
     end
   end
 end

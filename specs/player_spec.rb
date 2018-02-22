@@ -93,15 +93,17 @@ describe 'Player' do
   describe 'highest_scoring_word' do
 
     it "Returns the highest scoring played word" do
-
+      @player_2.plays = ["jalopy", "banjax", "pyjama", "enzyme", "quiche"]
+      @player_2.highest_scoring_word.must_equal "banjax"
     end
-
   end
 
   describe 'highest_word_score' do
 
     it "Returns the highest_scoring_word score" do
-
+      @player_2.plays = ["bezique", "pizzazz"]
+      @player_2.highest_scoring_word
+      @player_2.highest_word_score.must_equal 95
     end
 
   end
