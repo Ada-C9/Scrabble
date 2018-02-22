@@ -30,6 +30,10 @@ module Scrabble
       array_of_words.each do |word|
         array_of_scores << score(word)
       end
+
+      # .max on array_of_scores if we want just one, no duplicates
+      # maybe we could do array_of_scores.rindex(array_of_scores.max) which would return the index for the max score which is equal to the index for the corresponding word in array_of_words
+
       array_of_scores.each_with_index do |score, index|
         if score == array_of_scores.max
           words_with_max << array_of_words[index]
@@ -40,6 +44,10 @@ module Scrabble
       puts words_with_max.inspect
 
       if words_with_max.length > 1
+
+        # .sort on lengths for words_with_max
+        # but if we do refactoring mentioned above, words_with_max won't be created
+        # could possibly do .length on array_of_words[index from array of scores]
 
         words_with_max.each {|word| return word if word.length == 7}
 
