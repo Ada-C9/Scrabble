@@ -2,9 +2,10 @@ require 'awesome_print'
 
 module Scrabble
   class Player
-    def initialize(name)
-      
+    attr_reader :name
 
+    def initialize(name)
+      @name = name
     end
   end
 end
