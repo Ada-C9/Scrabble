@@ -53,7 +53,7 @@ describe "Scrabble Player" do
   end
 
   describe "#won?" do
-    it 'returns true if player has more than 100pts' do 
+    it 'returns true if player has more than 100pts' do
       player.total_score = 101
       player.won?.must_equal true
 
@@ -76,6 +76,26 @@ describe "Scrabble Player" do
         player.play('cat')
       end
       player.won?.must_equal false
+    end
+  end
+
+  describe '#highest_scoring_word:' do
+    it 'Returns the highest scoring played word' do
+      player.play("cat")
+      player.play("bat")
+      player.play('friend')
+
+      player.highest_scoring_word.must_equal 'friend'
+    end
+
+  end
+  describe '#highest_word_score:' do
+    it 'Returns the highest_scoring_word score'do
+      player.play("cat")
+      player.play("bat")
+      player.play('friend')
+
+      player.highest_word_score.must_equal 10
     end
   end
 
