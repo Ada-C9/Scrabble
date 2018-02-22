@@ -77,7 +77,7 @@ describe 'Player' do
         end
 
 
-        it 'Returns the highest scoring played word within tie' do
+        it 'Returns the first word if there is a tie between hightest scoring words"' do
           player_1 = Scrabble::Player.new("Patrick")
           player_1.play("ba")
           player_1.play("dd")
