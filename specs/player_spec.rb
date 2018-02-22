@@ -159,7 +159,7 @@ describe 'Player' do
         player.play('cat')
         player.play('mouse')
         player.play('dog')
-        player.highest_scoring_word.must_equal ["mouse"]
+        player.highest_scoring_word.must_equal "mouse"
 
       end
       it 'returns the highest scoring word with no valid words' do
@@ -170,5 +170,29 @@ describe 'Player' do
 
     end
 
+    describe 'highest word score' do
+      it 'returns score from the highest scoring word with one word' do
+        player = Scrabble::Player.new("Ari")
+        player.play('cat')
+        player.highest_word_score.must_equal 5
+
+      end
+
+      it 'returns score from the highest scoring word with multiple words' do
+        player = Scrabble::Player.new("Ari")
+        player.play('cat')
+        player.play('mouse')
+        player.play('dog')
+        player.highest_word_score.must_equal 7
+
+      end
+
+      it 'returns score from the highest scoring word with no valid words' do
+        player = Scrabble::Player.new("Ari")
+        player.play('oxyphenbutazone')
+        player.highest_word_score.must_equal 0
+
+      end
+    end
   end
 end
