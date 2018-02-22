@@ -31,16 +31,14 @@ describe 'Player' do
       player_name.plays.must_include "pop"
     end
 
-    # it 'Returns false if player has already won' do
-    #   player_name = Scrabble::Player.new ("Ada")
-    #   @array_of_words = ["zzzzzzz"]
-    #   player_name.play("pop")
-    #   #score = player_name.plays
-    #   #player_name.play.must_equal false
-    #   play.must_return false
-    #
-    #    if
-    # end
+    it 'Returns false if player has already won' do
+      player_name = Scrabble::Player.new ("Ada")
+      player_name.play("ZZZZZZZ")
+      ####
+      must_be_false = player_name.play("POP")
+      must_be_false.must_equal false
+
+    end
 
     # it 'Otherwise returns the score of the word' do
     #
