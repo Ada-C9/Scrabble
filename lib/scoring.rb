@@ -13,21 +13,24 @@ module Scrabble
       }
       word = word.upcase
       letters = word.split("")
-
+      character_check = @all_letters.keys
       values_of_letters = []
 
       letters.each do |character|
         # Checking if character input is a valid letter or not
         # First part is splitting the hash into an array of the
         # key values 'A-Z' and then we are checking if any characters
-        # are outside that range. If so, automatically return nil
+        # are outside that range (This includes blank or nothing).
+        # If so, automatically return nil
+        #
         # Else, if all the characters are valid letters, take the value
         # associated with the key and put that in an array of integers
+        #
 
-        if !@all_letters.keys.include?(character)
+        if !character_check.include?(character)
           return nil
         else
-        values_of_letters << @all_letters.fetch(character)
+          values_of_letters << @all_letters.fetch(character)
         end
       end
 
@@ -43,13 +46,18 @@ module Scrabble
 
       else
         return nil
+      end
+    end
 
+
+
+    def self.highest_score_from(array_of_words)
+      new_word = []
+      if array_of_words.length == 0
+        return nil
+      elsif array_of_words.length == 1
+        new_word << array_of_words
       end
     end
   end
 end
-
-  #     def self.highest_score_from(array_of_words)
-  #     end
-  #   end
-  # end

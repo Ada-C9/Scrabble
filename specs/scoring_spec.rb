@@ -9,7 +9,7 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
   describe 'score' do
-    it 'correctly scores simple words' do
+    xit 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('cat').must_equal 5
       Scrabble::Scoring.score('pig').must_equal 6
@@ -25,13 +25,13 @@ describe 'Scoring' do
       Scrabble::Scoring.score('DoG').must_equal 5
     end
 
-    it 'returns nil for strings containing bad characters' do
+    xit 'returns nil for strings containing bad characters' do
       Scrabble::Scoring.score('#$%^').must_be_nil
       Scrabble::Scoring.score('char^').must_be_nil
       Scrabble::Scoring.score(' ').must_be_nil
     end
 
-    it 'returns nil for words > 7 letters' do
+    xit 'returns nil for words > 7 letters' do
       Scrabble::Scoring.score('abcdefgh').must_be_nil
     end
 
@@ -41,10 +41,14 @@ describe 'Scoring' do
   end
 
   describe 'highest_score_from' do
-    xit 'returns nil if no words were passed' do
+    it 'returns nil if no words were passed' do
+      no_words = []
+      Scrabble::Scoring.highest_score_from(no_words).must_be_nil
     end
 
-    xit 'returns the only word in a length-1 array' do
+    it 'returns the only word in a length-1 array' do
+      one_word = ['one']
+      Scrabble::Scoring.highest_score_from(one_word).must_equal [['one']]
     end
 
     xit 'returns the highest word if there are two words' do
