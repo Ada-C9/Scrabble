@@ -39,9 +39,13 @@ module Scrabble
       return Scrabble::Scoring.score(highest_scoring_word)
     end
 
+    private # adding so user cannot access this method and instantiate a new TileBag
+
     def self.tilebag
       return Scrabble::TileBag.new
     end
+
+    public # want this to be public
 
     def draw_tiles(tilebag)
       new_tiles = tilebag.draw_tiles(MAX_WORD_LENGTH - @tiles.length)
