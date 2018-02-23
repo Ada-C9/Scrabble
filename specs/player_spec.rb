@@ -29,117 +29,139 @@ describe 'Player' do
     end
   end
 
-  describe "Player#play(word)" do
-    it "Adds the input word to the plays Array" do
-      # Arrange
-      new_word = "coco"
-      test = Scrabble::Player.new("Wenjie")
-      plays = ["thing", "stuff", "bug"]
+  # describe "Player#play(word)" do
+  #   it "Adds the input word to the plays Array" do
+  #     # Arrange
+  #     test = Scrabble::Player.new("Wenjie")
+  #     test.tiles = %W[T H I N G S T]
+  #     test.play("thing")
+  #     test.tiles = %W[S T U F F B U]
+  #     test.play("stuff")
+  #     test.tiles = %W[B U C O C O G]
+  #
+  #     new_word = "coco"
+  #     test.play(new_word)
+  #
+  #     # Act
+  #     result = test.plays.include?(new_word)
+  #
+  #     # Assert
+  #     result.must_equal true
+  #
+  #   end
 
-      plays.each do |word|
-        test.play(word)
-      end
+  it "Returns false when user use letter not on hand " do
+    # Arrange
+    test = Scrabble::Player.new("Wenjie")
+    test.tiles = [:A, :B, :C, :O, :C, :F, :G]
+    new_word = "cojh"
 
-      test.play(new_word)
+    # Act
+    result = test.play(new_word)
+    # Assert
+    result.must_equal false
 
-      # Act
-      result = test.plays.include?(new_word)
-
-      # Assert
-      result.must_equal true
-
-    end
-
-    it "Returns false if player has already won" do
-      # Arrange
-      new_word = "bug"
-      test = Scrabble::Player.new("Wenjie")
-      plays = ["flitter", "quicken", "snowed"]
-
-      # Act
-
-      plays.each { |word| test.play(word)}
-      result = test.play(new_word)
-
-      # Assert
-      result.must_equal false
-    end
-
-    it "Returns the score of the word" do
-      # Arrange
-      new_word = "coco"
-      test = Scrabble::Player.new("Wenjie")
-      plays = ["thing", "stuff", "bug"]
-      plays.each do |word|
-        test.play(word)
-      end
-
-      # Act
-      result = test.play(new_word)
-
-      # Assert
-      result.must_equal 8
-    end
   end
 
 
-  describe "#total_score" do
-    it "Returns the sum of scores of played words" do
-      #Arrange
-      word_1 = "snow"
-      word_2 = "litter"
-      test = Scrabble::Player.new("Wenjie")
 
-      # Act
-      test.play(word_1)
-      test.play(word_2)
+  it "Returns false if player has already won" do
+    # Arrange
+    new_word = "bug"
+    test = Scrabble::Player.new("Wenjie")
+    plays = ["flitter", "quicken", "snowed"]
 
-      # Assertion
-      test.total_score.must_equal 13
-    end
+    # Act
+
+    plays.each { |word| test.play(word)}
+    result = test.play(new_word)
+
+    # Assert
+    result.must_equal false
   end
 
-  describe "#won?" do
+  it "Returns the score of the word" do
+    # Arrange
+    new_word = "coco"
+    test = Scrabble::Player.new("Wenjie")
+    test.tiles = [:C, :O, :O, :C, :L, :I, :T]
 
-    it "If the player has over 100 points, returns true, otherwise returns false" do
-      #This should be a private method
-      # Arrange
-      test = Scrabble::Player.new("Wenjie")
-      test.play("flitter")
+    # Act
+    result = test.play(new_word)
 
-      # Act
-      test.play("quicken")
-
-      # Assert
-      test.won?.must_equal true
-    end
+    # Assert
+    result.must_equal 8
   end
-  describe "#highest_scoring_word" do
-    it "Returns the highest scoring played word" do
-      # Arrange
-      test = Scrabble::Player.new("Wenjie")
-      play = ["dog", "camel", "flitter"]
+end
 
-      # Act
-      play.each { |word| test.play(word) }
-      result = test.highest_scoring_word
 
-      # Assert
-      result.must_equal "flitter"
-    end
+describe "#total_score" do
+  it "Returns the sum of scores of played words" do
+    #Arrange
+    word_1 = "snow"
+    word_2 = "litter"
+    test = Scrabble::Player.new("Wenjie")
+
+    # Act
+    test.tiles = [:S, :N, :O, :W, :L, :I, :T]
+    test.play(word_1)
+    test.tiles = [:L, :I, :T, :T, :E, :R, :O]
+    test.play(word_2)
+
+    # Assertion
+    test.total_score.must_equal 13
   end
-  describe "#highest_word_score" do
-    it "Returns the highest_scoring_word score" do
-      # Arrange
-      test = Scrabble::Player.new("Wenjie")
-      play = ["dog", "camel", "flitter"]
+end
 
-      # Act
-      play.each { |word| test.play(word) }
-      result = test.highest_word_score
+describe "#won?" do
 
-      # Assert
-      result.must_equal 60
-    end
+  it "If the player has over 100 points, returns true, otherwise returns false" do
+    #This should be a private method
+    # Arrange
+    test = Scrabble::Player.new("Wenjie")
+    test.tiles = [:F, :L, :I, :T, :T, :R, :E]
+    test.play("flitter")
+    test.tiles = [:Q, :U, :I, :C, :K, :N, :E]
+    test.play("quicken")
+
+    # Assert
+    test.won?.must_equal true
+  end
+end
+
+describe "#highest_scoring_word" do
+  it "Returns the highest scoring played word" do
+    # Arrange
+    test = Scrabble::Player.new("Wenjie")
+
+    test.tiles = [:D, :O, :G, :C, :A, :M, :E]
+    test.play("dog")
+
+    test.tiles = [:C, :A, :M, :E, :L, :F, :L]
+    test.play("camel")
+
+    test.tiles = [:F, :L, :I, :T, :T, :E, :R]
+    test.play("flitter")
+
+    # Act
+    result = test.highest_scoring_word
+
+    # Assert
+    result.must_equal "flitter"
+  end
+end
+
+describe "#highest_word_score" do
+  it "Returns the highest_scoring_word score" do
+    # Arrange
+    test = Scrabble::Player.new("Wenjie")
+    play = ["dog", "camel", "flitter"]
+
+    # Act
+    play.each { |word| test.play(word) }
+    result = test.highest_word_score
+
+    # Assert
+    result.must_equal 60
   end
 end
