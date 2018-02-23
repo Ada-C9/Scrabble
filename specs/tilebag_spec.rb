@@ -21,6 +21,12 @@ describe 'tilebag class' do
       new_bag.draw_tiles(3).length.must_equal 3
     end
 
+    it 'can return empty array when player needs no need tiles' do
+      new_bag = Scrabble::TileBag.new
+      new_bag.draw_tiles(0).must_be_kind_of Array
+      new_bag.draw_tiles(0).must_equal []
+    end
+
     it 'removes the drawn tiles from the collection of all tiles' do
       new_bag = Scrabble::TileBag.new
       tiles_left = new_bag.all_tiles.length

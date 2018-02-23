@@ -119,15 +119,22 @@ describe 'class player' do
       new_player = Scrabble::Player.new("Angela")
       new_player.tiles.must_be_kind_of Array
     end
-
   end
 
   describe 'Scrabble::Player#draw_tiles' do
     it 'must repopulate the tiles array until length is MAX_WORD_LENGTH'do
       new_player = Scrabble::Player.new("Angela")
-      # tilebag = Scrabble::TileBag.new
-      new_player.draw_tiles(Scrabble::Player.tilebag)
+      tilebag = Scrabble::TileBag.new
+      new_player.draw_tiles(tilebag)
       new_player.tiles.length.must_equal Scrabble::MAX_WORD_LENGTH
+    end
+
+    it 'can handle empty tilebag' do
+      new_player = Scrabble::Player.new("Tor")
+      tilebag = Scrabble::TileBag.new
+      tilebag.draw_tiles(96)
+      new_player.draw_tiles(tilebag)
+      print new_player.tiles
     end
 
   end
