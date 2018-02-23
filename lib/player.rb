@@ -18,9 +18,14 @@ module Scrabble
 
     def play(word)
       word_score = Scoring.score(word)
-      @score += word_score
-      @words_played << word.upcase
-      word.upcase.chars.each do |letter|
+      begin
+        @score += word_score
+        @words_played << word.upcase
+      rescue TypeError
+        puts "A valid word was not entered. You have lost your turn."
+        word_score = 0
+      end
+      word.to_s.upcase.chars.each do |letter|
         i = @tiles.find_index(letter)
         @tiles.delete_at(i || @tiles.length)
       end

@@ -51,6 +51,17 @@ describe 'Player' do
       player_1.words_played.must_include "XX"
     end
 
+    it "the score does not change if the user enters an invalid word" do
+      player_1 = Scrabble::Player.new("Dan")
+      score_before = player_1.score
+      player_1.play('')
+      player_1.play(555)
+      player_1.play('@^&')
+      score_after = player_1.score
+
+      score_after.must_equal score_before
+    end
+
     it "returns the score of the word if the game is not won" do
       player_1 = Scrabble::Player.new("Dan")
 

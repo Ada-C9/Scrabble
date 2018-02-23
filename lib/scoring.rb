@@ -7,7 +7,7 @@ module Scrabble
     "K"=> 5,  "J"=> 8, "X"=>8, "Q"=> 10, "Z"=> 10}
 
     def self.score(word)
-      word_array = word.upcase.split("")
+      word_array = word.to_s.upcase.split("")
       if word_array.empty? || word_array.length > 7
         return nil
       end
