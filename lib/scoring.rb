@@ -56,30 +56,36 @@ module Scrabble
 
       max_score = 0
       winning_word = []
-      length_to_beat = 7
+      # length_to_beat = 7
 
-      array_of_words.each do |word|
+      array_of_words.each do |word| #[dog, fish]
         word_score = self.score(word)
-        if word_score = max_score
+        if word_score == max_score
           winning_word << word
         elsif word_score > max_score
-            word_score = max_score
-            winning_word.replace(word)
-
+          max_score = word_score
+            winning_word = [word]
         end # if else
-        if winning_word.length > 1
-          winning_word.each do |word|
-            if word.length == length_to_beat
-              return winning_word
-            elsif word.length < length_to_beat
-              length_to_beat = word.length
-            else
-              winning_word.remove(word)
-              return winning_word
-            end #wrd_lngt == length_to_beat
-          end # winning_word.each
-        end # winning_word.length > 1
       end # array_of_words.each
+
+
+        if winning_word.length > 1
+          winning_word.sort_by { |word| word.length}
+        end
+        return winning_word[0]
+
+        #   winning_word.each do |word|
+        #     if word.length == length_to_beat
+        #       return winning_word
+        #     elsif word.length < length_to_beat
+        #       length_to_beat = word.length
+        #       winning_word.delete(word)
+        #     else
+        #       winning_word.delete(word)
+        #       return winning_word
+        #     end #wrd_lngt == length_to_beat
+        #   end # winning_word.each
+        # end # winning_word.length > 1
 
       # max = Hash[score_tracker.select { |k, v| v == score_tracker.values.max}]
       # max.each do |k,v|
@@ -95,5 +101,5 @@ module Scrabble
   end # Scoring class
 end # Scrabble module
 
-array_of_words = ["dog", "if"]
-print Scrabble::Scoring.highest_score_from(array_of_words)
+array_of_words = ["dog", "fish"]
+puts Scrabble::Scoring.highest_score_from(array_of_words)
