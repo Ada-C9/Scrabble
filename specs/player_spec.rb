@@ -32,15 +32,23 @@ describe 'Player' do
       ada.plays.must_include("apple")
     end
 
-    # it 'prevents a player who has won from playing' do
-    #   Scrabble::Player.won? = true
-    #   Scrabble::Player.play("apple").must_equal(false)
-    # end
+    it 'prevents a player who has won from playing' do
+      # write test method to return true or false
+      # Arrange scenario where a player reaches more than 100
+      ada = Player.new("Ada")
+      ada.play("apple", "kale", "cashew", "banana", "tomato", "avocado").must_equal(false)
+    end
 
-    # it "returns the score of the word that is played if the player hasn't won" do
-    #   Scrabble::Player.won? = false
-    #   Scrabble::Player.play("apple").must_equal(9)
-    # end
+    it "returns the score of the word that is played if the player hasn't won" do
+      ada = Player.new("Ada")
+      ada.play("apple").must_equal(9)
+    end
+
+    it "if you already won it doesn't add word to array" do
+      ada = Player.new("Ada")
+      #not sure about this one...
+      ada.total_score.must_equal 101
+    end
   end #ends describe 'play(word)'
 
   # describe 'total_score'
