@@ -26,15 +26,10 @@ describe 'Tilebag' do
 
   describe '#draw_tiles(num)' do
     it "returns an array of tiles" do
+      @tilebag.draw_tiles(9)
 
       @tilebag.draw_tiles(9).must_be_kind_of Array
-    end
-  end
-
-  describe '#remove_tiles' do
-    it "removes tiles from defult tiles" do
-
-      @tilebag.remove_tiles.must_be_kind_of Hash
+      @tilebag.draw_tiles(9).length.must_equal 9
     end
   end
 
@@ -42,7 +37,7 @@ describe 'Tilebag' do
     it "returns number of tiles remaining after draw_tiles" do
       @tilebag.draw_tiles(9)
 
-      @tilebag.tiles_remaining.must_equal @tiles.values.sum - 9
+      @tilebag.tiles_remaining.must_equal 89
     end
   end
 end
