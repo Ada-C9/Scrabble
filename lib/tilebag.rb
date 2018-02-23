@@ -25,9 +25,14 @@ module Scrabble
       def draw_tiles(num)
 
         if @tiles_remaining >= num
-          @bag.rand(num)
           @tiles_remaining -= num
-          return @tiles_remaining
+          picked_tiles = @bag.sample(num)
+
+          picked_tiles.each do |tile|
+            @bag.delete_at(@bag.index(tile))
+          end
+
+          return picked_tiles
         end
 
         return nil

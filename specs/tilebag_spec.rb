@@ -26,7 +26,55 @@ describe 'Tilebag' do
     end
   end
 
-  describe ''
+  describe 'draw_tiles' do
+    it 'returns nil if not enough tiles remain' do
+      our_bag = Scrabble::Tilebag.new
+      picked_tiles = our_bag.draw_tiles(100)
+      picked_tiles.must_be_nil
+    end
+
+    it 'returns appropriate number of tiles when small number requested' do
+      our_bag = Scrabble::Tilebag.new
+      picked_tiles = our_bag.draw_tiles(3)
+      picked_tiles.must_be_kind_of Array
+      picked_tiles.length.must_equal 3
+    end
+
+    it 'returns appropriate number of tiles when large number requested' do
+      our_bag = Scrabble::Tilebag.new
+      picked_tiles = our_bag.draw_tiles(80)
+      picked_tiles.must_be_kind_of Array
+      picked_tiles.length.must_equal 80
+    end
+
+    it 'removes picked tiles from the bag with small number' do
+      our_bag = Scrabble::Tilebag.new
+
+      our_bag.draw_tiles(3)
+
+      our_bag.bag.length.must_equal 93
+    end
+
+    it 'removes picked tiles from the bag with small number' do
+      our_bag = Scrabble::Tilebag.new
+
+      our_bag.draw_tiles(80)
+
+      our_bag.bag.length.must_equal 16
+    end
+
+    # # start of test to determine if the appropriate tiles are removed
+    # it 'removes the appropriate tiles from the bag' do
+    #   our_bag = Scrabble::Tilebag.new
+    #   picked_tiles = our_bag.draw_tiles(10)
+    #
+    #   counts = Hash.new 0
+    #   picked_tiles.each do |tile|
+    #     counts[tile] += 1
+    #   end
+
+  end
+
 
 
 
