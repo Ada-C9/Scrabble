@@ -41,4 +41,4 @@ module Scrabble
 end # module Scrabble
 
 
-score_word = Scrabble::Scoring.score('pie')
+# score_word = Scrabble::Scoring.score('pie')
