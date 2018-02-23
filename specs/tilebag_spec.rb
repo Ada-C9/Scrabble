@@ -30,8 +30,8 @@ describe "TileBag" do
       new_tilebag.tiles_in_bag[:Z].must_equal 1
       new_tilebag.tiles_in_bag[:O].must_equal 8
       new_tilebag.tiles_in_bag[:R].must_equal 6
-      #
-      # new_tilebag.tiles_in_bag.length.must_equal 26
+
+      new_tilebag.tiles_in_bag.length.must_equal 26
 
     end
 
@@ -46,9 +46,9 @@ describe "TileBag" do
 
       tile_bag_1.wont_be_same_as tile_bag_2
 
-      # tile_bag_1.wont_be_same_as tile_bag_3
-      #
-      # tile_bag_2.wont_be_same_as.tile_bag_3
+      tile_bag_1.wont_be_same_as tile_bag_3
+
+      tile_bag_2.wont_be_same_as tile_bag_3
 
     end
 
@@ -56,11 +56,11 @@ describe "TileBag" do
 
       draw_length_test =    Scrabble::TileBag.new(@initial_tile_set)
 
-      draw_length_test.draw_tiles(5)
+      draw_array = draw_length_test.draw_tiles(5)
 
-      draw_length_test.draw_array.must_be_kind_of Array
+      draw_array.must_be_kind_of Array
 
-      draw_length_test.draw_array.length.must_equal 5
+      draw_array.length.must_equal 5
 
     end
 
@@ -74,10 +74,10 @@ describe "TileBag" do
         :Z => 1
       }
 
-      tile_bag_test = Scrabble::TileBag.new(initial_tile_set)
+      tile_bag_test = Scrabble::TileBag.new(initial_tile_set.dup)
 
-      draw_array = tile_bag_test.draw_tiles(3)
-      
+      draw_array = tile_bag_test.draw_tiles(1)
+
       tile = draw_array[0]
 
       starting_tile_quantity = initial_tile_set.fetch(tile)
@@ -86,10 +86,14 @@ describe "TileBag" do
 
       initial_tile_set.must_be_kind_of Hash
 
-      starting_tile_quantity.must_equal (ending_tile_quantity + 1)
+      starting_tile_quantity.must_equal ending_tile_quantity + 1
 
     end
 
+  end
+
+  describe "tiles_remaining" do
+  
   end
 
 end

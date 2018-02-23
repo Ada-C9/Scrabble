@@ -31,7 +31,7 @@ module Scrabble
           draw = random_letters.sample
           # binding.pry
           if @tiles_in_bag[draw] >= 1
-            @tiles_in_bag[draw] -= 1
+            @tiles_in_bag[draw] = @tiles_in_bag[draw] - 1
             successful_draw = draw
             draw_array << successful_draw
           end
@@ -48,4 +48,4 @@ module Scrabble
 end
 
 # new_bag = Scrabble::TileBag.new(original_tile_bag)
-# new_bag.draw_tiles(3)
+# new_bag.draw_tiles(1)
