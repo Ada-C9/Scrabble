@@ -60,6 +60,10 @@ module Scrabble
 # Returns the highest scoring played word.
 
     def highest_scoring_word
+
+      # Should be:
+      # return Scoring.highest_score_from(@plays)
+
       @plays.each do |word|
         score = Scrabble::Scoring.score(word)
         @scoring_table["#{word}"] = score
