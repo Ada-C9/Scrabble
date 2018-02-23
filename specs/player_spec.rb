@@ -81,19 +81,24 @@ describe 'Player' do
     end
   end
 
-  # xdescribe 'tiles' do
-  #   it 'returns collection '
-  #     game_1 = Scrabble::TileBag.new
-  #     player_1 = Scrabble::Player.new("Issac")
-  #     player.times_hand.length = 5
-  #     player_1.tiles.must_equal 5
-  #
-  # end
-  #
-  # xdescribe 'draw_tiles' do
-  #   game_1 = Scrabble::TileBag.new
-  #   player_1 = Scrabble::Player.new("Issac")
-  #   # player_1 = ["A", "X", "E"]
-  #   assert player_1.draw_tiles(game_1).must_equal 7
-  # end
+  describe 'tiles' do
+    it 'returns collection of tiles in player hand' do
+      game_1 = Scrabble::TileBag.new
+      player_1 = Scrabble::Player.new("Isabel")
+      player_1.tiles.must_equal []
+      player_1.draw_tiles(game_1)
+      player_1.tiles_hand.length.must_equal 7
+    end
+  end
+
+  describe 'draw_tiles' do
+    it 'can fill hand to 7 tiles' do
+      game_1 = Scrabble::TileBag.new
+      player_1 = Scrabble::Player.new("Issac")
+      player_1.draw_tiles(game_1)
+      player_1.tiles_hand.length.must_equal 7
+    end
+  end
+
+
 end

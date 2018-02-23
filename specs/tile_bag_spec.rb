@@ -35,8 +35,8 @@ describe 'TileBag' do
       sum.must_equal 95
     end
 
-    xit 'edgecase test' do
-    end
+    # xit 'edgecase test' do
+    # end
 
     describe 'tiles_remaining' do
       it 'returns number of tiles remaining in bag' do

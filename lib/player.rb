@@ -5,7 +5,7 @@ require 'awesome_print'
 
 module Scrabble
   class Player
-    attr_accessor :plays, :name
+    attr_accessor :plays, :name, :tiles_hand
 
     def initialize(name)
       @name = name
@@ -54,20 +54,26 @@ module Scrabble
       return score
     end
 
-    # def tiles
-    #   @tiles_hand.each do |tile|
-    #     puts tile
-    #   end
-    # end
-    #
-    # def draw_tiles(tile_bag)
-    #   num = 7 - @tiles_hand.length
-    #   @tiles_hand += draw_tiles(num)
-    #   return @tiles_hand
-    # end
-  end
+    def tiles
+      @tiles_hand.each do |tile|
+        puts tile
+      end
+    end
 
+    def draw_tiles(tile_bag)
+      num = 7 - @tiles_hand.length
+      @tiles_hand += tile_bag.draw_tiles(num)
+      return @tiles_hand
+    end
+
+  end
 end
+
+game_1 = Scrabble::TileBag.new
+player_1 = Scrabble::Player.new("Issac")
+player_1.draw_tiles(game_1)
+player_1.tiles
+
 
 
 
