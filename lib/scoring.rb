@@ -1,5 +1,5 @@
 require 'pry'
-require_relative '../lib/player'
+# require_relative '../lib/player'
 
 module Scrabble
   class Scoring

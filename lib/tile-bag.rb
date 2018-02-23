@@ -1,9 +1,11 @@
+require_relative '../lib/player'
+
 require 'pry'
 
 module Scrabble
   class TileBag
 
-    attr_reader :tiles_remaining, :tile_bag
+    attr_accessor :tiles_remaining, :tile_bag
 
   def initialize
     @tiles_remaining = 98
