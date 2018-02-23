@@ -1,3 +1,6 @@
+require 'pry'
+require_relative 'scoring'
+
 module Scrabble
 POSSIBLE_LETTERS = {
   A: 9,
@@ -29,8 +32,24 @@ POSSIBLE_LETTERS = {
 }
   class TileBag
 
+    attr_reader :all_tiles
 
-    def tiles_remaining
+    def initialize()
+      @all_tiles = POSSIBLE_LETTERS.map { |letter, amount|
+        (letter.to_s * amount).chars}.flatten
+    end
+
+    def draw_tiles(num)
+      drawn_tiles = []
+      num.times do
+        chosen_tile = @all_tiles.sample
+        @all_tiles.delete_at(@all_tiles.index chosen_tile)
+        drawn_tiles << chosen_tile
+      end
+      return drawn_tiles
+    end
+
+    def tiles_remaining()
       return @all_tiles.length
     end
   end
