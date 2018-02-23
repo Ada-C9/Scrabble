@@ -36,15 +36,14 @@ describe 'Player' do
       result.must_equal ["first", "second"]
     end
 
-
   end # describe plays
 
   describe '#play(word)' do
 
     it "returns 0 for empty strings and inappropriate characters" do
-       debbie = Scrabble::Player.new("debbie")
-       debbie.play('').must_equal 0
-       debbie.play('$%.982').must_equal 0
+      debbie = Scrabble::Player.new("debbie")
+      debbie.play('').must_equal 0
+      debbie.play('$%.982').must_equal 0
     end
 
     it "adds the input word to the plays Array" do
@@ -92,10 +91,10 @@ describe 'Player' do
   describe '#won?' do
 
     it "returns false if the player does not have over 100 points" do
-      player_seven = Scrabble::Player.new("player_seven")
-      player_seven.play("qqqqq")
-      player_seven.play("zzzzz")
-      player_seven.won?.must_equal false
+      jacob = Scrabble::Player.new("jacob")
+      jacob.play("qqqqq")
+      jacob.play("zzzzz")
+      jacob.won?.must_equal false
     end
 
     it "returns true if the player has over 100 points" do
@@ -108,20 +107,18 @@ describe 'Player' do
 
   end # describe won?
 
-  zach = Scrabble::Player.new("Zach")
-  zach.play("aei") # 3 points
-  zach.play("qqqqq") # 50 points
-  zach.play("kai") # 7 point
-  chuck = Scrabble::Player.new("chuck")
-
   describe '#highest_scoring_word' do
 
     it "returns the highest scoring played word" do
+      zach = Scrabble::Player.new("Zach")
+      zach.play("aei") # 3 points
+      zach.play("qqqqq") # 50 points
+      zach.play("kai") # 7 point
       zach.highest_scoring_word.must_equal "qqqqq"
     end
 
     it "returns nil if there are no played words" do
-
+      chuck = Scrabble::Player.new("chuck")
       result = chuck.highest_scoring_word
       result.must_be_nil
     end
@@ -129,13 +126,17 @@ describe 'Player' do
   end # describe highest_scoring_word
 
   describe '#highest_word_score' do
-
+    sam = Scrabble::Player.new("Sam")
+    sam.play("aei") # 3 points
+    sam.play("qqqqq") # 50 points
+    sam.play("kai") # 7 point
     it "returns the score for the highest scoring word" do
-      zach.highest_word_score.must_equal 50
+      sam.highest_word_score.must_equal 50
     end
 
     it "returns 0 if there are no played words" do
-      result = chuck.highest_word_score
+      homer = Scrabble::Player.new("homer")
+      result = homer.highest_word_score
       result.must_equal 0
     end
 
@@ -158,6 +159,5 @@ describe 'Player' do
       aaron.tiles.must_equal []
     end
   end
-
 
 end # describe Player

@@ -11,17 +11,15 @@ module Scrabble
     MAX_WORD_LENGTH = 7
 
     def self.score(word)
-      points = 0
 
       if !/^[a-zA-Z]{1,7}$/.match(word)
         return nil
       end
 
-
+      points = 0
       if word.length == MAX_WORD_LENGTH
         points += 50
       end
-
 
       word.downcase!
       score_array = word.split("").map do |letter|
@@ -29,7 +27,6 @@ module Scrabble
       end
 
       points = score_array.inject(points,:+)
-
       return points
     end
 
@@ -40,13 +37,10 @@ module Scrabble
     end
 
     def self.get_winner_score(hashes_array)
-
       winner_score = hashes_array.max_by do |word_hash|
         word_hash[:score]
       end
-
       return winner_score.nil? ? nil : winner_score[:score]
-
     end
 
     def self.get_winner_hashes(array, winner_score)
@@ -64,15 +58,11 @@ module Scrabble
 
     def self.highest_score_from(array_of_words)
       hashes_array = self.get_hashes(array_of_words)
-
       winner_score = self.get_winner_score(hashes_array)
-
       hashes_array = self.get_winner_hashes(hashes_array, winner_score)
-
       seven_letters = self.seven_letters(hashes_array)
 
       winner = nil
-
 
       if seven_letters.length > 0
         winner = seven_letters[0]
@@ -84,22 +74,9 @@ module Scrabble
         winner = words_array.min_by do |word|
           word.length
         end
-        #
-        # winner = hashes_array.min_by do |word_hash|
-        #   word_hash[:length]
-        # end
-        # # winner = one_hash[:word]
-      end # if 7 length words else "blah"
-      # binding.pry
-      # winner[:word]
+      end
       return winner
     end # Method highest_score_from
 
-    # TODO: private :get_hashes
-
-
   end # Class Scoring
 end # Module Scrabble
-
-
-Scrabble::Scoring.highest_score_from(["bbbb", "cccc" ])

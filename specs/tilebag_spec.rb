@@ -5,17 +5,14 @@ require 'minitest/skip_dsl'
 
 require_relative '../lib/tilebag'
 
-# Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'TileBag' do
-
 
   describe 'initialize' do
 
     it "Sets up instance with a collection of tiles" do
       new_pool = Scrabble::TileBag.new
-      # binding.pry
       quantities = { "a" => 9,"b" => 2,"c" => 2,"d" => 4,"e" => 12,"f" => 2,"g" => 3,"h" => 2, "i" => 9,"j" => 1,"k" => 1, "l" => 4,"m" => 2,"n" => 6,"o" => 8,"p" => 2, "q" => 1, "r" => 6, "s" => 4, "t" => 6, "u" => 4, "v" => 2, "w" => 2, "x" => 1, "y" => 2, "z" => 1 }
       new_pool.total_tiles.must_equal quantities
     end
@@ -27,7 +24,6 @@ describe 'TileBag' do
     it "returns an empty array if asked for zero tiles" do
       test_five = Scrabble::TileBag.new
       previous_bag = test_five.total_tiles
-
       result = test_five.draw_tiles(0)
       result.must_be_kind_of Array
       result.must_equal []
@@ -61,7 +57,6 @@ describe 'TileBag' do
 
       other_pool.total_tiles.values.sum.must_equal original_count - 7
     end
-
 
   end
 
