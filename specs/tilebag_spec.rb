@@ -41,7 +41,30 @@ describe "TileBag" do
 
     end
 
+    it "returns an array of tiles of the specified length" do
+
+      draw_length_test =    Scrabble::TileBag.new.draw_tiles(5)
+
+      draw_length_test.draw_array.must_be_kind_of Array
+
+      draw_length_test.draw_array.length.must_equal 5
+
+    end
+
     it "removes the tiles from the default set" do
+
+      tile_bag_test = Scrabble::Tilebag.new.draw_tiles(3)
+
+      # old_tiles_available = tiles_in_bag.test_draw_array[0].values.flatten
+      #
+      # new_tiles_available = tiles_in_bag.fetch(tile_bag_test.draw_array[0][0])
+      #
+      # new_tiles_available.must_equal 1 + old_tiles_available
+      #
+      # tile_bag_test.tiles_in_bag[draw_array[0][0]]#Some method looks up key
+      #   .value.must_equal #that same key.value + 1
+
+
 
     end
 
