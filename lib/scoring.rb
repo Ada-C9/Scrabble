@@ -26,7 +26,7 @@ module Scrabble
         #
         # Else, if all the characters are valid letters, take the value
         # associated with the key and put that in an array of integers
-        
+
 
         if !character_check.include?(character) || @letters.length == 0 || @letters.length > 7
           return nil
