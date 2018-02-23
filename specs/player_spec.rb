@@ -35,7 +35,7 @@ describe 'Player' do
     end
 
     it "returns an array of words played" do
-      player_1 = Scrabble::Player.new("Wini")
+      player_1 = Scrabble::Player.new("Wini", true)
       player_1.play("hello")
       player_1.play("hi")
 
@@ -45,14 +45,14 @@ describe 'Player' do
 
   describe 'play' do
     it "adds the played word to the array of words played" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("xx")
 
       player_1.words_played.must_include "XX"
     end
 
     it "the score does not change if the user enters an invalid word" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       score_before = player_1.score
       player_1.play('')
       player_1.play(555)
@@ -63,13 +63,13 @@ describe 'Player' do
     end
 
     it "returns the score of the word if the game is not won" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
 
       player_1.play("xx").must_equal 16
     end
 
     it 'returns false if the game is won' do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
 
       player_1.play("zzzzffd").must_equal 100
       player_1.play("xx").must_equal false
@@ -78,7 +78,7 @@ describe 'Player' do
 
   describe "total score" do
     it "returns the the summed scores of player's words" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("hello")
       player_1.play("hi")
       player_1.play("hey")
@@ -89,21 +89,21 @@ describe 'Player' do
 
   describe "won?" do
     it "returns true if total score is more than 100" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("zzzzzzz")
 
       player_1.won?.must_equal true
     end
 
     it "returns false if total score is equal to 100" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("zzzzffd")
 
       player_1.won?.must_equal false
     end
 
     it "returns false if total score is less than 100" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("bob")
 
       player_1.won?.must_equal false
@@ -112,15 +112,15 @@ describe 'Player' do
 
   describe "highest_scoring_word" do
     it "returns a string" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("hello")
 
       player_1.highest_scoring_word.must_be_kind_of String
     end
 
     it "returns the highest scoring word played by each player" do
-      player_1 = Scrabble::Player.new("Dan")
-      player_2 = Scrabble::Player.new("Dee")
+      player_1 = Scrabble::Player.new("Dan", true)
+      player_2 = Scrabble::Player.new("Dee", true)
       player_1.play("hello")
       player_1.play("hi")
       player_2.play("hey")
@@ -133,14 +133,14 @@ describe 'Player' do
 
   describe "highest_word_score" do
     it "returns an integer" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("hello")
 
       player_1.highest_word_score.must_be_kind_of Integer
     end
 
     it "returns the score of the highest scoring word" do
-      player_1 = Scrabble::Player.new("Dan")
+      player_1 = Scrabble::Player.new("Dan", true)
       player_1.play("hello")
       player_1.play("hi")
       player_1.play("hey")
