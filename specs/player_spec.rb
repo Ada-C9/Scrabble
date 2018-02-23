@@ -43,7 +43,7 @@ describe 'Player' do
       scrabble_word.must_equal ["dog"]
     end
 
-    xit 'correctly returns false if player has already won' do
+    it 'correctly returns false if player has already won' do
       word_1 = "cat"
       word_2 = "frog"
       player_1 = Scrabble::Player.new("Hannah")
