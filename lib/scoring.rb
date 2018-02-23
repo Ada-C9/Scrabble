@@ -1,5 +1,6 @@
 module Scrabble
   class Scoring
+    
     def self.score(word)
 
       # step 1: handling "terminal if's" that return nil
