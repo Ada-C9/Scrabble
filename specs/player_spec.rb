@@ -30,7 +30,8 @@ describe 'Player' do
       jim.plays.must_be_instance_of Array
     end
 
-    it "adds the input word to the plays Array"  do
+    describe 'play' do
+      it "adds the input word to the plays Array"  do
       jim = Scrabble::Player.new("Jim")
       jim.play("apple")
       jim.play("pear")
@@ -38,9 +39,7 @@ describe 'Player' do
 
       jim.plays.must_equal ["apple", "pear", "rock"]
     end
-  end
 
-  describe 'play' do
     it 'returns nil for strings containing bad characters' do
       jim = Scrabble::Player.new("Jim")
 
@@ -62,25 +61,51 @@ describe 'Player' do
     end
   end
 
-  xdescribe '#total_score' do
+  describe 'total_score' do
     it 'returns the sum of scores of played words' do
+      jim = Scrabble::Player.new("Jim")
+      jim.play("apple")
+      jim.play("pear")
+      jim.play("rock")
 
+      jim.total_score.must_equal 25
     end
   end
 
-  xdescribe '#won' do
+  describe 'won' do
     it 'If the player has over 100 points, returns true, otherwise returns false' do
+      jim = Scrabble::Player.new("Jim")
+      abby = Scrabble::Player.new("Abby")
+
+      jim.play("xxxxxxx")
+      abby.play("xxxxxx")
+      abby.play("xxy")
+
+      jim.won.must_equal true
+      abby.won.must_equal false
     end
   end
 
-  xdescribe '#highest_scoring_word' do
+  describe 'highest_scoring_word' do
     it 'returns the highest scoring played word' do
+      jim = Scrabble::Player.new("Jim")
+      jim.play("apple")
+      jim.play("house")
+      jim.play("qq")
+
+      jim.highest_scoring_word.must_equal "qq"
     end
   end
 
-  xdescribe '#highest_word_score' do
+  describe 'highest_word_score' do
     it 'returns the highest_scoring_word score' do
+      jim = Scrabble::Player.new("Jim")
+      jim.play("apple")
+      jim.play("house")
+      jim.play("qq")
+
+      jim.highest_word_score.must_equal 20
     end
   end
-
  end
+end
