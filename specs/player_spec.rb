@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
+require 'pry'
 
 require_relative '../lib/player'
 
@@ -38,18 +39,17 @@ describe 'Player' do
     it 'correctly adds the inputs words to the array in plays' do
       word = "dog"
       player_1 = Scrabble::Player.new("Hannah")
-      scrabble_word = player_1.play(word)
+      player_1.play(word)
 
-      scrabble_word.must_equal ["dog"]
+      player_1.plays.must_equal ["dog"]
     end
 
     it 'correctly returns false if player has already won' do
-      word_1 = "cat"
       word_2 = "frog"
       player_1 = Scrabble::Player.new("Hannah")
-      scrabble_word = player_1.play(word)
-
-      scrabble_word.must_equal false
+      player_1.winner = true
+      
+      player_1.play(word_2).must_equal false
     end
 
   end
