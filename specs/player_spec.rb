@@ -29,10 +29,14 @@ describe 'Player' do
 
   end
 
-  xdescribe 'play(word)' do
+  describe 'play(word)' do
 
     it 'correctly adds the inputs words to the array in plays' do
-      Scrabble::Player.new("Luxi").play("cat").must_be("cat")
+      word = "cat"
+      player_1 = Scrabble::Player.new("Hannah")
+      scrabble_word = player_1.play(word)
+
+      scrabble_word.must_equal ["cat"]
     end
 
   end
