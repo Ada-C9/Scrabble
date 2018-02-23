@@ -91,9 +91,9 @@ end
 
 
 
-
-puts Scrabble::Scoring.score("kk")
-puts Scrabble::Scoring.score("aeirfd")
-puts Scrabble::Scoring.score("aaaaak")
-puts Scrabble::Scoring.score("dog")
-Scrabble::Scoring.highest_score_from(["aaaaak","kk", "aaaaek", "aeirfd"])
+#
+# puts Scrabble::Scoring.score("kk")
+# puts Scrabble::Scoring.score("aeirfd")
+# puts Scrabble::Scoring.score("aaaaak")
+# puts Scrabble::Scoring.score("dog")
+# Scrabble::Scoring.highest_score_from(["aaaaak","kk", "aaaaek", "aeirfd"])

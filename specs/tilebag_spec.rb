@@ -12,10 +12,15 @@ describe 'TileBag' do
 
   describe 'new' do
     it 'sets up with collection of all default tiles' do
+      grab_bag = Scrabble::TileBag.new
+
+      grab_bag.must_be_instance_of Scrabble::TileBag
+      grab_bag.starting_tiles[:A].must_equal 9
+      grab_bag.starting_tiles[:Z].must_equal 1
     end
   end
 
-  describe 'draw_tiles' do
+  xdescribe 'draw_tiles' do
     it 'returns a collection of random tiles' do
     end
 
@@ -23,7 +28,7 @@ describe 'TileBag' do
     end
   end
 
-  describe 'tiles_remaining' do
+  xdescribe 'tiles_remaining' do
     it 'returns the number of tiles remaining in the bag' do
 
     end
