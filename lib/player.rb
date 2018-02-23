@@ -43,9 +43,13 @@ module Scrabble
     end
 
     def highest_word_score
-      word = self.highest_scoring_word
-      score = Scrabble::Scoring.score(word)
-      return score
+      if @plays.length == 0
+        return 0
+      else
+        word = self.highest_scoring_word
+        score = Scrabble::Scoring.score(word)
+        return score
+      end
     end
 
   end # Player Class

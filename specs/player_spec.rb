@@ -85,30 +85,39 @@ describe 'Player' do
 
   describe '#won?' do
 
-
-    player_seven = Scrabble::Player.new("player_seven")
     it "returns false if the player does not have over 100 points" do
+      player_seven = Scrabble::Player.new("player_seven")
       player_seven.play("qqqqq")
       player_seven.play("zzzzz")
       player_seven.won?.must_equal false
-
     end
+
     it "returns true if the player has over 100 points" do
-      player_seven.play("a")
-      player_seven.won?.must_equal true
+      holly = Scrabble::Player.new("holly")
+      holly.play("qqqqq")
+      holly.play("zzzzz")
+      holly.play("a")
+      holly.won?.must_equal true
     end
 
   end # describe won?
 
   zach = Scrabble::Player.new("Zach")
+  zach.play("aei") # 3 points
+  zach.play("qqqqq") # 50 points
+  zach.play("kai") # 7 point
+  chuck = Scrabble::Player.new("chuck")
 
   describe '#highest_scoring_word' do
 
     it "returns the highest scoring played word" do
-      zach.play("aei") # 3 points
-      zach.play("qqqqq") # 50 points
-      zach.play("kai") # 7 point
       zach.highest_scoring_word.must_equal "qqqqq"
+    end
+
+    it "returns nil if there are no played words" do
+
+      result = chuck.highest_scoring_word
+      result.must_be_nil
     end
 
   end # describe highest_scoring_word
@@ -117,6 +126,11 @@ describe 'Player' do
 
     it "returns the score for the highest scoring word" do
       zach.highest_word_score.must_equal 50
+    end
+
+    it "returns 0 if there are no played words" do
+      result = chuck.highest_word_score
+      result.must_equal 0
     end
 
   end # describe highest_word_score
