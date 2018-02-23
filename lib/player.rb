@@ -38,5 +38,8 @@ module Scrabble
       return Scrabble::Scoring.highest_score_from(@plays)
     end
 
+    def highest_word_score
+      return Scrabble::Scoring.score(highest_scoring_word)
+    end
   end
 end

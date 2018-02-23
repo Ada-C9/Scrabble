@@ -31,14 +31,14 @@ describe 'Player' do
 
       @player.must_respond_to :total
     end
- end
+  end
 
   describe '#play method' do
     it "Scrabble::Player responds to plays" do
 
       @player.must_respond_to :play
       @player.must_respond_to :plays
-   end
+    end
 
     it "adds an input word to plays array" do
 
@@ -84,6 +84,13 @@ describe 'Player' do
     it "returns the highest scoring played word" do
 
       @player.highest_scoring_word.must_equal "rooster"
+    end
+  end
+
+  describe "#The highest_word_score method" do
+    it "returns the score of a highest_scoring_word" do
+
+      @player.highest_word_score.must_equal 57
     end
   end
 end
