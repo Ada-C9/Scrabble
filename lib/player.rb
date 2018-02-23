@@ -17,10 +17,13 @@ module Scrabble
         return false
 
       else
+        word_check = []
         word_chars = word.upcase.chars
         word_chars.each do |char|
-          if @tiles.include?(char.to_sym) == false
+          if !@tiles.include?(char.to_sym)
             return false
+          else
+            word_check << char.to_sym
           end
         end
 
