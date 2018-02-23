@@ -21,16 +21,15 @@ describe 'Player' do
     end
     describe "#plays" do
       it "Returns an array of words played:" do
-
         player_1 = Scrabble::Player.new("Patrick")
 
         player_1.plays.must_be_kind_of Array
+
       end
     end
 
     describe "#play(word)" do
       it "Adds input word to @plays array." do
-
         player_1 = Scrabble::Player.new("Patrick")
         player_1.play("orange")
 
@@ -42,7 +41,6 @@ describe 'Player' do
 
   describe '#total_score' do
     it " Returns the sum of scores of played words" do
-
       player_1 = Scrabble::Player.new("Patrick")
       player_1.play("apples")
       player_1.play("fuzzy")
@@ -86,6 +84,7 @@ describe 'Player' do
       player_1.play("dd")
 
       player_1.highest_scoring_word.must_equal "ba"
+
     end
 
   end
@@ -104,14 +103,12 @@ describe 'Player' do
   describe 'draw_tiles(tile_bag)' do
     it 'is a collection of letters that the player can play (max 7)' do
       player_1 = Scrabble::Player.new("Patrick")
-      tile_bag = Scrabble::TileBag.new #({"a" => 1, "b" => 2, "c" => 5})
+      tile_bag = Scrabble::TileBag.new
 
       players_tiles = player_1.draw_tiles(tile_bag)
 
       players_tiles.must_be_kind_of Array
-
       all_letters = players_tiles.all? { |word| word.class == String }
-
       all_letters.must_equal true
     end
 
@@ -119,10 +116,9 @@ describe 'Player' do
 
   it 'fills tiles array until it has 7 letters from the given tile bag' do
     player_1 = Scrabble::Player.new("Patrick")
-    tile_bag = Scrabble::TileBag.new #({"a" => 1, "b" => 2, "c" => 5})
+    tile_bag = Scrabble::TileBag.new
 
     players_tiles = player_1.draw_tiles(tile_bag)
-
     players_tiles.length.must_equal 7
 
   end

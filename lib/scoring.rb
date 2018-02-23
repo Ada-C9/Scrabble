@@ -96,5 +96,3 @@ module Scrabble
 
   end #Scoring
 end #Scrabble
-
-# winning_words.max_by(&:length).length

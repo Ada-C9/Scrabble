@@ -6,8 +6,7 @@ module Scrabble
 
     attr_reader :bag
 
-    def initialize #(tile_bag_hash)
-      # @bag =  tile_bag_hash
+    def initialize
       @bag = {
         "A" => 9, "B" => 2, "C" => 2, "D" => 4, "E" => 12, "F" => 2, "G" => 3,
         "H" => 2, "I" => 9, "J" => 1, "K" => 1, "L" => 4, "M" => 2, "N" => 6,

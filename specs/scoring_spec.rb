@@ -49,7 +49,6 @@ describe 'Scoring' do
       winning_word = Scrabble::Scoring.highest_score_from(["hotdog"])
       winning_word.must_equal "hotdog"
       winning_word.must_be_kind_of String
-      # winning_word.length.must_equal 1
 
     end
 
