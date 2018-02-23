@@ -41,6 +41,8 @@ module Scrabble
     end
 
     def tiles_remaining
+      tile_count = @tiles_in_bag.values.inject { |a, b| a + b }
+      return tile_count
     end
 
   end

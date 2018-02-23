@@ -76,7 +76,7 @@ describe "TileBag" do
 
       tile_bag_test = Scrabble::TileBag.new(initial_tile_set.dup)
 
-      draw_array = tile_bag_test.draw_tiles(1)
+      draw_array = tile_bag_test.draw_tiles(3)
 
       tile = draw_array[0]
 
@@ -93,7 +93,26 @@ describe "TileBag" do
   end
 
   describe "tiles_remaining" do
-  
+
+    it "returns the number of tiles remaining in the bag" do
+      original_tile_set = {
+        :A => 9, :N => 6, :B => 2, :O => 8, :C => 2,
+        :P => 2, :D => 4, :Q => 1, :E => 12, :R => 6,
+        :F => 2, :S => 4, :G => 3, :T => 6, :H => 2,
+        :U => 4, :I => 9, :V => 2, :J => 1, :W => 2,
+        :K => 1, :X => 1, :L => 4, :Y => 2, :M => 2,
+        :Z => 1
+      }
+
+      tile_bag_test_2 = Scrabble::TileBag.new(original_tile_set)
+
+      tile_count = tile_bag_test_2.tiles_remaining
+
+      tile_count.must_equal 98
+
+      # binding.pry
+    end
+
   end
 
 end
