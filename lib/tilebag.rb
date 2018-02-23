@@ -4,7 +4,7 @@ require_relative 'player.rb'
 
 module Scrabble
   class TileBag
-    attr_reader :tiles, :tiles_remaining
+    attr_reader :default_tiles, :tiles_remaining
 
     def initialize
 
@@ -22,13 +22,13 @@ module Scrabble
 
       def draw_tiles(num)
         num.times do
-          drawn_tiles = []
+          @drawn_tiles = []
           letter = @default_tiles.keys.sample
           @default_tiles[letter] -= 1
           @default_tiles.delete_if {|ltr, qty| qty == 0}
-          drawn_tiles << letter[0]
+          @drawn_tiles << letter[0]
         end
-        return drawn_tiles
+        return @drawn_tiles
       end
 
       def tiles_remaining
