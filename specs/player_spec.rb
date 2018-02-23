@@ -53,7 +53,7 @@ describe 'Player' do
       @player.plays.must_be_kind_of Array
     end
 
- 
+
     it "returns false if the player has won" do
       @player.play("qqqqqqqq")
       @player.won?.must_equal false
@@ -99,4 +99,19 @@ describe 'Player' do
       @player.must_respond_to :highest_word_score
     end
   end
+
+  describe "# draw_tiles method" do
+    it "Should be a collection of letters" do
+
+      @player.tiles.must_be_kind_of Array
+      @player.must_respond_to :tiles
+    end
+
+    it "it allows the player to play max 7" do
+      @player.tiles.length.must_equal 7
+    end
+
+  end
+
+
 end
