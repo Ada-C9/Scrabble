@@ -63,6 +63,13 @@ describe 'Player' do
 
       @player.play("dog").must_equal 5
     end
+
+    it 'returns nil for words containing bad characters' do
+      @player.play('#$%^').must_be_nil
+      @player.play('char^').must_be_nil
+      @player.play(' ').must_be_nil
+    end
+
   end
 
   describe "#total_score method" do

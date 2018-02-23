@@ -14,6 +14,10 @@ module Scrabble
     end
 
     def play(word)
+      if word =~ [/[a-zA-Z]+/]
+        return nil
+      end
+
       @plays << word
       if won?
         return false
