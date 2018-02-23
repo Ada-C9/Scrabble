@@ -50,14 +50,32 @@ module Scrabble
       elsif array_of_words.length == 1
         return array_of_words[0]
       elsif array_of_words.length > 1
-        word_array = []
-        array_of_words.map do |scrabble_word|
-          word_hash = {}
-          word_hash[:word] = scrabble_word
-          word_hash[:length] = scrabble_word.length
-          word_hash[:score] = self.score(scrabble_word)
-          word_array << word_hash
+        top_score = 0
+        top_word = []
+        array_of_words.each do |word|
+          # word_hash = {}
+          # word_hash[word]= self.score(word)
+          if self.score(word) >= top_score
+            top_score = self.score(word)
+            top_word << word
+          end
+          if top_word.length == 1
+            return top_word[0]
+          else
+            if top_word[0] < top_word[1]
+              return top_word[0]
+            else
+              return top_word[1]
+            end
+          end
         end
+      end # if statement
+    end # def self.highest_score_from(array_of_words)
+
+  end # class Scoring
+end # module Scrabble
+
+
         # return word_array
         # word_array.each do |scrabble_hash|
         #   scrabble_hash.value.group_by do |:score|
@@ -70,10 +88,10 @@ module Scrabble
         # end
         # return new_hash_word
         #
-        hash_word_score = word_array.max_by do |scrabble_hash|
-          scrabble_hash[:score]
-        end
-        return hash_word_score[:word]
+        # hash_word_score = word_array.max_by do |scrabble_hash|
+        #   scrabble_hash[:score]
+        # end
+        # return hash_word_score[:word]
         #
         # word_array.each do |scrabble_hash|
         #   hash_word_full_7_letters = ''
@@ -105,11 +123,7 @@ module Scrabble
         #   end
         # end
 
-      end # if statement
-    end # def self.highest_score_from(array_of_words)
 
-  end # class Scoring
-end # module Scrabble
 
 
 
