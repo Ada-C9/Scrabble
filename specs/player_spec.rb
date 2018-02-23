@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
-
+require 'pry'
 require_relative '../lib/player.rb'
 require_relative '../lib/scoring.rb'
 
@@ -141,6 +141,7 @@ describe 'Player' do
       game_tiles = Scrabble::TileBag.new
       player_1 = Scrabble::Player.new("Dan")
       player_1.draw_tiles(game_tiles).length.must_equal 7
+      player_1.tiles.length.must_equal 7
     end
 
     it "draws the correct number of tiles after a word is played" do

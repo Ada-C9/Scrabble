@@ -4,6 +4,7 @@ require_relative "tilebag.rb"
 module Scrabble
   class Player
     attr_reader :name, :words_played, :score, :tiles
+
     def initialize(name)
       @name = name.to_s
       @words_played = []
@@ -17,13 +18,13 @@ module Scrabble
 
     def play(word)
       @words_played << word
-      # word.split("").each do |letter|
-      #   i = @tiles.find_index(letter)
-      #   @tiles.delete_at(i)
-      # end
       word_score = Scoring.score(word)
       @score += word_score
-      if won? == true
+      word.chars.each do |letter|
+        i = @tiles.find_index(letter)
+        @tiles.delete_at(i || @tiles.length)
+      end
+      if won?
         return false
       else
         return word_score
@@ -55,8 +56,9 @@ module Scrabble
     end
 
     def draw_tiles(tilebag)
-      number_of_tiles = @tiles.length
-      drawn_tiles = tilebag.draw_tiles(7 - number_of_tiles)
+      existing_tiles = @tiles.length
+      max_tiles = 7
+      drawn_tiles = tilebag.draw_tiles(max_tiles - existing_tiles)
       drawn_tiles.each do |letter|
         @tiles << letter
       end
