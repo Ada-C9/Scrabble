@@ -29,5 +29,9 @@ POSSIBLE_LETTERS = {
 }
   class TileBag
 
+
+    def tiles_remaining
+      return @all_tiles.length
+    end
   end
 end
