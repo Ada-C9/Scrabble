@@ -35,11 +35,15 @@ module Scrabble
       return word_score
     end
 
+    def total_score
+      return @total_score
+    end
+
     def won
-      if @total_score > 100
-        return true
-      else
+      if @total_score < 100
         return false
+      else
+        return true
       end
     end
 
@@ -55,8 +59,10 @@ module Scrabble
 
   end
 end
-#
+
 # sally = Scrabble::Player.new("Sally")
 # sally.play("apple")
 # sally.play("dolphin")
+# sally.play("xxxxxxx")
 # ap sally.plays
+# ap sally.won

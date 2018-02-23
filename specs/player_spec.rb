@@ -103,7 +103,6 @@ describe 'Player' do
       jim.play("apple")
       jim.play("house")
       jim.play("qq")
-
       jim.highest_word_score.must_equal 20
     end
   end
