@@ -23,6 +23,14 @@ module Scrabble
     # array
     def play(player_input)
       @player_words << player_input
+      # this is to test if the input returns as an array
+      # return player_words
+      winning_word = Scrabble::Scoring.highest_score_from(plays)
+      # return winning_word
+      plays.each do |scrabble_word|
+        score_of_word = Scrabble::Scoring.score(scrabble_word)
+        puts score_of_word
+      end
     end
     # binding.pry
 
