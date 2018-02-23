@@ -52,8 +52,6 @@ describe 'Player' do
       Scrabble::Scoring.score(word).must_equal 7
 
       # Scrabble::Player.new('').play(word).score(word).must_equal 7
-
-
     end
   end
 
@@ -67,9 +65,10 @@ describe 'Player' do
     end
   end
 
-  xdescribe 'won?' do
-    xit '' do
-
+  describe 'won?' do
+    it 'if player has > 100 point score, return true' do
+      total_score = 101
+      Scrabble::Player.new('').won?(total_score).must_equal true
     end
 
     xit '' do

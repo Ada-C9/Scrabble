@@ -17,10 +17,9 @@ module Scrabble
         return Scrabble::Scoring.score(word)
       end
       return word
-
     end
 
-    def won?
+    def won?(total_score)
 
     end
   end

@@ -92,6 +92,8 @@ module Scrabble
             end
           end
         end
+        return scores
+        total_score = scores.inject(0, :+)
       end
     end
   end
