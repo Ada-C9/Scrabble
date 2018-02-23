@@ -118,12 +118,13 @@ Create a `Scrabble::TileBag` class with __full unit testing/specs__. You should 
 
 - `#initialize` Should set up the instance with a collection of all default tiles
 
-default_tiles = {"A" => 9, "B" => 2, "C" => 2, "D" => 4, "E" => 12, "F" => 2, "G" => 3, "H" => 2, "I" => 9, "J" => 1, "K" => 1, "L" => 4, "M" => 2, "N" => 6, "O" => 8, "P" => 2, "Q" => 1, "R" => 6, "S" => 4, "T" => 6, "U" => 4, "V" => 2, "W" => 2, "X" => 1, "Y" => 2, "Z" => 1}
-
-
-
 - `#draw_tiles(num)` returns a collection of random tiles, removes the tiles from the default set
 - `#tiles_remaining` returns the number of tiles remaining in the bag
+#### Modifications to `Player`
+Create specs for and add to the `Player` class the following instance methods:
+- `#tiles` a collection of letters that the player can play (max 7)
+- `#draw_tiles(tile_bag)` fills tiles array until it has 7 letters from the given tile bag
+- It is not in the primary requirements to modify the existing `#play(word)` to use `#tiles` or check against the player's tiles
 
 ##### Initial Distribution of Letters
 | Letter : Qty. | Letter : Qty. |
@@ -142,12 +143,7 @@ default_tiles = {"A" => 9, "B" => 2, "C" => 2, "D" => 4, "E" => 12, "F" => 2, "G
 | L : 4  | Y : 2 |
 | M : 2  | Z : 1 |
 
-#### Modifications to `Player`
-Create specs for and add to the `Player` class the following instance methods:
 
-- `#tiles` a collection of letters that the player can play (max 7)
-- `#draw_tiles(tile_bag)` fills tiles array until it has 7 letters from the given tile bag
-    - It is not in the primary requirements to modify the existing `#play(word)` to use `#tiles` or check against the player's tiles
 
 <!-- ### Optional Enhancements
 These need to be tested too!

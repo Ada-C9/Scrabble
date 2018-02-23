@@ -21,7 +21,7 @@ module Scrabble
     end
 
       def draw_tiles(num)
-        7.times do
+        num.times do
           drawn_tiles = []
           letter = @default_tiles.keys.sample
           @default_tiles[letter] -= 1
@@ -34,8 +34,5 @@ module Scrabble
       def tiles_remaining
         @tiles_remaining = @default_tiles.values.inject(:+)
       end
-
-
-
   end
 end

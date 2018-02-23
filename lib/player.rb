@@ -7,6 +7,7 @@ module Scrabble
 
     attr_reader :name, :plays, :won, :play, :player_score, :tiles
 
+    MAX_TILES = 7
 
     def initialize(name)
       @name = name
@@ -50,8 +51,8 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
-      draw = 7 - @tiles.length
-      @tiles.concat(tile_bag.draw_tiles(draw))
+      num = MAX_TILES - @tiles.length
+      @tiles += tile_bag.draw_tiles(num)
     end
   end
 end
