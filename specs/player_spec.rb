@@ -8,12 +8,13 @@ require_relative '../lib/player'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
-  
+
   describe '#new' do
     it 'returns the value of the @name instance variable' do
       jim = Scrabble::Player.new("Jim")
       jim.name.must_equal "Jim"
     end
+  end
 
   xdescribe '#plays' do
     it 'returns an Array of the words played by the player' do
@@ -26,6 +27,7 @@ describe 'Player' do
 
       jim.plays.must_equal plays
     end
+  end
 
   xdescribe '#play(word)' do
     xit "adds the input word to the plays Array"  do
@@ -39,14 +41,17 @@ describe 'Player' do
     it 'returns the sum of scores of played words' do
 
     end
+  end
 
   xdescribe '#won' do
     it 'If the player has over 100 points, returns true, otherwise returns false' do
     end
+  end
 
   xdescribe '#highest_scoring_word' do
     it 'returns the highest scoring played word' do
     end
+  end
 
   xdescribe '#highest_word_score' do
     it 'returns the highest_scoring_word score' do
