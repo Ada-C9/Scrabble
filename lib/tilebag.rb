@@ -11,6 +11,18 @@ module Scrabble
     end
 
     def draw_tiles(num)
+      random_letters = [:A, :B, :C, :D, :E, :F, :G, :H, :I, :J, :K, :L, :M, :N, :O, :P, :Q, :R, :S, :T, :U, :V, :W, :X, :Y, :Z]
+
+      num.times do
+
+        draw = random_letters.sample
+        until
+          # Until the value in @tiles_in_bag that corresponds tp the key in random_letter has a value of 1 or more, keep drawing tiles.
+        end
+        @draw_array << draw
+      end
+      end
+
     end
 
     def tiles_remaining
