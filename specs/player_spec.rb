@@ -25,22 +25,23 @@ describe 'Player' do
     end
   end #ends describe 'plays' do
 
-  # describe 'play(word)'
-  #   it 'adds the input word to the plays array' do
-  #     Scrabble::Player.play("apple")
-  #     Scrabble::Player.plays.must_include("apple")
-  #   end
-  #
-  #   # it 'prevents a player who has won from playing' do
-  #   #   Scrabble::Player.won? = true
-  #   #   Scrabble::Player.play("apple").must_equal(false)
-  #   # end
-  #
-  #   # it "returns the score of the word that is played if the player hasn't won" do
-  #   #   Scrabble::Player.won? = false
-  #   #   Scrabble::Player.play("apple").must_equal(9)
-  #   # end
-  # end #ends describe 'play(word)'
+  describe 'play(word)' do
+    it 'adds the input word to the plays array' do
+      ada = Player.new("Ada")
+      ada.play("apple")
+      ada.plays.must_include("apple")
+    end
+
+    # it 'prevents a player who has won from playing' do
+    #   Scrabble::Player.won? = true
+    #   Scrabble::Player.play("apple").must_equal(false)
+    # end
+
+    # it "returns the score of the word that is played if the player hasn't won" do
+    #   Scrabble::Player.won? = false
+    #   Scrabble::Player.play("apple").must_equal(9)
+    # end
+  end #ends describe 'play(word)'
 
   # describe 'total_score'
   #   it 'returns the sum of scores of played words' do
@@ -49,7 +50,7 @@ describe 'Player' do
   #     Scrabble::Player.total_score.must_equal(14)
   #   end
   # end #ends describe 'total score'
-  #
+  # #
   # describe 'won?' do
   #   it 'returns true if the player has over 100 points' do
   #     Scrabble::Player.total_score = 101
@@ -58,4 +59,4 @@ describe 'Player' do
   #
   #   it 'returns false if the player has less than 101 points'
 
-end #ends class block
+end #ends Player do
