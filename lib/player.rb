@@ -11,38 +11,23 @@ module Scrabble
       @tiles = []
     end
 
-    # # Original Version
-    # def play(word)
-    #   @plays << word
-    #   if won?
-    #     return false
-    #   else
-    #     score = Scrabble::Scoring.score(word)
-    #     @total_score += score
-    #     return score
-    #     return
-    #   end
-    # end
-
     def play(word)
-
-      word_chars = word.upcase.chars
-      word_chars.each do |char|
-        if @tiles.include?(char.to_sym) == false
-          binding.pry
-          return "You don't have this tile, please enter another word"
-
-        end
-      end
-
-      @plays << word
+      # check if user won first before check the word
       if won?
         return false
+
       else
+        word_chars = word.upcase.chars
+        word_chars.each do |char|
+          if @tiles.include?(char.to_sym) == false
+            return false
+          end
+        end
+
+        @plays << word
         score = Scrabble::Scoring.score(word)
         @total_score += score
         return score
-        return
       end
     end
 
@@ -57,7 +42,6 @@ module Scrabble
     end
 
     def highest_word_score
-
       Scrabble::Scoring.score(highest_scoring_word)
     end
 
