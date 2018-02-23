@@ -1,11 +1,9 @@
-require "awesome_print"
-
 module Scrabble
   class TileBag
     attr_reader :all_tiles, :tiles_remaining
     def initialize
       @all_tiles = create_tiles
-      @tiles_remaining = @all_tiles
+      @tiles_remaining = all_tiles
     end
 
     def create_tiles
@@ -36,22 +34,19 @@ module Scrabble
     end
 
     def draw_tiles(num)
-
       tiles_picked = []
 
-      # If the remaining tiles are less than the num
-      # player pick all tiles left in the bag
-      if @tiles_remaining.size < num
-        num = @tiles_remaining.size
+      if tiles_remaining.size < num
+        num = tiles_remaining.size
       end
 
       num.times do
-        some_tile = @tiles_remaining.sample
+        some_tile = tiles_remaining.sample
         tiles_picked << some_tile.letter
-        @tiles_remaining.delete(some_tile)
+        tiles_remaining.delete(some_tile)
       end
 
-      return tiles_picked # an array of Tile instances
+      return tiles_picked
     end
 
   end
@@ -62,4 +57,5 @@ module Scrabble
       @letter = letter
     end
   end
+
 end

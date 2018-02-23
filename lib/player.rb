@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'scoring'
 require_relative 'tile_bag'
 module Scrabble
@@ -12,7 +11,6 @@ module Scrabble
     end
 
     def play(word)
-      # check if user won first before check the word
       if won?
         return false
 
@@ -20,27 +18,27 @@ module Scrabble
         word_check = []
         word_chars = word.upcase.chars
         word_chars.each do |char|
-          if !@tiles.include?(char.to_sym)
+          if !tiles.include?(char.to_sym)
             return false
           else
             word_check << char.to_sym
           end
         end
 
-        @plays << word
+        plays << word
         score = Scrabble::Scoring.score(word)
-        @total_score += score
+        self.total_score += score
         return score
       end
     end
 
     def draw_tiles(tile_bag)
-      tiles_need = 7 - @tiles.length
-      @tiles += tile_bag.draw_tiles(tiles_need)
+      tiles_need = 7 - tiles.length
+      tiles += tile_bag.draw_tiles(tiles_need)
     end
 
     def highest_scoring_word
-      highest_score_word = Scrabble::Scoring.highest_score_from(@plays)
+      highest_score_word = Scrabble::Scoring.highest_score_from(plays)
       return highest_score_word
     end
 
@@ -49,7 +47,6 @@ module Scrabble
     end
 
     def won?
-      # If the player has over 100 points, returns true, otherwise returns false
       if total_score > 100
         return true
       else
@@ -57,5 +54,5 @@ module Scrabble
       end
     end
 
-  end # Player class end
-end # Scrabble end
+  end
+end

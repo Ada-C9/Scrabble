@@ -58,19 +58,19 @@ describe 'Player' do
       result.must_equal false
     end
 
-    # Edge case
-    it "Returns false when user's word has more than letters on hand " do
-      # Arrange
-      the_test = Scrabble::Player.new("Wenjie")
-      the_test.tiles = [:C, :O, :A, :O, :V, :F, :G]
-      new_word = "coco"
-
-      # Act
-      result = the_test.play(new_word)
-
-      # Assert
-      result.must_equal false
-    end
+    # Edge case - Optional requirement we decided not to pursue
+    # it "Returns false when user's word has more than letters on hand " do
+    #   # Arrange
+    #   the_test = Scrabble::Player.new("Wenjie")
+    #   the_test.tiles = [:C, :O, :A, :O, :V, :F, :G]
+    #   new_word = "coco"
+    #
+    #   # Act
+    #   result = the_test.play(new_word)
+    #
+    #   # Assert
+    #   result.must_equal false
+    # end
 
     it "Returns false if player has already won" do
       # Arrange
@@ -106,7 +106,6 @@ describe 'Player' do
     end
   end
 
-
   describe "#total_score" do
     it "Returns the sum of scores of played words" do
       #Arrange
@@ -127,7 +126,6 @@ describe 'Player' do
   end
 
   describe "#won?" do
-
     it "If the player has over 100 points, returns true, otherwise returns false" do
       #This should be a private method
       # Arrange

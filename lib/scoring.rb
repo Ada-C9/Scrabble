@@ -1,6 +1,3 @@
-require 'pry'
-
-
 module Scrabble
   class Scoring
     def self.letter_score(letter)
@@ -40,7 +37,7 @@ module Scrabble
       end
       return score
 
-    end # self.score method ends
+    end
 
     def self.highest_score_from(array_of_words)
       if array_of_words.length <= 0
@@ -67,7 +64,7 @@ module Scrabble
         tie_winner(max_keys)
       end
 
-    end # method self.highest_score_from
+    end
 
     def self.tie_winner(words)
       word_length = {}
@@ -81,6 +78,6 @@ module Scrabble
       end
     end
 
-  end # class Scoring ends
+  end
 
-end # module Scrabble ends
+end 
