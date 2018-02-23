@@ -37,8 +37,10 @@ describe 'Player' do
       the_test.tiles = [:B, :U, :C, :O, :C, :O, :G]
       new_word = "coco"
       the_test.play(new_word)
+
       # Act
       result = the_test.plays.include?(new_word)
+
       # Assert
       result.must_equal true
     end
@@ -48,8 +50,24 @@ describe 'Player' do
       the_test = Scrabble::Player.new("Wenjie")
       the_test.tiles = [:A, :B, :C, :O, :C, :F, :G]
       new_word = "cojh"
+
       # Act
       result = the_test.play(new_word)
+
+      # Assert
+      result.must_equal false
+    end
+
+    # Edge case
+    it "Returns false when user's word has more than letters on hand " do
+      # Arrange
+      the_test = Scrabble::Player.new("Wenjie")
+      the_test.tiles = [:C, :O, :A, :O, :V, :F, :G]
+      new_word = "coco"
+
+      # Act
+      result = the_test.play(new_word)
+
       # Assert
       result.must_equal false
     end
@@ -66,8 +84,10 @@ describe 'Player' do
 
       the_test.tiles = [:S, :N, :O, :W, :E, :D, :G]
       new_word = "snowed"
+
       # Act
       result = the_test.play(new_word)
+
       # Assert
       result.must_equal false
     end
@@ -77,8 +97,10 @@ describe 'Player' do
       new_word = "coco"
       the_test = Scrabble::Player.new("Wenjie")
       the_test.tiles = [:C, :O, :O, :C, :L, :I, :T]
+
       # Act
       result = the_test.play(new_word)
+
       # Assert
       result.must_equal 8
     end
@@ -91,12 +113,14 @@ describe 'Player' do
       word_1 = "snow"
       word_2 = "litter"
       the_test = Scrabble::Player.new("Wenjie")
+
       # Act
       the_test.tiles = [:S, :N, :O, :W, :L, :I, :T]
       the_test.play(word_1)
 
       the_test.tiles = [:L, :I, :T, :T, :E, :R, :O]
       the_test.play(word_2)
+
       # Assertion
       the_test.total_score.must_equal 13
     end
@@ -113,6 +137,7 @@ describe 'Player' do
 
       the_test.tiles = [:Q, :U, :I, :C, :K, :N, :E]
       the_test.play("quicken")
+
       # Assert
       the_test.won?.must_equal true
     end
