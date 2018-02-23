@@ -19,7 +19,7 @@ describe 'Tilebag' do
 
     it "should include a collection of default tiles" do
 
-    @tilebag.tiles.must_be_kind_of Hash
+    @tilebag.tiles.must_be_kind_of Array
     end
   end
 
@@ -30,7 +30,20 @@ describe 'Tilebag' do
     end
   end
 
-  
+  describe '#remove_tiles' do
+    it "removes tiles from defult tiles" do
+
+      @tilebag.remove_tiles.must_be_kind_of Hash
+    end
+  end
+
+  describe 'tiles_remaining' do
+    it "returns number of tiles remaining after draw_tiles" do
+      @tilebag.draw_tiles(9)
+
+      @tilebag.tiles_remaining.must_equal @tiles.values.sum - 9
+    end
+  end
 end
 
 
