@@ -36,9 +36,6 @@ describe 'TileBag' do
       tile_bag.draw_tiles(7)
       tile_bag.default_tiles.values.sum.must_equal 91
     end
-
-
-
   end
 
   describe 'tiles_remaining' do
@@ -54,24 +51,6 @@ describe 'TileBag' do
       tile_bag.default_tiles.must_equal default_tiles ={}
     end
 
-
-
-
   end
-
-
-
-
-  end
-
-
-
-
-
-
-
-
-
-
-
+end
 end
