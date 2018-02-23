@@ -17,8 +17,14 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      @number_of_tiles -= num
-      return @tiles = LETTER_QUANTITIES.keys.sample(num)
+      if !(Integer === num) || num < 0
+        raise ArgumentError.new("Error: invalid number")
+      elsif num > @number_of_tiles
+        raise ArgumentError.new("Error: Not enough tiles in the bag")
+      else
+        @number_of_tiles -= num
+        return @tiles = LETTER_QUANTITIES.keys.sample(num)
+      end
     end
 
     def tiles_remaining

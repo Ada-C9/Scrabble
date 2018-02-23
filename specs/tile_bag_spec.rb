@@ -30,7 +30,13 @@ describe 'TileBag' do
     it "Removes the tiles from the default set" do
       original_tiles = @tile_bag.tiles
 
-      (@tile_bag.draw_tiles(8) != original_tiles).must_equal true
+      (@tile_bag.draw_tiles(7) != original_tiles).must_equal true
+    end
+
+    it "Raise an ArgumentError if user input invalid number" do
+      proc { @tile_bag.draw_tiles("random") }.must_raise ArgumentError
+      proc { @tile_bag.draw_tiles( -2 ) }.must_raise ArgumentError
+      proc { @tile_bag.draw_tiles( 100 ) }.must_raise ArgumentError
     end
   end
 
