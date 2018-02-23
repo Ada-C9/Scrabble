@@ -9,5 +9,19 @@ module Scrabble
     def plays
       return  @played_words
     end
+    def play(word)
+      @played_words << word
+      if @name.won?
+        return false
+      else
+        return Scrabble::Scoring.score(word)
+      end
+      return word
+
+    end
+
+    def won?
+
+    end
   end
 end

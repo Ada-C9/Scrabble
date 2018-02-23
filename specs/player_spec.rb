@@ -40,11 +40,19 @@ describe 'Player' do
       Scrabble::Player.new('').play(word).must_include 'batshit'
     end
 
-    xit 'returns false if player has already won' do
+    it 'returns false if player has already won' do
+      Scrabble::Player.new('').won?.must_equal false
 
     end
 
-    xit 'returns score of the word' do
+    it 'returns score of the word' do
+      word = "guano"
+      Scrabble::Player.new('').play(word)
+
+      Scrabble::Scoring.score(word).must_equal 7
+
+      # Scrabble::Player.new('').play(word).score(word).must_equal 7
+
 
     end
   end
