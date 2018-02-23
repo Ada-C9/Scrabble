@@ -49,20 +49,14 @@ module Scrabble
 # Returns true if the toal score is more than 100, otherwise returns false.
 
     def won?
-      if total_score > 100
-        return true
-      else
-        return false
-      end
+      total_score > 100 ? true : false
     end
 
 # ___________HIGHEST SCORING WORD METHOD________________
 # Returns the highest scoring played word.
 
     def highest_scoring_word
-
       return Scrabble::Scoring.highest_score_from(@plays)
-
     end
 
 # ______________HIGHEST WORD SCORE METHOD__________________

@@ -66,10 +66,7 @@ module Scrabble
       scoring_table = {}
 
       # Set the scores of each word:
-      array_of_words.each do |word|
-        score = score(word)
-        scoring_table["#{word}"] = score
-      end
+      array_of_words.each {|word| scoring_table["#{word}"] = score(word)}
 
       # Find the words with the maximu score between them:
       max = scoring_table.values.max
