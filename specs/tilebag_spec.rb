@@ -17,7 +17,6 @@ describe 'TileBag' do
     end
 
     it 'confirms correct number of tiles in tilebag' do
-
       tilebag.tiles.select { |tile| tile == 'A' }.length.must_equal 9
       tilebag.tiles.select { |tile| tile == 'B' }.length.must_equal 2
     end
@@ -26,11 +25,12 @@ describe 'TileBag' do
 
   describe '#draw_tiles(num)' do
     it 'returns a collection of random tiles' do
-    tilebag.draw_tiles(1).must_be_instance_of Array
-    tilebag.draw_tiles(0).length.must_equal AA
+      tilebag.draw_tiles(1).must_be_instance_of Array
+      tilebag.draw_tiles(0).length.must_be_empty
     end
     it "removes the tiles from the default set" do
-      tilebag.draw_tiles(5).length.must_equal 93
+      tilebag.draw_tiles(5)
+      tilebag.tiles_remaining.must_equal 93
     end
   end
 
