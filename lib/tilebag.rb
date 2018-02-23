@@ -24,6 +24,8 @@ module Scrabble
       return hand
     end
 
-    def
+    def tiles_remaining
+      return @tilebag.values.sum
+    end
   end
 end

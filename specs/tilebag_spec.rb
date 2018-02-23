@@ -25,14 +25,23 @@ describe 'TileBag' do
 
   describe 'draw_tiles' do
     it 'returns an array of random tiles' do
-
       @bag.draw_tiles(3).must_be_kind_of Array
       @bag.draw_tiles(3)[2].must_be_kind_of String
     end
 
     it 'removes drawn tiles from tile bag' do
-      @bag.draw_tiles(3)
-      new_total = @bag.tilebag.values.reduce(:+)
-      new_total.must_equal 96
+      old_total = @bag.tilebag.values.sum
+      removed = @bag.draw_tiles(3).length
+      new_total = @bag.tilebag.values.sum
+      new_total.must_equal (old_total - removed)
+    end
+  end
+
+  describe 'tiles_remaining' do
+    it 'returns the number of tiles remaining' do
+      @bag.draw_tiles(7)
+      remaining_tiles = @bag.tilebag.values.sum
+      @bag.tiles_remaining.must_equal remaining_tiles
+    end
   end
 end

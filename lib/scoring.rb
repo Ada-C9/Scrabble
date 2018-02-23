@@ -14,13 +14,13 @@ module Scrabble
     end
 
     def self.score(word)
-      if word =~ /\W/ || word.length > 7 || word.length == 0
+      word = word.to_s
+      if word =~ /\W/ || word =~ /[[:digit:]]/ || word.length > 7 || word.length == 0
         return nil
       end
 
       score = []
       word_array = word.downcase.split(//)
-
       word_array.each do |i|
         @@letters_hash.keys.each do |keys|
           if keys.include? i
@@ -40,7 +40,6 @@ module Scrabble
       end
 
       hash = {}
-
       array_of_words.each do |i|
         hash[i] = self.score(i)
       end
@@ -57,5 +56,6 @@ module Scrabble
         return max_score_words[0]
       end
     end
+
   end
 end

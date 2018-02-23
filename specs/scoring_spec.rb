@@ -4,7 +4,6 @@ require 'minitest/skip_dsl'
 
 require_relative '../lib/scoring'
 
-# Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
@@ -29,6 +28,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score('#$%^').must_be_nil
       Scrabble::Scoring.score('char^').must_be_nil
       Scrabble::Scoring.score(' ').must_be_nil
+      Scrabble::Scoring.score(20).must_be_nil
     end
 
     it 'returns nil for words > 7 letters' do

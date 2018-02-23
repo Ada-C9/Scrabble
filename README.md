@@ -96,7 +96,7 @@ The constructor for `Scrabble::Player` should take exactly one argument: the pla
     - Returns `false` if player has already won
     - Otherwise returns the score of the `word`
 - `#total_score`: Returns the sum of scores of played words
-- `#won?`: If the player has over 100 points, returns `true`, otherwise returns `false`
+- `#won?`:  If the player has over 100 points, returns `true`, otherwise returns `false`
 - `#highest_scoring_word`: Returns the highest scoring played word
 - `#highest_word_score`: Returns the `highest_scoring_word` score
 

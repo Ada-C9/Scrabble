@@ -11,7 +11,6 @@ describe 'Player' do
 
   before do
     @john = Scrabble::Player.new("John")
-
   end
 
   describe 'initialize' do
@@ -30,6 +29,8 @@ describe 'Player' do
   describe 'play' do
     it 'takes in a word' do
       @john.must_respond_to :play
+      @john.play("table").must_be_kind_of Integer
+      @john.play(20).must_be_nil
     end
 
     it 'word is added to play array' do
@@ -51,7 +52,6 @@ describe 'Player' do
   describe 'total_score' do
     it 'returns sum of played words' do
       @john.played_words.push("board", "cup")
-
       @john.total_score.must_equal 15
     end
   end
@@ -84,6 +84,14 @@ describe 'Player' do
     it 'returns the highest score played' do
       @john.played_words.push("cat", "zebra")
       @john.highest_word_score.must_equal 16
+    end
+  end
+
+  describe 'draw_tiles' do
+    it 'draws tiles from the tile bag' do
+      @john.draw_tiles("tiles").must_be_kind_of Array
+      @john.draw_tiles("tiles").length.must_be :<, 8
+      @john.draw_tiles("tiles").length.must_be :>, 0
     end
   end
 end
