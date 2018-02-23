@@ -20,11 +20,22 @@ describe 'TileBag' do
     end
   end
 
-  xdescribe 'draw_tiles' do
+  describe 'draw_tiles' do
     it 'returns a collection of random tiles' do
+      grab_bag = Scrabble::TileBag.new
+      collection_of_tiles = []
+
+      first_letter = grab_bag.draw_tiles
+      collection_of_tiles << first_letter
+
+      second_letter = grab_bag.draw_tiles
+      collection_of_tiles << second_letter
+
+      collection_of_tiles.must_equal [first_letter, second_letter]
+
     end
 
-    it 'removes used tiles from the default set' do
+    xit 'removes used tiles from the default set' do
     end
   end
 

@@ -5,9 +5,10 @@ require "awesome_print"
 
 module Scrabble
   class TileBag
-    attr_accessor :starting_tiles
+    attr_accessor :starting_tiles, :hand_of_tiles
 
     def initialize
+      @hand_of_tiles = []
       @starting_tiles = {
         A: 9, B: 2, C: 2, D: 4, E: 12, F: 2,
         G: 3, H: 2, I: 9, J: 1, K: 1, L: 4,
@@ -17,9 +18,20 @@ module Scrabble
       return @starting_tiles
     end
 
+    def draw_tiles
+      7.times do
+        tile = @starting_tiles.keys.sample
+        tile = tile.to_s
+        @hand_of_tiles.push(tile)
+      end
+
+      return @hand_of_tiles
+    end
+
 
   end
 end
 
-# first = Scrabble::TileBag.new
-# ap first
+
+first = Scrabble::TileBag.new
+ap first.draw_tiles
