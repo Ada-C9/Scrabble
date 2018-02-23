@@ -26,12 +26,14 @@ module Scrabble
         #
         # Else, if all the characters are valid letters, take the value
         # associated with the key and put that in an array of integers
-        
+
 
         if !character_check.include?(character) || @letters.length == 0 || @letters.length > 7
           return nil
+
         else
           values_of_letters << @all_letters.fetch(character)
+
         end
       end
 
@@ -48,26 +50,31 @@ module Scrabble
       return nil if array_of_words.length == 0
 
       if array_of_words.length == 1
-        return array_of_words.first
+        winning_word = array_of_words.first
 
       elsif array_of_words.length > 1
         array_of_words.each do |word|
           all_scores[word] = score(word)
+
+
+          max_score_words = all_scores.delete_if { |word, score| score != all_scores.values.max }.keys
+
+          if max_score_words.any? { |word| word.length == 7 }
+            winning_word = max_score_words.max_by(&:length)
+
+          elsif  max_score_words.all? { |word| word.length == word.length }
+            winning_word = max_score_words[0]
+
+          else
+            winning_word = max_score_words.min_by(&:length)
+
+          end
         end
+        return winning_word
+
       end
-
-      max_score_words = all_scores.delete_if { |word, score| score != all_scores.values.max }.keys
-
-      if max_score_words.any? { |word| word.length == 7 }
-        winning_word = max_score_words.max_by(&:length)
-      elsif  max_score_words.all? { |word| word.length == word.length }
-        winning_word = max_score_words[0]
-      else
-        winning_word = max_score_words.min_by(&:length)
-      end
-
-      return winning_word
-
     end
+
+
   end
 end
