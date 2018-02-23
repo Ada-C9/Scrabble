@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
+require 'pry'
 
 require_relative '../lib/player'
 
@@ -9,31 +10,34 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
 
-  describe '#new' do
+  describe 'new' do
     it 'returns the value of the @name instance variable' do
       jim = Scrabble::Player.new("Jim")
       jim.name.must_equal "Jim"
     end
   end
 
-  xdescribe '#plays' do
+  describe 'plays' do
     it 'returns an Array of the words played by the player' do
       jim = Scrabble::Player.new("Jim")
+      played_words = ["cat", "man", "trees"]
 
-      plays = ["cat", "man", "trees"]
-      plays.each do |word|
+      played_words.each do |word|
         jim.play(word)
       end
 
-      jim.plays.must_equal plays
+      jim.plays.must_equal ["cat", "man", "trees"]
     end
   end
 
-  xdescribe '#play(word)' do
-    xit "adds the input word to the plays Array"  do
-      Scrabble::Player.score('dog').must_equal 5
-      Scrabble::Player.score('DOG').must_equal 5
-      Scrabble::Player.score('DoG').must_equal 5
+  describe 'play' do
+    it "adds the input word to the plays Array"  do
+    jim = Scrabble::Player.new("Jim")
+    jim.play("apple")
+    jim.play("pear")
+    jim.play("rock")
+
+    jim.plays.must_equal ["apple", "pear", "rock"]
     end
   end
 

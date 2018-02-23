@@ -1,4 +1,6 @@
 require_relative '../lib/scoring'
+require 'pry'
+require "awesome_print"
 
 module Scrabble
   class Player
@@ -9,21 +11,24 @@ module Scrabble
       # @name = player name
       @name = name
       # @plays = array of words the player has played
-      @plays = []
+      @played_words = []
       # @total_score = total of scores for all words played by the player
       @total_score = 0
     end
 
+    def plays
+      return @played_words
+    end
+
     def play(word)
-      if won == true  # or just 'if won'
+      if won
         return false
+      else
+      @played_words.push(word)
       end
 
       word_score = Scrabble::Scoring.score(word)
-
-      @plays.push(word)
       @total_score += word_score
-
       return word_score
     end
 
@@ -34,16 +39,21 @@ module Scrabble
         return false
       end
     end
-
-    def highest_scoring_word
-      return Scrabble::Scoring.highest_score_from(@plays)
-    end
-
-    def highest_word_score
-      word = highest_scoring_word
-      score = Scrabble::Scoring.score(word)
-      return score
-    end
+    #
+    # def highest_scoring_word
+    #   return Scrabble::Scoring.highest_score_from(@plays)
+    # end
+    #
+    # def highest_word_score
+    #   word = highest_scoring_word
+    #   score = Scrabble::Scoring.score(word)
+    #   return score
+    # end
 
   end
 end
+
+sally = Scrabble::Player.new("Sally")
+sally.play("apple")
+sally.play("dolphin")
+ap sally.plays
