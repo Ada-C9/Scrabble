@@ -1,12 +1,11 @@
 module Scrabble
   class Player
-    @name = name
-
-    def name (name)
-      return name
+    def initialize(name)
+      @name = name
+      @played_words = []
     end
 
-    def plays (played_words)
+    def plays(played_words)
       return  played_words
     end
   end

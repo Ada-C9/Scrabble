@@ -14,7 +14,7 @@ describe 'Player' do
       #Arrange
       name = 'Gordon'
       #Act/Assert
-      Scrabble::Player.new.name(name).must_equal 'Gordon'
+      Scrabble::Player.new.name.must_equal 'Gordon'
     end
 
     xit '' do
@@ -24,8 +24,7 @@ describe 'Player' do
 
   describe 'play' do
     it 'it can return an array' do
-      played_words = []
-      Scrabble::Player.new.plays(played_words).must_be_instance_of Array
+      Scrabble::Player.new.plays(@played_words).must_be_instance_of Array
     end
 
     xit '' do
