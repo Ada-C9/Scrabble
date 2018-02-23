@@ -32,18 +32,20 @@ module Scrabble
 
       # Set the points for that word to initialize at zero and calculate the points of each word, adding them to the points variable:
       points = 0
+
       letters_array.each do |letter|
-        if letter == "Q" || letter == "Z"
+        case letter
+        when "Q", "Z"
           points += 10
-        elsif letter == "D" || letter == "G"
+        when "D", "G"
           points += 2
-        elsif letter =="B" || letter == "C" || letter =="M" || letter == "P"
+        when "B", "C", "M", "P"
           points += 3
-        elsif letter == "F" || letter == "H" || letter == "V" || letter == "W" || letter == "Y"
+        when "F", "H", "V", "W", "Y"
           points += 4
-        elsif letter == "K"
+        when "K"
           points += 5
-        elsif letter == "J" || letter == "X"
+        when "J", "X"
           points += 8
         else #"A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
           points += 1
