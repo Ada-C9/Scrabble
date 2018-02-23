@@ -18,33 +18,30 @@ module Scrabble
     def draw_tiles(num)
       all_tiles = []
       # array will return tiles to player. Needs much refactoring.
-      if num > tiles_remaining
-        return nil
-        #to account for test, returns nil if more tiles are drawn than tiles remain.
-      else
-        while all_tiles.length != num
-          new_tile = rand(@letters_bag_total.size)
-          i = 0
-          @letters_bag_total.each do |letter, total_tiles|
-            #Need to continue working on, this is becoming harder to read. TODO: REFACTOR!
-            # if the amount of tiles drawn(starting at 0) is the same as the amount of new tiles drawn,
-            if i == new_tile
-              #if the condition above, and the total tiles isnt 0, add the new tile (letter), to all of the tiles (all_tiles array)
-              if total_tiles != 0
-                all_tiles << letter
-                #Then subtract the letter from the tilebag, reducing the total amount of tiles by 1, and reducing the letter by one specifically from the letters.
-                @letters_bag_total[letter] = total_tiles - 1
-              else
-                new_tile = rand(@letters_bag_total.size)
-              end
+      return nil if num > tiles_remaining
+      #to account for test, returns nil if more tiles are drawn than tiles remain.
+      while all_tiles.length != num
+        new_tile = rand(@letters_bag_total.size)
+        i = 0
+        @letters_bag_total.each do |letter, total_tiles|
+          #Need to continue working on, this is becoming harder to read. TODO: REFACTOR!
+          # if the amount of tiles drawn(starting at 0) is the same as the amount of new tiles drawn,
+          if i == new_tile
+            #if the condition above, and the total tiles isnt 0, add the new tile (letter), to all of the tiles (all_tiles array)
+            if total_tiles != 0
+              all_tiles << letter
+              #Then subtract the letter from the tilebag, reducing the total amount of tiles by 1, and reducing the letter by one specifically from the letters.
+              @letters_bag_total[letter] = total_tiles - 1
+            else
+              new_tile = rand(@letters_bag_total.size)
             end
-            #increases the amount of tiles had by player plus one, each time a tile is drawn
-            i += 1
           end
+          #increases the amount of tiles had by player plus one, each time a tile is drawn
+          i += 1
         end
-        #returns array of all tiles to player
-        return all_tiles
       end
+      #returns array of all tiles to player
+      return all_tiles
     end
 
   end
