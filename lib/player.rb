@@ -6,12 +6,13 @@ require_relative 'scoring'
 module Scrabble
   class Player
 
-    attr_accessor :name, :player_words, :winner
+    attr_accessor :name, :player_words, :winner, :total_score
 
     def initialize(name)
       @name = name
       @player_words = []
       @winner = false
+      @total_score = total_score
     end
 
     # this method takes the input from the Player#play method and returns it as
@@ -40,6 +41,11 @@ module Scrabble
     # binding.pry
 
     def total_score
+      word_scores = player_words.map do |word|
+        Scrabble::Scoring.score(word)
+      end
+      @total_score = word_scores.inject(:+)
+      return @total_score
     end
 
     def won?

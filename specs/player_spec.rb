@@ -48,10 +48,23 @@ describe 'Player' do
       word_2 = "frog"
       player_1 = Scrabble::Player.new("Hannah")
       player_1.winner = true
-      
+
       player_1.play(word_2).must_equal false
     end
 
   end
-
+ describe 'total_score' do
+   it "correctly returns the sum of scores of played words" do
+   word_1 = "cat"
+   word_2 = "dog"
+   word_3 = "frog"
+   word_4 = "house"
+   player_1 = Scrabble::Player.new("Luxi")
+   player_1.play(word_1)
+   player_1.play(word_2)
+   player_1.play(word_3)
+   player_1.play(word_4)
+   player_1.total_score.must_equal 26
+ end
+ end
 end
