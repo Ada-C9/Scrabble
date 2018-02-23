@@ -20,6 +20,9 @@ module Scrabble
       end
 
       word_score = Scrabble::Scoring.score(word)
+      if (word_score == nil)
+        return nil
+      end
 
       @plays.push(word)
       @total_score += word_score
