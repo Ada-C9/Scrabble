@@ -76,7 +76,6 @@ describe 'Scoring' do
       tied_words = ['zebra','qebra']
       tied_values = Scrabble::Scoring.highest_score_from(tied_words)
       tied_values.must_equal 'zebra'
-
     end
   end
 end
