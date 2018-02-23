@@ -10,7 +10,8 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 describe 'Player' do
   describe 'name' do
     it 'returns the value of the @name instance variable' do
-      Scrabble::Player.name("Ada").must_equal "Ada"
+      ada = Scrabble::Player.new("Ada")
+      Scrabble::Player.ada.name.must_equal "Ada"
     end
   end #ends describe 'name' do
 
