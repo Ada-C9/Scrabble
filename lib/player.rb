@@ -18,7 +18,8 @@ module Scrabble
 
     def draw_tiles(tile_bag)
       # @tiles << super(7 - @tiles.count)
-      @tiles << super(7 - @tiles.count)
+      amount = 7 - @tiles.count
+      @tiles << tile_bag.draw_tiles(amount)
     end
 
     def play(word)
