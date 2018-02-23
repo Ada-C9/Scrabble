@@ -18,7 +18,6 @@ describe 'Player' do
 
       @player.must_respond_to :name
       @player.name.must_equal "kate"
-
     end
 
     it "Creates a player with an Array of played words" do
@@ -65,6 +64,7 @@ describe 'Player' do
     end
 
     it 'returns nil for words containing bad characters' do
+
       @player.play('#$%^').must_be_nil
       @player.play('char^').must_be_nil
       @player.play(' ').must_be_nil
@@ -115,6 +115,7 @@ describe 'Player' do
     end
 
     it "it allows the player to play max 7" do
+      
       @player.tiles.length.must_equal 7
     end
 

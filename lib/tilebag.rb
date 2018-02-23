@@ -40,6 +40,7 @@ module Scrabble
 
         @tiles << letters # creates an array of an array
       end
+
       @tiles = @tiles.flatten # makes the multidimensional array into a single array
 
       return @tiles

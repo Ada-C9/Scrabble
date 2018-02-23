@@ -13,6 +13,7 @@ describe 'Tilebag' do
   end
   describe '#initialize Method' do
     it "should be an instance of tilebag" do
+      
       @tilebag.must_respond_to :tiles
       @tilebag.must_be_instance_of Scrabble::Tilebag
     end
