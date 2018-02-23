@@ -11,7 +11,7 @@ describe 'TileBag' do
   describe 'initialize' do
     it 'correctly initializes a bag of tiles' do
       game_1 = Scrabble::TileBag.new
-      game_1.tile_bag[2].must_equal "C" => 2
+      game_1.tile_bag["C"].must_equal 2
     end
   end
 
@@ -28,18 +28,23 @@ describe 'TileBag' do
       draw_1 = game_1.draw_tiles(3)
       sum = 0
 
-      game_1.tile_bag.each do |hash|
-        hash.each do |letter, amount|
+      game_1.tile_bag.each do |letter, amount|
           sum += amount
-        end
       end
 
       sum.must_equal 95
     end
 
-    describe 'tiles_remaining' do
-      it '' do
+    xit 'edgecase test' do
+    end
 
+    describe 'tiles_remaining' do
+      it 'returns number of tiles remaining in bag' do
+        game_1 = Scrabble::TileBag.new
+        sum_control = 98
+        draw_1 = game_1.draw_tiles(7)
+
+        game_1.tiles_remaining.must_equal 91
       end
     end
 
