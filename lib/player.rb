@@ -32,28 +32,34 @@ module Scrabble
       return word_score
     end
 
+    def total_score
+      return @total_score
+    end
+
     def won
-      if @total_score > 100
-        return true
-      else
+      if @total_score < 100
         return false
+      else
+        return true
       end
     end
-    #
-    # def highest_scoring_word
-    #   return Scrabble::Scoring.highest_score_from(@plays)
-    # end
-    #
-    # def highest_word_score
-    #   word = highest_scoring_word
-    #   score = Scrabble::Scoring.score(word)
-    #   return score
-    # end
+
+    def highest_scoring_word
+      return Scrabble::Scoring.highest_score_from(@played_words)
+    end
+
+    def highest_word_score
+      word = highest_scoring_word
+      score = Scrabble::Scoring.score(word)
+      return score
+    end
 
   end
 end
 
-sally = Scrabble::Player.new("Sally")
-sally.play("apple")
-sally.play("dolphin")
-ap sally.plays
+# sally = Scrabble::Player.new("Sally")
+# sally.play("apple")
+# sally.play("dolphin")
+# sally.play("xxxxxxx")
+# ap sally.plays
+# ap sally.won
