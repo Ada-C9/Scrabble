@@ -18,7 +18,7 @@ describe "Player" do
   describe "#plays" do
     it 'returns an array of words played by player' do
       player = Scrabble::Player.new("kiera")
-      result = Scrabble::Player.plays(player)
+      result = player.plays
 
       result.must_be_kind_of Array
     end
@@ -31,11 +31,19 @@ describe "Player" do
   describe "#play(word)" do
     it "adds input word to the plays Array" do
       player = Scrabble::Player.new("kiera")
-      player.plays = []
       player.play("word")
 
       player.plays.must_equal ["word"]
 
     end
-end
+  end
+  describe "#total_score" do
+    it "Returns the sum of scores of played words" do
+      player = Scrabble::Player.new("player")
+      player.play("dog")
+      player.play("fish")
+
+      player.total_score.must_equal 15
+    end
+  end
 end

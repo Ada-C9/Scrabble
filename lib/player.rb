@@ -3,7 +3,7 @@ require_relative '../lib/scoring'
 
 module Scrabble
   class Player
-    attr_accessor :name, :plays
+    attr_accessor :name
 
     def initialize(name)
       @name = name
@@ -11,17 +11,35 @@ module Scrabble
     end # initialize
 
     def plays
-      return
+      return @plays
     end
 
     def play(word)
+      if won?
+        return false
+      else
+        @plays << word
+        return Scrabble::Scoring.score(word)
+      end
+    end
 
-      word.score
-      <<
+    def won?
+      return false
+    end
+
+    def total_score
+      points = 0
+      @plays.each do |word|
+        word_score = Scrabble::Scoring.score(word)
+        points += word_score
+      end
+      return points
     end
 
   end # class player
 
 end # module
 player = Scrabble::Player.new("Sam")
-puts player.name
+player.play("word")
+player.play("dog")
+puts player.total_score

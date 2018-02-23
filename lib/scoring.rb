@@ -101,5 +101,5 @@ end # Scrabble module
       # score_tracker.each {|k,v|return k if v == score_tracker.values.max}
 
 
-array_of_words = ["dog", "if"]
-puts Scrabble::Scoring.highest_score_from(array_of_words)
+# array_of_words = ["dog", "if"]
+# puts Scrabble::Scoring.highest_score_from(array_of_words)
