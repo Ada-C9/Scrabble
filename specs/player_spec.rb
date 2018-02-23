@@ -15,5 +15,9 @@ describe 'player' do
     @player.must_be_instance_of Scrabble::Player
     end
 
+    it "must returns the value of the @name instance variable" do
+    @player.name.must_equal "Maddie"
+    end
+
   end
 end
