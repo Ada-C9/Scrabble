@@ -44,9 +44,10 @@ module Scrabble
     end
 
     def draw_tiles(tilebag)
-      # until @tiles.length == MAX_WORD_LENGTH
-        (@tiles << (tilebag.draw_tiles(MAX_WORD_LENGTH - @tiles.length))).flatten
-      # end
+      new_tiles = tilebag.draw_tiles(MAX_WORD_LENGTH - @tiles.length)
+      new_tiles.each do |tile|
+        @tiles << tile
+      end
     end
   end
 end

@@ -134,4 +134,4 @@ describe 'class player' do
 
 end
 
-binding.pry
+# binding.pry
