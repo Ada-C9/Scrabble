@@ -4,7 +4,7 @@ require_relative '../lib/tilebag'
 module Scrabble
   class Player
 
-    attr_reader :name, :player_score, :plays
+    attr_reader :name, :player_score, :plays, :tiles
 
     def initialize(player_name)
       @name = player_name
@@ -61,6 +61,7 @@ module Scrabble
 
     # tile_bag is an instance of the class TileBag
     # there is one instance for each game of Scrabble
+    
     def draw_tiles(tile_bag)
 
       until @tiles.length == 7

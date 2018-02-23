@@ -3,6 +3,7 @@ require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
 require_relative '../lib/player'
+require_relative '../lib/tilebag'
 
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -17,6 +18,18 @@ describe 'Player' do
       player.must_respond_to :name
       player.name.must_equal "Ari"
       player.name.must_be_kind_of String
+    end
+
+    it 'saves other instance variables' do
+      player_name = "Ari"
+
+      player = Scrabble::Player.new(player_name)
+
+      player.player_score.must_equal 0
+      player.plays.must_be_kind_of Array
+      player.plays.empty?.must_equal true
+      player.tiles.must_be_kind_of Array
+      player.tiles.empty?.must_equal true
     end
   end
 
@@ -83,6 +96,7 @@ describe 'Player' do
       player.plays.must_equal ['oxyphenbutazone']
     end
   end
+
 # testing the players score
   describe 'running score as player_score' do
     it 'calculates score with one play' do
@@ -147,52 +161,87 @@ describe 'Player' do
       player.play('an')
       player.won?.must_equal false
     end
+  end
 
-    describe 'highest scoring word' do
-      it 'returns the highest scoring word with one word' do
-        player = Scrabble::Player.new("Ari")
-        player.play('cat')
-        player.highest_scoring_word.must_equal 'cat'
-      end
-      it 'returns the highest scoring word with multiple words' do
-        player = Scrabble::Player.new("Ari")
-        player.play('cat')
-        player.play('mouse')
-        player.play('dog')
-        player.highest_scoring_word.must_equal "mouse"
+  describe 'highest scoring word' do
+    it 'returns the highest scoring word with one word' do
+      player = Scrabble::Player.new("Ari")
+      player.play('cat')
+      player.highest_scoring_word.must_equal 'cat'
+    end
+    it 'returns the highest scoring word with multiple words' do
+      player = Scrabble::Player.new("Ari")
+      player.play('cat')
+      player.play('mouse')
+      player.play('dog')
+      player.highest_scoring_word.must_equal "mouse"
 
-      end
-      it 'returns the highest scoring word with no valid words' do
-        player = Scrabble::Player.new("Ari")
-        player.play('oxyphenbutazone')
-        player.highest_scoring_word.must_equal nil
-      end
+    end
+    it 'returns the highest scoring word with no valid words' do
+      player = Scrabble::Player.new("Ari")
+      player.play('oxyphenbutazone')
+      player.highest_scoring_word.must_equal nil
+    end
+  end
+
+  describe 'highest word score' do
+    it 'returns score from the highest scoring word with one word' do
+      player = Scrabble::Player.new("Ari")
+      player.play('cat')
+      player.highest_word_score.must_equal 5
 
     end
 
-    describe 'highest word score' do
-      it 'returns score from the highest scoring word with one word' do
-        player = Scrabble::Player.new("Ari")
-        player.play('cat')
-        player.highest_word_score.must_equal 5
+    it 'returns score from the highest scoring word with multiple words' do
+      player = Scrabble::Player.new("Ari")
+      player.play('cat')
+      player.play('mouse')
+      player.play('dog')
+      player.highest_word_score.must_equal 7
 
-      end
-
-      it 'returns score from the highest scoring word with multiple words' do
-        player = Scrabble::Player.new("Ari")
-        player.play('cat')
-        player.play('mouse')
-        player.play('dog')
-        player.highest_word_score.must_equal 7
-
-      end
-
-      it 'returns score from the highest scoring word with no valid words' do
-        player = Scrabble::Player.new("Ari")
-        player.play('oxyphenbutazone')
-        player.highest_word_score.must_equal 0
-
-      end
     end
+
+    it 'returns score from the highest scoring word with no valid words' do
+      player = Scrabble::Player.new("Ari")
+      player.play('oxyphenbutazone')
+      player.highest_word_score.must_equal 0
+    end
+  end
+
+  describe 'draw_tiles function to get player tiles' do
+    it 'confirms the player gets 7 tiles to start' do
+      our_bag = Scrabble::Tilebag.new
+      player = Scrabble::Player.new("Ari")
+      player.tiles.length.must_equal 0
+      player.draw_tiles(our_bag)
+      player.tiles.length.must_equal 7
+    end
+
+    it 'confirms the player gets no more than 7 times' do
+      our_bag = Scrabble::Tilebag.new
+      player = Scrabble::Player.new("Ari")
+      # first draw
+      player.draw_tiles(our_bag)
+      # second draw
+      player.draw_tiles(our_bag)
+      player.tiles.length.must_equal 7
+    end
+
+    it 'confirms the player gets extra tiles with small amount in hand' do
+      our_bag = Scrabble::Tilebag.new
+      player = Scrabble::Player.new("Ari")
+      player.tiles.length == 1
+      player.draw_tiles(our_bag)
+      player.tiles.length.must_equal 7
+    end
+
+    it 'confirms the player gets extra tiles with large amount in hand' do
+      our_bag = Scrabble::Tilebag.new
+      player = Scrabble::Player.new("Ari")
+      player.tiles.length == 5
+      player.draw_tiles(our_bag)
+      player.tiles.length.must_equal 7
+    end
+
   end
 end

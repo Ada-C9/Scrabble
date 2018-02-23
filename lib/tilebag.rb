@@ -21,7 +21,6 @@ module Scrabble
 
       end
 
-
       def draw_tiles(num)
 
         if @tiles_remaining >= num
