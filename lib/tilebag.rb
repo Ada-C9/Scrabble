@@ -36,7 +36,7 @@ module Scrabble
 
       @tiles = []
       tiles_hash.each do |letter, quanity|
-        letters = quanity.map { letter } # creates an array of the number of letters e.g ["b","b"]
+        letters = (1..quanity).collect { letter } # creates an array of the number of letters e.g ["b","b"]
 
         @tiles << letters # creates an array of an array
       end

@@ -20,6 +20,7 @@ describe 'Tilebag' do
     it "should include a collection of default tiles" do
 
     @tilebag.tiles.must_be_kind_of Array
+    @tilebag.tiles.length.must_equal 98
     end
   end
 
