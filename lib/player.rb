@@ -1,5 +1,6 @@
 require_relative "./scoring.rb"
 
+module Scrabble
 class Player
 
   attr_reader :name
@@ -10,14 +11,8 @@ class Player
   def initialize(name)
     @name = name
     @plays = []
-    @won = false
+    # @won = false
   end
-
-  # WE DON'T NEED THIS METHOD!!!
-  # plays: returns an Array of the words played by the player
-  # def plays
-  # end
-
 
   # Adds the input word to the plays Array
   # Returns false if player has already won
@@ -29,32 +24,22 @@ class Player
     Scoring.score(word)
   end
 
-
   # total_score: Returns the sum of scores of played words
   def total_score
+    p @plays
     scores = @plays.map do |word|
+      puts "Scoring word: #{word.inspect}"
       Scoring.score(word)
     end
+    p scores
+    p scores.sum.class
     return scores.sum
   end
-  #
-  #
-  #   # this method interacts with play method
-  #
-  #   # output score for loser
-  #
-  #   # output score for winner
-  #
-  # end
-  #
-  #
-  # #won?: If the player has over 100 points, returns true, otherwise returns false
+
   def won?
     return total_score > 100
   end
-  #
-  #
-  # #highest_scoring_word: Returns the highest scoring played word
+
   def highest_scoring_word
     Scoring.highest_score_from
   end
@@ -68,13 +53,11 @@ class Player
 
 
 end # class Player
+end
 
-# The constructor for Scrabble::Player should take exactly one argument: the player's name. Instances of the class should respond to the following messages:
 
-# Returns false if player has already won
-# Otherwise returns the score of the word
-#
-#
 
-ada = Player.new("Ada")
-puts ada
+
+
+
+# puts ada
