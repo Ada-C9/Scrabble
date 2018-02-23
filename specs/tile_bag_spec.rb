@@ -23,7 +23,10 @@ describe "TileBag" do
         tile_bag = Scrabble::TileBag.new
 
         tile_bag.draw_tiles(3).must_be_kind_of Array
-        # tile_bag.draw_tiles(3).must_include.any  "a" || "b" || "c"
+        all_letters = tile_bag.draw_tiles(3).all? { |letter| letter.class == String }
+
+        all_letters.must_equal true
+
         tile_bag.draw_tiles(3).length.must_equal 3
 
       end
