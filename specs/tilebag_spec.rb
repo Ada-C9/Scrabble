@@ -26,7 +26,8 @@ describe 'TileBag' do
   describe '#draw_tiles(num)' do
     it 'returns a collection of random tiles' do
       tilebag.draw_tiles(1).must_be_instance_of Array
-      tilebag.draw_tiles(0).length.must_be_empty
+      tilebag.draw_tiles(0).length.must_equal 0 
+
     end
     it "removes the tiles from the default set" do
       tilebag.draw_tiles(5)

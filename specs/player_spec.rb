@@ -3,6 +3,7 @@ require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
 require_relative '../lib/player'
+require 'pry'
 
 describe "Scrabble Player" do
   let(:player) { Scrabble::Player.new("Anonymous")}
@@ -112,6 +113,25 @@ describe "Scrabble Player" do
 
     player.highest_word_score.must_equal 10
   end
-
 end
+
+  describe "#draw_tiles(tile_bag) method" do
+    let(:tilebag) {Scrabble::TileBag.new}
+
+    it "Fills tiles array until it has 7 letters from the given tile bag" do
+      player.draw_tiles(tilebag)
+      player.tiles.length.must_equal 7
+    end
+
+    it "Fills tiles array, after player uses the tiles" do
+      player.draw_tiles(tilebag)
+      word = player.tiles.join
+      player.play(word)
+      player.tiles.length.must_equal 0
+
+      player.draw_tiles(tilebag)
+      player.tiles.length.must_equal 7
+    end
+  end
+
 end
