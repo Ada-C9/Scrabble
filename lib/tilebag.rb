@@ -41,7 +41,9 @@ POSSIBLE_LETTERS = {
     def draw_tiles(num)
       drawn_tiles = []
       num.times do
-        drawn_tiles << @all_tiles.sample
+        chosen_tile = @all_tiles.sample
+        @all_tiles.delete_at(@all_tiles.index chosen_tile)
+        drawn_tiles << chosen_tile
       end
       return drawn_tiles
     end
@@ -49,5 +51,3 @@ POSSIBLE_LETTERS = {
 
   end
 end
-
-binding.pry

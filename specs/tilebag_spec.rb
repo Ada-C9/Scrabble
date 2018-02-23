@@ -21,5 +21,13 @@ describe 'tilebag class' do
       new_bag.draw_tiles(3).must_be_kind_of Array
       new_bag.draw_tiles(3).length.must_equal 3
     end
+
+    it 'removes the drawn tiles from the collection of all tiles' do
+      new_bag = Scrabble::TileBag.new
+      tiles_left = new_bag.all_tiles.length
+      new_bag.draw_tiles(3)
+      new_bag.all_tiles.length.must_equal tiles_left - 3
+
+    end
   end
 end
