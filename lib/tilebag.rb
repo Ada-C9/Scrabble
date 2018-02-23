@@ -33,7 +33,10 @@ module Scrabble
         "y" => 2,
         "z" => 1
       }
+    end
 
+    def draw_tiles(num)
+      @tiles.keys.sample(num)
     end
   end
 end
