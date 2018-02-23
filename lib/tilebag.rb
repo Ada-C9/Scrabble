@@ -2,7 +2,7 @@ require 'awesome_print'
 
 module Scrabble
   class Tilebag
-    attr_reader :tiles
+    attr_reader :tiles, :drawn_tiles
 
     def initialize
       tiles_hash = {
@@ -46,12 +46,15 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      @tiles.sample(num)
+      @drawn_tiles = @tiles.sample(num)
+      @tiles.delete(@drawn_tiles)
+
+      return @drawn_tiles
     end
 
-    def remove_tiles
-      # loop through the draw_tiles array
-      # with each letter, find the matching key and remove value
+    def tiles_remaining
+     @tiles.length - @drawn_tiles.length
     end
+
   end
 end
