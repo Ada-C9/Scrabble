@@ -1,4 +1,4 @@
-# Scrabble
+<!-- # Scrabble
 
 ## At a Glance
 
@@ -44,7 +44,7 @@ Utilize good pair programming practices. Refer to articles from the [Agile Allia
 1. Both individuals `cd` into the dir created.
 <!-- 1. Both individuals install needed tools via Terminal: `$ gem install simplecov` -->
 
-### Requirements
+<!-- ### Requirements
 #### Pair Plan
 First, come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a "plan of action" for your implementation.
 
@@ -80,9 +80,9 @@ Complete the `Scrabble::Scoring` class with __full unit testing/specs__. All pro
     - It’s better to use fewer tiles, in the case of a tie, prefer the word with the fewest letters.
     - There is a bonus for words that are seven letters. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
     - If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
-    - Tests for this logic are _stubbed_, meaning the test has a name but no code written. You will have to implement them as you work on this method.
+    - Tests for this logic are _stubbed_, meaning the test has a name but no code written. You will have to implement them as you work on this method. --> -->
 
-<!-- ## Wave 2
+## Wave 2
 ### Primary Requirements
 For waves 2 and 3, you are given no starter code. You and your pair will have to create all files and classes and write all the tests yourselves.
 

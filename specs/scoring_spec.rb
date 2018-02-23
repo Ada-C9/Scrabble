@@ -42,7 +42,6 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
-
       Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
 
