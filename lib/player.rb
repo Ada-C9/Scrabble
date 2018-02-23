@@ -23,9 +23,8 @@ module Scrabble
 
 
     def play(word)
-      has_won = true
-      if has_won == true
-        puts "You've already won."
+      if won? == true
+
         return false
       else
         a = Scrabble::Scoring.score(word)
@@ -69,26 +68,28 @@ module Scrabble
 
     end
 
-    # def highest_word_score
-    #   word_scores = []
-    #
-    #   @words_played.each do |word|
-    #     score = Scrabble::Scoring.score(word)
-    #     word_scores << score
-    #   end
-    #
-    #   return word_scores.max
-    # end
+    def highest_word_score
+      word_scores = []
+
+      @words_played.each do |word|
+        score = Scrabble::Scoring.score(word)
+        word_scores << score
+      end
+
+      return word_scores.max
+    end
 
   end # class
 end # module
 
 player1 = Scrabble::Player.new('player1')
 
-player1.plays('pie')
-player1.plays( 'zzzzzzzzzzzzzzzzzzzz')
-player1.highest_scoring_word
-
+#player1.play('pie')
+player1.play( 'zzzzzzzzzzzzzzzzzzzz')
+player1.play('pie')
+#player1.highest_scoring_word
+#player1.highest_word_score
+#player1.play('pie')
 # player2 = Scrabble::Player.new('player2')
 # player2.plays('cake')
 #
