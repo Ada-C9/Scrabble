@@ -12,7 +12,6 @@ module Scrabble
     def initialize(name)
       @name = name
       @plays = []
-      @scoring_table = {}
       @tiles= []
     end
 
