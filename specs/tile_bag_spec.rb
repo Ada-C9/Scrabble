@@ -36,17 +36,12 @@ describe 'TileBag' do
         tile.must_be_kind_of String
       end
 
-
-
     end
 
     it 'removes tiles from the default set' do
       turn = Scrabble::TileBag.new
-
       turn.draw_tiles(7)
       turn.tiles_remaining.must_equal 91
-
-
     end
 
   end
