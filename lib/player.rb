@@ -16,7 +16,6 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
-
       @tiles = tile_bag.draw_tiles(7 - @tiles.count)
       return @tiles
     end
