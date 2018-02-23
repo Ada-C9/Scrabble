@@ -4,6 +4,7 @@ require 'pry'
 module Scrabble
   class Player
     attr_reader :name, :total_score, :tiles
+    attr_writer :tiles
 
     def initialize(name)
       @name = name
@@ -17,12 +18,23 @@ module Scrabble
     end
 
     def play(word)
-      @plays << word
-      if @total_score > 100
-        return false
+      throwaway = word.chars
+      @tiles.each do |tile|
+        throwaway.each do |letter|
+          throwaway.delete_at(throwaway.index letter) if tile == letter
+        end
+      end
+      if throwaway.length == 0
+      # if word.chars.all? {|chr| @tiles.include?(chr)}
+        @plays << word
+        if @total_score > 100
+          return false
+        else
+          @total_score += Scoring.score(word)
+          return Scoring.score(word)
+        end
       else
-        @total_score += Scoring.score(word)
-        return Scoring.score(word)
+        return false
       end
     end
 

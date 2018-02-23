@@ -25,7 +25,9 @@ describe 'class player' do
 
     it 'must return accurate words' do
       new_player = Scrabble::Player.new("Tor")
+      new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play('giraffe')
       new_player.plays.must_equal ['qqqqq','giraffe']
     end
@@ -35,7 +37,7 @@ describe 'class player' do
     it 'takes in a string as input' do
       new_player = Scrabble::Player.new("Tor")
       before_played = new_player.plays.length
-
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play("giraffe")
       after_played = new_player.plays.length
       after_played.must_equal before_played + 1
@@ -43,8 +45,11 @@ describe 'class player' do
 
     it 'returns false if player has already won' do
       new_player = Scrabble::Player.new("Tor")
+      new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play('giraffe')
+      new_player.tiles = %w[a s d]
       new_player.play('asd').must_equal false
     end
 
@@ -53,15 +58,29 @@ describe 'class player' do
       score = 64
 
       new_player = Scrabble::Player.new("Angela")
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play(word).must_equal score
     end
 
+    it 'can only allow a word comprised of letters from available tiles' do
+      new_player = Scrabble::Player.new("Tor")
+      new_player.tiles = %w[z d e o l]
+      new_player.play("giraffe").must_equal false
+    end
+
+    it 'accounts for accounts for double letters in played word' do
+      new_player = Scrabble::Player.new("Angela")
+      new_player.tiles = %w[c a t l e r]
+      new_player.play("cattle").must_equal false
+    end
   end
 
   describe 'Scrabble::Player.total_score' do
     it 'returns the sum of scores of played words' do
       new_player = Scrabble::Player.new("Angela")
+      new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play('giraffe')
       new_player.total_score.must_equal 114
     end
@@ -70,8 +89,10 @@ describe 'class player' do
   describe 'Scrabble::Player.won?' do
     it 'returns false until player has over 100 points' do
       new_player = Scrabble::Player.new("Angela")
+      new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
       new_player.won?.must_equal false
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play('giraffe')
       new_player.won?.must_equal true
     end
@@ -81,7 +102,9 @@ describe 'class player' do
     describe 'Scrabble::Player.won?' do
       it 'returns false until player has over 100 points' do
         new_player = Scrabble::Player.new("Angela")
+        new_player.tiles = ["q", "q", "q", "q", "q"]
         new_player.play('qqqqq')
+        new_player.tiles = %w[z z z z z]
         new_player.play('zzzzz')
         new_player.won?.must_equal false
       end
@@ -90,8 +113,11 @@ describe 'class player' do
   describe 'Scrabble::Player.highest_scoring_word' do
     it 'returns the highest scoring played word' do
       new_player = Scrabble::Player.new("Tor")
+      new_player.tiles = %w[b a b o o n]
       new_player.play("baboon")
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play("giraffe")
+      new_player.tiles = %w[c a t]
       new_player.play("cat")
 
       new_player.highest_scoring_word.must_equal "giraffe"
@@ -101,8 +127,11 @@ describe 'class player' do
   describe 'Scrabble::Player.highest_word_score' do
     it 'returns the highest scoring word score' do
       new_player = Scrabble::Player.new("Angela")
+      new_player.tiles = %w[b a b o o n]
       new_player.play("baboon")
+      new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
       new_player.play("giraffe")
+      new_player.tiles = %w[c a t]
       new_player.play("cat")
 
       new_player.highest_word_score.must_equal 64
@@ -134,9 +163,8 @@ describe 'class player' do
       tilebag = Scrabble::TileBag.new
       tilebag.draw_tiles(96)
       new_player.draw_tiles(tilebag)
-      print new_player.tiles
-    end
 
+    end
   end
 
 end
