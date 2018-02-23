@@ -41,6 +41,12 @@ describe 'Player' do
 
   describe '#play(word)' do
 
+    it "returns 0 for empty strings and inappropriate characters" do
+       debbie = Scrabble::Player.new("debbie")
+       debbie.play('').must_equal 0
+       debbie.play('$%.982').must_equal 0
+    end
+
     it "adds the input word to the plays Array" do
       maria = Scrabble::Player.new("maria")
       maria.play("academy")

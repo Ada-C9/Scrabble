@@ -14,11 +14,14 @@ module Scrabble
     end
 
     def play(word)
+      score = Scrabble::Scoring.score(word)
       if self.won?
         return false
+      elsif score.nil?
+        return 0
       else
         @plays << word
-        return Scrabble::Scoring.score(word)
+        return score
       end
     end
 
