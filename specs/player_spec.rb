@@ -21,10 +21,14 @@ describe 'Player' do
 
   end
 
-  xdescribe 'plays' do
+  describe 'plays' do
 
     it 'correctly returns an array of the words played by the player' do
-      Scrabble::Player.new("Hannah").plays.must_be Array
+      word = "cat"
+      player_1 = Scrabble::Player.new(word)
+      scrabble_word = player_1.plays
+
+      scrabble_word.must_be_kind_of Array
     end
 
   end
@@ -32,11 +36,20 @@ describe 'Player' do
   describe 'play(word)' do
 
     it 'correctly adds the inputs words to the array in plays' do
-      word = "cat"
+      word = "dog"
       player_1 = Scrabble::Player.new("Hannah")
       scrabble_word = player_1.play(word)
 
-      scrabble_word.must_equal ["cat"]
+      scrabble_word.must_equal ["dog"]
+    end
+
+    xit 'correctly returns false if player has already won' do
+      word_1 = "cat"
+      word_2 = "frog"
+      player_1 = Scrabble::Player.new("Hannah")
+      scrabble_word = player_1.play(word)
+
+      scrabble_word.must_equal false
     end
 
   end

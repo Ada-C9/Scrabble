@@ -1,6 +1,8 @@
 require 'awesome_print'
 require 'pry'
 
+require_relative 'scoring'
+
 module Scrabble
   class Player
 
@@ -11,14 +13,18 @@ module Scrabble
       @player_words = []
     end
 
+    # this method takes the input from the Player#play method and returns it as
+    # an array
     def plays
       return @player_words
     end
 
-    def play(word)
-      @player_words << word
-      return @player_words
+    # this method takes the user input and pushes the input into the player_words
+    # array
+    def play(player_input)
+      @player_words << player_input
     end
+    # binding.pry
 
     def total_score
     end
@@ -34,3 +40,10 @@ module Scrabble
 
   end # End of Player class
 end # End of Scrabble module
+
+
+
+test_chart = Scrabble::Player.new("Hannah")
+test_chart.play("cat")
+test_chart.play("frog")
+ap test_chart.play("eleven")
