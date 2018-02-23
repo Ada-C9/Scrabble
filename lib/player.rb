@@ -1,3 +1,6 @@
+require_relative '../lib/tilebag'
+
+
 module Scrabble
   class Player
 
@@ -7,6 +10,7 @@ module Scrabble
       @name = player_name
       @player_score = 0
       @plays = []
+      @tiles = []
     end
 
 
@@ -23,24 +27,8 @@ module Scrabble
       return score
     end
 
-    # def play(word)
-    #   if @player_score >= 100
-    #     return false
-    #   end
-    #
-    #   score = Scrabble::Scoring.score(word)
-    #
-    #   unless score.nil?
-    #     @plays << word
-    #     @player_score += score
-    #   end
-    #
-    #   return score
-    # end
-
     def won?
         @player_score > 100 ? true : false
-
     end
 
     def highest_scoring_word
@@ -69,6 +57,17 @@ module Scrabble
         end
       end
       return max
+    end
+
+    # tile_bag is an instance of the class TileBag
+    # there is one instance for each game of Scrabble
+    def draw_tiles(tile_bag)
+
+      until @tiles.length == 7
+        new_tile = tile_bag.draw_tiles(1)
+        @tiles << new_tile
+      end
+
     end
 
   end
