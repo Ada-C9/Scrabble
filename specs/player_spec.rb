@@ -91,19 +91,52 @@ describe 'Player' do
 
       Scrabble::Player.new.tiles.length.must_be:<,8
 
+      Scrabble::Player.new.tiles.each do |letter|
+        letter.must_be_kind_of String
+      end
+
     end
   end
 
 
 
   describe "draw_tiles(tile_bag)" do
-    #a_player = Scrabble::Player.new("Kamaji")
+    before do
+    @a_player = Scrabble::Player.new("Kamaji")
+    end
+    #binding.pry
 
     it 'fills tile array until it has 7 letters from tile bag' do
+      bag = Scrabble::TileBag.new
+    #@a_player.tile_bag
+
+      @a_player.draw_tiles(bag)
+      #binding.pry
+
+      @a_player.tiles.length.must_equal 7
 
     end
   end
 
+  xdescribe "game test" do
+
+    it 'plays the game based on our code' do
+
+      kamaji = Scrabble::Player.new("Kamaji")
+
+      kamaji.draw_tiles(kamaji.tile_bag)
+
+      kamaji.play("cat")
+
+      kamaji.tiles
+
+      #binding.pry
+
+
+
+    end
+
+  end
 
 
 
