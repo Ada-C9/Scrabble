@@ -43,6 +43,8 @@ class TileBag
       print letter_frequency[0]
       @tile_bag[letter_frequency[0]] -=1
     end
+
+    return drawn_tiles
   end
 
   def tiles_remaining
@@ -55,12 +57,12 @@ class TileBag
   end
 end
 
-# game_1_tiles = TileBag.new
-# game_1_tiles.draw_tiles(7)
-# puts game_1_tiles.tile_bag
+game_1_tiles = TileBag.new
+game_1_tiles.draw_tiles(7)
+puts game_1_tiles.tile_bag
 # game_1_tiles.draw_tiles(7)
 # puts game_1_tiles.tile_bag
 # game_1_tiles.draw_tiles(7)
 # puts game_1_tiles.tile_bag
 # game_1_tiles.draw_tiles(1)
-# puts game_1_tiles.tiles_remaining
+puts game_1_tiles.tiles_remaining
