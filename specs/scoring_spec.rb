@@ -4,7 +4,6 @@ require 'minitest/skip_dsl'
 
 require_relative '../lib/scoring'
 
-# Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
@@ -41,34 +40,48 @@ describe 'Scoring' do
   end
 
   describe 'highest_score_from' do
-    it 'returns nil if no words were passed' do
+    it 'returns a string if an array of words is given' do
+      array_of_words = ["dog", "cat", "horse"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_be_kind_of String
+    end
+
+    it 'returns nil if no words are given' do
       array_of_words = []
       Scrabble::Scoring.highest_score_from(array_of_words).must_be_nil
     end
 
-    it 'returns the only word in a length-1 array' do
+    it 'returns the word from an array with only one element' do
       array_of_words = ["dog"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "DOG"
     end
 
-    it 'returns the highest word if there are two words' do
-      array_of_words = ["xi", "dog"]
+    it 'returns the highest scoring word from an array of words with different scores' do
+      array_of_words = ["xi", "dog", "horse"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "XI"
     end
 
-    it 'if tied, prefer a word with 7 letters' do
+    it 'returns a 7-letter word (if present) from an array of words with tied scores' do
       array_of_words = ["QQQQQX","AEIOULD"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "AEIOULD"
+
+      array_of_words = ["AEIOULD", "QQQQQX"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "AEIOULD"
     end
 
-    it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+    it 'returns the shortest word from an array of words with tied scores (if no 7-letter word is present)' do
       array_of_words = ["BEEG", "BOB"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "BOB"
+
+      array_of_words = ["BOB", "BEEG"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "BOB"
     end
 
-    it 'returns the first word of a tie with same letter count' do
+    it 'returns the first word from an array of words of equal length and tied scores (if no 7-letter word is present)' do
       array_of_words = ["BOB", "BEC"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "BOB"
+
+      array_of_words = ["BEC", "BOB"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "BEC"
     end
   end
 end

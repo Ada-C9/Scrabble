@@ -2,70 +2,74 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
-require_relative '../lib/player.rb'
-require_relative '../lib/scoring.rb'
-require_relative "../lib/tilebag.rb"
+require_relative '../lib/tilebag'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-describe "TileBag" do
+describe "Tilebag" do
   describe "initialize" do
-    it "Should be an instance of class TileBag" do
-      Scrabble::TileBag.new.must_be_instance_of Scrabble::TileBag
+    it "is an instance of class Tilebag" do
+      Scrabble::Tilebag.new.must_be_instance_of Scrabble::Tilebag
     end
 
-    it "it should include an array of tiles" do
-      new_game = Scrabble::TileBag.new
-
+    it "creates an array of tiles" do
+      new_game = Scrabble::Tilebag.new
       new_game.tilebag.must_be_kind_of Array
     end
 
-    it "the tile bag must have 98 tiles " do
-      new_game = Scrabble::TileBag.new
+    it "has 98 tiles initially" do
+      new_game = Scrabble::Tilebag.new
       new_game.tilebag.length.must_equal 98
-
     end
 
-    it "tile bag must have 6 N´s" do
-      new_game = Scrabble::TileBag.new
-      new_game.tilebag.select{|tile| tile == "N"}.length.must_equal 6
+    it "includes six N tiles" do
+      new_game = Scrabble::Tilebag.new
+      new_game.tilebag.select{ |tile| tile == "N" }.length.must_equal 6
     end
 
-    it "tile bag must have 1 Q´s" do
-      new_game = Scrabble::TileBag.new
-      new_game.tilebag.select{|tile| tile == "Q"}.length.must_equal 1
+    it "includes 1 Q tile" do
+      new_game = Scrabble::Tilebag.new
+      new_game.tilebag.select{ |tile| tile == "Q" }.length.must_equal 1
     end
   end
 
   describe "draw_tiles" do
-    it "Should return an array " do
-      game_tiles = Scrabble::TileBag.new
+    it "returns an array of drawn tiles" do
+      game_tiles = Scrabble::Tilebag.new
       game_tiles.draw_tiles(7).must_be_kind_of Array
     end
 
-    it "Tile bag should have less tiles after draw_tiles" do
-      game_tiles = Scrabble::TileBag.new
-      number_of_tiles_before = game_tiles.tilebag.length
-      tiles_given = game_tiles.draw_tiles(3).length
-      (number_of_tiles_before - tiles_given).must_equal 95
+    it "returns an empty array if zero tiles are drawn" do
+      game_tiles = Scrabble::Tilebag.new
+      game_tiles.draw_tiles(0).must_be_kind_of Array
+      game_tiles.draw_tiles(0).must_equal []
     end
 
-    it "The return array length must be the same of number of draw_tiles" do
-      game_tiles= Scrabble::TileBag.new
-      tiles_given = game_tiles.draw_tiles(3).length.must_equal 3
+    it "tilebag has the correct number of tiles after tiles are drawn" do
+      game_tiles = Scrabble::Tilebag.new
+      num_initial_tiles = game_tiles.tilebag.length
+      num_tiles_drawn = game_tiles.draw_tiles(3).length
+      (num_initial_tiles - num_tiles_drawn).must_equal 95
+    end
+
+    it "returned array is the same size as the number of tiles drawn" do
+      game_tiles = Scrabble::Tilebag.new
+      game_tiles.draw_tiles(3).length.must_equal 3
     end
   end
 
   describe "tiles remaining" do
-    it "Returns an integer" do
-      game_tiles = Scrabble::TileBag.new
+    it "returns an integer" do
+      game_tiles = Scrabble::Tilebag.new
       game_tiles.tiles_remaining.must_be_kind_of Integer
     end
 
-    it "Should be equal to the number of remaining tiles in the bag" do
-      game_tiles = Scrabble::TileBag.new
+    it "correctly accounts for the number of remaining tiles in the bag" do
+      game_tiles = Scrabble::Tilebag.new
       game_tiles.draw_tiles(4)
       game_tiles.tiles_remaining.must_equal 94
+      game_tiles.draw_tiles(6)
+      game_tiles.tiles_remaining.must_equal 88
     end
   end
 end

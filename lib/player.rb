@@ -1,12 +1,12 @@
-require_relative "scoring.rb"
-require_relative "tilebag.rb"
+require_relative "scoring"
+require_relative "tilebag"
 
 module Scrabble
   class Player
     attr_reader :name, :words_played, :score, :tiles
 
     def initialize(name)
-      @name = name.to_s
+      @name = name
       @words_played = []
       @score = 0
       @tiles = []
@@ -17,10 +17,10 @@ module Scrabble
     end
 
     def play(word)
-      @words_played << word
       word_score = Scoring.score(word)
       @score += word_score
-      word.chars.each do |letter|
+      @words_played << word.upcase
+      word.upcase.chars.each do |letter|
         i = @tiles.find_index(letter)
         @tiles.delete_at(i || @tiles.length)
       end
@@ -64,6 +64,5 @@ module Scrabble
       end
       return drawn_tiles
     end
-
   end
 end

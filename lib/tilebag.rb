@@ -1,7 +1,6 @@
-#require_relative "player.rb"
-
 module Scrabble
-  class TileBag
+  class Tilebag
+
     attr_reader :tilebag
 
     def initialize
@@ -18,9 +17,9 @@ module Scrabble
                   "V", "V", "W", "W", "X", "Y", "Y", "Z"]
     end
 
-    def draw_tiles(number)
+    def draw_tiles(num)
       drawn_tiles = []
-      number.times do
+      num.times do
         i = rand(@tilebag.length)
         drawn_tiles << @tilebag[i]
         @tilebag.delete_at(i)

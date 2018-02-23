@@ -1,7 +1,3 @@
-require "csv"
-require "ap"
-
-
 module Scrabble
   class Scoring
 
@@ -18,6 +14,7 @@ module Scrabble
       word_array.each do |letter|
         return nil if !(LETTER_VALUES.keys.include?(letter))
       end
+      # could potentially use inject/reduce method for next calculation
       score = 0
       word_array.each do |letter|
         score += LETTER_VALUES[letter]
@@ -44,6 +41,7 @@ module Scrabble
       if winning_words.any? { |word| word.length == 7 }
         winning_words.select! { |word| word.length == 7}
       end
+      # could potentially use min_by method for next calculation
       winner = winning_words[0]
       winning_words.each do |word|
         if word.length < winner.length
