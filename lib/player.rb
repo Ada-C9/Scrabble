@@ -61,23 +61,15 @@ module Scrabble
 
     def highest_scoring_word
 
-      # Should be:
-      # return Scoring.highest_score_from(@plays)
+      return Scrabble::Scoring.highest_score_from(@plays)
 
-      @plays.each do |word|
-        score = Scrabble::Scoring.score(word)
-        @scoring_table["#{word}"] = score
-      end
-      winning_word_player = @scoring_table.key(@scoring_table.values.max)
-      return winning_word_player
     end
 
 # ______________HIGHEST WORD SCORE METHOD__________________
 # Returns the score of the highest scored word.
 
     def highest_word_score
-      highest_scoring_word
-      return @scoring_table.values.max
+      return  Scrabble::Scoring.score(highest_scoring_word)
     end
   end
 end

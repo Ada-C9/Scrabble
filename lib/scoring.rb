@@ -61,19 +61,34 @@ module Scrabble
 # Returns the word with highest score, from a given array of words:
 
     def self.highest_score_from(array_of_words = [])
-
       # Evaluate given words to find the one with highest score, according to the game rules. If there is a tie, it will populate a new array with the words in the tie and compare them to find the winner.
-      winning_words = []
+
+      scoring_table = {}
+
+      # Set the scores of each word:
+      array_of_words.each do |word|
+        score = score(word)
+        scoring_table["#{word}"] = score
+      end
+
+      # Find the words with the maximu score between them:
+      max = scoring_table.values.max
+      max_scored_words_hash = Hash[scoring_table.select { |k, v| v == max}]
+
+      # Select only the keys from the has with the highest scored words:
+      winning_words = max_scored_words_hash.keys
+
+      # Choose and return the winning word according to the rules and solving a tie if any:
       if array_of_words == []
         return nil
-      elsif array_of_words.length == 1
-        winning_words << array_of_words
-        return winning_words[0]
-      elsif  array_of_words.max_by(&:length).length == 7
-        winner = array_of_words.max_by(&:length)
+      elsif winning_words.length == 1
+        winner = winning_words[0]
+        return winner
+      elsif  winning_words.max_by(&:length).length == 7
+        winner = winning_words.max_by(&:length)
         return winner
       else
-        winner = array_of_words.min_by  {|word| word.length}
+        winner = winning_words.min_by  {|word| word.length}
         return winner
       end
     end
@@ -81,3 +96,5 @@ module Scrabble
 
   end #Scoring
 end #Scrabble
+
+# winning_words.max_by(&:length).length
