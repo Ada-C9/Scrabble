@@ -17,6 +17,7 @@ module Scrabble
       values_of_letters = []
 
       @letters.each do |character|
+
         # Checking if character input is a valid letter or not
         # First part is splitting the hash into an array of the
         # key values 'A-Z' and then we are checking if any characters
@@ -25,7 +26,7 @@ module Scrabble
         #
         # Else, if all the characters are valid letters, take the value
         # associated with the key and put that in an array of integers
-        #
+        
 
         if !character_check.include?(character) || @letters.length == 0 || @letters.length > 7
           return nil
@@ -34,9 +35,9 @@ module Scrabble
         end
       end
 
-      sum = values_of_letters.sum
+      score = values_of_letters.sum
 
-      return @letters.length == 7 ? sum + 50 : sum
+      return @letters.length == 7 ? score + 50 : score
 
     end
 
@@ -52,25 +53,20 @@ module Scrabble
       elsif array_of_words.length > 1
         array_of_words.each do |word|
           all_scores[word] = score(word)
-          # scores << score(word)
         end
       end
-
-      # p all_scores.values.max
 
       max_score_words = all_scores.delete_if { |word, score| score != all_scores.values.max }.keys
 
       if max_score_words.any? { |word| word.length == 7 }
-        winner = max_score_words.max_by(&:length)
-        return winner
+        winning_word = max_score_words.max_by(&:length)
       elsif  max_score_words.all? { |word| word.length == word.length }
-        winner = max_score_words[0]
-        return winner
+        winning_word = max_score_words[0]
       else
-        winner = max_score_words.min_by(&:length)
-        return winner
-
+        winning_word = max_score_words.min_by(&:length)
       end
+
+      return winning_word
 
     end
   end
