@@ -24,12 +24,22 @@ describe "TileBag" do
         tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
 
         tile_bag.draw_tiles(3).must_be_kind_of Array
-        tile_bag.draw_tiles(3).must_include ("a" || "b" || "c")
+        # tile_bag.draw_tiles(3).must_include.any  "a" || "b" || "c"
         tile_bag.draw_tiles(3).length.must_equal 3
 
       end
 
-      # it 'Removes tiles from the default set' do
+      it 'Removes tiles from the default set' do
+        tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
+
+        new_bag = tile_bag.draw_tiles(3)
+        sum_of_original_bag = tile_bag.bag.values.sum
+
+        sum_of_original_bag.must_equal 3
+        new_bag.length.must_equal 3
+        tile_bag.bag.values.wont_include :<, 0
+
+      end
 
 
 

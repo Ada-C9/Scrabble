@@ -10,10 +10,11 @@ module Scrabble
 
     def draw_tiles(num)
       while @tiles_drawn.length != num
+          puts @bag
         new_letter = @bag.keys.sample
         if @bag[new_letter] > 0
           @tiles_drawn << new_letter
-          @bag[new_letter] - 1
+          @bag[new_letter] -= 1
         end
       end
       return @tiles_drawn
@@ -21,3 +22,7 @@ module Scrabble
 
   end
 end
+
+# tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
+#
+# tile_bag.draw_tiles(3)
