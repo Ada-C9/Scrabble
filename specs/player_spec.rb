@@ -14,16 +14,17 @@ describe 'Player' do
   end
 
   describe '#initialize method' do
-    it "takes a name" do
+    it "responds to the instance variables " do
 
       @player.must_respond_to :name
       @player.name.must_equal "kate"
+
     end
 
     it "Creates a player with an Array of played words" do
 
       @player.must_respond_to :plays
-      @player.plays.must_equal ["dog","cat","rooster"]
+      #@player.plays.must_equal ["dog","cat","rooster"]
       @player.plays.must_be_instance_of Array
     end
 
@@ -52,8 +53,9 @@ describe 'Player' do
       @player.plays.must_be_kind_of Array
     end
 
+ 
     it "returns false if the player has won" do
-      @player.play("qqqqqqqqqqqq")
+      @player.play("qqqqqqqq")
       @player.won?.must_equal false
     end
 
@@ -68,6 +70,7 @@ describe 'Player' do
 
       @player.total_score.must_equal 67
       @player.total_score.must_be_kind_of Integer
+      @player.must_respond_to :total_score
     end
   end
 
@@ -77,6 +80,7 @@ describe 'Player' do
       @player.play("qqqq")
       @player.total_score
       @player.won?.must_equal true
+      @player.must_respond_to :won?
     end
   end
 
@@ -84,6 +88,7 @@ describe 'Player' do
     it "returns the highest scoring played word" do
 
       @player.highest_scoring_word.must_equal "rooster"
+      @player.must_respond_to :highest_scoring_word
     end
   end
 
@@ -91,6 +96,7 @@ describe 'Player' do
     it "returns the score of a highest_scoring_word" do
 
       @player.highest_word_score.must_equal 57
+      @player.must_respond_to :highest_word_score
     end
   end
 end

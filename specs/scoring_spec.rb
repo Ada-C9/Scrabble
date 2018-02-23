@@ -8,7 +8,7 @@ require_relative '../lib/scoring'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
-  xdescribe 'score' do
+  describe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('cat').must_equal 5
