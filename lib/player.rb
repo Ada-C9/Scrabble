@@ -47,12 +47,7 @@ module Scrabble
     end
 
     def won?
-      if total_score > 100
-        return true
-      else
-        return false
-      end
-    end
-
+      return total_score > 100
+    end 
   end
 end
