@@ -15,10 +15,10 @@ module Scrabble
 
       while continue?
         @players.each do |player|
-          player.draw_tiles(@tilebag)
+
           puts "It is #{player.name}'s turn"
 
-
+          player.draw_tiles(@tilebag)
 
           puts "#{player.name} has the following tiles: #{player.tiles}"
 
