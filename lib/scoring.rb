@@ -9,8 +9,6 @@ module Scrabble
 
     def self.score(word)
 
-      # TODO: fix it, better way to evaluate, with arrays.
-
       # If word contains a character that is not a letter, returns nil:
       if word.match?(/\W/)
         return nil
