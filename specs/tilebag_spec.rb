@@ -52,8 +52,15 @@ describe "TileBag" do
     end
 
     it "removes the tiles from the default set" do
+      tile_bag_test = Scrabble::TileBag.new
 
-      tile_bag_test = Scrabble::Tilebag.new.draw_tiles(3)
+
+      tiles_in_bag_old = @tiles_in_bag
+      # binding.pry
+
+      tile_bag_test.draw_tiles(3)
+
+      tiles_in_bag_old[tile_bag_test.draw_array[0]].must_equal @tiles_in_bag[tile_bag_test.draw_array[0]] + 1
 
       # old_tiles_available = tiles_in_bag.test_draw_array[0].values.flatten
       #

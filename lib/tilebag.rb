@@ -3,7 +3,7 @@ module Scrabble
 
   class TileBag
 
-    attr_accessor :tiles_in_bag
+    attr_accessor :tiles_in_bag, :draw_array
 
     def initialize
       @tiles_in_bag = {
@@ -14,6 +14,7 @@ module Scrabble
         :K => 1, :X => 1, :L => 4, :Y => 2, :M => 2,
         :Z => 1
       }
+      @draw_array = []
     end
 
     def draw_tiles(num)
