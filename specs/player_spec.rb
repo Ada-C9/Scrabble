@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
+require 'pry'
 
 require_relative '../lib/player'
 
@@ -8,33 +9,38 @@ require_relative '../lib/player'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
+
   describe 'new' do
     it 'returns the value of the @name instance variable' do
       jim = Scrabble::Player.new("Jim")
       jim.name.must_equal "Jim"
     end
+  end
 
+  describe 'plays' do
     it 'returns an Array of the words played by the player' do
       jim = Scrabble::Player.new("Jim")
+      played_words = ["cat", "man", "trees"]
 
+      played_words.each do |word|
+        jim.play(word)
+      end
+
+      jim.plays.must_equal played_words
       jim.plays.must_be_instance_of Array
     end
 
     it "adds the input word to the plays Array"  do
       jim = Scrabble::Player.new("Jim")
+      jim.play("apple")
+      jim.play("pear")
+      jim.play("rock")
 
-      plays = ["cat", "man", "trees"]
-      plays.each do |word|
-        jim.play(word)
-      end
-
-      jim.plays.must_equal plays
-      # jim.plays.must_equal plays
-      #   word = ["milk","tide","cat"]
-      #   word.each do |w|
-      #   plays.push(word)
+      jim.plays.must_equal ["apple", "pear", "rock"]
     end
+  end
 
+  describe 'play' do
     it 'returns nil for strings containing bad characters' do
       jim = Scrabble::Player.new("Jim")
 
@@ -55,53 +61,26 @@ describe 'Player' do
       jim.play('').must_be_nil
     end
   end
-#
-#   xdescribe 'highest_score_from' do
-#     it 'returns nil if no words were passed' do
-#       # Act
-#       word_collection = []
-#       # Assert
-#       Scrabble::Player.highest_score_from(word_collection).must_be_nil
-#     end
-#
-#     it 'returns the only word in a length-1 array' do
-#       # Act
-#       word_collection = ["dog"]
-#       word_collection2 = ["mouse"]
-#       # Assert
-#       Scrabble::Player.highest_score_from(word_collection).must_equal "dog"
-#       Scrabble::Player.highest_score_from(word_collection2).must_equal "mouse"
-#     end
-#
-#     it 'returns the highest word if there are two words' do
-#       word_collection = ["dog","quiz","cat"]
-#       Scrabble::Player.highest_score_from(word_collection).must_equal "quiz"
-#     end
-#
-#     it 'if tied, prefer a word with 7 letters' do
-#       #Act
-#         word_collection = ['kkb','markets','qm']
-#         word_collection2 = ["dogss", "treatss"]
-#       #Assert
-#       Scrabble::Player.highest_score_from(word_collection).must_equal "markets"
-#       Scrabble::Player.highest_score_from(word_collection2).must_equal "treatss"
-#
-#     end
-#
-#     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-#       words = ["kf","bcm", "dgmae"]
-#       words2 = "kk", "q", "aeiouk"
-#       Scrabble::Player.highest_score_from(words).must_equal "kf"
-#       Scrabble::Player.highest_score_from(words2).must_equal "q"
-#     end
-#
-#     it 'returns the first word of a tie with same letter count' do
-#       words = ["kf","bcm", "kh", "dgmae","kw"]
-#       Scrabble::Player.highest_score_from(words).must_equal "kf"
-#
-#       words = ["bcm", "kh", "dgmae","kf"]
-#       Scrabble::Player.highest_score_from(words).must_equal "kh"
-#     end
-#   end
-#  end
+
+  xdescribe '#total_score' do
+    it 'returns the sum of scores of played words' do
+
+    end
+  end
+
+  xdescribe '#won' do
+    it 'If the player has over 100 points, returns true, otherwise returns false' do
+    end
+  end
+
+  xdescribe '#highest_scoring_word' do
+    it 'returns the highest scoring played word' do
+    end
+  end
+
+  xdescribe '#highest_word_score' do
+    it 'returns the highest_scoring_word score' do
+    end
+  end
+
  end
