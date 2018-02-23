@@ -4,7 +4,7 @@ require "pry"
 
 module Scrabble
   class Player
-    # returns the value of the `@name` instance variable
+
     attr_reader :name
 
     def initialize(name)
@@ -13,16 +13,15 @@ module Scrabble
       @tiles = []
     end
 
-    # returns an Array of the words played by the player
+    # Returns an Array of the words played by the player
     def plays
       return @plays
     end
 
-    # Adds the input word to the `plays` Array
-    # - Returns `false` if player has already won
-    # - Otherwise returns the score of the `word`
+    # Adds the input word to the @plays
+    # Returns the score of the word
+    # Returns `false` if player has already won
     def play(word)
-
       if won?
         return false
       elsif @plays.include?(word)
@@ -33,7 +32,7 @@ module Scrabble
       return Scrabble::Scoring.score(word)
     end
 
-    # Returns the sum of scores of played words
+    # Returns the total score of words played
     def total_score
       return @plays.reduce(0) { |memo, word| memo + Scrabble::Scoring.score(word) }
     end
@@ -53,13 +52,12 @@ module Scrabble
       return Scrabble::Scoring.score(highest_scoring_word)
     end
 
-    # a collection of letters that the player can play (max 7)
+    # A collection of letters that the player can play (max 7)
     def tiles
       return @tiles
     end
 
-    # fills tiles array until it has 7 letters from the given tile bag
-    # - It is not in the primary requirements to modify the existing `#play(word)` to use `#tiles` or check against the player's tiles
+    # Draw 7 tiles from the given tile bag
     def draw_tiles(tile_bag)
       tile_bag = Scrabble::TileBag.new
       @tiles = tile_bag.draw_tiles(7)
