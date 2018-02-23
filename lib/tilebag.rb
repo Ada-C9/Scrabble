@@ -5,7 +5,7 @@ module Scrabble
     attr_reader :tiles
 
     def initialize
-      @tiles = {
+      tiles_hash = {
         "a" => 9,
         "b" => 2,
         "c" => 2,
@@ -33,10 +33,25 @@ module Scrabble
         "y" => 2,
         "z" => 1
       }
+
+      @tiles = []
+      tiles_hash.each do |letter, quanity|
+        letters = quanity.map { letter } # creates an array of the number of letters e.g ["b","b"]
+
+        @tiles << letters # creates an array of an array
+      end
+      @tiles = @tiles.flatten # makes the multidimensional array into a single array
+
+      return @tiles
     end
 
     def draw_tiles(num)
-      @tiles.keys.sample(num)
+      @tiles.sample(num)
+    end
+
+    def remove_tiles
+      # loop through the draw_tiles array
+      # with each letter, find the matching key and remove value
     end
   end
 end
