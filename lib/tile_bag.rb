@@ -32,6 +32,6 @@ module Scrabble
   end
 end
 
-# tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
-#
-# tile_bag.draw_tiles(3)
+tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
+
+puts tile_bag.draw_tiles(3)
