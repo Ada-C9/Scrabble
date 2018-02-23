@@ -77,8 +77,8 @@ end # module Scrabble
 # test_chart = Scrabble::Scoring.score('')
 # ap test_chart
 
-test_chart = Scrabble::Scoring.highest_score_from(["dog", "frog"])
-ap test_chart
+# test_chart = Scrabble::Scoring.highest_score_from(["dog", "frog"])
+# ap test_chart
 # binding.pry
 
 
