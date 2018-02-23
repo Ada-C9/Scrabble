@@ -1,14 +1,16 @@
 require_relative 'scoring'
+require_relative 'tilebag'
 
 module Scrabble
 
   class Player
 
-    attr_reader :name, :plays
+    attr_reader :name, :plays, :tiles
 
     def initialize(name)
       @name = name
       @plays = []
+      @tiles = []
     end
 
     def play(word)
@@ -51,6 +53,12 @@ module Scrabble
         return score
       end
     end
+
+    def draw_tiles(tile_bag)
+      tiles_needed = 7 - @tiles.length
+      @tiles += tile_bag.draw_tiles(tiles_needed)
+    end
+
 
   end # Player Class
 

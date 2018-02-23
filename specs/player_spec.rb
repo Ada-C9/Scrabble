@@ -135,5 +135,23 @@ describe 'Player' do
 
   end # describe highest_word_score
 
+  describe "#draw_tiles" do
+    it "fills the tiles array from the given tilebag" do
+      xena = Scrabble::Player.new("xena")
+      xena_bag = Scrabble::TileBag.new
+
+      xena.draw_tiles(xena_bag)
+      xena.tiles.length.must_equal 7
+    end
+  end
+
+  describe "#tiles" do
+    it "returns an array" do
+      aaron = Scrabble::Player.new("aaron")
+      aaron.tiles.must_be_kind_of Array
+      aaron.tiles.must_equal []
+    end
+  end
+
 
 end # describe Player
