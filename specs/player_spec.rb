@@ -26,18 +26,38 @@ describe 'Player' do
         jim.play(word)
       end
 
-      jim.plays.must_equal ["cat", "man", "trees"]
+      jim.plays.must_equal played_words
+      jim.plays.must_be_instance_of Array
     end
-  end
 
-  describe 'play' do
-    it "adds the input word to the plays Array"  do
-    jim = Scrabble::Player.new("Jim")
-    jim.play("apple")
-    jim.play("pear")
-    jim.play("rock")
+    describe 'play' do
+      it "adds the input word to the plays Array"  do
+      jim = Scrabble::Player.new("Jim")
+      jim.play("apple")
+      jim.play("pear")
+      jim.play("rock")
 
-    jim.plays.must_equal ["apple", "pear", "rock"]
+      jim.plays.must_equal ["apple", "pear", "rock"]
+    end
+
+    it 'returns nil for strings containing bad characters' do
+      jim = Scrabble::Player.new("Jim")
+
+      jim.play('#$%^').must_be_nil
+      jim.play('char^').must_be_nil
+      jim.play(' ').must_be_nil
+    end
+
+    it 'returns nil for words > 7 letters' do
+      jim = Scrabble::Player.new("Jim")
+
+      jim.play('supercalifragilisticexpialadocious').must_be_nil
+    end
+
+    it 'returns nil for empty words' do
+      jim = Scrabble::Player.new("Jim")
+
+      jim.play('').must_be_nil
     end
   end
 
@@ -68,12 +88,12 @@ describe 'Player' do
 
   describe 'highest_scoring_word' do
     it 'returns the highest scoring played word' do
-    jim = Scrabble::Player.new("Jim")
-    jim.play("apple")
-    jim.play("house")
-    jim.play("qq")
+      jim = Scrabble::Player.new("Jim")
+      jim.play("apple")
+      jim.play("house")
+      jim.play("qq")
 
-    jim.highest_scoring_word.must_equal "qq"
+      jim.highest_scoring_word.must_equal "qq"
     end
   end
 
@@ -83,9 +103,8 @@ describe 'Player' do
       jim.play("apple")
       jim.play("house")
       jim.play("qq")
-
       jim.highest_word_score.must_equal 20
     end
-
   end
+ end
 end

@@ -5,7 +5,7 @@ require "awesome_print"
 module Scrabble
   class Player
 
-    attr_reader :name, :total_score, :plays
+    attr_reader :name, :total_score
 
     def initialize(name)
       # @name = player name
@@ -23,11 +23,14 @@ module Scrabble
     def play(word)
       if won
         return false
-      else
-      @played_words.push(word)
       end
 
       word_score = Scrabble::Scoring.score(word)
+      if (word_score == nil)
+        return nil
+      end
+
+      @played_words.push(word)
       @total_score += word_score
       return word_score
     end
