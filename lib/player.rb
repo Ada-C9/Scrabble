@@ -36,6 +36,15 @@ module Scrabble
     def highest_word_score
       return Scrabble::Scoring.score(highest_scoring_word)
     end
+
+    def tiles
+
+    end
+
+    def draw_tiles
+#has it calculate how many tiles needed to reach 7
+# uses that number as a parameter in the draw_tiles method in tilebag?
+    end
   end
 end
 # binding.pry
