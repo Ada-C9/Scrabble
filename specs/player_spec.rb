@@ -104,6 +104,12 @@ describe 'Player' do
       john.play("score")
 
       john.won?.must_equal false
+
+      john = Scrabble::Player.new("John")
+      john.play("word")
+      john.play("score")
+
+      john.won?.must_equal false
     end
   end
 end

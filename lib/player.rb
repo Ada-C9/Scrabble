@@ -5,7 +5,7 @@ module Scrabble
 
   class Player
 
-    attr_reader :name, :plays, :won, :play, :player_score, :highest_scoring_word, :highest_word_score
+    attr_reader :name, :plays, :won, :play, :player_score
 
 
     def initialize(name)
@@ -28,14 +28,6 @@ module Scrabble
     def total_score
       return @player_score
     end
-    # def total_score
-    #   scores_array = []
-    #   @plays.each do |word|
-    #     scores_array << Scrabble::Scoring.score(word)
-    #   end
-    #   @total_score = scores_array.inject(:+)
-    #   return @total_score
-    # end
 
     def won?
       if @player_score > 100
