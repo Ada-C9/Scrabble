@@ -12,24 +12,28 @@ module Scrabble
     # Define tiles remaining method to be used in the method for drawing the tiles.
     def tiles_remaining
       # still not sure why or how this is working. TODO: may take out later
-      return @letters_bag_total.inject(0) { |sum, i| sum += i[1] }
+      remainder = @letters_bag_total.inject(0) { |sum, i| sum += i[1] }
+      p remainder
+
+      return remainder
     end
     # Define draw tiles, put the tiles into array.
     def draw_tiles(num)
-      all_tiles = []
+      player_tiles = []
       # array will return tiles to player. Needs much refactoring.
       return nil if num > tiles_remaining
       #to account for test, returns nil if more tiles are drawn than tiles remain.
-      while all_tiles.length != num
+      while player_tiles.length != num
         new_tile = rand(@letters_bag_total.size)
-        i = 0
+        starting_hand = 0
+
         @letters_bag_total.each do |letter, total_tiles|
           #Need to continue working on, this is becoming harder to read. TODO: REFACTOR!
           # if the amount of tiles drawn(starting at 0) is the same as the amount of new tiles drawn,
-          if i == new_tile
-            #if the condition above, and the total tiles isnt 0, add the new tile (letter), to all of the tiles (all_tiles array)
+          if starting_hand == new_tile
+            #if the condition above, and the total tiles isnt 0, add the new tile (letter), to all of the tiles (player_tiles array)
             if total_tiles != 0
-              all_tiles << letter
+              player_tiles << letter
               #Then subtract the letter from the tilebag, reducing the total amount of tiles by 1, and reducing the letter by one specifically from the letters.
               @letters_bag_total[letter] = total_tiles - 1
             else
@@ -37,11 +41,11 @@ module Scrabble
             end
           end
           #increases the amount of tiles had by player plus one, each time a tile is drawn
-          i += 1
+          starting_hand += 1
         end
       end
       #returns array of all tiles to player
-      return all_tiles
+      return player_tiles
     end
 
   end

@@ -1,5 +1,5 @@
 
-ALL_LETTERS = {
+LETTER_VALUES = {
   "A"=>1, "B"=>3, "C"=>3, "D"=>2,
   "E"=>1, "F"=>4, "G"=>2, "H"=>4,
   "I"=>1, "J"=>8, "K"=>5, "L"=>1,
@@ -16,7 +16,7 @@ module Scrabble
 
       word = word.upcase
       letters = word.split("")
-      character_check = ALL_LETTERS.keys
+      character_check = LETTER_VALUES.keys
       values_of_letters = []
 
       letters.each do |character|
@@ -35,7 +35,7 @@ module Scrabble
           return nil
 
         else
-          values_of_letters << ALL_LETTERS.fetch(character)
+          values_of_letters << LETTER_VALUES.fetch(character)
 
         end
       end
