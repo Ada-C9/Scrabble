@@ -48,6 +48,8 @@ POSSIBLE_LETTERS = {
       return drawn_tiles
     end
 
-
+    def tiles_remaining()
+      return @all_tiles.length
+    end
   end
 end

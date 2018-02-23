@@ -10,7 +10,6 @@ describe 'tilebag class' do
   describe 'initialize method' do
     it 'TileBag.new creates a new instance' do
       new_bag = Scrabble::TileBag.new
-
       new_bag.must_be_instance_of Scrabble::TileBag
     end
   end
@@ -27,7 +26,14 @@ describe 'tilebag class' do
       tiles_left = new_bag.all_tiles.length
       new_bag.draw_tiles(3)
       new_bag.all_tiles.length.must_equal tiles_left - 3
+    end
+  end
 
+  describe 'tiles_remaining method' do
+    it 'can return number of tiles left in the bag' do
+      new_bag = Scrabble::TileBag.new
+      new_bag.draw_tiles(3)
+      new_bag.tiles_remaining.must_equal 95
     end
   end
 end
