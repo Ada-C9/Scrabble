@@ -20,18 +20,6 @@ module Scrabble
         "Y" => 2, "Z" => 1}
     end
 
-    def draw_tiles(num)
-      # returns a collection of random tiles
-      # removes the tiles from default_tiles
-
-      drawn_tiles = []
-      num.times do
-        letter = @default_tiles.to_a.sample(1)
-        @default_tiles[letter[0][0]] -= 1
-        @default_tiles.delete_if {|ltr, qty| qty == 0}
-        drawn_tiles << letter[0]
-      end
-
       def draw_tiles(num)
         7.times do
           drawn_tiles = []

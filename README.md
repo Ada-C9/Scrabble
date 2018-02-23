@@ -82,7 +82,7 @@ Complete the `Scrabble::Scoring` class with __full unit testing/specs__. All pro
     - If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
     - Tests for this logic are _stubbed_, meaning the test has a name but no code written. You will have to implement them as you work on this method. --> -->
 
-## Wave 2
+<!-- ## Wave 2
 ### Primary Requirements
 For waves 2 and 3, you are given no starter code. You and your pair will have to create all files and classes and write all the tests yourselves.
 
@@ -109,7 +109,7 @@ player.play('cat')    # => 5
 player.play('lizard') # => 16
 puts player.highest_scoring_word
 # prints out "lizard"
-```
+``` -->
 
 ## Wave 3
 ### Primary Requirements
@@ -117,6 +117,11 @@ puts player.highest_scoring_word
 Create a `Scrabble::TileBag` class with __full unit testing/specs__. You should have a spec that tests all pieces of functionality and logic. It should have the following class and instance methods:
 
 - `#initialize` Should set up the instance with a collection of all default tiles
+
+default_tiles = {"A" => 9, "B" => 2, "C" => 2, "D" => 4, "E" => 12, "F" => 2, "G" => 3, "H" => 2, "I" => 9, "J" => 1, "K" => 1, "L" => 4, "M" => 2, "N" => 6, "O" => 8, "P" => 2, "Q" => 1, "R" => 6, "S" => 4, "T" => 6, "U" => 4, "V" => 2, "W" => 2, "X" => 1, "Y" => 2, "Z" => 1}
+
+
+
 - `#draw_tiles(num)` returns a collection of random tiles, removes the tiles from the default set
 - `#tiles_remaining` returns the number of tiles remaining in the bag
 
@@ -144,12 +149,12 @@ Create specs for and add to the `Player` class the following instance methods:
 - `#draw_tiles(tile_bag)` fills tiles array until it has 7 letters from the given tile bag
     - It is not in the primary requirements to modify the existing `#play(word)` to use `#tiles` or check against the player's tiles
 
-### Optional Enhancements
+<!-- ### Optional Enhancements
 These need to be tested too!
 - Modify in `Player` the `#play(word)` method to only allow the player to play words using letters that the player has tiles for.
 - Create a `Scrabble::Dictionary` class that includes a method (class or instance) for searching a list of words to determine if a given word is valid (__must have tests__).
 - Create a `Scrabble::Board` class (__must have tests__) that has a matrix (array of arrays) of tile places. Check if a word can be played on a given tile place in a certain direction (up/down or left/right).
--->
+--> -->
 
 ## What Instructors Are Looking For
 Check out the [feedback template](feedback.md) which lists the items instructors will be looking for as they evaluate your project.
