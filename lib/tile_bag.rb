@@ -1,4 +1,5 @@
-
+#***********************************************************
+# Class TileBag in Scrabble Module:
 
 module Scrabble
   class TileBag
@@ -7,9 +8,14 @@ module Scrabble
 
     def initialize(tile_bag_hash)
       @bag =  tile_bag_hash
-      # @tiles_drawn = []
-
     end
+
+    # _________________DRAW TILES METHOD____________________
+    # Accepts a number of tiles that needs to be drawn for the player and creates a loop that will:
+    # - take a random letter from the bag
+    # - add this letter to the array of tiles
+    # - subtract the quantity of that letter available in the tile bag
+    # - delete the key of this letter from the tile bag if there are none available anymore.
 
     def draw_tiles(num)
       tiles_drawn = [ ]
@@ -24,6 +30,8 @@ module Scrabble
       return tiles_drawn
     end
 
+    # _______________TILES REMAINING METHOD_________________
+    # Returns the total quantity of tiles still available in the tile bag.
 
     def tiles_remaining
       return @bag.values.sum
@@ -31,7 +39,3 @@ module Scrabble
 
   end
 end
-
-tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
-
-puts tile_bag.draw_tiles(3)
