@@ -8,7 +8,7 @@ require_relative '../lib/player'
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-xdescribe 'Player' do
+describe 'Player' do
 
   before do
     @player_1 = Scrabble::Player.new("Nora")
@@ -108,4 +108,17 @@ xdescribe 'Player' do
 
   end
 
+  describe "tiles" do
+    it "holds a collection of seven tiles" do
+    end
+  end
+
+  describe "draw_tiles(tile_bag)" do
+
+    it "pulls tiles from the tile_bag" do
+    end
+
+    it "populates the tiles array with up to seven tiles" do
+    end
+  end
 end

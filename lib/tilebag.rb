@@ -31,7 +31,7 @@ module Scrabble
           draw = random_letters.sample
           # binding.pry
           if @tiles_in_bag[draw] >= 1
-            @tiles_in_bag[draw] = @tiles_in_bag[draw] - 1
+            @tiles_in_bag[draw] -= 1
             successful_draw = draw
             draw_array << successful_draw
           end
