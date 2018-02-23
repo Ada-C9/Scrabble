@@ -41,10 +41,19 @@ describe "TileBag" do
 
       end
 
+    end
 
+    describe '#tiles_remaining' do
+      it "returns number of tiles remaining in bag" do
+        tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
 
-      # end
+        tile_bag.draw_tiles(3)
 
+        # sum_of_original_bag = tile_bag.bag.values.sum
+
+        tile_bag.tiles_remaining.must_equal 3
+
+      end
     end
 
   end

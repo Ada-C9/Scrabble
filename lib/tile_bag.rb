@@ -1,16 +1,18 @@
+
+
 module Scrabble
   class TileBag
 
-    attr_reader :bag
+    attr_reader :bag, :tiles_drawn
 
     def initialize(tile_bag_hash)
       @bag =  tile_bag_hash
       @tiles_drawn = []
+
     end
 
     def draw_tiles(num)
       while @tiles_drawn.length != num
-          puts @bag
         new_letter = @bag.keys.sample
         if @bag[new_letter] > 0
           @tiles_drawn << new_letter
@@ -18,6 +20,10 @@ module Scrabble
         end
       end
       return @tiles_drawn
+    end
+
+    def tiles_remaining
+      return @bag.values.sum
     end
 
   end
