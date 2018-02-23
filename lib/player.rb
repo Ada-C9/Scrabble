@@ -10,6 +10,10 @@ module Scrabble
     end
 
     def play(word)
+        if word !~ /^[a-zA-Z]{0,7}$/ || word == ""
+          raise ArgumentError.new("Invalid word entry")
+        end
+
       if won?
         return false
       else

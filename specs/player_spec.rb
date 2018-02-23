@@ -21,6 +21,14 @@ describe "Scrabble Player" do
   end
 
   describe '#play(word)' do
+    it "raises an ArgumentError if Invalid word" do
+      proc {player.play("c$g")}.must_raise ArgumentError
+      proc {player.play("cccccccc")}.must_raise ArgumentError
+      proc {player.play("555")}.must_raise ArgumentError
+
+    end
+
+
     it  'Adds the input word to the plays Array' do
       player.play('cat')
       player.plays.length.must_equal 1
