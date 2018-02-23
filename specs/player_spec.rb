@@ -14,31 +14,37 @@ describe 'Player' do
       #Arrange
       name = 'Gordon'
       #Act/Assert
-      Scrabble::Player.new.name.must_equal 'Gordon'
+      Scrabble::Player.new(name).name.must_equal 'Gordon'
     end
 
-    xit '' do
-
-    end
+    # xit '' do
+    #
+    # end
   end
 
-  describe 'play' do
+  describe 'plays' do
     it 'it can return an array' do
-      Scrabble::Player.new.plays(@played_words).must_be_instance_of Array
+      Scrabble::Player.new('').plays.must_be_instance_of Array
     end
 
-    xit '' do
-
-    end
+    # xit '' do
+    #
+    # end
   end
 
-  xdescribe 'play(word)' do
+  describe 'play(word)' do
     # Feedback mentions testing edge cases for this method
-    xit '' do
+    it 'takes word and adds it to the plays array' do
+      word = 'batshit'
+      @played_words = []
+      Scrabble::Player.new('').play(word).must_include 'batshit'
+    end
+
+    xit 'returns false if player has already won' do
 
     end
 
-    xit '' do
+    xit 'returns score of the word' do
 
     end
   end

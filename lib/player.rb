@@ -1,12 +1,13 @@
 module Scrabble
   class Player
-    def initialize(name)
-      @name = name
+    attr_reader :name
+    def initialize(player_name)
+      @name = player_name
       @played_words = []
     end
 
-    def plays(played_words)
-      return  played_words
+    def plays
+      return  @played_words
     end
   end
 end
