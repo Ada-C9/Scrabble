@@ -3,12 +3,14 @@ require 'pry'
 
 module Scrabble
   class Player
-    attr_reader :name, :total_score
+    attr_reader :name, :total_score, :tiles
+    # @@tilebag = Scrabble::TileBag.new
 
     def initialize(name)
       @name = name
       @plays = []
       @total_score = 0
+      @tiles = []
     end
 
     def plays
@@ -37,13 +39,14 @@ module Scrabble
       return Scrabble::Scoring.score(highest_scoring_word)
     end
 
-    def tiles
-
+    def self.tilebag
+      return Scrabble::TileBag.new
     end
 
-    def draw_tiles
-#has it calculate how many tiles needed to reach 7
-# uses that number as a parameter in the draw_tiles method in tilebag?
+    def draw_tiles(tilebag)
+      # until @tiles.length == MAX_WORD_LENGTH
+        (@tiles << (tilebag.draw_tiles(MAX_WORD_LENGTH - @tiles.length))).flatten
+      # end
     end
   end
 end
