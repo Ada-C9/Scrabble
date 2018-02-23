@@ -64,14 +64,13 @@ module Scrabble
         elsif word_score > max_score
           max_score = word_score
             winning_word = [word]
-        end # if else
+        end # elsif
       end # array_of_words.each
 
 
-#         if winning_word.length > 1
-#           winning_word.sort_by { |word| word.length}
-#         end
-#         return winning_word[0]
+
+      length_to_beat = 7
+      smallest_word = nil
 
       if winning_word.length > 1
         winning_word.each do |word|
@@ -85,7 +84,7 @@ module Scrabble
         return smallest_word
       else
         return winning_word[0]
-      end 
+      end
     end # self.highest_score_from
   end # Scoring class
 end # Scrabble module
