@@ -12,7 +12,7 @@ describe 'Player' do
     it 'returns the value of the @name instance variable' do
       Scrabble::Player.name("Ada").must_equal "Ada"
     end
-  end
+  end #ends describe 'name' do
 
   describe 'plays' do
     it 'returns an Array of the words played by the player' do
@@ -20,24 +20,24 @@ describe 'Player' do
       Scrabble::Player.play("cat")
       Scrabble::Player.plays.must_equal(["apple", "cat"])
     end
-  end
+  end #ends describe 'plays' do
 
-  describe 'play(word)'
-    it 'adds the input word to the plays array' do
-      Scrabble::Player.play("apple")
-      Scrabble::Player.plays.must_include("apple")
-    end
-
-    it 'prevents a player who has won from playing' do
-      Scrabble::Player.won? = true
-      Scrabble::Player.play("apple").must_equal(false)
-    end
-
-    it "returns the score of the word that is played if the player hasn't won" do
-      Scrabble::Player.won? = false
-      Scrabble::Player.play("apple").must_equal(9)
-    end
-  end
+  # describe 'play(word)'
+  #   it 'adds the input word to the plays array' do
+  #     Scrabble::Player.play("apple")
+  #     Scrabble::Player.plays.must_include("apple")
+  #   end
+  #
+  #   # it 'prevents a player who has won from playing' do
+  #   #   Scrabble::Player.won? = true
+  #   #   Scrabble::Player.play("apple").must_equal(false)
+  #   # end
+  #
+  #   # it "returns the score of the word that is played if the player hasn't won" do
+  #   #   Scrabble::Player.won? = false
+  #   #   Scrabble::Player.play("apple").must_equal(9)
+  #   # end
+  # end #ends describe 'play(word)'
 
   describe 'total_score'
     it 'returns the sum of scores of played words' do
@@ -45,7 +45,7 @@ describe 'Player' do
       Scrabble::Player.play("cat")
       Scrabble::Player.total_score.must_equal(14)
     end
-  end
+  end #ends describe 'total score'
 
   describe 'won?' do
     it 'returns true if the player has over 100 points' do
@@ -57,7 +57,7 @@ describe 'Player' do
       Scrabble::Player.total_score = 99
       Scrabble::Player.won?.must_equal(false)
     end
-  end
+  end #ends describe 'won?' do
 
   describe 'highest_scoring_word' do
     it 'returns the highest scoring played word' do
@@ -74,4 +74,5 @@ describe 'Player' do
       Scrabble::Player.highest_word_score.must_equal(9)
     end #ends it block
   end #ends describe highest word score
+
 end #ends class block
