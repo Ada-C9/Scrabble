@@ -46,9 +46,9 @@ describe "TileBag" do
 
       tile_bag_1.wont_be_same_as tile_bag_2
 
-      tile_bag_1.wont_be_same_as tile_bag_3
-
-      tile_bag_2.wont_be_same_as.tile_bag_3
+      # tile_bag_1.wont_be_same_as tile_bag_3
+      #
+      # tile_bag_2.wont_be_same_as.tile_bag_3
 
     end
 
@@ -65,14 +65,28 @@ describe "TileBag" do
     end
 
     it "removes the tiles from the default set" do
+      initial_tile_set = {
+        :A => 9, :N => 6, :B => 2, :O => 8, :C => 2,
+        :P => 2, :D => 4, :Q => 1, :E => 12, :R => 6,
+        :F => 2, :S => 4, :G => 3, :T => 6, :H => 2,
+        :U => 4, :I => 9, :V => 2, :J => 1, :W => 2,
+        :K => 1, :X => 1, :L => 4, :Y => 2, :M => 2,
+        :Z => 1
+      }
 
-      tile_bag_test = Scrabble::TileBag.new(@initial_tile_set)
+      tile_bag_test = Scrabble::TileBag.new(initial_tile_set)
 
-      tile_bag_test.draw_tiles(3)
+      draw_array = tile_bag_test.draw_tiles(3)
+      
+      tile = draw_array[0]
 
+      starting_tile_quantity = initial_tile_set.fetch(tile)
 
-      @initial_tile_set[tile_bag_test.draw_array[0]].must_equal (1 + @tiles_in_bag[tile_bag_test.draw_array[0]])
+      ending_tile_quantity = tile_bag_test.tiles_in_bag.fetch(tile)
 
+      initial_tile_set.must_be_kind_of Hash
+
+      starting_tile_quantity.must_equal (ending_tile_quantity + 1)
 
     end
 
