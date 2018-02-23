@@ -134,7 +134,21 @@ describe 'Player' do
       player_1 = Scrabble::Player.new("Dan")
       player_1.tiles.length.must_be :<=, 7
     end
+  end
 
+  describe "draw_tiles" do
+    it "draws seven tiles after the player is initialized" do
+      game_tiles = Scrabble::TileBag.new
+      player_1 = Scrabble::Player.new("Dan")
+      player_1.draw_tiles(game_tiles).length.must_equal 7
+    end
 
+    it "draws the correct number of tiles after a word is played" do
+      game_tiles = Scrabble::TileBag.new
+      player_1 = Scrabble::Player.new("Dan")
+      player_1.draw_tiles(game_tiles)
+      player_1.play(player_1.tiles[0])
+      player_1.draw_tiles(game_tiles).length.must_equal 1
+    end
   end
 end

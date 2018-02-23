@@ -1,4 +1,5 @@
 require_relative "scoring.rb"
+require_relative "tilebag.rb"
 
 module Scrabble
   class Player
@@ -9,13 +10,17 @@ module Scrabble
       @score = 0
       @tiles = []
     end
-    
+
     def plays
       return @words_played
     end
 
     def play(word)
       @words_played << word
+      # word.split("").each do |letter|
+      #   i = @tiles.find_index(letter)
+      #   @tiles.delete_at(i)
+      # end
       word_score = Scoring.score(word)
       @score += word_score
       if won? == true
@@ -45,12 +50,18 @@ module Scrabble
       return Scoring.score(highest_scoring_word)
     end
 
+    def tiles
+      return @tiles
+    end
+
+    def draw_tiles(tilebag)
+      number_of_tiles = @tiles.length
+      drawn_tiles = tilebag.draw_tiles(7 - number_of_tiles)
+      drawn_tiles.each do |letter|
+        @tiles << letter
+      end
+      return drawn_tiles
+    end
+
   end
 end
-
-  # player_1 = Scrabble::Player.new("Dan")
-  # puts "#{player_1.play("zzzzffd")}"
-  # puts "#{player_1.scores.sum}"
-  # word = "xx"
-  # player_1.play(word)
-  # puts "#{player_1.scores.sum}"
