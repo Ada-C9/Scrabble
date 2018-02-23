@@ -1,7 +1,3 @@
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'minitest/skip_dsl'
-
 require_relative '../lib/tilebag'
 #With this, i wont have to retype scrabble::tilebag.new so many times.
 describe "tilebag" do

@@ -10,21 +10,23 @@ require_relative "scoring"
 # #won?: If the player has over 100 points, returns true, otherwise returns false
 # #highest_scoring_word: Returns the highest scoring played word
 # #highest_word_score: Returns the highest_scoring_word score
+require 'minitest/autorun'
+require 'minitest/reporters'
+require 'minitest/skip_dsl'
 
 module Scrabble
   class Player
 
+    attr_accessor :name, :plays, :total_score, :tiles
+
     def initialize(name)
-       @name = name
-       # #name: returns the value of the @name instance variable
+      @name = name
+      # #name: returns the value of the @name instance variable
+      @plays = []
+      # #plays: returns an Array of the words played by the player
+      @total_score = 0
+      @tiles=[]
 
-       @plays = []
-       # #plays: returns an Array of the words played by the player
-
-       @total_score = 0
-       @tiles=[]
-
-     end
-
+    end
   end
 end
