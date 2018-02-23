@@ -69,12 +69,12 @@ module Scrabble
 
 
 
-      length_to_beat = 7
+      length_to_beat = 6
       smallest_word = nil
 
       if winning_word.length > 1
         winning_word.each do |word|
-          if word.length == length_to_beat
+          if word.length == 7
             return word
           elsif word.length < length_to_beat
             length_to_beat = word.length

@@ -64,7 +64,9 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal "if"
     end
 
-    xit 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter count' do
+      array_of_words = ["dog", "cat"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "dog"
     end
   end
 end
