@@ -28,37 +28,82 @@ describe 'Player' do
   describe 'play method' do
     it 'takes a word and add it to an array' do
       brenda = Scrabble::Player.new("Brenda")
-      word = "cookie"
-      brenda.play(word)
-      brenda.plays.include? word
+
+      brenda.play("line")
+      brenda.play("fish")
+      brenda.play("knife")
+      brenda.play("cookie")
+
+      brenda.plays.include? "knife"
     end
     it 'returns the score of a player' do
       john = Scrabble::Player.new("John")
       john.play('cookie').must_equal 12
     end
-  end
+    it 'returns false if player already won' do
+      john = Scrabble::Player.new("John")
+      john.play("squeeze")
+      john.play("jukebox")
 
-  xdescribe 'total_score method' do
-    it '' do
-
+      john.won.must_equal false
+      # john.play.must_equal false
     end
   end
 
-  xdescribe 'highest_scoring word' do
-    it '' do
-
+  describe 'total_score method' do
+    it 'returns the total_score for a player' do
+      sarah = Scrabble::Player.new("sarah")
+      sarah.play('cookie')
+      sarah.play('key')
+      sarah.play('fish')
+      sarah.total_score.must_equal 32
     end
   end
 
-  xdescribe 'highest_word_score' do
-    it '' do
+  describe 'highest_scoring word' do
+    it 'returns the highest scoring word' do
+      sarah = Scrabble::Player.new("sarah")
+      sarah.play('cookie')
+      sarah.play('cake')
+      sarah.play('alcohol')
+      sarah.highest_scoring_word.must_equal 'alcohol'
+    end
 
+    it 'returns a string' do
+      sarah = Scrabble::Player.new("sarah")
+      sarah.play('cookie')
+      sarah.play('cake')
+      sarah.play('alcohol')
+      sarah.highest_scoring_word.must_be_instance_of String
     end
   end
 
-  xdescribe 'won method' do
-    it '' do
+  describe 'highest_word_score' do
+    it 'returns the highest scoring word score' do
+      sarah = Scrabble::Player.new("sarah")
+      sarah.play('cookie')
+      sarah.play('cake')
+      sarah.play('alcohol')
 
+      sarah.highest_word_score.must_equal 62
+    end
+  end
+
+  describe 'won method' do
+    it 'returns true if score is > 100' do
+      john = Scrabble::Player.new("John")
+      john.play("squeeze")
+      john.play("jukebox")
+
+      john.won?.must_equal true
+    end
+
+    it 'returns false if score is < 100' do
+      john = Scrabble::Player.new("John")
+      john.play("word")
+      john.play("score")
+
+      john.won?.must_equal false
     end
   end
 end
