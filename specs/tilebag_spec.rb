@@ -13,8 +13,9 @@ describe 'TileBag' do
       tile_bag = Scrabble::TileBag.new
 
       tile_bag.must_be_kind_of Scrabble::TileBag
-      tile_bag.initial_bag.must_be_kind_of Hash
-      tile_bag.initial_bag.size.must_equal 26
+      tile_bag.initial_bag.must_be_kind_of Array
+      tile_bag.initial_bag.size.must_equal 98
+      # TODO make sure all the values are int and positive
     end
   end
 
@@ -35,10 +36,8 @@ describe 'TileBag' do
       num = 5
       size_before = 98
       tile_bag.draw_tiles(num)
-      size_after = 0
-      tile_bag.initial_bag.values.each { |value| size_after += value }
 
-      size_after.must_equal size_before - num
+      tile_bag.tiles_remaining.must_equal size_before - num
     end
 
     it 'must draw number of tiles between 0 and 8 (exclusive)' do
@@ -51,13 +50,6 @@ describe 'TileBag' do
       draw_2.must_be_nil
     end
 
-    it 'does not draw unavailable letter' do
-      tile_bag = Scrabble::TileBag.new
-      dummy_bag = Scrabble::TileBag.new
-
-      letter = tile_bag.draw_tiles(1).first
-      dummy_bag.initial_bag[letter].must_equal tile_bag.initial_bag[letter] + 1
-    end
 
     it 'does not draw unavailable letter' do
       tile_bag = Scrabble::TileBag.new
@@ -65,7 +57,7 @@ describe 'TileBag' do
       14.times do
         tile_bag.draw_tiles(7)
       end
-      
+
       tile_bag.draw_tiles(1).must_be_nil
     end
 
