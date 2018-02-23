@@ -1,8 +1,6 @@
 require_relative "./scoring.rb"
-include Scrabble
 
-
-class Player < Scrabble::Scoring
+class Player
 
   attr_reader :name
 
@@ -25,26 +23,20 @@ class Player < Scrabble::Scoring
   # Returns false if player has already won
   # Otherwise returns the score of the word
   def play(word)
-    # if they've already won, returns false
-    if @won == true
-      return false
-    end
-
+    return false if won?
+    # if haven't won, add word to list of plays
     @plays << word
-
-    # must add input into plays array
-    # if score reaches 100, then exit out
-
-    # call highest_score_from method here
+    Scoring.score(word)
   end
-  #
-  #
-  # # total_score: Returns the sum of scores of played words
-  # def total_score
-  #   if score > 100
-  #     @won? = true
-  #     # and somehow exit game
-  #   end
+
+
+  # total_score: Returns the sum of scores of played words
+  def total_score
+    scores = @plays.map do |word|
+      Scoring.score(word)
+    end
+    return scores.sum
+  end
   #
   #
   #   # this method interacts with play method
@@ -57,17 +49,17 @@ class Player < Scrabble::Scoring
   #
   #
   # #won?: If the player has over 100 points, returns true, otherwise returns false
-  # def won?
-  #
-  # end
+  def won?
+    return total_score > 100
+  end
   #
   #
   # #highest_scoring_word: Returns the highest scoring played word
-  # def highest_scoring_word
-  #
-  # end
-  #
-  #
+  def highest_scoring_word
+    Scoring.highest_score_from
+  end
+
+
   # # highest_word_score: Returns the highest_scoring_word score
   # def highest_word_score
   #
