@@ -22,10 +22,20 @@ describe "Player" do
 
       result.must_be_kind_of Array
     end
-    it "returns an empty array if no words are played" do
-      
-    end #it
+    # it "returns an empty array if no words are played" do
+    #   result = Scrabble::Player.play()
+    # end #it
 
   end
+
+  describe "#play(word)" do
+    it "adds input word to the plays Array" do
+      player = Scrabble::Player.new("kiera")
+      player.plays = []
+      player.play("word")
+
+      player.plays.must_equal ["word"]
+
+    end
 end
 end
