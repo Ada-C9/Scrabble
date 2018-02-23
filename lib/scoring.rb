@@ -56,7 +56,6 @@ module Scrabble
 
       max_score = 0
       winning_word = []
-      # length_to_beat = 7
 
       array_of_words.each do |word| #[dog, fish]
         word_score = self.score(word)
