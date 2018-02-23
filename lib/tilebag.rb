@@ -36,6 +36,10 @@ module Scrabble
         return array
       end
 
+      def tiles_remaining
+        @total_tiles.values.sum
+      end
+
 
   end # TileBag Class
 

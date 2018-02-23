@@ -54,6 +54,15 @@ describe 'TileBag' do
 
   describe 'tiles_remaining' do
 
+    it "returns a integer" do
+      test_three = Scrabble::TileBag.new
+      original_count = test_three.total_tiles.values.sum
+      test_three.draw_tiles(7)
+      result = test_three.tiles_remaining
+      result.must_be_kind_of Integer
+      result.must_equal original_count - 7
+    end
+
   end
 
 end # describe TileBag
