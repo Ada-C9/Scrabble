@@ -16,16 +16,29 @@ describe 'TileBag' do
     it "Sets up instance with a collection of tiles" do
       new_pool = Scrabble::TileBag.new
       # binding.pry
-      quantities = { "a" => 1,"b" => 3,"c" => 3,"d" => 2,"e" => 1,"f" => 4,"g" => 2,"h" => 4,
-        "i" => 1,"j" => 8,"k" => 5, "l" => 1,"m" => 3,"n" => 1,"o" => 1,"p" => 3,
-        "q" => 10, "r" => 1, "s" => 1, "t" => 1, "u" => 1, "v" => 4, "w" => 4,
-        "x" => 8, "y" => 4, "z" => 10 }
+      quantities = { "a" => 9,"b" => 2,"c" => 2,"d" => 4,"e" => 12,"f" => 2,"g" => 3,"h" => 2, "i" => 9,"j" => 1,"k" => 1, "l" => 4,"m" => 2,"n" => 6,"o" => 8,"p" => 2, "q" => 1, "r" => 6, "s" => 4, "t" => 6, "u" => 4, "v" => 2, "w" => 2, "x" => 1, "y" => 2, "z" => 1 }
       new_pool.total_tiles.must_equal quantities
     end
 
   end
 
   describe 'draw_tiles(num)' do
+
+    it "returns an empty array if asked for zero tiles" do
+      test_five = Scrabble::TileBag.new
+      previous_bag = test_five.total_tiles
+
+      result = test_five.draw_tiles(0)
+      result.must_be_kind_of Array
+      result.must_equal []
+      test_five.total_tiles.must_equal previous_bag
+    end
+
+    it "raises an argument error if the user tries to take more tiles than are available" do
+      new_bag = Scrabble::TileBag.new
+      result = proc { new_bag.draw_tiles(100) }
+      result.must_raise ArgumentError
+    end
 
     it "returns collection of random tiles" do
       test_2 = Scrabble::TileBag.new
