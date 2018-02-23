@@ -8,7 +8,7 @@ module Scrabble
 
     def initialize(player_name)
       @name = player_name
-      @player_score = 0
+      @player_score = 0 #This is total_score
       @plays = []
       @tiles = []
     end
@@ -61,7 +61,7 @@ module Scrabble
 
     # tile_bag is an instance of the class TileBag
     # there is one instance for each game of Scrabble
-    
+
     def draw_tiles(tile_bag)
 
       until @tiles.length == 7
