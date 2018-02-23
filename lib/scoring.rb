@@ -54,8 +54,8 @@ module Scrabble
           return @word_total_points
         end
       end
-
-
+      return @word_total_points
+    end
     #   @word_array.each do |element|
     #     count = 0
     #     if element == " "
@@ -76,24 +76,24 @@ module Scrabble
     #     end
     #       return @word_total_points
     #   end
-    # end
 
-        def self.highest_score_from(array_of_words)
-          max_points = 0
-          max_point_word = nil
-          array_of_words.each do |word|
-            value = self.score(word)
-            if value != nil
-              if value > max_points
-                max_points = value
-                max_point_word = word
-              end
-            end
+
+    def self.highest_score_from(array_of_words)
+      max_points = 0
+      max_point_word = nil
+      array_of_words.each do |word|
+        value = self.score(word)
+        if value != nil
+          if value > max_points
+            max_points = value
+            max_point_word = word
           end
-          return max_point_word
         end
       end
+      return max_point_word
     end
+  end
+end
 
 
-    ap Scrabble::Scoring.score("aaaaa")
+# ap Scrabble::Scoring.score("aaaaa")

@@ -13,6 +13,7 @@ module Scrabble
       @score = 0
       @won = false
       @hsw = "ERROR"
+      @tiles_hand = []
     end
 
     def play(word)
@@ -52,5 +53,25 @@ module Scrabble
       score = Scrabble::Scoring.score(@hsw)
       return score
     end
+
+    # def tiles
+    #   @tiles_hand.each do |tile|
+    #     puts tile
+    #   end
+    # end
+    #
+    # def draw_tiles(tile_bag)
+    #   num = 7 - @tiles_hand.length
+    #   @tiles_hand += draw_tiles(num)
+    #   return @tiles_hand
+    # end
   end
+
 end
+
+
+
+
+
+
+#

@@ -73,7 +73,6 @@ module Scrabble
       #   "Q" => 10, "Z" => 10
       # }
 
-      @number_of_tiles = 7
     end
 
     def draw_tiles(num)
@@ -100,7 +99,3 @@ module Scrabble
 
   end
 end
-
-game_1 = Scrabble::TileBag.new
-draw_1 = game_1.draw_tiles(7)
-ap game_1.tiles_remaining
