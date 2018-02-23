@@ -6,11 +6,13 @@ class Player < Scrabble::Scoring
 
   attr_reader :name
 
+  attr_accessor :won?
+
   # name: returns the value of the @name instance variable
   def initialize(name)
     @name = name
     @plays = 0
-    @won == false
+    @won? = false
   end
 
 
@@ -28,19 +30,19 @@ class Player < Scrabble::Scoring
     # if score reaches 100, then exit out
 
     # if they've already won, returns false
-    if won == true
+    if @won? == true
       return false
     end
     return score = scored_words_hash[provided_word]
 
-    # call highest_score_from method here 
+    # call highest_score_from method here
   end
 
 
   # total_score: Returns the sum of scores of played words
   def total_score
     if score > 100
-      won == true
+      @won? = true
       # and somehow exit game
     end
 
