@@ -19,5 +19,14 @@ describe 'player' do
     @player.name.must_equal "Maddie"
     end
 
+  describe "plays" do
+#TODO: Need to test for 100 points..
+      it "must return an array" do
+    @player.plays.must_be_kind_of Array
+  end
+end
+
+
+
   end
 end

@@ -12,7 +12,7 @@ require_relative "scoring"
 # #highest_word_score: Returns the highest_scoring_word score
 require 'minitest/autorun'
 require 'minitest/reporters'
-require 'minitest/skip_dsl'
+
 
 module Scrabble
   class Player
@@ -28,5 +28,23 @@ module Scrabble
       @tiles=[]
 
     end
+
+    def winner
+      return @total_score > 100
+      end
+
+    def play(word)
+      if winner == false
+        @plays << word
+        @total_score += Scoring.score(word)
+      else
+        return false
+      end
+    end
+
+
+
+
+
   end
 end
