@@ -68,23 +68,27 @@ module Scrabble
       end # array_of_words.each
 
 
-        if winning_word.length > 1
-          winning_word.sort_by { |word| word.length}
-        end
-        return winning_word[0]
+#         if winning_word.length > 1
+#           winning_word.sort_by { |word| word.length}
+#         end
+#         return winning_word[0]
 
-        #   winning_word.each do |word|
-        #     if word.length == length_to_beat
-        #       return winning_word
-        #     elsif word.length < length_to_beat
-        #       length_to_beat = word.length
-        #       winning_word.delete(word)
-        #     else
-        #       winning_word.delete(word)
-        #       return winning_word
-        #     end #wrd_lngt == length_to_beat
-        #   end # winning_word.each
-        # end # winning_word.length > 1
+      if winning_word.length > 1
+        winning_word.each do |word|
+          if word.length == length_to_beat
+            return word
+          elsif word.length < length_to_beat
+            length_to_beat = word.length
+            smallest_word = word
+          end
+        end
+        return smallest_word
+      else
+        return winning_word[0]
+      end 
+    end # self.highest_score_from
+  end # Scoring class
+end # Scrabble module
 
       # max = Hash[score_tracker.select { |k, v| v == score_tracker.values.max}]
       # max.each do |k,v|
@@ -96,9 +100,7 @@ module Scrabble
       #   end # if max.length
       # end # max.each
       # score_tracker.each {|k,v|return k if v == score_tracker.values.max}
-    end # self.highest_score_from
-  end # Scoring class
-end # Scrabble module
 
-array_of_words = ["dog", "fish"]
+
+array_of_words = ["dog", "if"]
 puts Scrabble::Scoring.highest_score_from(array_of_words)
