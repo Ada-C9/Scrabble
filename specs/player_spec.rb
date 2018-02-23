@@ -104,13 +104,14 @@ describe 'Player' do
   describe 'draw_tiles(tile_bag)' do
     it 'is a collection of letters that the player can play (max 7)' do
       player_1 = Scrabble::Player.new("Patrick")
-      tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
-      
+      tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 5})
+
       players_tiles = player_1.draw_tiles(tile_bag)
 
       players_tiles.must_be_kind_of Array
-      # players_tiles.length.wont_be :>, 7
-      all_letters = players_tiles.all? { |word| word.type == String }
+      puts players_tiles
+      puts players_tiles[0][0].class
+      all_letters = players_tiles.all? { |word| word.class == String }
 
       all_letters.must_equal true
     end

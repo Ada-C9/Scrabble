@@ -3,24 +3,27 @@
 module Scrabble
   class TileBag
 
-    attr_reader :bag, :tiles_drawn
+    attr_reader :bag
 
     def initialize(tile_bag_hash)
       @bag =  tile_bag_hash
-      @tiles_drawn = []
+      # @tiles_drawn = []
 
     end
 
     def draw_tiles(num)
-      while @tiles_drawn.length <= num
+      tiles_drawn = [ ]
+
+      num.times do
         new_letter = @bag.keys.sample
-        if @bag[new_letter] > 0
-          @tiles_drawn << new_letter
-          @bag[new_letter] -= 1
-        end
+        tiles_drawn << new_letter
+        @bag[new_letter] -= 1
+        @bag.delete_if { |letter, quantity| quantity == 0 }
       end
-      return @tiles_drawn
+
+      return tiles_drawn
     end
+
 
     def tiles_remaining
       return @bag.values.sum

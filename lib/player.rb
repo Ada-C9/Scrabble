@@ -4,22 +4,26 @@ require_relative 'tile_bag'
 
 module Scrabble
 
-  class Player < TileBag
+  class Player
 
-    attr_reader :name, :plays, :tiles_drawn
+    attr_reader :name, :plays
 
     def initialize(name)
       @name = name
       @plays = []
       @scoring_table = {}
       @tiles= []
-      # @tiles_drawn = super
     end
 
     def draw_tiles(tile_bag)
+<<<<<<< HEAD
       # @tiles << super(7 - @tiles.count)
       amount = 7 - @tiles.count
       @tiles << tile_bag.draw_tiles(amount)
+=======
+      @tiles = tile_bag.draw_tiles(7 - @tiles.count)
+      return @tiles
+>>>>>>> c4c390021678f7e148b8280757df501840eb6fea
     end
 
     def play(word)
@@ -60,3 +64,8 @@ module Scrabble
     end
   end
 end
+
+# player_1 = Scrabble::Player.new("Patrick")
+# tile_bag = Scrabble::TileBag.new({"a" => 1, "b" => 2, "c" => 3})
+#
+# players_tiles = player_1.draw_tiles(tile_bag)

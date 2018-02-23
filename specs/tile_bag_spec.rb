@@ -49,8 +49,6 @@ describe "TileBag" do
 
         tile_bag.draw_tiles(3)
 
-        # sum_of_original_bag = tile_bag.bag.values.sum
-
         tile_bag.tiles_remaining.must_equal 3
 
       end
