@@ -15,7 +15,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score('pig').must_equal 6
     end
 
-    xit 'adds 50 points for a 7-letter word' do
+    it 'adds 50 points for a 7-letter word' do
       Scrabble::Scoring.score('academy').must_equal 65
     end
 
@@ -31,7 +31,7 @@ describe 'Scoring' do
       Scrabble::Scoring.score(' ').must_be_nil
     end
 
-    xit 'returns nil for words > 7 letters' do
+    it 'returns nil for words > 7 letters' do
       Scrabble::Scoring.score('abcdefgh').must_be_nil
     end
 
@@ -41,7 +41,7 @@ describe 'Scoring' do
   end
 
   describe 'highest_score_from' do
-    xit 'returns nil if no words were passed' do
+    it 'returns nil if no words were passed' do
       array_of_words  = []
       Scrabble::Scoring.highest_score_from(array_of_words).must_be_nil
     end
@@ -52,8 +52,8 @@ describe 'Scoring' do
     end
 
     it 'returns the highest word if there are two words' do
-      array_of_words = ["zebraa", "zebras"]
-      Scrabble::Scoring.highest_score_from(array_of_words).must_equal(["zebraa", "zebras"])
+      array_of_words = ["zebraa", "zebra"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal(["zebraa"])
     end
 
     xit 'if tied, prefer a word with 7 letters' do

@@ -27,50 +27,36 @@ module Scrabble
         # associated with the key and put that in an array of integers
         #
 
-        if !character_check.include?(character)
+        if !character_check.include?(character) || letters.length == 0 || letters.length > 7
           return nil
         else
           values_of_letters << @all_letters.fetch(character)
         end
       end
 
+      sum = values_of_letters.sum
 
-      if letters.length > 0 && letters.length < 7
-        sum = values_of_letters.sum
-        return sum
+      return letters.length == 7 ? sum + 50 : sum
 
-      elsif letters.length == 7
-        sum = values_of_letters.sum
-        sum = sum + 50
-        return sum
-
-      else
-        return nil
-      end
     end
 
     def self.highest_score_from(array_of_words)
 
       all_scores = {}
 
-      if array_of_words.length == 0
-        return nil
+      return nil if array_of_words.length == 0
 
-      elsif array_of_words.length == 1
+      if array_of_words.length == 1
         return array_of_words
 
       elsif array_of_words.length > 1
         array_of_words.each do |word|
           all_scores[word] = score(word)
-          # scores << score(word)
         end
-
-        p all_scores
       end
 
       max_score_words = all_scores.delete_if { |word, score| score != all_scores.values.max }.keys
 
-      # p max_score_words
       return max_score_words
 
     end
