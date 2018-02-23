@@ -4,16 +4,20 @@ require 'pry'
 module Scrabble
   class Player
 
-    attr_reader :name
+    attr_accessor :name, :player_words
 
-    def initialize
+    def initialize(name)
       @name = name
+      @player_words = []
     end
 
     def plays
+      return @player_words
     end
 
     def play(word)
+      @player_words << word
+      return @player_words
     end
 
     def total_score
