@@ -59,8 +59,6 @@ module Scrabble
       return max
     end
 
-    # tile_bag is an instance of the class TileBag
-    # there is one instance for each game of Scrabble
 
     def draw_tiles(tile_bag)
 

@@ -63,8 +63,9 @@ describe 'Tilebag' do
       our_bag.bag.length.must_equal 16
     end
 
-    # # start of test to determine if the appropriate tiles are removed
-    # it 'removes the appropriate tiles from the bag' do
+    # # AFTER STARTING THIS DRAFT WE LEARNED, THAT WE DON'T HAVE THE SKILLS TO COMPLETE THIS TEST-- OUR GOAL WAS TO CHECK THAT THE CORRECT TILES WERE REMOVED FROM THE BAG
+
+    # it 'removes the appropriate tiles are removed the bag' do
     #   our_bag = Scrabble::Tilebag.new
     #   picked_tiles = our_bag.draw_tiles(10)
     #
@@ -72,10 +73,28 @@ describe 'Tilebag' do
     #   picked_tiles.each do |tile|
     #     counts[tile] += 1
     #   end
+    #
+    #   updated_bag = our_bag.bag
+    #
+    #   array_of_key_value_pairs = counts.to_a
+    #
+    #   counts_as_array_of_tiles = []
+    #
+    #   array_of_key_value_pairs.each do |key_value|
+    #     key_value[1].times
+    #     counts_as_array_of_tiles << key_value[0]
+    #   end
+    #
+    #   counts_as_array_of_tiles.each do |picked_letter|
+    #     our_bag.bag.drop(1) if updated_bag.include?(picked_letter)
+    #   end
+    #
+    #
+    #
+    #
+    # end
+
+
 
   end
-
-
-
-
 end
