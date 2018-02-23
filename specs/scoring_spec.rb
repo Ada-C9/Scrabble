@@ -8,7 +8,7 @@ require_relative '../lib/scoring'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
-  describe 'score' do
+  xdescribe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('cat').must_equal 5
@@ -42,21 +42,37 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      # Arrange
+      # Act
+      # Assert
+      Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      # Arrange
+      # Act
+      # Assert
+      Scrabble::Scoring.highest_score_from(["dog"]).must_equal "dog"
     end
 
     it 'returns the highest word if there are two words' do
+
+      Scrabble::Scoring.highest_score_from(["dog", "rooster"]).must_equal "rooster"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+
+      Scrabble::Scoring.highest_score_from(["tablets", "qqqqkkxs"]).must_equal "tablets"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+
+      Scrabble::Scoring.highest_score_from(["dog", "aeiou"]).must_equal "dog"
     end
 
     it 'returns the first word of a tie with same letter count' do
+
+      Scrabble::Scoring.highest_score_from(["dog", "cat"]).must_equal "dog"
     end
   end
 end
