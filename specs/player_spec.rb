@@ -37,10 +37,14 @@ describe 'Player' do
   describe 'play(word)' do
 
     it 'correctly adds the inputs words to the array in plays' do
+      # arrange
       word = "dog"
       player_1 = Scrabble::Player.new("Hannah")
+
+      # act
       player_1.play(word)
 
+      # assert
       player_1.plays.must_equal ["dog"]
     end
 

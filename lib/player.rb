@@ -24,17 +24,13 @@ module Scrabble
     # array
     def play(player_input)
       @player_words << player_input
-      winning_word = Scrabble::Scoring.highest_score_from(plays)
-      plays.each do |scrabble_word|
-        score_of_word = Scrabble::Scoring.score(scrabble_word)
-        if @winner
-          return false
-        else
-          return score_of_word
-        end
+      score_of_word = Scrabble::Scoring.score(player_input)
+      if won?
+        return false
+      else
+        return score_of_word
       end
     end # end of play(player_input)
-    # binding.pry
 
     def total_score
       word_scores = player_words.map do |word|
@@ -59,9 +55,3 @@ module Scrabble
 
   end # End of Player class
 end # End of Scrabble module
-
-
-test_chart = Scrabble::Player.new("Hannah")
-test_chart.play("cat")
-test_chart.play("frog")
-ap test_chart.play("eleven")

@@ -39,7 +39,7 @@ module Scrabble
         end
       end
       return total_score
-    end
+    end # def self.score(word)
 
 
     def self.highest_score_from(array_of_words)
@@ -72,24 +72,3 @@ module Scrabble
 
   end # class Scoring
 end # module Scrabble
-
-
-# test_chart = Scrabble::Scoring.score('')
-# ap test_chart
-
-# test_chart = Scrabble::Scoring.highest_score_from(["dog", "frog"])
-# ap test_chart
-# binding.pry
-
-
-# # array reference
-# scrabble_chart = [
-#   { 1 => %w[A E I O U L N R S T a e i o u l n r s t] },
-#   { 2 => %w[D G d g]},
-#   { 3 => %w[B C M P b c m p]},
-#   { 4 => %w[F H V W Y f h v w y]},
-#   { 5 => %w[K k]},
-#   { 8 => %w[J X j x]},
-#   { 10 => %w[Q Z q z]}
-# ]
-# ap scrabble_chart[0].values[0][0]
