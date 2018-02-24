@@ -1,4 +1,5 @@
 require_relative 'scoring'
+require_relative 'dictionary'
 require 'pry'
 
 module Scrabble
@@ -6,11 +7,12 @@ module Scrabble
     attr_reader :name, :total_score, :tiles
     attr_writer :tiles
 
-    def initialize(name)
+    def initialize(name, use_dictionary=true)
       @name = name
       @plays = []
       @total_score = 0
       @tiles = []
+      @use_dictionary = use_dictionary
     end
 
     def plays
@@ -24,7 +26,7 @@ module Scrabble
           throwaway.delete_at(throwaway.index letter) if tile == letter
         end
       end
-      if throwaway.length == 0
+      if throwaway.length == 0 && (!@use_dictionary || Dictionary.find(word))
       # if word.chars.all? {|chr| @tiles.include?(chr)}
         @plays << word
         if @total_score > 100

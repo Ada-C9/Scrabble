@@ -24,7 +24,7 @@ describe 'class player' do
     end
 
     it 'must return accurate words' do
-      new_player = Scrabble::Player.new("Tor")
+      new_player = Scrabble::Player.new("Angela", false)
       new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
       new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
@@ -44,7 +44,7 @@ describe 'class player' do
     end
 
     it 'returns false if player has already won' do
-      new_player = Scrabble::Player.new("Tor")
+      new_player = Scrabble::Player.new("Angela", false)
       new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
       new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
@@ -77,7 +77,7 @@ describe 'class player' do
 
   describe 'Scrabble::Player.total_score' do
     it 'returns the sum of scores of played words' do
-      new_player = Scrabble::Player.new("Angela")
+      new_player = Scrabble::Player.new("Angela", false)
       new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
       new_player.tiles = ["g", "i", "r", "a", "f", "f", "e"]
@@ -88,7 +88,7 @@ describe 'class player' do
 
   describe 'Scrabble::Player.won?' do
     it 'returns false until player has over 100 points' do
-      new_player = Scrabble::Player.new("Angela")
+      new_player = Scrabble::Player.new("Angela", false)
       new_player.tiles = ["q", "q", "q", "q", "q"]
       new_player.play('qqqqq')
       new_player.won?.must_equal false
@@ -101,7 +101,7 @@ describe 'class player' do
   #nominal
     describe 'Scrabble::Player.won?' do
       it 'returns false until player has over 100 points' do
-        new_player = Scrabble::Player.new("Angela")
+        new_player = Scrabble::Player.new("Angela", false)
         new_player.tiles = ["q", "q", "q", "q", "q"]
         new_player.play('qqqqq')
         new_player.tiles = %w[z z z z z]
@@ -168,5 +168,3 @@ describe 'class player' do
   end
 
 end
-
-# binding.pry
