@@ -47,7 +47,15 @@ module Scrabble
     end
 
     def draw_tiles(num)
-
+      tile_bag_count = 98
+      player_tiles = []
+      num.times do
+        tile_index = rand(0..tile_bag_count-1)
+        selected_tile = @tiles[tiles_index]
+        player_tiles << selected_tile
+        @tiles.delete_at(tile_index)
+      end
+      return player_tiles
     end
 
     def tiles_remaining
