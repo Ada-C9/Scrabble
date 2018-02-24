@@ -45,26 +45,46 @@ describe 'Player' do
     end
 
     it 'correctly returns false if player has already won' do
-      word_2 = "frog"
+      word_1 = "quetzal"
+      word_2 = "elevens"
+      word_3 = "zzzzzzz"
       player_1 = Scrabble::Player.new("Hannah")
-      player_1.winner = true
+      player_1.play(word_1)
+      player_1.play(word_2)
+      player_1.play(word_3)
 
       player_1.play(word_2).must_equal false
     end
 
   end
- describe 'total_score' do
-   it "correctly returns the sum of scores of played words" do
-   word_1 = "cat"
-   word_2 = "dog"
-   word_3 = "frog"
-   word_4 = "house"
-   player_1 = Scrabble::Player.new("Luxi")
-   player_1.play(word_1)
-   player_1.play(word_2)
-   player_1.play(word_3)
-   player_1.play(word_4)
-   player_1.total_score.must_equal 26
- end
- end
+
+  describe 'total_score' do
+
+    it "correctly returns the sum of scores of played words" do
+      word_1 = "cat"
+      word_2 = "dog"
+      word_3 = "frog"
+      word_4 = "house"
+      player_1 = Scrabble::Player.new("Luxi")
+      player_1.play(word_1)
+      player_1.play(word_2)
+      player_1.play(word_3)
+      player_1.play(word_4)
+      player_1.total_score.must_equal 26
+    end
+
+  end
+
+  describe 'won?' do
+    it "correctly returns true if the player has over 100 points, otherwise returns false" do
+      word_1 = "quetzal"
+      word_2 = "elevens"
+      word_3 = "zzzzzzz"
+      player_1 = Scrabble::Player.new("Hannah")
+      player_1.play(word_1)
+      player_1.play(word_2)
+      player_1.play(word_3)
+      player_1.won?.must_equal true
+    end
+  end
 end
