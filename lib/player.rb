@@ -40,10 +40,30 @@ module Scrabble
       return points
     end
 
+    def highest_scoring_word
+      word_score_pair = {}
+      @plays.each do |word|
+      word_score_pair[word] = Scrabble::Scoring.score(word)
+      end
+     word_score_pair.max_by do |k,v|
+       return k if v == word_score_pair.values.max
+     end
+    end
+
+    def highest_word_score
+      word_score_pair = {}
+      @plays.each do |word|
+      word_score_pair[word] = Scrabble::Scoring.score(word)
+      end
+     word_score_pair.max_by do |k,v|
+       return v if v == word_score_pair.values.max
+     end
+    end
+
   end # class player
 
 end # module
 # player = Scrabble::Player.new("Sam")
 # player.play("word")
 # player.play("dog")
-# puts player.total_score
+# print player.highest_word_score

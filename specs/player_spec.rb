@@ -68,4 +68,24 @@ describe "Player" do
 
     end
   end
+
+  describe "#highest_scoring_word" do
+    it 'returns the highest scoring played word'do
+    player = Scrabble::Player.new("player")
+    player.play("dog")
+    player.play("sleep")
+
+    player.highest_scoring_word.must_equal "sleep"
+  end
+end
+
+describe "#highest_word_score" do
+  it 'returns the highest word score'do
+  player = Scrabble::Player.new("player")
+  player.play("dog")
+  player.play("sleep")
+
+  player.highest_word_score.must_equal 7
+end
+end
 end
