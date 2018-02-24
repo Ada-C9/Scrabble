@@ -1,3 +1,4 @@
+require 'minitest/pride'
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
@@ -46,7 +47,6 @@ describe 'Player' do
       john.play("jukebox")
 
       john.won.must_equal false
-      # john.play.must_equal false
     end
   end
 
@@ -104,6 +104,18 @@ describe 'Player' do
       john.play("score")
 
       john.won?.must_equal false
+    end
+  end
+
+  describe 'draw_tiles' do
+    it 'returns an array of tiles' do
+      john = Scrabble::Player.new("John")
+      tile_bag = Scrabble::TileBag.new
+
+      john.draw_tiles(tile_bag)
+
+      john.tiles.must_be_instance_of Array
+      john.tiles.length.must_equal 7
     end
   end
 end

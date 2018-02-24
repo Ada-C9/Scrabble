@@ -1,3 +1,4 @@
+require 'minitest/pride'
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
@@ -56,8 +57,6 @@ describe 'Scoring' do
     end
 
     it 'if tied, prefer a word with 7 letters' do
-
-      # words3 = ["alcohol", "fish", "canoli", "knife"]
       words3 = ["qqqqqx", "aeiould"]
 
       Scrabble::Scoring.highest_score_from(words3).must_equal "aeiould"
