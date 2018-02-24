@@ -42,7 +42,7 @@ module Scrabble
       random_tiles = []
       num.times do
       count = 0
-      random_number = rand(0..tiles_remaining)
+      random_number = rand(0...tiles_remaining)
       @tile_bag.map{|letter_type,letter|
         letter.each do |single_letter|
           if count == random_number
@@ -71,8 +71,8 @@ module Scrabble
     #tiles_remaining returns the number of tiles remaining in the bag
 
     def tiles_remaining
-      #@tile_bag.length
-       return @title_bag.sum{|letter_type,character| character.length}
+       tiles_remaining = @tile_bag.sum{|letter_type,character| character.length}
+       return tiles_remaining
     end
 
 
