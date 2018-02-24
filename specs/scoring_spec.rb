@@ -1,13 +1,13 @@
 require 'minitest/autorun'
+require 'minitest/pride'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
 require_relative '../lib/scoring'
 
-# Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-xdescribe 'Scoring' do
+describe 'Scoring' do
   describe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
@@ -57,7 +57,6 @@ xdescribe 'Scoring' do
       random_arr = ['zzebra','medium']
       highest_of_words = Scrabble::Scoring.highest_score_from(random_arr)
       highest_of_words.must_equal 'zzebra'
-
     end
 
     it 'if tied, prefer a word with 7 letters' do
