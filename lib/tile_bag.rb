@@ -4,7 +4,7 @@ require 'awesome_print'
 
 module Scrabble
   class TileBag
-    attr_accessor :tile, :tile_bag, :number_of_tiles
+    attr_reader :tile_bag
 
     def initialize
       @tile_bag =
