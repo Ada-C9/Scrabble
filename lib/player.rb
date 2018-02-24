@@ -48,9 +48,11 @@ module Scrabble
     end
 
     def highest_scoring_word
+      Scrabble::Scoring.highest_score_from(plays)
     end
 
     def highest_word_score
+
     end
 
   end # End of Player class
