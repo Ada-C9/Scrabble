@@ -36,8 +36,8 @@ module Scrabble
 
     def self.highest_score_from(array_of_words)
       max = 0
-      winner = nil
-      short = 0
+      #winner = nil
+      #short = 0
       if array_of_words.size == 0
         highest_score = nil
       elsif array_of_words.size == 1
