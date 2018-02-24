@@ -93,7 +93,7 @@ describe 'Player' do
   end
 
   describe 'highest_scoring_word' do
-    it "Returns the highest scoring played word" do
+    it "correctly returns the highest scoring played word" do
       word_1 = "cat"
       word_2 = "dog"
       word_3 = "frog"
@@ -104,4 +104,18 @@ describe 'Player' do
       player_1.highest_scoring_word.must_equal "frog"
     end
   end #end of describe highest_scoring_word
+
+  describe 'highest_word_score' do
+    it "correctly returns the highest scoring word score" do
+      word_1 = "cat"
+      word_2 = "dog"
+      word_3 = "frog"
+      player_1 = Scrabble::Player.new("Hannah")
+      player_1.play(word_1)
+      player_1.play(word_2)
+      player_1.play(word_3)
+      player_1.highest_word_score.must_equal 8
+    end
+  end #end of describe highest_scoring_word
+
 end

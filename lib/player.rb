@@ -6,12 +6,11 @@ require_relative 'scoring'
 module Scrabble
   class Player
 
-    attr_accessor :name, :player_words, :winner
+    attr_accessor :name, :player_words
 
     def initialize(name)
       @name = name
       @player_words = []
-      @winner = false
     end
 
     # this method takes the input from the Player#play method and returns it as
@@ -52,7 +51,7 @@ module Scrabble
     end
 
     def highest_word_score
-
+      Scrabble::Scoring.score(highest_scoring_word)
     end
 
   end # End of Player class
