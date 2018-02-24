@@ -105,6 +105,21 @@ describe 'Player' do
     end
   end
 
+  describe 'Tile-' do
+    it 'Returns highest scoring word in an array of words for a single player' do
+      player_name = Scrabble::Player.new("Ada")
+      tile_bag = Scrabble::TileBag.new
+      player_name.players_plaque = ['C','D','E']
+      player_name.draw_tiles(tile_bag)
+      player_name.tiles.length.must_equal 7
+      puts player_name.tiles
+
+    end
+  end
+
+
+
+
   describe 'highest_word_score' do
     it "Returns the score of the highest scoring word" do
       player_name = Scrabble::Player.new("Ada")

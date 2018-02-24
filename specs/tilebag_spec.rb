@@ -21,12 +21,6 @@ describe 'TileBag' do
       array_of_char.length.must_equal 4 # Add to git
     end
 
-    # captured in test above
-    # it 'can return the size of an array input by the user' do
-    #   random_arr = Scrabble::TileBag.new
-    #   arr_of_char = random_arr.draw_tiles(5)
-    #   arr_of_char.length.must_equal 5
-    # end
 
     it 'returns an empty array of tiles when there is not enough tiles ' do
       tile_bag_test = Scrabble::TileBag.new
@@ -34,11 +28,11 @@ describe 'TileBag' do
       random_tiles.must_be_instance_of Array
       random_tiles.length.must_equal 0
     end
-
+    #
     it 'deletes the tiles from the tile bag' do
       tile_bag_test = Scrabble::TileBag.new
       random_tiles = tile_bag_test.draw_tiles(4)
-      tile_bag_test.tile_bag.length.must_equal 94
+      tile_bag_test.tiles_remaining.must_equal 94
     end
 
   end
@@ -54,6 +48,8 @@ describe 'TileBag' do
       tile_bag_test.draw_tiles(4)
       tile_bag_test.tiles_remaining.must_equal 94
     end
+
+
 
   end
 end
