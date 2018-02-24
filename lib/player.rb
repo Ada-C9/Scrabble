@@ -25,14 +25,6 @@ module Scrabble
       return score
     end
 
-    # def total_score
-    #   @player_array.each do |word|
-    #     played_word_score = Scrabble::Player.play(word)
-    #     @player_total_score += played_word_score
-    #   end
-    #   return player_total_score
-    # end
-
     def won?
       if @total_score > 100
         return true
