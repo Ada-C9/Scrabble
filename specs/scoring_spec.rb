@@ -42,21 +42,39 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      word_array = []
+
+      Scrabble::Scoring.highest_score_from(word_array).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      word_array = ['giraffe']
+
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'giraffe'
     end
 
     it 'returns the highest word if there are two words' do
+      word_array = ['giraffe', 'hamster']
+
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'giraffe'
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      word_array = ['qqzzqq', 'aaaaadb']
+
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'aaaaadb'
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      word_array = ["aaaa", "aad"]
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'aad'
     end
 
     it 'returns the first word of a tie with same letter count' do
+      word_array = ['jacuzzi', 'jazzmen']
+
+      Scrabble::Scoring.highest_score_from(word_array).must_equal 'jacuzzi'
+
     end
   end
 end
