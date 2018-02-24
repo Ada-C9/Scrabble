@@ -100,18 +100,16 @@ describe 'Player' do
 
   end
 
-  # describe "tiles" do
-  #   it "holds a collection of up to seven tiles" do
-  #     test_tiles = @player_1.tiles
-  #
-  #     test_tiles.must_be_kind_of Array
-  #     test_tiles.length.must_be >= 7
-  #   end
-  # end
+  describe "tiles" do
+    it "holds a collection of up to seven tiles" do
+      test_tiles = @player_1.tiles
+
+      test_tiles.must_be_kind_of Array
+    end
+  end
 
   describe "draw_tiles(tile_bag)" do
 
-    # it "pulls tiles from the tile_bag" do
     before do
       full_tile_set = {
         :A => 9, :N => 6, :B => 2, :O => 8, :C => 2,
@@ -122,7 +120,7 @@ describe 'Player' do
         :Z => 1
       }
       @full_tile_bag_instance = Scrabble::TileBag.new(full_tile_set)
-      # @player_1.draw_tiles(tile_bag_instance)
+
       limited_tile_set = {
         :A => 0, :N => 0, :B => 0, :O => 0, :C => 0,
         :P => 0, :D => 0, :Q => 1, :E => 0, :R => 0,
@@ -137,10 +135,9 @@ describe 'Player' do
 
     it "draws the correct number of tiles when there are plentiful tiles" do
         player = Scrabble::Player.new("Grizz")
-        # give Grizz some tiles
         player.tiles = [:A,:B]
         player.draw_tiles(@full_tile_bag_instance)
-        # assert that Grizz now has seven tiles_in_bag
+
         player.tiles.length.must_equal 7
     end
 
@@ -152,27 +149,5 @@ describe 'Player' do
       player.tiles.length.must_equal 4
     end
 
-    # it "determines correct number of tiles to draw based on number of tiles player has and num tiles remaining in tile_bag" do
-    #
-    #   player_3 = Scrabble::Player.new("Griz")
-    #   player_4 = Scrabble::Player.new("Dotcom")
-    #   #player instance with less than 7 tiles
-    #   # run method and have after state show that num tiles is now exactly 7, unless tiles_remaining is less than that
-    #   player_3_tiles = player_3.tiles
-    #   player_4_tiles = player_4.tiles
-    #
-    #   player_3_tiles.length.must_equal 7
-    #   player_4_tiles.length.must_equal 3
-    #
-    #   player_3.draw_tiles(@full_tile_bag_instance)
-    #   player_4.draw_tiles(@limited_tile_bag_instance)
-    #
-    #   # assert that grizz gets 7 tiles
-    #   # assert that dotcom gets 3 tiles
-
-    # end
-
   end
 end
-
-#need to create new instance of TileBag (called tile_bag), then a new instance of Player can call .draw_tiles(tile_bag), then we assess num tiles to be drawn, call TileBag method draw_tiles(num), which returns draw_array, which we can then pass into the Player.tiles method

@@ -77,15 +77,11 @@ describe "TileBag" do
       tile_bag_test = Scrabble::TileBag.new(initial_tile_set.dup)
 
       draw_array = tile_bag_test.draw_tiles(3)
-
       tile = draw_array[0]
-
       starting_tile_quantity = initial_tile_set.fetch(tile)
-
       ending_tile_quantity = tile_bag_test.tiles_in_bag.fetch(tile)
 
       initial_tile_set.must_be_kind_of Hash
-
       starting_tile_quantity.must_equal ending_tile_quantity + 1
 
     end
@@ -105,20 +101,12 @@ describe "TileBag" do
       }
 
       tile_bag_test_2 = Scrabble::TileBag.new(original_tile_set)
-
       tile_count = tile_bag_test_2.tiles_remaining
 
       tile_count.must_equal 98
 
-      # binding.pry
     end
 
   end
 
 end
-
-
-
-
-
-#
