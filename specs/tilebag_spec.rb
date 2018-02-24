@@ -17,8 +17,14 @@ describe 'tile bag test' do
   tiles.length.must_equal 7
   end
 
-  it 'can't draw more tiles than is available' do
-  #  ['a', 'e', 'i', 'o']
-  end
+  # NOT FUNCTIONING
+  # xit 'Can not draw more tiles than is available' do
+  #   # ['a', 'e', 'i', 'o']
+  #   new_bag = Scrabble::Tilebag.new
+  #   new_bag.draw_tiles(100)
+  #
+  #   new_bag.wont_be:>, 100
+  # end
+
 
 end

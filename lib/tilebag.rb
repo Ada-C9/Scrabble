@@ -7,22 +7,28 @@ module Scrabble
 
     def initialize
       @tile_bag = BAG.each_with_object([]) { |(letter, value),tile_bag|
-      value.times { (tile_bag << letter.to_s)}}
-    end
-
-    def draw_tiles(num)
-
-      players_tiles = []
-
-      num.times do
-        random_number = rand(0..tile_bag.length)
-         players_tiles << tile_bag.delete_at(random_number)
+        value.times { (tile_bag << letter.to_s)}}
       end
 
-      return players_tiles
+      def draw_tiles(num)
 
-    end  # draw_tiles
+        players_tiles = []
 
-  end # class # Tilebag
+        num.times do
+          random_number = rand(0...tile_bag.length)
 
-end # module Scrabble
+          new_tile = tile_bag.delete_at(random_number)
+          if new_tile == nil
+            puts "No more tiles! "
+          else players_tiles << new_tile
+          end
+        end # times
+
+        return players_tiles
+
+      end  # draw_tiles
+    end # class # Tilebag
+  end # module Scrabble
+
+  x = Scrabble::Tilebag.new
+  puts x.draw_tiles(3)
