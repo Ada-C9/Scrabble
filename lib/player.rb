@@ -1,6 +1,5 @@
 require_relative 'scoring'
 require_relative 'dictionary'
-require 'pry'
 
 module Scrabble
   class Player
@@ -60,4 +59,3 @@ module Scrabble
     end
   end
 end
-# binding.pry

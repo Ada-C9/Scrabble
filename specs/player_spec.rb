@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
-require 'pry'
 
 require_relative '../lib/player.rb'
 require_relative '../lib/scoring.rb'

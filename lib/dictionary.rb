@@ -1,6 +1,4 @@
 require 'csv'
-require 'pry'
-# require_relative 'player'
 
 module Scrabble
   class Dictionary
@@ -23,5 +21,3 @@ module Scrabble
 
   end
 end
-
-# binding.pry

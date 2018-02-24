@@ -49,9 +49,9 @@ module Scrabble
       all_highscores = word_hash.select { |word, score| score == highscore }.keys
 
       winner = all_highscores[0]
-      if all_highscores.any? { |word| word.length == 7 }
+      if all_highscores.any? { |word| word.length == MAX_WORD_LENGTH }
         seven_letter_score = all_highscores.select { |word|
-          word.length == 7 }
+          word.length == MAX_WORD_LENGTH }
         winner = seven_letter_score[0]
       else
         all_highscores.each do |word|
