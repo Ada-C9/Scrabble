@@ -20,11 +20,19 @@ describe 'Tilebag' do
     end
   end
 
-  xdescribe 'draw_tiles' do
-
+  describe 'draw_tiles' do
+    it "draws tiles" do
+      tile_bag = Scrabble::TileBag.new
+      tile_bag.draw_tiles(1)
+      proc {tile_bag.draw_tiles(99)}
+    end
   end
 
-  xdescribe 'tiles_remaining' do
-
+  describe 'tiles_remaining' do
+    it "returns how many tiles remain in the tile bag" do
+    tile_bag = Scrabble::TileBag.new
+    tile_bag.draw_tiles(9)
+    tile_bag.tiles_remaining.must_equal 89
+    end
   end
 end

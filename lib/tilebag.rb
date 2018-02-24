@@ -23,11 +23,19 @@ module Scrabble
     end
 
     def draw_tiles(num)
-
+      if num > @tiles.length
+        raise ArgumentError.new("Only #{num} tiles left.")
+      end
+      tiles_collection = []
+      @tiles = @tiles.shuffle
+      num.times do
+        tiles_collection << @tiles.pop
+      end
+      return tiles_collection
     end
 
     def tiles_remaining
-
+      return @tiles.length
     end
   end
 end
