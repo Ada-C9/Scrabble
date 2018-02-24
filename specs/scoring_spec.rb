@@ -74,8 +74,3 @@ describe 'Scoring' do
     end
   end
 end
-
-
-
-
-#

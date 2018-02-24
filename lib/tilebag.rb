@@ -17,10 +17,9 @@ module Scrabble
 
     attr_accessor :tiles_in_bag, :draw_array
 
+    # We decided to pass in the hash containing the original tile bag contents so that our tests on randomness would work
     def initialize(original_tile_bag)
-      # We decided to pass in the original_tile_bag as a parameter instead of calling .dup to make a local copy of the original
       @tiles_in_bag = original_tile_bag
-      # @draw_array = []
     end
 
     def draw_tiles(num)
@@ -28,10 +27,9 @@ module Scrabble
       draw_array = []
       num.times do
         successful_draw = nil
-        # Until the value in @tiles_in_bag that corresponds tp the key in random_letter has a value of 1 or more, keep drawing tiles.
+        # Until the value in @tiles_in_bag that corresponds to the key in random_letter has a value of 1 or more, keep drawing tiles.
         while successful_draw == nil
           draw = random_letters.sample
-          # binding.pry
           if @tiles_in_bag[draw] >= 1
             @tiles_in_bag[draw] -= 1
             successful_draw = draw
@@ -50,6 +48,3 @@ module Scrabble
   end
 
 end
-
-# new_bag = Scrabble::TileBag.new(original_tile_bag)
-# new_bag.draw_tiles(1)

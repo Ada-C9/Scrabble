@@ -33,10 +33,6 @@ module Scrabble
 
     attr_accessor :word
 
-    # def initialize(word)
-    #   @word = word
-    # end
-
     def initialize
       @word = word
     end
@@ -54,13 +50,11 @@ module Scrabble
         values_of_letters << tile_value
       end
       # store the returned values in an array.
-      # values_of_letters << LETTERVALUES[letter]
       if values_of_letters.include?("x")
         sum = nil
       elsif values_of_letters.length > 7 || values_of_letters.length < 1
         sum = nil
       else
-        # calculate and return sum
         sum = values_of_letters.sum
       end
       if values_of_letters.length == 7

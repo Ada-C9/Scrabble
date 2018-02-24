@@ -18,7 +18,6 @@ describe 'Player' do
   describe 'initialize' do
 
     it "Takes a player name" do
-      # player_1 = Scrabble::Player.new("Nora")
       @player_1.name.must_equal "Nora"
     end
 
@@ -36,7 +35,6 @@ describe 'Player' do
 
     it "Returns false if player has already won" do
       @player_2.plays = ["pizzazz", "bezique"]
-      # binding.pry
       @player_2.won?
 
       @player_2.play("snart").must_equal false
@@ -81,12 +79,6 @@ describe 'Player' do
       @player_2.won?.must_equal false
 
     end
-
-    # it "Returns false if the player has not played any words." do
-    #   @player_2.plays = []
-    #
-    #   @player_2.won?.must_equal false
-    # end
 
   end
 

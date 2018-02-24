@@ -44,14 +44,12 @@ module Scrabble
       Scrabble::Scoring.score(@top_word)
     end
 
-    # This whole method seems superfluous, given that the
+    # This whole def tiles method seems superfluous, given that the
     # constructor method exists, and given that the
     # assignment doesn't ask us to make it do anything
     # more than the attr: accessor method could make
     # it do.    We have added it in the interest of
     # following the instructors we were given, but if we were designing this on our own, we would not have included it.
-
-
     def tiles
       return @tiles
     end
