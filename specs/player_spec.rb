@@ -24,7 +24,8 @@ describe 'Player' do
 
   describe 'plays' do
     it 'it can return an array' do
-      Scrabble::Player.new('').plays.must_be_instance_of Array
+      player = Scrabble::Player.new('')
+      player.plays.must_be_instance_of Array
     end
 
     # xit '' do
@@ -41,14 +42,28 @@ describe 'Player' do
 
       # Act
       player.play(word)
-      
+
       # Assert
-      player.plays[0].must_equal 'batshit'
+      player.plays.must_include 'batshit'
     end
 
     it 'returns false if player has already won' do
-      word_1 = "crazy"
-      Scrabble::Player.new('').play(word_1).must_equal false
+      # Arrange
+      word = "crazy"
+      word_1 = 'janky'
+      word_2 = 'coding'
+      word_3 = 'dancing'
+      word_4 = 'hah'
+      player = Scrabble::Player.new('')
+
+      # Act
+      player.play(word)
+      player.play(word_1)
+      player.play(word_2)
+      player.play(word_3)
+
+      # Assert
+      player.play(word_4).must_equal false
 
     end
 
@@ -63,7 +78,26 @@ describe 'Player' do
   end
 
   xdescribe 'total_score' do
-    xit '' do
+    xit 'Returns the sum of scores of played words' do
+      # Arrange
+      player = Scrabble::Player.new('')
+      word = "crazy"
+      word_1 = 'janky'
+      word_2 = 'coding'
+      word_3 = 'dancing'
+      word_4 = 'hah'
+
+      # Act
+      player.play(word)
+      player.play(word_1)
+      player.play(word_2)
+      player.play(word_3)
+      player.plays
+      player.total_score
+
+      # Assert
+      player.total_score.must_be Integer
+
 
     end
 
@@ -74,8 +108,22 @@ describe 'Player' do
 
   describe 'won?' do
     it 'if player has > 100 point score, return true' do
+      word = "crazy"
+      word_1 = 'janky'
+      word_2 = 'coding'
+      word_3 = 'dancing'
+      word_4 = 'hah'
+      player = Scrabble::Player.new('')
 
-      Scrabble::Player.new('').won.must_equal true
+      # act
+      player.play(word)
+      player.play(word_1)
+      player.play(word_2)
+      player.play(word_3)
+      player.total_score
+
+      # Assert
+      player.won.must_equal true
     end
 
     xit '' do

@@ -1,3 +1,4 @@
+# require 'pry'
 module Scrabble
   class Player
     attr_reader :name, :played_words
@@ -23,7 +24,10 @@ module Scrabble
     # calculates the score of all the words
     def total_score
       word_scores = @played_words.map do |word|
-        Scrabble::Scoring.score(word)
+         Scrabble::Scoring.score(word)
+      end
+      if word_scores.include?(nil)
+        # binding.pry
       end
       return word_scores.inject(:+)
     end
