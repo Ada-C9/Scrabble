@@ -35,13 +35,20 @@ describe 'Player' do
   describe 'play(word)' do
     # Feedback mentions testing edge cases for this method
     it 'takes word and adds it to the plays array' do
+    # arrange
       word = 'batshit'
-      @played_words = []
-      Scrabble::Player.new('').play(word).must_include 'batshit'
+      player = Scrabble::Player.new('')
+
+      # Act
+      player.play(word)
+      
+      # Assert
+      player.plays[0].must_equal 'batshit'
     end
 
     it 'returns false if player has already won' do
-      Scrabble::Player.new('').won?.must_equal false
+      word_1 = "crazy"
+      Scrabble::Player.new('').play(word_1).must_equal false
 
     end
 
@@ -49,7 +56,7 @@ describe 'Player' do
       word = "guano"
       Scrabble::Player.new('').play(word)
 
-      Scrabble::Scoring.score(word).must_equal 7
+      Scrabble::Scoring.score(word).must_equal 6
 
       # Scrabble::Player.new('').play(word).score(word).must_equal 7
     end
@@ -67,8 +74,8 @@ describe 'Player' do
 
   describe 'won?' do
     it 'if player has > 100 point score, return true' do
-      total_score = 101
-      Scrabble::Player.new('').won?(total_score).must_equal true
+
+      Scrabble::Player.new('').won.must_equal true
     end
 
     xit '' do
