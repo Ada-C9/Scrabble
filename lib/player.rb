@@ -13,6 +13,12 @@ module Scrabble
     ##  @total_score = 0
     end
 
+    def tiles
+    end
+
+    def draw_tiles(tile_bag)
+    end
+
     def plays
       #returns an Array of the words played by the player
       return @array_of_words
