@@ -46,4 +46,26 @@ describe "Player" do
       player.total_score.must_equal 15
     end
   end
+
+  describe "#won?" do
+    it'if player has 100 or more points return true'  do
+
+      player = Scrabble::Player.new("player")
+      player.play("zzzzzzz")
+      player.play("zzzzzzz")
+
+
+      player.won?.must_equal true
+
+    end
+
+    it'if player has under 100 points return false'  do
+
+      player = Scrabble::Player.new("player")
+      player.play("dog")
+
+      player.won?.must_equal false
+
+    end
+  end
 end

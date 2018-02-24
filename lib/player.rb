@@ -24,7 +24,11 @@ module Scrabble
     end
 
     def won?
-      return false
+      if total_score >= 100
+        return true
+      else
+        return false
+      end
     end
 
     def total_score
@@ -39,7 +43,7 @@ module Scrabble
   end # class player
 
 end # module
-player = Scrabble::Player.new("Sam")
-player.play("word")
-player.play("dog")
-puts player.total_score
+# player = Scrabble::Player.new("Sam")
+# player.play("word")
+# player.play("dog")
+# puts player.total_score
