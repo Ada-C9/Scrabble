@@ -68,20 +68,5 @@ describe 'Player' do
     end
   end #ends describe 'play(word)'
 
-  # describe 'total_score'
-  #   it 'returns the sum of scores of played words' do
-  #     Scrabble::Player.play("apple")
-  #     Scrabble::Player.play("cat")
-  #     Scrabble::Player.total_score.must_equal(14)
-  #   end
-  # end #ends describe 'total score'
-  # #
-  # describe 'won?' do
-  #   it 'returns true if the player has over 100 points' do
-  #     Scrabble::Player.total_score = 101
-  #     Scrabble::Player.won?.must_equal(true)
-  #   end
-  #
-  #   it 'returns false if the player has less than 101 points'
 
 end #ends Player do
