@@ -18,13 +18,14 @@ module Scrabble
       return @starting_tiles
     end
 
-    def draw_tiles
-      7.times do
+    def draw_tiles(number)
+      number.times do
         tile = @starting_tiles.keys.sample
         tile = tile.to_s
         @hand_of_tiles.push(tile)
-      end
 
+        @starting_tiles[tile.to_sym] -= 1
+      end
       return @hand_of_tiles
     end
 
@@ -34,4 +35,4 @@ end
 
 
 first = Scrabble::TileBag.new
-ap first.draw_tiles
+ap first.draw_tiles(1)
