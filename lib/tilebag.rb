@@ -4,7 +4,6 @@ require 'pry'
 require_relative 'scoring'
 
 
-
 module Scrabble
   class TileBag
     attr_reader :tiles
@@ -59,7 +58,7 @@ module Scrabble
     end
 
     def tiles_remaining
-
+      return @tiles.length
     end
   end
 end
