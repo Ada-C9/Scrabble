@@ -9,7 +9,7 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
   describe 'score' do
-    
+
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('cat').must_equal 5
@@ -73,5 +73,3 @@ describe 'Scoring' do
     end
   end
 end
-
-# This comment is for testing merging conflicts

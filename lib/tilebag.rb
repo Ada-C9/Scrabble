@@ -34,9 +34,6 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      # num = 7 - Player.tiles.length
-      #the player class inherits from TileBag class so they can super this method?
-      #num in this method might be passed from the player draw_tiles(tile_bag) method with (7 - current number of tiles player has (i.e. tiles.length))
 
       drawn_tiles = @tile_bag.to_a.sample(num)
 
@@ -48,22 +45,9 @@ module Scrabble
     end
 
     def tiles_remaining
-      #https://apidock.com/ruby/Enumerable/inject
-      #returns # of tiles remaining in bag (current number of tiles in default_tiles)
-      #adding up the value for each letter in @tile_bag
       @tile_bag.inject(0) do |sum, (letter, frequency)|
         sum + frequency
       end
     end
   end
 end
-
-game_1_tiles = TileBag.new
-game_1_tiles.draw_tiles(7)
-puts game_1_tiles.tile_bag
-# game_1_tiles.draw_tiles(7)
-# puts game_1_tiles.tile_bag
-# game_1_tiles.draw_tiles(7)
-# puts game_1_tiles.tile_bag
-# game_1_tiles.draw_tiles(1)
-puts game_1_tiles.tiles_remaining
