@@ -2,12 +2,9 @@ require 'awesome_print'
 
 module Scrabble
   class TileBag
-    #
     attr_reader :tile_bag
-    #initialize Should set up the instance with a collection of all default tiles
-    def initialize
-      # @tile_bag = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I", "I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O", "O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z"]
 
+    def initialize
       @tile_bag =
       { A: ['A']*9,
         B: ['B']*2,
@@ -35,12 +32,12 @@ module Scrabble
         X: ['X']*1,
         Y: ['Y']*2,
         Z: ['Z']*1 }
-
       end
-      # draw_tiles(num) returns a collection of random tiles, removes the tiles from the default set
+
+      # Returns a collection of random tiles, removes the tiles from the default set or returns an empty array and displays a message to the user.
       def draw_tiles(num)
         random_tiles = []
-        if num <= tiles_remaining
+        if num <= tiles_remaining && num > 1
           num.times do
             count = 0
             random_number = rand(0...tiles_remaining)
@@ -59,13 +56,10 @@ module Scrabble
           return random_tiles
         end
 
-        #tiles_remaining returns the number of tiles remaining in the bag
-
+        # Returns the number of tiles remaining in the bag
         def tiles_remaining
           tiles_remaining = @tile_bag.sum{|letter_type,character| character.length}
           return tiles_remaining
         end
-
-
       end
     end
