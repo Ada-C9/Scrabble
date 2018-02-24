@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
-require_relative '../lib/scoring'
+require_relative './scoring'
 
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -40,7 +40,7 @@ describe 'Scoring' do
     end
   end
 
-  xdescribe 'highest_score_from' do
+  describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
       Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
