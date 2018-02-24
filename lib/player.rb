@@ -1,16 +1,25 @@
-#require_relative 'lib/scoring.rb'
 require 'awesome_print'
-
+MAX_NUM_OF_TILES_ALLOWED = 7
 module Scrabble
   class Player
 
     attr_reader :name
-
+    attr_writer :players_plaque
     def initialize(name)
       #returns the value of the @name instance variable
       @name = name
       @array_of_words = []
-    ##  @total_score = 0
+      @players_plaque = []
+    end
+
+    def tiles
+      return @players_plaque
+    end
+
+    def draw_tiles(title_bag)
+      tile_bag = Scrabble::TileBag.new
+      add_tiles = MAX_NUM_OF_TILES_ALLOWED  - @players_plaque.length
+      @players_plaque.concat(tile_bag.draw_tiles(add_tiles))
     end
 
     def plays
