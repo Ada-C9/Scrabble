@@ -108,4 +108,17 @@ describe 'Player' do
 
   end
 
+  describe "tiles" do
+    it "holds a collection of seven tiles" do
+    end
+  end
+
+  describe "draw_tiles(tile_bag)" do
+
+    it "pulls tiles from the tile_bag" do
+    end
+
+    it "populates the tiles array with up to seven tiles" do
+    end
+  end
 end

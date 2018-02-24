@@ -3,7 +3,7 @@ require_relative '../lib/scoring'
 module Scrabble
 
   class Player
-    attr_accessor :name, :plays
+    attr_accessor :name, :plays :tiles
 
     def initialize(name)
       @name = name
@@ -46,8 +46,9 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
+
     end
-    
+
 
   end
 end
