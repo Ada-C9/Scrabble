@@ -7,16 +7,6 @@ module Scrabble
     attr_reader :default_tiles, :tiles_remaining
 
     def initialize
-<<<<<<< HEAD
-      @default_tiles = {"A" => 9, "B" => 2, "C" => 2, "D" => 4, "E" => 12, "F" => 2, "G" => 3, "H" => 2, "I" => 9, "J" => 1, "K" => 1, "L" => 4, "M" => 2, "N" => 6, "O" => 8, "P" => 2, "Q" => 1, "R" => 6, "S" => 4, "T" => 6, "U" => 4, "V" => 2, "W" => 2, "X" => 1, "Y" => 2, "Z" => 1}
-      @tiles_remaining =
-    end
-
-    def draw_tiles(num)
-      # returns a collection of random tiles
-      # removes the tiles from default_tiles
-=======
-
       @default_tiles = {"A" => 9,
         "B" => 2, "C" => 2,
         "D" => 4, "E" => 12, "F" => 2,
@@ -27,9 +17,8 @@ module Scrabble
         "S" => 4, "T" => 6, "U" => 4,
         "V" => 2, "W" => 2, "X" => 1,
         "Y" => 2, "Z" => 1}
-    end
->>>>>>> 64800b28c87c332d7702a6d629328c3ae4ec9117
-
+      end
+      
       def draw_tiles(num)
         num.times do
           @drawn_tiles = []
@@ -44,5 +33,5 @@ module Scrabble
       def tiles_remaining
         @tiles_remaining = @default_tiles.values.inject(:+)
       end
+    end
   end
-end
