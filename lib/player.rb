@@ -1,14 +1,16 @@
 require_relative '../lib/scoring'
+require_relative '../lib/tilebag'
 
 module Scrabble
 
   class Player
-    attr_accessor :name, :plays :tiles
+    attr_accessor :name, :plays, :tiles
 
     def initialize(name)
       @name = name
       @plays = []
       @won = false
+      @tiles = []
     end
 
     def won?
@@ -43,10 +45,17 @@ module Scrabble
     end
 
     def tiles
+      return @tiles
     end
 
     def draw_tiles(tile_bag)
-
+      newly_drawn_tiles = nil
+      if Scrabble::TileBag.tiles_remaining < (7 - @tiles.length)
+        newly_drawn_tiles = Scrabble::TileBag.draw_tiles(tiles_remaining.length)
+      else
+        newly_drawn_tiles = Scrabble::TileBag.draw_tiles(7 - @tiles.length)
+      end
+      @tiles << @tiles.concat(newly_drawn_tiles)
     end
 
 
