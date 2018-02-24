@@ -10,22 +10,19 @@ module Scrabble
       value.times { (tile_bag << letter.to_s)}}
     end
 
-    def self.draw_tiles(num)
-      start_tiles = 7
+    def draw_tiles(num)
 
-      individual_bag = []
+      players_tiles = []
 
-      start_tiles.times do
+      num.times do
         random_number = rand(0..tile_bag.length)
+         players_tiles << tile_bag.delete_at(random_number)
       end
 
-
+      return players_tiles
 
     end  # draw_tiles
 
   end # class # Tilebag
 
 end # module Scrabble
-
-new_bag = Scrabble::Tilebag.new
-puts "#{new_bag.tile_bag()}"
