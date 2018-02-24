@@ -108,14 +108,14 @@ describe 'Player' do
 
   end
 
-  describe "tiles" do
-    it "holds a collection of up to seven tiles" do
-      test_tiles = @player_1.tiles
-
-      test_tiles.must_be_kind_of Array
-      test_tiles.length.must_be >= 7
-    end
-  end
+  # describe "tiles" do
+  #   it "holds a collection of up to seven tiles" do
+  #     test_tiles = @player_1.tiles
+  #
+  #     test_tiles.must_be_kind_of Array
+  #     test_tiles.length.must_be >= 7
+  #   end
+  # end
 
   describe "draw_tiles(tile_bag)" do
 
@@ -143,26 +143,43 @@ describe 'Player' do
 
     end
 
-    it "determines correct number of tiles to draw based on number of tiles player has and num tiles remaining in tile_bag" do
-
-      player_3 = Scrabble::Player.new("Griz")
-      player_4 = Scrabble::Player.new("Dotcom")
-      #player instance with less than 7 tiles
-      # run method and have after state show that num tiles is now exactly 7, unless tiles_remaining is less than that
-      player_3_tiles = player_3.tiles
-      player_4_tiles = player_4.tiles
-
-      player_3_tiles.length.must_equal 7
-      player_4_tiles.length.must_equal 3
-
-      player_3.draw_tiles(@full_tile_bag_instance)
-      player_4.draw_tiles(@limited_tile_bag_instance)
-
-
-
+    it "draws the correct number of tiles when there are plentiful tiles" do
+        player = Scrabble::Player.new("Grizz")
+        # give Grizz some tiles
+        player.tiles = [:A,:B]
+        player.draw_tiles(@full_tile_bag_instance)
+        # assert that Grizz now has seven tiles_in_bag
+        player.tiles.length.must_equal 7
     end
 
-    it
+    it "draws the correct number of tiles whem there are non-plentiful tiles" do
+
+      player = Scrabble::Player.new("Dotcom")
+      player.tiles = [:D]
+      player.draw_tiles(@limited_tile_bag_instance)
+      player.tiles.length.must_equal 4
+    end
+
+    # it "determines correct number of tiles to draw based on number of tiles player has and num tiles remaining in tile_bag" do
+    #
+    #   player_3 = Scrabble::Player.new("Griz")
+    #   player_4 = Scrabble::Player.new("Dotcom")
+    #   #player instance with less than 7 tiles
+    #   # run method and have after state show that num tiles is now exactly 7, unless tiles_remaining is less than that
+    #   player_3_tiles = player_3.tiles
+    #   player_4_tiles = player_4.tiles
+    #
+    #   player_3_tiles.length.must_equal 7
+    #   player_4_tiles.length.must_equal 3
+    #
+    #   player_3.draw_tiles(@full_tile_bag_instance)
+    #   player_4.draw_tiles(@limited_tile_bag_instance)
+    #
+    #   # assert that grizz gets 7 tiles
+    #   # assert that dotcom gets 3 tiles
+
+    # end
+
   end
 end
 

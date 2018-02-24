@@ -44,20 +44,27 @@ module Scrabble
       Scrabble::Scoring.score(@top_word)
     end
 
+    # This whole method seems superfluous, given that the
+    # constructor method exists, and given that the
+    # assignment doesn't ask us to make it do anything
+    # more than the attr: accessor method could make
+    # it do.    We have added it in the interest of
+    # following the instructors we were given, but if we were designing this on our own, we would not have included it.
+
+
     def tiles
       return @tiles
     end
 
-    def draw_tiles(tile_bag)
+    def draw_tiles(arg_tile_bag)
       newly_drawn_tiles = nil
-      if Scrabble::TileBag.tiles_remaining < (7 - @tiles.length)
-        newly_drawn_tiles = Scrabble::TileBag.draw_tiles(tiles_remaining.length)
+      if arg_tile_bag.tiles_remaining < (7 - @tiles.length)
+        newly_drawn_tiles = arg_tile_bag.draw_tiles(arg_tile_bag.tiles_remaining)
       else
-        newly_drawn_tiles = Scrabble::TileBag.draw_tiles(7 - @tiles.length)
+        newly_drawn_tiles = arg_tile_bag.draw_tiles(7 - @tiles.length)
       end
-      @tiles << @tiles.concat(newly_drawn_tiles)
+      @tiles.concat(newly_drawn_tiles)
+
     end
-
-
   end
 end
