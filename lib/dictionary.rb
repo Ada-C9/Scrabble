@@ -3,12 +3,12 @@ require 'csv'
 module Scrabble
   class Dictionary
     @@dictionary = []
-    CSV.read('support/dictionary.csv').each do |word|
-      @@dictionary << word
+    CSV.read('support/dictionary.csv').each do |word_array|
+      @@dictionary << word_array[0]
     end
 
     def self.find(word)
-      if @@dictionary.flatten.include?(word)
+      if @@dictionary.include?(word)
         return true
       else
         return false

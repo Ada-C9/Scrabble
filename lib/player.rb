@@ -3,7 +3,7 @@ require_relative 'dictionary'
 
 module Scrabble
   class Player
-    attr_reader :name, :total_score, :tiles
+    attr_reader :name, :total_score, :tiles, :plays
     attr_writer :tiles
 
     def initialize(name, use_dictionary=true)
@@ -14,19 +14,14 @@ module Scrabble
       @use_dictionary = use_dictionary
     end
 
-    def plays
-      return @plays
-    end
-
     def play(word)
-      throwaway = word.chars
+      word_arr = word.chars
       @tiles.each do |tile|
-        throwaway.each do |letter|
-          throwaway.delete_at(throwaway.index letter) if tile == letter
+        word_arr.each do |letter|
+          word_arr.delete_at(word_arr.index letter) if tile == letter
         end
       end
-      if throwaway.length == 0 && (!@use_dictionary || Dictionary.find(word))
-      # if word.chars.all? {|chr| @tiles.include?(chr)}
+      if word_arr.length == 0 && (!@use_dictionary || Dictionary.find(word))
         @plays << word
         if @total_score > 100
           return false
