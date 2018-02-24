@@ -44,10 +44,10 @@ module Scrabble
       count = 0
       random_number = rand(0..tiles_remaining)
       @tile_bag.map{|letter_type,letter|
-        letter.each do |value|
+        letter.each do |single_letter|
           if count == random_number
-            random_letter << value
-            letter.delete_at(random_number)
+            random_tiles << single_letter
+            letter.pop
           end
           count+=1
         end}

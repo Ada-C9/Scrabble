@@ -15,6 +15,24 @@ describe 'Player' do
     end
   end
 
+  describe 'tiles' do
+    it 'is a collection of letters that the player can play (max 7)' do
+      # player = Scrabble::Player.new ("Ada")
+      # player.tiles.must_be_instance_of Array
+      # player.tiles.length.must_equal 0
+      ##player_name.tiles.length.must_be :<, 8
+    end
+  end
+
+  describe 'draw_tiles' do
+   it 'fills tiles array until it has 7 letters from the given tile bag' do
+     # player = Scrabble::Player.new ("Ada")
+     # tile_bag_test = Scrabble::TileBag.new
+     # player.draw_tiles(tile_bag_test)
+     # player.tiles.length.must_equal 7
+   end
+  end
+
   describe 'plays' do
     it 'returns an Array' do
       player_name = Scrabble::Player.new ("Ada")
@@ -89,13 +107,13 @@ describe 'Player' do
 
   describe 'highest_word_score' do
     it "Returns the score of the highest scoring word" do
-    player_name = Scrabble::Player.new("Ada")
-    player_name.play('hi')
-    player_name.play('bye')
-    player_name.play('cry')
-    player_name.play('ZZZZZZZ')
+      player_name = Scrabble::Player.new("Ada")
+      player_name.play('hi')
+      player_name.play('bye')
+      player_name.play('cry')
+      player_name.play('ZZZZZZZ')
 
-    player_name.highest_word_score.must_equal 120
+      player_name.highest_word_score.must_equal 120
+    end
   end
- end
 end
