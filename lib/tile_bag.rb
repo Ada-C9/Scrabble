@@ -33,20 +33,28 @@ module Scrabble
         Y: 2,
         Z: 1
       }
+      @letter_array = @letters.to_a
     end
 
     def draw_tiles(num)
-      letter_array = @letters.to_a
       num.times do
         random_num = rand(26) # Choose a letter at random
-        letter_array[random_num]
-        @tile_bag << letter_array[random_num][0] #Add letter to tile bag
-        letter_array[random_num][1] -= 1  # Reduce number of tiles by 1
-        if letter_array[random_num][1] == 0 # Delete letter from list if 0 tiles left
-          letter_array.delete_at(random_num)
+        @letter_array[random_num]
+        @tile_bag << @letter_array[random_num][0] #Add letter to tile bag
+        @letter_array[random_num][1] -= 1  # Reduce number of tiles by 1
+        if @letter_array[random_num][1] == 0 # Delete letter from list if 0 tiles left
+          @letter_array.delete_at(random_num)
         end
       end
       return @tile_bag
+    end
+
+    def tiles_remaining
+      letters_remaining = 0
+       @letter_array.each do |letter|
+        letters_remaining += letter[1]
+      end
+      return letters_remaining
     end
   end
 end
@@ -54,3 +62,4 @@ end
 
 # new_tiles = Scrabble::TileBag.new
 # print new_tiles.draw_tiles(4)
+# print new_tiles.tiles_remaining

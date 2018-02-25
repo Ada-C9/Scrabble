@@ -11,9 +11,12 @@ describe '#draw_tiles' do
     new_tiles.tile_bag.length.must_equal 7
   end
 
-  # it 'removes the tiles from the default set' do
-  #   new_tiles = Scrabble::TileBag.new
-  #   new_tiles.draw_tiles(1)
-  #   if tile_bag = [:Z]
-  # end
+  describe '#tiles_remaining' do
+    it "returns the number of tiles left after tiles are drawn" do
+      new_tiles = Scrabble::TileBag.new
+      new_tiles.draw_tiles(7)
+
+      new_tiles.tiles_remaining.must_equal 91
+    end
+  end
 end
