@@ -3,12 +3,13 @@ require 'pry'
 
 module Scrabble
   class Player
-    attr_reader :name, :total_score
+    attr_reader :name, :total_score, :tiles
 
     def initialize(name)
       @name = name
       @player_array = []
       @total_score = 0
+      @tiles = []
     end
 
     def plays
@@ -40,6 +41,13 @@ module Scrabble
     def highest_word_score
       Scrabble::Scoring.score(highest_scoring_word)
     end
+
+    def draw_tiles(tile_bag)
+      until @tiles.length == 7
+        @tiles  << tile_bag.draw_tiles(1)
+      end
+    end
+
 
   end
 end
