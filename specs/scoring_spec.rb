@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
-
 require_relative '../lib/scoring'
 
 # Get that nice colorized output
@@ -42,21 +41,32 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      Scrabble::Scoring.highest_score_from(['dog']).must_equal "dog"
     end
 
     it 'returns the highest word if there are two words' do
+      array_of_words = ["dog", "fish"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "fish"
+
     end
 
-    it 'if tied, prefer a word with 7 letters' do
-    end
+    # it 'if tied, prefer a word with 7 letters' do
+    #   array_of_words = ["aieouln", "dgda"]
+    #   Scrabble::Scoring.highest_score_from(array_of_words).must_equal "aieouln"
+    # end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      array_of_words = ["dog", "if"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "if"
     end
 
     it 'returns the first word of a tie with same letter count' do
+      array_of_words = ["dog", "cat"]
+      Scrabble::Scoring.highest_score_from(array_of_words).must_equal "dog"
     end
   end
 end
