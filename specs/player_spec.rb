@@ -57,11 +57,8 @@ describe 'Player' do
       # Assert
       result.must_equal 5
     end
-<<<<<<< HEAD
+
     it 'Returns the sum of scores of played words' do
-=======
-    it "Returns the sum of scores of played words" do
->>>>>>> e73a893777d29f0b78c7fdba0a5760f269973e57
       # Arrange
       user = Scrabble::Player.new("Sam")
       result = 0
@@ -108,20 +105,12 @@ describe 'Player' do
 
   describe 'highest_word_score' do
     it 'Returns the highest scoring word score' do
-<<<<<<< HEAD
-      user = Scrabble::Player.new("Kate")
 
-=======
-      user = Scrabble::Player.new("Amy")
->>>>>>> e73a893777d29f0b78c7fdba0a5760f269973e57
+      user = Scrabble::Player.new("Kate")
       user.play("dog")
       user.play("zebra")
       result = user.highest_word_score
       result.must_equal 16
     end
   end
-<<<<<<< HEAD
-=======
-
->>>>>>> e73a893777d29f0b78c7fdba0a5760f269973e57
-end
+end 

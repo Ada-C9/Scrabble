@@ -41,47 +41,26 @@ module Scrabble
       max_score = 0
       str = " "
       max_length = 8
-<<<<<<< HEAD
-
-      # Checks if the array is empty. And will return nil if empty
-
       if array_of_words.length == 0
         return nil
       end
-      # We can only enter this loop if the array is not empty
-=======
-      if array_of_words.length == 0
-        return nil
-      end
->>>>>>> e73a893777d29f0b78c7fdba0a5760f269973e57
+
       array_of_words.each do |word|
-        # If the length is 7, the score will be checked and will return highest score
-        # If both scores are the same, it will return the first word.
-
         if word.length == 7
           if self.score(word) > max_score
             max_score = self.score(word)
             str = word
           end
-          # If the word length is less than 7 then it will check the score and replace
-          # The max scrore. It will return the word and keep the word length.
 
         elsif word.length < 7
           if self.score(word) > max_score
             max_score = self.score(word)
             max_length = word.length
             str = word
-<<<<<<< HEAD
-
-            # If two words are the same score and length, we will take the word that has
-            # the least amount of tiles.
 
           elsif Scrabble::Scoring.score(word) == max_score && word.length < max_length
             max_score = Scrabble::Scoring.score(word)
-=======
-          elsif self.score(word) == max_score && word.length < max_length
-            max_score = self.score(word)
->>>>>>> e73a893777d29f0b78c7fdba0a5760f269973e57
+
             max_length = word.length
             str = word
           end
@@ -89,13 +68,6 @@ module Scrabble
       end
       return str
     end
-<<<<<<< HEAD
-=======
-
-    array = ["aeiou", "uoiea"]
-     puts self.highest_score_from(array)
-
->>>>>>> e73a893777d29f0b78c7fdba0a5760f269973e57
   end
 end
 

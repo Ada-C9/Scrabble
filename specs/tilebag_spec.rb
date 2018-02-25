@@ -23,7 +23,7 @@ describe 'TileBag' do
         tile.length.must_equal 1
       end
       # tilebag.tiles.length.must_equal 98
-    end 
+    end
 =======
 describe 'Tilebag' do
   describe '#initialize' do
@@ -44,6 +44,5 @@ describe 'Tilebag' do
 
   xdescribe 'tiles_remaining' do
 
->>>>>>> e73a893777d29f0b78c7fdba0a5760f269973e57
   end
 end
