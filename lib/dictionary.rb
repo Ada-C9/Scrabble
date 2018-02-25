@@ -1,17 +1,20 @@
 module Scrabble
   class Dictionary
 
-    def initialize(file_name)
-      @words = []
-      File.open(file_name) do |file|
-        file.each do |line|
-          @words << line.chomp
-        end
-      end
+    FILE_NAME = "support/word_list.txt"
+
+    def self.valid?(word)
+      Scrabble::Dictionary.load_words.include?(word)
     end
 
-    def valid?(word)
-      @words.include?(word)
+    def self.load_words
+      words = []
+      File.open(FILE_NAME) do |file|
+        file.each do |line|
+          words << line.chomp
+        end
+      end
+      return words
     end
 
   end
