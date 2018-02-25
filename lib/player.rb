@@ -5,7 +5,7 @@ module Scrabble
   class Player
     attr_reader :name, :players_plaque
     attr_writer :players_plaque
-
+    
     def initialize(name)
       @name = name
       @array_of_words = []
@@ -17,10 +17,9 @@ module Scrabble
       return @players_plaque
     end
 
-    # Draws tiles to fill player's plaque.
-    def draw_tiles(title_bag)
+    # Draws tiles from a TileBag to fill player's plaque.
+    def draw_tiles(tile_bag)
       if @players_plaque.length < MAX_NUM_OF_TILES_ALLOWED
-        tile_bag = Scrabble::TileBag.new
         add_tiles = MAX_NUM_OF_TILES_ALLOWED  - @players_plaque.length
         @players_plaque.concat(tile_bag.draw_tiles(add_tiles))
       end
