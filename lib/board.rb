@@ -38,15 +38,45 @@ module Scrabble
 
     def fit_if_valid(coordinates, word)
       row, col = coordinates[0..1]
-      return if col + word.length > @size && row + word.length > @size
-      if col + word.length < @size #&&  col + word.length > @size
-        return !fits_across(row, col, word).nil?
+      # puts col + word.length
+      # puts row + word.length
+      # puts size
+      if col + word.length <= @size && row + word.length <= @size
+        puts "hi"
+        return insert_down_or_across(row, col, word)
+      elsif  col + word.length <= @size
+        return insert_across(row, col, word)
+      elsif row + word.length <= @size
+        return insert_down(row, col, word)
       end
     end
 
-    def fits_across(row, col, word)
-      return if @board[row][col...word.length].any? {|index| !index.nil? }
-      (0...word.length).each { |index| @board[row][col+ index] = word[index] }
+    def insert_down_or_across(row, col, word)
+      if rand(0..1) == 0
+        return word if !insert_across(row, col, word).nil?
+        return word if !insert_down(row, col, word).nil?
+      else
+        return word if !insert_down(row, col, word).nil?
+        return word if !insert_across(row, col, word).nil?
+      end
+    end
+
+    def insert_across(row, col, word)
+      @board[row][col...word.length].each_with_index do |element, index|
+        return if !element.nil? && element != word[index]
+      end
+      (0...word.length).each { |index| @board[row][col + index] = word[index] }
+      return word
+    end
+
+    def insert_down(row, col, word)
+      index = 0
+      while index < word.length
+      # @board[row...word.length][col].each_with_index do |element, index|
+        return if !@board[row + index][col].nil? && @board[row + index][col] != word[index]
+        index += 1
+      end
+      (0...word.length).each { |index2| @board[row + index2][col] = word[index2] }
       return word
     end
 
