@@ -107,8 +107,10 @@ describe 'board' do
       # ----------------
       down = "#{line}\n| C #{set_d}| A #{set_d}| T #{set_d}#{row.lstrip}#{line}"
 
-      test_board.print_board.must_equal across || down
-
+      # must set equal to variable so it doesn't keep calling it to compare.
+      board_as_string = test_board.print_board
+      is_equal = board_as_string == down || board_as_string == across
+      is_equal.must_equal true
     end
   end
 
@@ -162,7 +164,7 @@ describe 'board' do
 
     xit "returns 'word' if is forced into a valid position" do
       test_board = Scrabble::Board.new()
-      word = "PUDDLES"
+      word = "PUDDING"
       test_board.add_word([5, 3], "MAGGIE")
       test_board.add_word([5, 1], word).must_equal word
       # puts test_board.print_board
@@ -170,9 +172,9 @@ describe 'board' do
 
     it "returns 'word' if is forced to overlap in valid position" do
       test_board = Scrabble::Board.new()
-      word = "PUDDLES"
+      word = "PUDDING"
       test_board.add_word([16, 11], "MAGGIE").must_equal "MAGGIE"
-      # test_board.add_word([5, 1], word).must_equal word
+      test_board.add_word([10, 14], word).must_equal word
       puts test_board.print_board
     end
 
@@ -205,6 +207,7 @@ describe 'board' do
     it "returns 'nil' if word is contains any non-letters'" do
       test_board = Scrabble::Board.new()
       assert_nil test_board.add_word([2, 3], "HELLO,MAGGIE")
+      assert_nil test_board.add_word([2, 3], "M4GG1E")
     end
 
 
