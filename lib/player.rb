@@ -2,7 +2,6 @@
 #Class Player in Scrabble Module:
 
 require_relative 'scoring'
-require_relative 'tile_bag'
 
 module Scrabble
   class Player
@@ -37,7 +36,7 @@ module Scrabble
     def total_score
       sum_of_scores = 0
       @plays.each do |word|
-        score = Scrabble::Scoring.score(word)
+        score = Scoring.score(word)
 
         sum_of_scores += score
       end
@@ -55,14 +54,14 @@ module Scrabble
 # Returns the highest scoring played word.
 
     def highest_scoring_word
-      return Scrabble::Scoring.highest_score_from(@plays)
+      return Scoring.highest_score_from(@plays)
     end
 
 # ______________HIGHEST WORD SCORE METHOD__________________
 # Returns the score of the highest scored word.
 
     def highest_word_score
-      return  Scrabble::Scoring.score(highest_scoring_word)
+      return  Scoring.score(highest_scoring_word)
     end
   end
 end
