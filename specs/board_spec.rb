@@ -48,17 +48,34 @@ describe 'board' do
     end
   end
 
-  describe 'add word' do
+  describe 'add word down' do
     it "adds a word to the board and returns 'true'" do
+      word = "MAGGIE"
       test_board = Scrabble::Board.new()
-      test_board.add_word([5, 3], "MAGGIE").must_equal true
+      test_board.add_word([5, 3], "MAGGIE").must_equal word
     end
 
-    it "returns 'false' if cannot added at valid position" do
+    it "returns 'word' if is forced along board edge" do
       test_board = Scrabble::Board.new()
+      expected_board_end =  "| M | A | G | G | I | E |\n#{"----" * 16}"
+      test_board.add_word([16, 11], "MAGGIE").must_equal "MAGGIE"
+      test_board.print_board.slice!(-90..-1).must_equal expected_board_end
+    end
 
+    xit "returns 'word' if is forced into a valid position" do
+      test_board = Scrabble::Board.new()
+      word = "PUDDLES"
       test_board.add_word([5, 3], "MAGGIE")
-      test_board.add_word([5, 1], "PUDDING").must_equal false
+      test_board.add_word([5, 1], word).must_equal word
+      # puts test_board.print_board
+    end
+
+    it "returns 'word' if is forced to overlap in valid position" do
+      test_board = Scrabble::Board.new()
+      word = "PUDDLES"
+      test_board.add_word([15, 10], "MAGGIE").must_equal "MAGGIE"
+      # test_board.add_word([5, 1], word).must_equal word
+      # puts test_board.print_board
     end
 
     it "returns 'nil' if provided coordinate outside range'" do
