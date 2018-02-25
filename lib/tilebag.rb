@@ -6,8 +6,10 @@ require_relative 'scoring'
 
 module Scrabble
   class TileBag
+
     attr_reader :tiles
 
+    # constant variable with all the tiles and quantities
     DEFAULT_TILES = {
       "a" => 9,
       "b" => 2,
@@ -37,28 +39,30 @@ module Scrabble
       "z" => 1
     }
 
-    # this code is DRY and less code then to write out each letter and value
     def initialize
       @tiles = []
       DEFAULT_TILES.each do |letter, count|
         count.times {@tiles << letter}
       end
-    end
+    end # end of initialize
 
+    # this method returns a collection of random tiles
     def draw_tiles(num)
       tile_bag_count = 98
       player_tiles = []
       num.times do
         tile_index = rand(0..tile_bag_count-1)
-        selected_tile = @tiles[tiles_index]
+        selected_tile = @tiles[tile_index]
         player_tiles << selected_tile
         @tiles.delete_at(tile_index)
       end
       return player_tiles
-    end
+    end # end of draw_tiles(num)
 
+    # this method returns the number of tiles remaining
     def tiles_remaining
       return @tiles.length
-    end
-  end
-end
+    end # end of tiles_remaining
+
+  end # end of TileBag class
+end # end of Scrabble module

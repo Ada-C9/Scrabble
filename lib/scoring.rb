@@ -20,6 +20,7 @@ module Scrabble
         total_score += 50
       end
 
+      # output the score of each letter in a word
       scrabble_word.each do |letter|
         case letter.downcase
         when "a", "e", "i", "o", "u", "l", "n", "r", "s", "t"
@@ -39,9 +40,9 @@ module Scrabble
         end
       end
       return total_score
-    end # def self.score(word)
+    end # end of def self.score(word)
 
-
+    # this method finds the top word based on total_score
     def self.highest_score_from(array_of_words)
       if array_of_words.length == 0
         return nil
@@ -67,8 +68,8 @@ module Scrabble
             return top_word[1]
           end
         end
-      end # if statement
-    end # def self.highest_score_from(array_of_words)
+      end
+    end # end of def self.highest_score_from(array_of_words)
 
-  end # class Scoring
-end # module Scrabble
+  end # end of Scoring class
+end # end of Scrabble module 
