@@ -34,7 +34,7 @@ describe 'TileBag' do
     end
 
     it "Raise an ArgumentError if user input invalid number" do
-      proc { @tile_bag.draw_tiles("random") }.must_raise ArgumentError
+      proc { @tile_bag.draw_tiles("1") }.must_raise ArgumentError
       proc { @tile_bag.draw_tiles( -2 ) }.must_raise ArgumentError
       proc { @tile_bag.draw_tiles( 100 ) }.must_raise ArgumentError
     end

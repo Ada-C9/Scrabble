@@ -12,7 +12,7 @@ module Scrabble
       "U" => 4, "V" => 2, "W" => 2, "X" => 1, "Y" => 2, "Z" => 1 }
 
     def initialize
-      @tiles = ["Z", "Z", "Z"]
+      @tiles = []
       @number_of_tiles = LETTER_QUANTITIES.reduce(0) { |sum, letter| sum + letter[1] }
     end
 
