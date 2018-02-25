@@ -38,9 +38,6 @@ module Scrabble
 
     def fit_if_valid(coordinates, word)
       row, col = coordinates[0..1]
-      # puts col + word.length
-      # puts row + word.length
-      # puts size
       if col + word.length <= @size && row + word.length <= @size
         puts "hi"
         return insert_down_or_across(row, col, word)
