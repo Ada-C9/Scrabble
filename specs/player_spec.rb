@@ -5,6 +5,7 @@ require 'minitest/skip_dsl'
 require_relative '../lib/player'
 
 
+
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 
@@ -131,8 +132,22 @@ describe 'Player' do
     end
   end
 
-  xdescribe 'highest_scoring_word' do
-    xit '' do
+  describe 'highest_scoring_word' do
+    it 'Returns highest scoring played_word' do
+      word = "crazy"
+      word_1 = 'janky'
+      # word_2 = 'coding'
+      word_3 = 'dancing'
+      # word_4 = 'hah'
+      player = Scrabble::Player.new('')
+
+      player.play(word)
+      player.play(word_1)
+      # player.play(word_2)
+      player.play(word_3)
+
+      player.highest_scoring_word.must_equal 'dancing'
+
 
     end
 

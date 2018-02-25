@@ -1,4 +1,5 @@
 # require 'pry'
+require_relative 'scoring'
 module Scrabble
   class Player
     attr_reader :name, :played_words
@@ -26,9 +27,10 @@ module Scrabble
       word_scores = @played_words.map do |word|
          Scrabble::Scoring.score(word)
       end
-      if word_scores.include?(nil)
-        # binding.pry
-      end
+      # this will allow me to see if something inside a loop is not what I expect
+      # if word_scores.include?(nil)
+      #   binding.pry
+      # end
       return word_scores.inject(:+)
     end
 
@@ -37,6 +39,11 @@ module Scrabble
         return true
       else
         return false
+
+      end
+
+      def highest_scoring_word
+        Scrabble::Scoring.highest_score_from(plays)
 
       end
 
