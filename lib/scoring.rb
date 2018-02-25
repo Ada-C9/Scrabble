@@ -1,6 +1,6 @@
 module Scrabble
   class Scoring
-    
+
     def self.score(word)
 
       # step 1: handling "terminal if's" that return nil
@@ -77,7 +77,6 @@ module Scrabble
       if highest_scoring_words.length > 1
         winner_hash = highest_scoring_words.select{|word| word.length == 7}
         if winner_hash.empty?
-          puts "I'm empty"
           shortest_winner_hash =  Hash[highest_scoring_words.sort_by {|word, score| word.length}]
           return shortest_winner_hash.keys[0]
         end

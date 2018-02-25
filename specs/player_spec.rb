@@ -68,5 +68,25 @@ describe 'Player' do
     end
   end #ends describe 'play(word)'
 
+  describe 'tiles' do
+    it 'holds 7 tiles the first time a player draws tiles' do
+      ada = Scrabble::Player.new("Ada")
+      game_tiles = Scrabble::TileBag.new
+      ada.draw_tiles(game_tiles)
+      ada.tiles.length.must_equal(7)
+    end
+  end
+
+  describe 'draw_tiles(tile_bag)' do
+    it 'fills tiles array until it has 7 letters from the given tile bag' do
+      ada = Scrabble::Player.new("Ada")
+      game_tiles = Scrabble::TileBag.new
+      ada.tiles.pop
+      ada.tiles.pop
+      ada.tiles.pop
+      ada.draw_tiles(game_tiles)
+      ada.tiles.length.must_equal(7)
+    end
+  end
 
 end #ends Player do
