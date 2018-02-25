@@ -1,5 +1,5 @@
-require 'pry'
 require_relative '../lib/scoring'
+require_relative '../lib/tile_bag'
 
 module Scrabble
   class Player
@@ -60,10 +60,22 @@ module Scrabble
      end
     end
 
+    # unclear of required output for this method. recieved error of draw_tiles
+    # method undefined not sure why.
+    # def tiles(num)
+    #     if num <= 7 && num > 0
+    #       player_tiles = Scrabble::TileBag.draw_tiles(num)
+    #       return player_tiles
+    #     else
+    #       raise ArgumentError.new("Number of tiles must be between 0 and 7")
+    #     end
+    # end
+
   end # class player
 
 end # module
-# player = Scrabble::Player.new("Sam")
+player = Scrabble::Player.new("Sam")
 # player.play("word")
 # player.play("dog")
 # print player.highest_word_score
+player.tiles(3)
