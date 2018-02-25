@@ -1,9 +1,10 @@
 module Scrabble
   class TileBag
 
-    attr_accessor :letters
+    attr_accessor :letters, :tile_bag
 
     def initialize
+      @tile_bag = []
       @letters = {
         A: 9,
         B: 2,
@@ -35,21 +36,21 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      # Return a new array of all the Values from the Hash
-      tile_bag = []
-      letter_array = letters.to_a
-      random_num = rand(26)
+      letter_array = @letters.to_a
       num.times do
+        random_num = rand(26) # Choose a letter at random
         letter_array[random_num]
-        while letter_array[random_num][1] > 0
-          tile_bag << letter_array[random_num][0]
-          letter_array[random_num][1] -= 1
+        @tile_bag << letter_array[random_num][0] #Add letter to tile bag
+        letter_array[random_num][1] -= 1  # Reduce number of tiles by 1
+        if letter_array[random_num][1] == 0 # Delete letter from list if 0 tiles left
+          letter_array.delete_at(random_num)
         end
       end
-      return tile_bag
+      return @tile_bag
     end
   end
 end
 
-new_tiles = Scrabble::TileBag.new
-print new_tiles.draw_tiles(4)
+
+# new_tiles = Scrabble::TileBag.new
+# print new_tiles.draw_tiles(4)
