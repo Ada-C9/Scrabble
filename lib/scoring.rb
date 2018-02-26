@@ -42,9 +42,6 @@ module Scrabble
         end
       end
 
-      puts "words_with_max"
-      puts words_with_max.inspect
-
       if words_with_max.length > 1
 
         # # .Sort on lengths for words_with_max
