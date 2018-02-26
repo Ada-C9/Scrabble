@@ -2,8 +2,9 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
-require_relative './player'
+require_relative '../lib/player'
 
+# Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Player' do
@@ -57,8 +58,12 @@ describe 'Player' do
       # Assert
       result.must_equal 5
     end
+<<<<<<< HEAD
 
     it 'Returns the sum of scores of played words' do
+=======
+    it "Returns the sum of scores of played words" do
+>>>>>>> 63e10b980789cec14cd9c17435143fee723b3388
       # Arrange
       user = Scrabble::Player.new("Sam")
       result = 0
@@ -105,12 +110,29 @@ describe 'Player' do
 
   describe 'highest_word_score' do
     it 'Returns the highest scoring word score' do
+<<<<<<< HEAD
 
       user = Scrabble::Player.new("Kate")
+=======
+      user = Scrabble::Player.new("Amy")
+>>>>>>> 63e10b980789cec14cd9c17435143fee723b3388
       user.play("dog")
       user.play("zebra")
       result = user.highest_word_score
       result.must_equal 16
     end
   end
+<<<<<<< HEAD
 end 
+=======
+
+  describe 'draw_tiles(tile_bag)' do
+    it 'fills tiles array until it has 7 letters from the given tile bag' do
+    user = Scrabble::Player.new("Amy")
+    tile_bag = Scrabble::TileBag.new
+    user.draw_tiles(tile_bag)
+    user.tiles.length.must_equal 7
+    end
+  end
+end
+>>>>>>> 63e10b980789cec14cd9c17435143fee723b3388

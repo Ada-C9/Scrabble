@@ -1,3 +1,4 @@
+
 module Scrabble
   class Scoring
     def self.score(word)
@@ -44,23 +45,34 @@ module Scrabble
       if array_of_words.length == 0
         return nil
       end
+<<<<<<< HEAD
 
+=======
+>>>>>>> 63e10b980789cec14cd9c17435143fee723b3388
       array_of_words.each do |word|
         if word.length == 7
           if self.score(word) > max_score
             max_score = self.score(word)
             str = word
           end
+<<<<<<< HEAD
 
+=======
+>>>>>>> 63e10b980789cec14cd9c17435143fee723b3388
         elsif word.length < 7
           if self.score(word) > max_score
             max_score = self.score(word)
             max_length = word.length
             str = word
+<<<<<<< HEAD
 
           elsif Scrabble::Scoring.score(word) == max_score && word.length < max_length
             max_score = Scrabble::Scoring.score(word)
 
+=======
+          elsif self.score(word) == max_score && word.length < max_length
+            max_score = self.score(word)
+>>>>>>> 63e10b980789cec14cd9c17435143fee723b3388
             max_length = word.length
             str = word
           end
@@ -68,8 +80,12 @@ module Scrabble
       end
       return str
     end
+<<<<<<< HEAD
+=======
+
+    # array = ["aeiou", "uoiea"]
+    #  puts self.highest_score_from(array)
+
+>>>>>>> 63e10b980789cec14cd9c17435143fee723b3388
   end
 end
-
-array = ["aeiou", "uoiea"]
-puts Scrabble::Scoring.highest_score_from(array)
