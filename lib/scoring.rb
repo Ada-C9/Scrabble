@@ -13,7 +13,7 @@ module Scrabble
     }
 
     def self.score(word)
-      return if !has_valid_initial_word?(word)
+      has_valid_initial_word?(word)
       score = 0
       word.each_char { |char| score += POINT_VALUES[char.upcase] }
       score += 50 if word.size == MAX_LETTERS
@@ -22,12 +22,16 @@ module Scrabble
 
     # what about array when the ONLY word is over max letter?
     def self.has_valid_initial_word?(word)
-      return word.class == String && word.size.between?(1, MAX_LETTERS) &&
-        !word.upcase.match?(/[^A-Z]+?/)
+      if word.class != String || !word.size.between?(1, MAX_LETTERS) ||
+        word.upcase.match?(/[^A-Z]+?/)
+        raise ArgumentError.new("#{word} is not a word!")
+      end
     end
+    # return word.class == String && word.size.between?(1, MAX_LETTERS) &&
+    #   !word.upcase.match?(/[^A-Z]+?/)
 
     def self.highest_score_from(array_of_words)
-      return if !has_valid_initial_array?(array_of_words)
+      has_valid_initial_array?(array_of_words)
       scored_words = array_of_words.group_by{ |word| score(word) }
       highest_score = scored_words.keys.max
       winning_words = scored_words[highest_score]
@@ -37,13 +41,15 @@ module Scrabble
     private
 
     def self.has_valid_initial_array?(array)
-      return array.class == Array && array.length > 0
+      if array.class != Array || array.length == 0 || !array.all?(String)
+        raise ArgumentError.new("Invalid input #{array}")
+      end
     end
 
     def self.break_tie(winning_words)
       winning_word = winning_words.find { |word| word.size == 7}
       if winning_word.nil?
-        winning_word = winning_word.min_by { |word| word.size }
+        winning_word = winning_words.min_by { |word| word.size }
       end
       return winning_word
     end
@@ -51,9 +57,3 @@ module Scrabble
 
   end
 end
-
-
-
-
-Scrabble::Scoring.highest_score_from(["ghost", "boo", "pumpkin","sweet", "potato", "dk"])
-#
