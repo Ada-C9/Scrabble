@@ -7,7 +7,7 @@ require_relative '../lib/scoring'
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-xdescribe 'Scoring' do
+describe 'Scoring' do
   describe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
@@ -26,37 +26,37 @@ xdescribe 'Scoring' do
     end
 
     it 'returns nil for non-string inputs' do
-      Scrabble::Scoring.score([]).must_be_nil
-      Scrabble::Scoring.score(nil).must_be_nil
+      proc { Scrabble::Scoring.score([]) }.must_raise ArgumentError
+      proc { Scrabble::Scoring.score(nil) }.must_raise ArgumentError
     end
 
     it 'returns nil for strings containing bad characters' do
-      Scrabble::Scoring.score('#$%^').must_be_nil
-      Scrabble::Scoring.score('char^').must_be_nil
-      Scrabble::Scoring.score(' ').must_be_nil
+      proc { Scrabble::Scoring.score('#$%^') }.must_raise ArgumentError
+      proc { Scrabble::Scoring.score('char^') }.must_raise ArgumentError
+      proc { Scrabble::Scoring.score(' ') }.must_raise ArgumentError
     end
 
     it 'returns nil for words > 7 letters' do
-      Scrabble::Scoring.score('abcdefgh').must_be_nil
+      proc { Scrabble::Scoring.score('abcdefgh') }.must_raise ArgumentError
     end
 
     it 'returns nil for empty words' do
-      Scrabble::Scoring.score('').must_be_nil
-      Scrabble::Scoring.score('     ').must_be_nil
+      proc { Scrabble::Scoring.score('') }.must_raise ArgumentError
+      proc { Scrabble::Scoring.score('     ') }.must_raise ArgumentError
     end
   end
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
-      Scrabble::Scoring.highest_score_from([]).must_be_nil
+      proc { Scrabble::Scoring.highest_score_from([]) }.must_raise ArgumentError
     end
 
     it 'returns nil if provided non-array input' do
-      Scrabble::Scoring.highest_score_from(nil).must_be_nil
+      proc { Scrabble::Scoring.highest_score_from(nil)}.must_raise ArgumentError
     end
 
     it 'returns nil if element in provided array is not a String' do
-      Scrabble::Scoring.highest_score_from(["foo", 4, "bar"]).must_be_nil
+      proc { Scrabble::Scoring.highest_score_from(["foo", 4, "bar"]) }.must_raise ArgumentError
     end
 
     it 'returns the only word in a length-1 array' do
