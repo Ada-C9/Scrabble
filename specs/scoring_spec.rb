@@ -1,10 +1,13 @@
+# Kaitlin Forsman and Kirsten Schumy
+# Ada Cohort[9], Ampers
+# Scrabble Assignment
+
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
 require_relative '../lib/scoring'
 
-# Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
@@ -25,22 +28,22 @@ describe 'Scoring' do
       Scrabble::Scoring.score('DoG').must_equal 5
     end
 
-    it 'returns nil for non-string inputs' do
+    it 'throw ArgumentError for non-string inputs' do
       proc { Scrabble::Scoring.score([]) }.must_raise ArgumentError
       proc { Scrabble::Scoring.score(nil) }.must_raise ArgumentError
     end
 
-    it 'returns nil for strings containing bad characters' do
+    it 'throw ArgumentError inputs that non-alphabet characters' do
+      proc { Scrabble::Scoring.score('c4ts') }.must_raise ArgumentError
       proc { Scrabble::Scoring.score('#$%^') }.must_raise ArgumentError
       proc { Scrabble::Scoring.score('char^') }.must_raise ArgumentError
-      proc { Scrabble::Scoring.score(' ') }.must_raise ArgumentError
     end
 
-    it 'returns nil for words > 7 letters' do
-      proc { Scrabble::Scoring.score('abcdefgh') }.must_raise ArgumentError
+    it 'throw ArgumentError for words > 7 letters' do
+      proc { Scrabble::Scoring.score('academies') }.must_raise ArgumentError
     end
 
-    it 'returns nil for empty words' do
+    it 'throw ArgumentError for empty words' do
       proc { Scrabble::Scoring.score('') }.must_raise ArgumentError
       proc { Scrabble::Scoring.score('     ') }.must_raise ArgumentError
     end
@@ -73,10 +76,12 @@ describe 'Scoring' do
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
         Scrabble::Scoring.highest_score_from(["QQ", "QKK"]).must_equal "QQ"
+        Scrabble::Scoring.highest_score_from(["QKK", "QQ"]).must_equal "QQ"
     end
 
     it 'returns the first word of a tie with same letter count' do
       Scrabble::Scoring.highest_score_from(["QQQ", "ZZZ"]).must_equal "QQQ"
+      Scrabble::Scoring.highest_score_from(["ZZZ", "QQQ"]).must_equal "ZZZ"
     end
   end
 end
