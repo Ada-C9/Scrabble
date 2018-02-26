@@ -53,16 +53,22 @@ describe 'Scoring' do
       Scrabble::Scoring.highest_score_from(["word"]).must_equal "word"
     end
 
-    it 'returns the highest word if there are two words' do
+    it 'returns the highest scoring word if there are two words' do
       Scrabble::Scoring.highest_score_from(["pig", "cat"]).must_equal "pig"
+      Scrabble::Scoring.highest_score_from(["cat", "pig"]).must_equal "pig"
+      Scrabble::Scoring.highest_score_from(["aaaaaa", "kd" ]).must_equal "kd"
     end
 
     it 'if tied, prefer a word with 7 letters' do
       Scrabble::Scoring.highest_score_from(["aaaaaad", "qqqqqj"]).must_equal "aaaaaad"
+      Scrabble::Scoring.highest_score_from(["kd", "aaaaaaa"]).must_equal "aaaaaaa"
+
+      Scrabble::Scoring.highest_score_from(["qqqqqj", "aaaaaad"]).must_equal "aaaaaad"
+
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-      Scrabble::Scoring.highest_score_from(["qqqqqq", "zxd"]).must_equal "qqqqqq"
+      Scrabble::Scoring.highest_score_from(["kkkkk", "zxd"]).must_equal "zxd"
 
     end
 
