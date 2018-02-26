@@ -3,6 +3,7 @@ require 'minitest/reporters'
 require 'minitest/skip_dsl'
 
 require_relative '../lib/scoring'
+require 'pry'
 
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -42,21 +43,36 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      Scrabble::Scoring.highest_score_from([]).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      Scrabble::Scoring.highest_score_from(["word"]).must_equal "word"
     end
 
     it 'returns the highest word if there are two words' do
+      Scrabble::Scoring.highest_score_from(["Nicole", "Zheng"]).must_equal "Zheng"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      Scrabble::Scoring.highest_score_from(["ZZZZZZ", "AAAAADB"]).must_equal "AAAAADB"
+      Scrabble::Scoring.highest_score_from(["AAAAADB", "ZZZZZZ"]).must_equal "AAAAADB"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      Scrabble::Scoring.highest_score_from(["Zheg", "Zicole"]).must_equal "Zheg"
+      Scrabble::Scoring.highest_score_from(["Zicole", "Zheg"]).must_equal "Zheg"
     end
 
     it 'returns the first word of a tie with same letter count' do
+      Scrabble::Scoring.highest_score_from(["aeiou", "lnrst"]).must_equal "aeiou"
+      Scrabble::Scoring.highest_score_from(["lnrst", "aeiou"]).must_equal "lnrst"
+    end
+
+    # A new test for edge case
+    it 'returns the first word of a tie with 7 letter count' do
+      Scrabble::Scoring.highest_score_from(["ZZZZZZZ", "QQQQQQQ"]).must_equal "ZZZZZZZ"
+      Scrabble::Scoring.highest_score_from(["QQQQQQQ", "ZZZZZZZ"]).must_equal "QQQQQQQ"
     end
   end
 end

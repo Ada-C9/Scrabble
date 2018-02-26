@@ -1,4 +1,7 @@
-require_relative 'lib/scrabble'
+require './lib/player.rb'
+require './lib/scoring.rb'
+require './lib/tile_bag.rb'
+
 
 module Scrabble
   class Game
