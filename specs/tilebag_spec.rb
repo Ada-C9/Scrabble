@@ -41,7 +41,6 @@ describe 'Tilebag' do
       before = game_1_tiles.tile_bag.clone
       drawn_tiles = game_1_tiles.draw_tiles(1)
       symbol = drawn_tiles[0][0]
-
       (before[symbol] - game_1_tiles.tile_bag[symbol]).must_equal 1
     end
   end

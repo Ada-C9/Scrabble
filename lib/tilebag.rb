@@ -1,6 +1,6 @@
 module Scrabble
   class TileBag
-    
+
     attr_accessor :tile_bag
 
     def initialize
@@ -37,7 +37,6 @@ module Scrabble
     def draw_tiles(num)
       drawn_tiles = @tile_bag.to_a.sample(num)
       drawn_tiles.each do |letter_frequency|
-        print letter_frequency[0]
         @tile_bag[letter_frequency[0]] -=1
       end
       return drawn_tiles

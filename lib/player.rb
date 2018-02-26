@@ -6,7 +6,7 @@ module Scrabble
 
     attr_reader :name
 
-    attr_accessor :won, :plays
+    attr_accessor :won, :plays, :tiles
 
     def initialize(name)
       @name = name
@@ -40,7 +40,7 @@ module Scrabble
         return false
       end
       num_to_draw = 7 - @tiles.length
-      puts num_to_draw
+      # puts num_to_draw
       drawn_tiles = tile_bag.draw_tiles(num_to_draw)
       @tiles += drawn_tiles
       end
