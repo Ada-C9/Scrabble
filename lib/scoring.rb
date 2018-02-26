@@ -1,16 +1,16 @@
 module Scrabble
   class Scoring
-    
+
     def self.score(word)
 
-      # step 1: handling "terminal if's" that return nil
+      # Handling "terminal if's" that return nil
       if word == nil || word == ""  || word =~ /[^a-zA-Z]/
         return nil
       elsif word.length > 7
         return nil
       end
 
-      # step 2: take input as a string, split the word, downcase it, stored in an array called "letter_array"
+      # Take input as a string, split the word, downcase it, store word in an array called "letter_array"
       letter_array = []
       letter_array = word.downcase.split(//)
       # SCORECARD AKA 'provided_words_values'
@@ -22,7 +22,7 @@ module Scrabble
       value_8_array = ["j", "x"]
       value_10_array = ["q", "z"]
 
-      # Give 50 extra points to a valid word with 7 letters
+      # Gives 50 extra points to a valid word with 7 letters
       if letter_array.length == 7
         word_score = 50
       else
@@ -64,12 +64,12 @@ module Scrabble
         scored_words_hash[provided_word] = score
       end
 
-      # highest score values
+      # Highest score values
       highest_score_array = scored_words_hash.max_by{|provided_word,score| score}
       puts "This is the highest score value: #{highest_score_array[1]}"
       highest_score_value = highest_score_array[1]
 
-      # highest scoring words
+      # Highest scoring words
       highest_scoring_words = scored_words_hash.select{|word,score| score == highest_score_value}
       puts "This is the highest scoring word: #{highest_scoring_words}"
 

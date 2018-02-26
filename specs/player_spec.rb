@@ -13,17 +13,16 @@ describe 'Player' do
       ada = Scrabble::Player.new("Ada")
       ada.name.must_equal "Ada"
     end
-  end #ends describe 'name' do
+  end
 
   describe 'plays' do
     it 'returns an Array of the words played by the player' do
       ada = Scrabble::Player.new("Ada")
-      # ada.name.must_equal "Ada"
       ada.play("apple")
       ada.play("cat")
       ada.plays.must_equal(["apple", "cat"])
     end
-  end #ends describe 'plays' do
+  end
 
   describe 'play(word)' do
     it 'adds the input word to the plays array' do
@@ -33,8 +32,6 @@ describe 'Player' do
     end
 
     it 'prevents a player who has won from playing' do
-      # write test method to return true or false
-      # Arrange scenario where a player reaches more than 100
       ada = Scrabble::Player.new("Ada")
       ada.play("apple")
       ada.play("kale")
@@ -66,7 +63,5 @@ describe 'Player' do
       ada.play("beets")
       puts ada.total_score
     end
-  end #ends describe 'play(word)'
-
-
-end #ends Player do
+  end 
+end

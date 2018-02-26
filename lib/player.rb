@@ -8,14 +8,11 @@ module Scrabble
 
     attr_accessor :won, :plays
 
-
     def initialize(name)
       @name = name
       @plays = []
       @tiles = []
-
     end
-
 
     def play(word)
       return false if won?
@@ -24,13 +21,9 @@ module Scrabble
     end
 
     def total_score
-      p @plays
       scores = @plays.map do |word|
-        puts "Scoring word: #{word.inspect}"
         Scoring.score(word)
       end
-      p scores
-      p scores.sum.class
       return scores.sum
     end
 
@@ -50,7 +43,7 @@ module Scrabble
       puts num_to_draw
       drawn_tiles = tile_bag.draw_tiles(num_to_draw)
       @tiles += drawn_tiles
+      end
 
-    end
   end # class Player
 end # module Scrabble
