@@ -1,4 +1,7 @@
-# QUESTION! how defensive do I need to be no my private methods?
+# Kaitlin Forsman and Kirsten Schumy
+# Ada Cohort[9], Ampers
+# Scrabble Assignment
+
 module Scrabble
   class Board
 
@@ -22,6 +25,7 @@ module Scrabble
       return board_as_string
     end
 
+    # Pre
     def add_word(row, col, word) #test if not a word
       valid_word_or_error(word)
       valid_coordinates_or_error(row, col)
@@ -30,6 +34,8 @@ module Scrabble
 
     private
 
+    # make between 1 and MAX_LETTERS
+
     def valid_word_or_error(word) # TODO: test for downcase ok
       if word.class != String || word.length < 1 || word.upcase.match?(/[^A-Z]+?/)
         raise ArgumentError.new("#{word} must be a String with only letters.")
@@ -37,7 +43,7 @@ module Scrabble
     end
 
     def fit_if_valid(row, col, word)
-      row -= 1
+      row = row.upcase.ord - "A".ord
       col -= 1
       if col + word.length <= @size && row + word.length <= @size
         return insert_across_or_down(row, col, word)
@@ -87,14 +93,23 @@ module Scrabble
     end
 
     #
-    def is_valid_coordinate?(coordinate)
-      return coordinate.class == Integer && coordinate.between?(1, @size)
+    def is_valid_column_coordinate?(column)
+      return column.class == Integer && column.between?(1, @size)
+    end
+
+    def is_valid_row_coordinate?(row)
+      return row.class == String && row.upcase.between?("A", last_row_letter) &&
+        row.size == 1
     end
 
     def valid_coordinates_or_error(row, column)
-      if [row, column].any? { |coordinate| !is_valid_coordinate?(coordinate) }
-        raise ArgumentError.new("#{coordinate} must be an int between 1-#{@size}")
+      if !is_valid_row_coordinate?(row) || !is_valid_column_coordinate?(column)
+        raise ArgumentError.new("Invalid coordinate(s) #{row} and/or #{column}")
       end
+    end
+
+    def last_row_letter
+      return (65 + @size - 1).chr # 'A' + ord. of last letter
     end
 
     # Throws ArgumentError if provided dimensions are not a positive number.
@@ -107,7 +122,7 @@ module Scrabble
 
     # Throws ArgumentError if provided dimensions are not a positive number.
     def check_initial_dimension(dimensions)
-      if dimensions.class != Integer || !dimensions.between?(1, 100) # TODO Test for this
+      if dimensions.class != Integer || !dimensions.between?(1, 26) # TODO Test for this
         raise ArgumentError.new("Initial dimensions must be 1 and 100.")
       end
     end
