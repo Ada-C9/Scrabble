@@ -1,11 +1,13 @@
-require_relative 'lib/scrabble'
+require_relative 'lib/player'
+require 'pry'
 
 module Scrabble
+  attr_accessor :tilebag, :players
   class Game
     def initialize
       @words = []
       @players = setup_players
-      @tilebag = Tilebag.new
+      @tilebag = Scrabble::TileBag.new
     end
 
     def play
@@ -13,6 +15,7 @@ module Scrabble
 
       while continue?
         @players.each do |player|
+
           puts "It is #{player.name}'s turn"
 
           player.draw_tiles(@tilebag)
@@ -119,3 +122,5 @@ end
 
 game = Scrabble::Game.new
 game.play
+
+binding.pry

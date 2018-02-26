@@ -42,21 +42,40 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      empty_array = []
+
+      result = Scrabble::Scoring.highest_score_from(empty_array)
+
+      result.must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      one_word = ["cat"]
+      Scrabble::Scoring.highest_score_from(one_word).must_equal one_word[0]
     end
 
     it 'returns the highest word if there are two words' do
+      two_words = ["cat", "zebra"]
+      result = Scrabble::Scoring.highest_score_from(two_words)
+      result.must_equal two_words[1]
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      tie_seven = %W[zzzzzz flitter coco]
+      result = Scrabble::Scoring.highest_score_from(tie_seven)
+      result.must_equal tie_seven[1]
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      tie_words = %W[qii mmmm coco water]
+      result = Scrabble::Scoring.highest_score_from(tie_words)
+      result.must_equal tie_words[0]
     end
 
     it 'returns the first word of a tie with same letter count' do
+      tie_words = %W[mmmm www coco water qii]
+      result = Scrabble::Scoring.highest_score_from(tie_words)
+      result.must_equal tie_words[1]
     end
   end
 end
