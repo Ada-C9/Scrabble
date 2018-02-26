@@ -42,21 +42,49 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      # Act
+      word_collection = []
+      # Assert
+      Scrabble::Scoring.highest_score_from(word_collection).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      # Act
+      word_collection = ["dog"]
+      word_collection2 = ["mouse"]
+      # Assert
+      Scrabble::Scoring.highest_score_from(word_collection).must_equal "dog"
+      Scrabble::Scoring.highest_score_from(word_collection2).must_equal "mouse"
     end
 
     it 'returns the highest word if there are two words' do
+      word_collection = ["dog","quiz","cat"]
+      Scrabble::Scoring.highest_score_from(word_collection).must_equal "quiz"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      #Act
+        word_collection = ['kkb','markets','qm']
+        word_collection2 = ["dogss", "treatss"]
+      #Assert
+      Scrabble::Scoring.highest_score_from(word_collection).must_equal "markets"
+      Scrabble::Scoring.highest_score_from(word_collection2).must_equal "treatss"
+
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      words = ["kf","bcm", "dgmae"]
+      words2 = "kk", "q", "aeiouk"
+      Scrabble::Scoring.highest_score_from(words).must_equal "kf"
+      Scrabble::Scoring.highest_score_from(words2).must_equal "q"
     end
 
     it 'returns the first word of a tie with same letter count' do
+      words = ["kf","bcm", "kh", "dgmae","kw"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "kf"
+
+      words = ["bcm", "kh", "dgmae","kf"]
+      Scrabble::Scoring.highest_score_from(words).must_equal "kh"
     end
   end
 end
