@@ -23,37 +23,34 @@ describe 'TileBag' do
   describe 'draw_tiles' do
     it 'returns a collection of random tiles' do
       grab_bag = Scrabble::TileBag.new
-      collection_of_tiles = []
-
-      first_letter = grab_bag.draw_tiles(1)
-      collection_of_tiles << first_letter
-
-      second_letter = grab_bag.draw_tiles(1)
-      collection_of_tiles << second_letter
-
-      collection_of_tiles.must_equal [first_letter, second_letter]
+      test_array = grab_bag.draw_tiles(6)
+      test_array.length.must_equal 6
 
     end
 
     it 'removes used tiles from the default set' do
-      test_hash = {
-        A: 9, B: 2, C: 2, D: 4, E: 12, F: 2,
-        G: 3, H: 2, I: 9, J: 1, K: 1, L: 4,
-        M: 2, N: 6, O: 8, P: 2, Q: 1, R: 6, S: 4,
-        T: 6, U: 4, V: 2, W: 2, X: 1, Y: 2, Z: 1
-      }
 
       grab_bag = Scrabble::TileBag.new
-      collection_of_tiles = []
 
-      first_letter = grab_bag.draw_tiles(1)
-      first_letter = first_letter[0].to_sym
-      grab_bag.starting_tiles[first_letter].must_equal test_hash[first_letter] - 1
+      original_number_of_tiles = grab_bag.tiles_remaining
+      grab_bag.draw_tiles(6)
+
+      expected_number_of_tiles = original_number_of_tiles - 6
+      actual_number_of_tiles = grab_bag.tiles_remaining
+
+      actual_number_of_tiles.must_equal expected_number_of_tiles
+
     end
+
   end
 
   xdescribe 'tiles_remaining' do
     it 'returns the number of tiles remaining in the bag' do
+      grab_bag = Scrabble::TileBag.new
+
+      number_of_tiles = grab_bag.tiles_remaining
+
+      grab_bag.remaining_tiles.length.must_equal number_of_tiles
 
     end
   end

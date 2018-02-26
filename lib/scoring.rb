@@ -1,5 +1,3 @@
-require_relative '../lib/player'
-require_relative '../lib/tilebag'
 require 'pry'
 require "awesome_print"
 
