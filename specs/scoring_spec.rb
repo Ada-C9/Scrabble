@@ -50,15 +50,15 @@ describe 'Scoring' do
   end
 
   describe 'highest_score_from' do
-    it 'returns nil if no words were passed' do
+    it 'throw ArgumentError if no words were passed' do
       proc { Scrabble::Scoring.highest_score_from([]) }.must_raise ArgumentError
     end
 
-    it 'returns nil if provided non-array input' do
+    it 'throw ArgumentError if provided non-array input' do
       proc { Scrabble::Scoring.highest_score_from(nil)}.must_raise ArgumentError
     end
 
-    it 'returns nil if element in provided array is not a String' do
+    it 'throw ArgumentError if element in provided array is not a String' do
       proc { Scrabble::Scoring.highest_score_from(["foo", 4, "bar"]) }.must_raise ArgumentError
     end
 
