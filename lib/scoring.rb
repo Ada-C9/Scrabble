@@ -31,24 +31,38 @@ module Scrabble
       # Set the points for that word to initialize at zero and calculate the points of each word, adding them to the points variable:
       points = 0
 
-      letters_array.each do |letter|
-        case letter
-        when "Q", "Z"
-          points += 10
-        when "D", "G"
-          points += 2
-        when "B", "C", "M", "P"
-          points += 3
-        when "F", "H", "V", "W", "Y"
-          points += 4
-        when "K"
-          points += 5
-        when "J", "X"
-          points += 8
-        else #"A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
-          points += 1
+      points_hash = {
+        10 => ["Q", "Z"],
+        2 => ["D", "G"],
+        3 => ["B", "C", "M", "P"],
+        4 => ["F", "H", "V", "W", "Y"],
+        5 => 'K',
+        8 => ["J", "X"],
+        1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"] }
+
+
+        letters_array.each do |letter|
+          points_hash.each { |key, value| value.include?(letter) ? points += key : + 0 }
         end
-      end
+
+        # Before it was:
+      #     case letter
+      #   when "Q", "Z"
+      #     points += 10
+      #   when "D", "G"
+      #     points += 2
+      #   when "B", "C", "M", "P"
+      #     points += 3
+      #   when "F", "H", "V", "W", "Y"
+      #     points += 4
+      #   when "K"
+      #     points += 5
+      #   when "J", "X"
+      #     points += 8
+      #   else #"A", "E", "I", "O", "U", "L", "N", "R", "S", "T"
+      #     points += 1
+      #   end
+      # end
 
       # If word has 7 letters add 50 more points:
       letters_array.length == 7 ? points += 50 : points += 0
@@ -66,7 +80,7 @@ module Scrabble
       scoring_table = {}
 
       # Set the scores of each word:
-      array_of_words.each {|word| scoring_table["#{word}"] = score(word)}
+      array_of_words.each {|word| scoring_table[word] = score(word)}
 
       # Find the words with the maximu score between them:
       max = scoring_table.values.max

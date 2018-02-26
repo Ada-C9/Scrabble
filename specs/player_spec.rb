@@ -36,6 +36,13 @@ describe 'Player' do
         player_1.plays.must_include "orange"
 
       end
+
+      it "Returns false if player already won" do
+        player_1 = Scrabble::Player.new("Patrick")
+        player_1.play("xxxxxxx")
+
+        player_1.play("orange").must_equal false
+      end
     end
   end
 

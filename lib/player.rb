@@ -27,7 +27,7 @@ module Scrabble
 # Accepts a word as an argument and add it to the plays array.
 
     def play(word)
-      @plays << word
+      won? ? false : @plays << word
     end
 
 # _________________TOTAL SCORE METHOD____________________
