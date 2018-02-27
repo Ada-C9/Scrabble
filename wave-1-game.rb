@@ -2,9 +2,10 @@ require_relative 'lib/scrabble'
 
 module Scrabble
   class Game
-    def initialize
+    def initialize()
       @words = []
     end
+
 
     def play
       start

@@ -4,15 +4,18 @@ require 'minitest/skip_dsl'
 
 require_relative '../lib/scoring'
 
+
 # Get that nice colorized output
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'Scoring' do
+
   describe 'score' do
     it 'correctly scores simple words' do
       Scrabble::Scoring.score('dog').must_equal 5
       Scrabble::Scoring.score('cat').must_equal 5
       Scrabble::Scoring.score('pig').must_equal 6
+
     end
 
     it 'adds 50 points for a 7-letter word' do
@@ -41,22 +44,49 @@ describe 'Scoring' do
   end
 
   describe 'highest_score_from' do
+
     it 'returns nil if no words were passed' do
+      #arrange
+      words = []
+      #act & #assert
+     Scrabble::Scoring.highest_score_from(words).must_be_nil
+
     end
 
     it 'returns the only word in a length-1 array' do
+      words = []
+      words << "pearl"
+      Scrabble::Scoring.highest_score_from(words).must_equal "pearl"
     end
 
     it 'returns the highest word if there are two words' do
+      words = []
+      words.push("zebra", "otter")
+
+      Scrabble::Scoring.highest_score_from(words).must_equal "zebra"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      words = []
+      words.push("mum", "agenda")
+
+      Scrabble::Scoring.highest_score_from(words).must_equal "agenda"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      words = []
+      words.push("cat", "long")
+
+      Scrabble::Scoring.highest_score_from(words).must_equal "cat"
     end
 
-    it 'returns the first word of a tie with same letter count' do
+    it 'returns the first word of a tie with same letter (count)' do
+      words = []
+      words.push("longa", "pie", "longe")
+
+      Scrabble::Scoring.highest_score_from(words).must_equal "longa"
+
+
     end
   end
 end
