@@ -1,13 +1,33 @@
 module Scrabble
 
   class Scoring
-    SCORING_RUBRIK =  {'aeioulnrst'=> 1,
-      'dg'=>        2,
-      'bcmp' =>    3,
-      'fhavwy'=>      4,
-      'k'=>           5,
-      'jx'=>          8,
-      'qz'=>          10,
+    SCORING_RUBRIK =  {
+      'a'=> 1,
+      'e'=> 1,
+      'i'=> 1,
+      'o'=> 1,
+      'u'=> 1,
+      'l'=> 1,
+      'n'=> 1,
+      'r'=> 1,
+      's'=> 1,
+      't'=> 1,
+      'd'=> 2,
+      'g'=> 2,
+      'b'=> 3,
+      'c'=> 3,
+      'm'=> 3,
+      'p'=> 3,
+      'f'=> 4,
+      'h'=> 4,
+      'v'=> 4,
+      'w'=> 4,
+      'y'=> 4,
+      'k'=> 5,
+      'j'=> 8,
+      'x'=> 8,
+      'q'=> 10,
+      'z'=> 10
     }
     def self.score(word)
 
@@ -15,25 +35,29 @@ module Scrabble
       word_score = 0
 
       #for each has key
-      n = 0
+
       word.downcase.each_char do |letter|
-        letter = letter
-        SCORING_RUBRIK.each do |k,v|
-          key_string = k.to_s
-          if key_string.include? letter
-            word_score += v
-            n+=1
-          end
-        end
-        return word_score
+        return nil unless SCORING_RUBRIK.include?(letter)
+        word_score += SCORING_RUBRIK[letter]
       end
 
-      if n != word.length
+
+      if word.length == 7
+        word_score += 50
+      elsif word.length > 7
+        return nil
+      elsif word.length == 0
         return nil
       end
       return word_score
-
     end
+
+
+
+
+
+
+
 
     def self.highest_score_from(array_of_words)
 
@@ -87,4 +111,4 @@ module Scrabble
 end # module Scrabble
 
 
-#puts  score_word = Scrabble::Scoring.highest_score_from(['pie', 'long', 'dig'])
+puts score_word = Scrabble::Scoring.score('dog')
