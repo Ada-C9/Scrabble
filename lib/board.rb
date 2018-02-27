@@ -40,14 +40,15 @@ module Scrabble
     # Example of empty board of size 2:
     # '--------\n|   |   |\n--------\n|   |   |\n--------'
     def board_to_string
-      board_as_string = "----" * @size
+      line = "#{"----" * @size}"
+      board_as_string = "#{line}"
       @board.each do |columns|
         row = "\n"
         columns.each do |element|
           element = " " if element.nil? # keeps alignment
           row = "#{row}| #{element} "
         end
-        board_as_string << "#{row}|\n#{"----" * @size}"
+        board_as_string << "#{row}|\n#{line}"
       end
       return board_as_string
     end
@@ -93,7 +94,7 @@ module Scrabble
     # word. Otherwise, returns 'nil'.
     def insert_across(row, col, word)
       return if !has_space_across_for_word?(row, col, word)
-      (0...word.length).each { |index| @board[row][col + index] = word[index] }
+      word.length.times { |index| @board[row][col + index] = word[index] }
       return word
     end
 
@@ -112,7 +113,7 @@ module Scrabble
     # Otherwise, returns 'nil'.
     def insert_down(row, col, word)
       return if !has_space_down_for_word?(row, col, word)
-      (0...word.length).each { |index| @board[row + index][col] = word[index] }
+      word.length.times { |index| @board[row + index][col] = word[index] }
       return word
     end
 
@@ -185,3 +186,20 @@ module Scrabble
 
   end
 end
+
+# board_as_string = "    1   2   3   4   5   6   7   8   9  10  11"
+#
+# line = "  #{"----" * @size}"
+# board_as_string = "#{board_as_string}\n#{line}"
+# row_letter = "A"
+# @board.each do |columns|
+#   row = "\n#{row_letter} "
+#   columns.each do |element|
+#     element = " " if element.nil? # keeps alignment
+#     row = "#{row}| #{element} "
+#   end
+#   row_letter.next!
+#   board_as_string << "#{row}|\n#{line}"
+# end
+# return board_as_string
+# end
