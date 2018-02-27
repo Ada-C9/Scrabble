@@ -13,7 +13,7 @@ module Scrabble
         value.times { (tile_bag << letter.to_s)}} #
       end
 
-      puts "#{ @tile_bag}"
+      puts "#{@tile_bag}"
 
       def draw_tiles(num)
 
@@ -36,5 +36,5 @@ module Scrabble
   end # module Scrabble
 
 
-  x = Scrabble::Tilebag.new
+  # x = Scrabble::Tilebag.new
   # puts x.draw_tiles(3)
