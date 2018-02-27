@@ -68,10 +68,12 @@ describe 'Scoring' do
 
     it 'returns the highest word if there are two words' do
       Scrabble::Scoring.highest_score_from(["unicorn", "boo"]).must_equal "unicorn"
+      Scrabble::Scoring.highest_score_from(["boo", "unicorn"]).must_equal "unicorn"
     end
 
     it 'if tied, prefer a word with 7 letters' do
       Scrabble::Scoring.highest_score_from(["QQQQQQ", "BEAIOUD"]).must_equal "BEAIOUD"
+      Scrabble::Scoring.highest_score_from(["BEAIOUD", "QQQQQQ"]).must_equal "BEAIOUD"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
