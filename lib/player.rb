@@ -39,7 +39,7 @@ module Scrabble
 
     # Returns highest score of the words the player has played.
     def highest_word_score
-      Scoring.score(highest_scoring_word)
+      return Scoring.get_highest_score(@plays)
     end
 
     # Pre: Throws ArgumentError if provided tile_bag is not a TileBag.

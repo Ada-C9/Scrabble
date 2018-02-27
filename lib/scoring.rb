@@ -33,18 +33,28 @@ module Scrabble
     # MAX_LETTERS (inclusive). Otherwise, throws ArgumentError.
     # Returns the highest scoring word from provided array_of_words. If two or
     # more words are tried and one or more words is MAX_LETTERS in length,
-    # returns the first word that is MAX_LETTERS long. Otherwise, returns the first
-    # instance of the shortest word.
+    # returns the first word that is MAX_LETTERS long. Otherwise, returns the
+    # first instance of the shortest word.
     def self.highest_score_from(array_of_words)
-      valid_initial_array_or_error(array_of_words)
-      scored_words = array_of_words.group_by{ |word| score(word) }
-      highest_score = scored_words.keys.max
-      highest_scoring_word = scored_words[highest_score]
-      return highest_scoring_word[0] if highest_scoring_word.size == 1
-      return break_tie(highest_scoring_word)
+      highest_scoring_words = group_by_scores(array_of_words).values[0]
+      return highest_scoring_words[0] if highest_scoring_words.size == 1
+      return break_tie(highest_scoring_words)
+    end
+
+    #
+    def self.get_highest_score(array_of_words)
+      return group_by_scores(array_of_words).keys[0]
     end
 
     private
+
+    #
+    def self.group_by_scores(array_of_words)
+      valid_initial_array_or_error(array_of_words)
+      words_grouped_by_scores = array_of_words.group_by { |word| score(word) }
+      highest_score = words_grouped_by_scores.keys.max
+      return words_grouped_by_scores.slice(highest_score)
+    end
 
     # Provided highest_words must be an array of one or more words with tied
     # scores.
@@ -52,7 +62,7 @@ module Scrabble
     # the first word that is MAX_LETTERS long. Otherwise, returns the first
     # instance of the shortest word in highest_words.
     def self.break_tie(tied_words)
-      highest_word = tied_words.find { |word| word.size == MAX_LETTERS}
+      highest_word = tied_words.find { |word| word.size == MAX_LETTERS }
       if highest_word.nil?
         highest_word = tied_words.min_by { |word| word.size }
       end
@@ -62,7 +72,7 @@ module Scrabble
     # Throws ArgumentError if provided array_of_words is not an array, is empty,
     # or contains elements that are not Strings.
     def self.valid_initial_array_or_error(words)
-      if words.class != Array || words.length == 0 || !words.all?(String)
+      if words.class != Array || words.empty? || !words.all?(String)
         raise ArgumentError.new("Invalid input #{words}")
       end
     end
