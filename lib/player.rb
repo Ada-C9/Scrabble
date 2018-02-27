@@ -41,7 +41,7 @@ module Scrabble
         return Scoring.score(highest_scoring_word)
       end
 
-      def draw_tiles tile_bag
+      def draw_tiles(tile_bag)
         num = 7 - tiles.length
 
         if tile_bag.tiles_remaining < num
@@ -49,6 +49,7 @@ module Scrabble
         else
           @tiles += tile_bag.draw_tiles(num)
         end
+
       end
 
     end
