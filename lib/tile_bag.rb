@@ -7,7 +7,8 @@ module Scrabble
     attr_reader :bag
 
     def initialize
-      @bag = {
+      @bag =
+      {
         "A" => 9, "B" => 2, "C" => 2, "D" => 4, "E" => 12, "F" => 2, "G" => 3,
         "H" => 2, "I" => 9, "J" => 1, "K" => 1, "L" => 4, "M" => 2, "N" => 6,
         "O" => 8, "P" => 2, "Q" => 1, "R" => 6, "S" => 4, "T" => 6, "U" => 4,
@@ -24,6 +25,9 @@ module Scrabble
 
     def draw_tiles(num)
       tiles_drawn = [ ]
+      if tiles_remaining < num
+        raise ArgumentError.new "NO"
+      end
 
       num.times do
         new_letter = @bag.keys.sample

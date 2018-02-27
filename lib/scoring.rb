@@ -10,22 +10,22 @@ module Scrabble
     def self.score(word)
 
       # If word contains a character that is not a letter, returns nil:
-      if word.match?(/\W/)
+      if word.match?(/\W/) || word.length > 7 || word == nil || word.length == 0
         return nil
       end
 
       # If word is has more than 7 characters, returns nil:
-      if word.length > 7
-        return nil
-      end
+      # if word.length > 7
+      #   return nil
+      # end
 
       # Creates a new array with each letter of the word as a diferent element:
       letters_array = word.upcase.split("")
 
       # If array with letters is empty, returns nil:
-      if letters_array.empty?
-        return nil
-      end
+      # if letters_array.empty?
+      #   return nil
+      # end
 
 
       # Set the points for that word to initialize at zero and calculate the points of each word, adding them to the points variable:
@@ -90,7 +90,7 @@ module Scrabble
       winning_words = max_scored_words_hash.keys
 
       # Choose and return the winning word according to the rules and solving a tie if any:
-      if array_of_words == []
+      if array_of_words.class != Array || array_of_words.empty?
         return nil
       elsif winning_words.length == 1
         winner = winning_words[0]
@@ -103,7 +103,6 @@ module Scrabble
         return winner
       end
     end
-
 
   end #Scoring
 end #Scrabble

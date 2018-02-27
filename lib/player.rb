@@ -27,6 +27,8 @@ module Scrabble
 # Accepts a word as an argument and add it to the plays array.
 
     def play(word)
+      return nil if word == nil || word.match?(/\W|\s/) || word.length > 7 || word.length == 0
+
       won? ? false : @plays << word
     end
 

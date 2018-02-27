@@ -31,6 +31,12 @@ describe "TileBag" do
 
       end
 
+      it "Does not remove tiles if player draws more than there are in tile bag" do
+        tile_bag = Scrabble::TileBag.new
+        proc { tile_bag.draw_tiles(300)}.must_raise ArgumentError
+
+      end
+
       it 'Removes tiles from the default set' do
         tile_bag = Scrabble::TileBag.new
 
@@ -53,6 +59,7 @@ describe "TileBag" do
         tile_bag.tiles_remaining.must_equal 98 - 3
 
       end
+
     end
 
   end

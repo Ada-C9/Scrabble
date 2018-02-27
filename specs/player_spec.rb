@@ -43,6 +43,28 @@ describe 'Player' do
 
         player_1.play("orange").must_equal false
       end
+
+      it "Returns nil for invalid inputs of word" do
+        player_1 = Scrabble::Player.new("Patrick")
+
+        player_1.play(nil).must_be_nil
+        player_1.play("xxxxxxxxx").must_be_nil
+        player_1.play("123*&$").must_be_nil
+        player_1.play("").must_be_nil
+      end
+
+      it "Returns nil for multiple words entered" do
+        player_1 = Scrabble::Player.new("Patrick")
+        player_1.play("hello hello").must_be_nil
+
+      end
+
+      it "Will not let player play word if they already won" do
+        player_1 = Scrabble::Player.new("Patrick")
+        player_1.play("xxxxxxx")
+        player_1.play("dog").must_equal false
+      end
+
     end
   end
 
@@ -64,7 +86,7 @@ describe 'Player' do
 
     end
 
-    it "Returns false if player has over 100 points" do
+    it "Returns false if player has less than 100 points" do
       player_1 = Scrabble::Player.new("Patrick")
       player_1.play("apples")
       player_1.play("fuzzy")
