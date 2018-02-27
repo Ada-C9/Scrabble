@@ -31,7 +31,7 @@ describe 'player tests' do
     #assert
     player_d = Scrabble::Player.new('player_d')
 
-    player_d.play('zzzzzzzzzzzzzzzzz')
+    player_d.plays('zzzzzzzzzzzzzzzzz')
 
     player_d.play('pie').must_equal false
   end
