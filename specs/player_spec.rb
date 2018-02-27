@@ -23,17 +23,20 @@ describe 'player tests' do
     new_word = 'bird'
     #assert
     player_d = Scrabble::Player.new('player_d')
+    player_d.play(new_word)
+    player_d.plays.must_equal ['bird']
 
-    player_d.plays(new_word).must_equal ['bird']
   end
 
   it "returns false if has won == true" do
     #assert
     player_d = Scrabble::Player.new('player_d')
 
-    player_d.play('zzzzzzzzzzzzzzzzz')
+    player_d.play('zzzzzz')
+    player_d.play('zzzzzz')
 
     player_d.play('pie').must_equal false
+
   end
 
   it "returns score of a play/word " do
@@ -59,26 +62,25 @@ describe 'player tests' do
 
   it "tells you if you won" do
     player_d = Scrabble::Player.new('player_d')
-    player_d.play( 'zzzzzzzzzzzzzzzzzzzz')
+    player_d.play( 'zzzzzzz')
 
     player_d.won?.must_equal true
   end
 
-  xit "returns the highest scoring word" do
+  it "returns the highest scoring word" do
     player_d = Scrabble::Player.new('player_d')
-    player_d.play( 'Mississippi')
-    player_d.play( 'zzzzzzzzzzz')
+    player_d.play( 'apple')
+    player_d.play( 'zzzzzzz')
 
-    player_d.highest_scoring_word.must_equal 'zzzzzzzzzzz'
+    player_d.highest_scoring_word.must_equal 'zzzzzzz'
   end
 
-  xit "returns highest word score" do
+  it "returns highest word score" do
     player_d = Scrabble::Player.new('player_d')
-    player_d.play( 'Mississippi')
-    player_d.play( 'zzzzzzzzzzz')
-    player_d.play( 'zzzzzzzzzzz')
+    player_d.play( 'zzzzzzz')
+    player_d.play( 'apple')
 
-    player_d.highest_word_score.must_equal 110
+    player_d.highest_word_score.must_equal 120
   end
 
 
