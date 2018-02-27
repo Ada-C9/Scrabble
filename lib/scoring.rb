@@ -80,10 +80,10 @@ module Scrabble
         # .flatten! takes our array of arrays and condenses it into one array
         winning_words.flatten!
         # if there's only one word in the array, return that word
-        if winning_words.length == 1
-          return winning_words[0]
+        # if winning_words.length == 1
+        #   return winning_words[0]
         # if there are multiple words in the array, return the word with 7 letters
-        elsif winning_words.any? { |word| word.length == 7 }
+        if winning_words.any? { |word| word.length == 7 }
           return winning_words.find { |word| word.length == 7 }
         else
           return winning_words.min_by(&:length)
