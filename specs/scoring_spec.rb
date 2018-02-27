@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest/skip_dsl'
-
+require 'awesome_print'
 require_relative '../lib/scoring'
 
 # Get that nice colorized output
@@ -42,21 +42,38 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      Scrabble::Scoring.highest_score_from([]).must_be_nil
+    end
+
+    it 'returns nil if array contains invalid words' do
+      Scrabble::Scoring.highest_score_from(["aaaaaaaaaaaaa"]).must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      Scrabble::Scoring.highest_score_from(["word"]).must_equal "word"
     end
 
-    it 'returns the highest word if there are two words' do
+    it 'returns the highest scoring word if there are two words' do
+      Scrabble::Scoring.highest_score_from(["pig", "cat"]).must_equal "pig"
+      Scrabble::Scoring.highest_score_from(["cat", "pig"]).must_equal "pig"
+      Scrabble::Scoring.highest_score_from(["aaaaaa", "kd" ]).must_equal "kd"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      Scrabble::Scoring.highest_score_from(["aaaaaad", "qqqqqj"]).must_equal "aaaaaad"
+      Scrabble::Scoring.highest_score_from(["kd", "aaaaaaa"]).must_equal "aaaaaaa"
+
+      Scrabble::Scoring.highest_score_from(["qqqqqj", "aaaaaad"]).must_equal "aaaaaad"
+
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      Scrabble::Scoring.highest_score_from(["kkkkk", "zxd"]).must_equal "zxd"
+
     end
 
     it 'returns the first word of a tie with same letter count' do
+      Scrabble::Scoring.highest_score_from(["adbf", "egch"]).must_equal "adbf"
     end
   end
 end
