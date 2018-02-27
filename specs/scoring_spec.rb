@@ -42,21 +42,40 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      Scrabble::Scoring.highest_score_from().must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      winning_word = Scrabble::Scoring.highest_score_from(["hotdog"])
+      winning_word.must_equal "hotdog"
+      winning_word.must_be_kind_of String
+
     end
 
     it 'returns the highest word if there are two words' do
+      winning_words = Scrabble::Scoring.highest_score_from(["dog", "academy"])
+      winning_words.must_equal "academy"
+
+      winning_words = Scrabble::Scoring.highest_score_from(["academy", "dog"])
+      winning_words.must_equal "academy"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      winning_words = Scrabble::Scoring.highest_score_from(["qqqqqj", "aaaaaad"])
+      winning_words.must_equal "aaaaaad"
+
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      winning_words = Scrabble::Scoring.highest_score_from(["qq", "kkkk"])
+      winning_words.must_equal "qq"
     end
 
     it 'returns the first word of a tie with same letter count' do
+      winning_words = Scrabble::Scoring.highest_score_from(["dd", "ba"])
+      winning_words.must_equal "dd"
+
+
     end
   end
 end
