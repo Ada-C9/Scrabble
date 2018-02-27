@@ -30,7 +30,7 @@ describe 'Player' do
     it 'takes in a word' do
       @john.must_respond_to :play
       @john.play("table").must_be_kind_of Integer
-      @john.play(20).must_be_nil
+      proc { @john.play(20) }.must_raise ArgumentError
     end
 
     it 'word is added to play array' do
@@ -39,8 +39,10 @@ describe 'Player' do
     end
 
     it 'returns false if game is over (player has already won)' do
-      @john.total_score = 100
-      @john.play('dog').must_equal false
+      # this means john has won
+      @john.play("zzzzzzz")
+
+      @john.play("dog").must_equal false
     end
 
     it 'returns score of word' do
@@ -58,12 +60,14 @@ describe 'Player' do
 
   describe "won?" do
     it "returns true if player has 100 points" do
-      @john.total_score = 100
+      @john.play("zzzzzzz")
+
       @john.won?.must_equal true
     end
 
     it "returns false if player does not have 100 points" do
-      @john.total_score = 99
+      @john.play("aaa")
+
       @john.won?.must_equal false
     end
   end
@@ -89,9 +93,11 @@ describe 'Player' do
 
   describe 'draw_tiles' do
     it 'draws tiles from the tile bag' do
-      @john.draw_tiles("tiles").must_be_kind_of Array
-      @john.draw_tiles("tiles").length.must_be :<, 8
-      @john.draw_tiles("tiles").length.must_be :>, 0
+      hand = @john.draw_tiles(Scrabble::TileBag.new)
+
+      hand.must_be_kind_of Array
+      hand.length.must_equal 7
+      hand.length.must_be :>, 0
     end
   end
 end

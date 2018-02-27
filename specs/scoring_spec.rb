@@ -51,6 +51,7 @@ describe 'Scoring' do
 
    it 'returns the highest word if there are two words' do
      Scrabble::Scoring.highest_score_from(["dog", "quail"]).must_equal "quail"
+     Scrabble::Scoring.highest_score_from(["quail", "dog"]).must_equal "quail"
    end
 
     it 'if tied, prefer a word with 7 letters' do
@@ -58,11 +59,13 @@ describe 'Scoring' do
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
-      Scrabble::Scoring.highest_score_from(["aaaaaa", "ggg"]).must_equal "aaaaaa"
+      Scrabble::Scoring.highest_score_from(["aaaaaa", "ggg"]).must_equal "ggg"
+      Scrabble::Scoring.highest_score_from(["ggg", "aaaaaa"]).must_equal "ggg"
     end
 
     it 'returns the first word of a tie with same letter count' do
       Scrabble::Scoring.highest_score_from(["cat", "dog"]).must_equal "cat"
+      Scrabble::Scoring.highest_score_from(["dog", "cat"]).must_equal "dog"
     end
   end
 end

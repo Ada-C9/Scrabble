@@ -33,9 +33,8 @@ module Scrabble
       return score.length == 7 ? score.sum + 50 : score.sum
     end
 
-
     def self.highest_score_from(array_of_words)
-      if array_of_words.length == 0
+      if array_of_words.class != Array || array_of_words.empty?
         return nil
       end
 
@@ -44,13 +43,13 @@ module Scrabble
         hash[i] = self.score(i)
       end
 
-      max_score_words = hash.delete_if { |key, value| value!= hash.values.max }.keys
+      max_score_words = hash.select { |key, value| value == hash.values.max }.keys
 
-      max_score_words.sort_by { |i| i.length }
+      max_score_words = max_score_words.sort_by { |i| i.length }
 
       if max_score_words.length == 1
         return max_score_words[0]
-      elsif max_score_words[-1] == 7
+      elsif max_score_words[-1].length == 7
         return max_score_words[-1]
       else
         return max_score_words[0]

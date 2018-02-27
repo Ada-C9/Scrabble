@@ -1,22 +1,20 @@
 require 'awesome_print'
 require 'pry'
 require_relative 'scoring'
+require_relative 'tilebag'
 
 module Scrabble
-  class Player < Scoring
+  class Player
 
     attr_reader :name, :played_words, :player_tiles
-    attr_writer :total_score
 
     def initialize(name)
       @player_tiles = []
       @name = name
       @played_words = []
-      @total_score = 0
     end
 
     def draw_tiles(tile_bag)
-      tile_bag = Scrabble::TileBag.new
       @player_tiles = tile_bag.draw_tiles(7 - @player_tiles.length)
       tiles
     end
@@ -25,27 +23,24 @@ module Scrabble
       return @player_tiles
     end
 
-    def play(word)
-      if @total_score >= 100
-        return false
-      else
-        @played_words << word
-        return Scrabble::Scoring.score(word)
-      end
+    def total_score
+      scores = @played_words.map { |i| i = Scrabble::Scoring.score(i) }
+      scores_sum = scores.reduce(:+)
+      return scores_sum
     end
 
-    def total_score
-      scores = @played_words.map { |i| Scrabble::Scoring.score(i) }
-      total_score = scores.reduce(:+)
-      return total_score
+    def play(word)
+      if Scrabble::Scoring.score(word) != nil
+        @played_words << word
+      else
+        raise ArgumentError.new "Invalid word"
+      end
+
+      return total_score >= 100 ? false : Scrabble::Scoring.score(word)
     end
 
     def won?
-      if @total_score >= 100
-        return true
-      else
-        return false
-      end
+      return total_score >= 100 ? true : false
     end
 
     def highest_scoring_word
@@ -53,8 +48,7 @@ module Scrabble
     end
 
     def highest_word_score
-      scores = @played_words.map { |i| Scrabble::Scoring.score(i) }
-      return scores.max
+      return Scrabble::Scoring.score(highest_scoring_word)
     end
 
   end
