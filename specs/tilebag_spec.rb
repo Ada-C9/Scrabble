@@ -24,9 +24,16 @@ describe 'TileBag' do
   end
 
   describe '#draw_tiles(num)' do
+    it "raises an ArgumentError if num is not Integer" do
+      proc {tilebag.draw_tiles("one")}.must_raise ArgumentError
+      proc {tilebag.draw_tiles("1")}.must_raise ArgumentError
+      proc {tilebag.draw_tiles(2.45)}.must_raise ArgumentError
+      proc {tilebag.draw_tiles(1.0)}.must_raise ArgumentError
+    end
+
     it 'returns a collection of random tiles' do
       tilebag.draw_tiles(1).must_be_instance_of Array
-      tilebag.draw_tiles(0).length.must_equal 0 
+      tilebag.draw_tiles(0).length.must_equal 0
 
     end
     it "removes the tiles from the default set" do

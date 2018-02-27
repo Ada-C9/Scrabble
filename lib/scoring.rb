@@ -10,25 +10,30 @@ module Scrabble
       letters.map{ | letter |
         total += CHART[letter] }
 
-      total += 50 if word.length == 7
-      return total
-    end
-
-    def self.highest_score_from(array_of_words)
-      return nil if array_of_words == []
-      # Gives array of scores
-      scores = array_of_words.map{|word| score(word)}
-      highest_score = scores.max
-      # Selects highest scoring words and return it into array
-      highest_scoring_words = array_of_words.select { |word| word if score(word) ==  highest_score }
-      return highest_scoring_words[0] if highest_scoring_words.length == 1
-
-      highest_scoring_words.each do |word|
-        return word if word.length == 7
+        total += 50 if word.length == 7
+        return total
       end
 
-      return highest_scoring_words.min_by { |word| word.length }
+      def self.pick_winner(highest_scoring_words)
+        return highest_scoring_words[0] if highest_scoring_words.length == 1
 
+        highest_scoring_words.each do |word|
+          return word if word.length == 7
+        end
+
+        return highest_scoring_words.min_by { |word| word.length }
+      end
+
+      def self.highest_scoring_words(array_of_words)
+        scores = array_of_words.map{|word| score(word)}
+        highest_score = scores.max
+        return array_of_words.select { |word| word if score(word) ==  highest_score }
+      end
+
+      def self.highest_score_from(array_of_words)
+        return nil if array_of_words == [] || array_of_words.class != Array
+        return pick_winner(highest_scoring_words(array_of_words))
+      end
+      
     end
   end
-end

@@ -6,6 +6,7 @@ module Scrabble
     end
 
     def draw_tiles(num)
+      raise ArgumentError.new("The num should be Integer") if num.class != Integer
       return @tiles.shuffle!.shift(num)
     end
 
