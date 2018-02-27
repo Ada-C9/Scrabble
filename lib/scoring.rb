@@ -53,12 +53,6 @@ module Scrabble
     end
 
 
-
-
-
-
-
-
     def self.highest_score_from(array_of_words)
 
       if array_of_words.empty?
@@ -71,22 +65,29 @@ module Scrabble
           if score > highest_score
             highest_word = word
             highest_score = score
+
           elsif score == highest_score
-            highest_word = self.break_tie(word, highest_word)
+            # highest_word =
+            self.break_tie(highest_word, word)
           end
         end
+        puts "#{highest_word}"
         return highest_word
+
       end
       #return highest_scoring_word
 
     end
 
     def self.break_tie(incumbent, challenger)
+
       if incumbent.length == 7
         return incumbent
       elsif challenger.length == 7
         return challenger
-      elsif challenger.length > incumbent.length
+      end
+
+      if challenger.length > incumbent.length
         return incumbent
       elsif challenger.length < incumbent.length
         return  challenger

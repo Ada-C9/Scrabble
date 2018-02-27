@@ -6,9 +6,14 @@ module Scrabble
     BAG = { A: 9,	N: 6, B: 2,	O: 8, C: 2, P: 2, D: 4,	Q: 1, E: 12, R: 6, F: 2,	S: 4, G: 3, T: 6, H: 2,	U: 4, I: 9,	V: 2, J: 1,	W: 2, K: 1,	X: 1, L: 4,	Y:2, M: 2,	Z: 1 }
 
     def initialize
+      #creates array which takes (letter, value) as index & tilebag as iterator
       @tile_bag = BAG.each_with_object([]) { |(letter, value),tile_bag|
-        value.times { (tile_bag << letter.to_s)}}
+      #iterate through the letters val times and shovel the
+      #letter to the individual letter tilebag
+        value.times { (tile_bag << letter.to_s)}} #
       end
+
+      puts "#{ @tile_bag}"
 
       def draw_tiles(num)
 
@@ -30,5 +35,6 @@ module Scrabble
     end # class # Tilebag
   end # module Scrabble
 
+
   x = Scrabble::Tilebag.new
-  puts x.draw_tiles(3)
+  # puts x.draw_tiles(3)

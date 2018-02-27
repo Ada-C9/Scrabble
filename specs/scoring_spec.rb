@@ -75,9 +75,9 @@ describe 'Scoring' do
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
       words = []
-      words.push("long", "pie", "dig")
+      words.push("cat", "long")
 
-      Scrabble::Scoring.highest_score_from(words).must_equal "dig"
+      Scrabble::Scoring.highest_score_from(words).must_equal "cat"
     end
 
     it 'returns the first word of a tie with same letter (count)' do
