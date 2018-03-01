@@ -26,13 +26,13 @@ describe 'Scoring' do
     end
 
     it 'returns nil for strings containing bad characters' do
-      Scrabble::Scoring.score('#$%^').must_be_nil
-      Scrabble::Scoring.score('char^').must_be_nil
-      Scrabble::Scoring.score(' ').must_be_nil
+       Scrabble::Scoring.score('#$%^').must_be_nil
+       Scrabble::Scoring.score('char^').must_be_nil
+       Scrabble::Scoring.score(' ').must_be_nil
     end
 
     it 'returns nil for words > 7 letters' do
-      Scrabble::Scoring.score('abcdefgh').must_be_nil
+      Scrabble::Scoring.score('oxyphenbutazone').must_be_nil
     end
 
     it 'returns nil for empty words' do
@@ -42,21 +42,39 @@ describe 'Scoring' do
 
   describe 'highest_score_from' do
     it 'returns nil if no words were passed' do
+      array_of_words = []
+      result = Scrabble::Scoring.highest_score_from(array_of_words)
+      result.must_be_nil
     end
 
     it 'returns the only word in a length-1 array' do
+      array_of_words = ["cat"]
+      result = Scrabble::Scoring.highest_score_from(array_of_words)
+      result.must_equal "cat"
     end
 
     it 'returns the highest word if there are two words' do
+      array_of_words = ["cat", "mouse"]
+      result = Scrabble::Scoring.highest_score_from(array_of_words)
+      result.must_equal "mouse"
     end
 
     it 'if tied, prefer a word with 7 letters' do
+      array_of_words = ["queazy", "puzzles"]
+      result = Scrabble::Scoring.highest_score_from(array_of_words)
+      result.must_equal "puzzles"
     end
 
     it 'if tied and no word has 7 letters, prefers the word with fewer letters' do
+      array_of_words = ["zippy", "jynx"]
+      result = Scrabble::Scoring.highest_score_from(array_of_words)
+      result.must_equal "jynx"
     end
 
     it 'returns the first word of a tie with same letter count' do
+      array_of_words = ["yak", "key"]
+      result = Scrabble::Scoring.highest_score_from(array_of_words)
+      result.must_equal "yak"
     end
   end
 end
