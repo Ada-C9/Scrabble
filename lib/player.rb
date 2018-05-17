@@ -23,12 +23,9 @@ module Scrabble
     # this method takes the user input and pushes the input into the player_words
     # array
     def play(word)
-      if won?
-        return false
-      else
-        @player_words << word
-      end
+      return false if won? || word.empty?
 
+      @player_words << word
       return Scrabble::Scoring.score(word)
     end # end of play(player_input)
 
@@ -36,15 +33,22 @@ module Scrabble
     def total_score
       player_score = 0
 
-      player_score = plays.map do |word|
-        Scrabble::Scoring.score(word)
+      # player_score = @player_words.map do |word|
+      #   Scrabble::Scoring.score(word)
+      # end
+      #
+      # return player_score.inject(:+)
+
+      @player_words.each do |word|
+        player_score += Scrabble::Scoring.score(word)
       end
-      return player_score.inject(:+)
+
+      return player_score
     end # end of total_score
 
     # this method takes the total score and see if the player won or not
     def won?
-      return true if total_score > 100
+      return total_score > 100
     end # end of won?
 
     # this method returns the highest scoring word
@@ -65,3 +69,14 @@ module Scrabble
 
   end # end of Player class
 end # end of Scrabble module
+
+
+# player = Scrabble::Player.new("Hannah")
+# word1 = "frog"
+# word2 = "cat"
+#
+# puts player.plays
+# puts player.play(word1)
+# puts player.play(word2)
+# puts player.plays
+# puts player.total_score
