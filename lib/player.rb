@@ -6,7 +6,6 @@ require_relative 'tilebag'
 
 module Scrabble
   class Player
-
     attr_accessor :name, :player_words, :tiles
 
     def initialize(name)
@@ -23,31 +22,29 @@ module Scrabble
 
     # this method takes the user input and pushes the input into the player_words
     # array
-    def play(player_input)
-      @player_words << player_input
-      score_of_word = Scrabble::Scoring.score(player_input)
+    def play(word)
       if won?
         return false
       else
-        return score_of_word
+        @player_words << word
       end
+
+      return Scrabble::Scoring.score(word)
     end # end of play(player_input)
 
     # this method adds up all the scores of the player_words array
     def total_score
-      word_scores = player_words.map do |word|
+      player_score = 0
+
+      player_score = plays.map do |word|
         Scrabble::Scoring.score(word)
       end
-      word_scores.inject(:+)
+      return player_score.inject(:+)
     end # end of total_score
 
     # this method takes the total score and see if the player won or not
     def won?
-      if total_score > 100
-        return true
-      else
-        return false
-      end
+      return true if total_score > 100
     end # end of won?
 
     # this method returns the highest scoring word

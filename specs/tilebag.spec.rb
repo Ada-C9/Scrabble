@@ -4,10 +4,13 @@ require 'minitest/skip_dsl'
 
 require_relative '../lib/tilebag'
 
+
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe 'TileBag' do
+
   describe '#initialize' do
+
     it 'starts all of the default tiles' do
       tilebag = Scrabble::TileBag.new
       tilebag.tiles.must_be_kind_of Array

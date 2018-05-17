@@ -52,7 +52,7 @@ describe 'Scoring' do
     end
 
     it 'returns the highest word if there are two words' do
-      array_of_words = ["dog", "frog"]
+      array_of_words = ["frog", "dog"]
       Scrabble::Scoring.highest_score_from(array_of_words).must_equal("frog")
     end
 
